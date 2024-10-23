@@ -5,6 +5,8 @@ import {LanguageData} from "./src/LanguageData.js";
 import {ConsumableItems} from "./src/ConsumableItems.js";
 import express from 'express';
 
+const port = process.env.PORT || 4000;
+
 // import * as fs from "fs";
 // import * as path from "path";
 // import {fileURLToPath} from 'url';
@@ -139,8 +141,6 @@ const fetchAllData = () => fetchItemNames()
 
 fetchAllData()
     .then(() => setInterval(() => fetchAllData(), 259200000));
-
-const port = 3000;
 
 app.listen(port, () => {
     console.log(`Server started: http:localhost:${port}`)
