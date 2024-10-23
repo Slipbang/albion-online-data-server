@@ -464,3 +464,17 @@
 //             if (err) throw err;
 //         })
 //     })
+
+// const testUrl = 'https://albion-online-data-server.onrender.com/data';
+//
+// const fetchData = async () => {
+//     const response = await fetch(testUrl);
+//
+//     if (response.ok) {
+//         console.log(await response.json())
+//     } else {
+//         console.log(response.status)
+//     }
+// }
+//
+// fetchData()

@@ -4,6 +4,7 @@ import {EquipmentItems} from "./src/EquipmentItems.js";
 import {LanguageData} from "./src/LanguageData.js";
 import {ConsumableItems} from "./src/ConsumableItems.js";
 import express from 'express';
+import {MaterialItems} from "./src/MaterialItems.js";
 
 const port = process.env.PORT || 4000;
 
@@ -51,6 +52,7 @@ const items = {
             AVALONIAN: [],
         }
     },
+    materials: [],
     consumableNames: {
         T1_ALCHEMY_EXTRACT_LEVEL1: null,
         T1_ALCHEMY_EXTRACT_LEVEL2: null,
@@ -88,7 +90,8 @@ const equipmentCategories = ['cape', 'bag', 'torch', 'totem', 'book',
     'rockgatherer_helmet', 'rockgatherer_armor', 'rockgatherer_shoes',
     'woodgatherer_helmet', 'woodgatherer_armor', 'woodgatherer_shoes'];
 
-const consumableCategories = ['potion', 'cooked']
+const consumableCategories = ['potion', 'cooked'];
+const materialCategories = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
 
 let itemData = {};
 const languageData = new LanguageData();
@@ -128,20 +131,27 @@ const fetchAllData = () => fetchItemNames()
         const equipmentItems = new EquipmentItems(itemData.items.equipmentitem);
         const weaponItems = new EquipmentItems(itemData.items.weapon);
         const consumableItems = new ConsumableItems(itemData.items.consumableitem);
+        const materialItems = new MaterialItems(itemData.items.simpleitem);
         weaponItems.createItems(weaponCategories, items, languageData.findItemNameHandler, artefactItems.createArtefactItem_Obj_Handler);
         equipmentItems.createItems(equipmentCategories, items, languageData.findItemNameHandler, artefactItems.createArtefactItem_Obj_Handler);
         consumableItems.createConsumableItems(consumableCategories, items);
+        materialItems.createMaterialItems(materialCategories, items, languageData.findItemNameHandler)
         languageData.createConsumableNames(items.consumableNames);
 
         app.get('/data', (req, res) => {
             res.json(items);
         });
 
-    }).finally(() => console.log('Data is refreshed'))
+    }).finally(() => {
+        console.log('Data is refreshed');
+        // fs.writeFile(path.resolve(__dirname, 'data.js'), JSON.stringify(items), (err) => {
+        //     if (err) throw err;
+        // })
+    })
 
 fetchAllData()
     .then(() => setInterval(() => fetchAllData(), 259200000));
 
 app.listen(port, () => {
-    console.log(`Server started: http:localhost:${port}`)
+    console.log(`Server started on port: ${port}`)
 })

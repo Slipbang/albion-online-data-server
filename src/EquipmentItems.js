@@ -17,8 +17,7 @@ export class EquipmentItems {
 
     _defineAOTItemParams(shopsubcategory1, id) {
         if (shopsubcategory1.includes('_')) {
-            const itemType = shopsubcategory1.split('_')[1];
-            const materialType = shopsubcategory1.split('_')[0];
+            const [materialType, itemType] = shopsubcategory1.split('_');
             const itemClasses = {
                 plate: 'warrior',
                 cloth: 'mage',
@@ -155,11 +154,11 @@ export class EquipmentItems {
         for (let item of this.data) {
             if ('craftingrequirements' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'];
-                const craftResources = item.craftingrequirements?.[0]?.['craftresource'] || item.craftingrequirements?.['craftresource'];
                 let ID = item['@uniquename'];
                 const bodyId = ID.split('_').filter((_, index) => index > 1).join('_') || ID.split('_').filter((_, index) => index > 0).join('_');
                 let itemCategory = ID.split('_')[1];
                 if (item['@tier'] !== '4' || !category.includes(shopsubcategory1) || !this._itemCategories.includes(itemCategory) || (ID.includes('TOOL') && ID.includes('AVALON'))) continue;
+                const craftResources = item.craftingrequirements?.[0]?.['craftresource'] || item.craftingrequirements?.['craftresource'];
                 if (craftResources) {
                     const {itemType, itemClass} = this._defineAOTItemParams(shopsubcategory1, ID);
                     const obj = {
