@@ -5,6 +5,7 @@ import {LanguageData} from "./src/LanguageData.js";
 import {ConsumableItems} from "./src/ConsumableItems.js";
 import express from 'express';
 import {MaterialItems} from "./src/MaterialItems.js";
+import cors from 'cors';
 
 const port = process.env.PORT || 4000;
 
@@ -151,6 +152,8 @@ const fetchAllData = () => fetchItemNames()
 
 fetchAllData()
     .then(() => setInterval(() => fetchAllData(), 259200000));
+
+app.use(cors())
 
 app.listen(port, () => {
     console.log(`Server started on port: ${port}`)
