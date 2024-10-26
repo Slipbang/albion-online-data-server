@@ -3,7 +3,7 @@ export class LanguageData {
         this.data = new Map();
     }
 
-    forbiddenTypes = ['UNIQUE_', 'SKIN_']
+    forbiddenTypes = ['UNIQUE_', 'SKIN_', 'PLAYERISLAND_', 'QUESTITEM_', '_LOOTBAG_', '_FIREWORKS_', 'TREASURE_']
 
     addLanguageItem(item) {
         const itemId = item['UniqueName'];

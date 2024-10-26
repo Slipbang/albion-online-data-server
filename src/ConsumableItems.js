@@ -3,7 +3,7 @@ export class ConsumableItems {
         this.data = data;
     }
 
-    _buildConsumableResourceObjectHandler (resource, obj, items) {
+    _buildConsumableResourceObjectHandler (resource, obj) {
         const special = ['T1_FISHSAUCE_LEVEL1', 'T1_ALCHEMY_EXTRACT_LEVEL1'];
         let resourceId = resource['@uniquename'];
         const foodConsumptionCount = resourceId.includes('QUESTITEM_TOKEN_AVALON') ? 7.2 : 4.5;
