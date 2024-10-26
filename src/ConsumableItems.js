@@ -6,9 +6,6 @@ export class ConsumableItems {
     _buildConsumableResourceObjectHandler (resource, obj, items) {
         const special = ['T1_FISHSAUCE_LEVEL1', 'T1_ALCHEMY_EXTRACT_LEVEL1'];
         let resourceId = resource['@uniquename'];
-        if (!(resourceId in items.consumableNames)) {
-            items.consumableNames[resourceId] = null;
-        }
         const foodConsumptionCount = resourceId.includes('QUESTITEM_TOKEN_AVALON') ? 7.2 : 4.5;
         if (special.includes(resourceId)) {
             resourceId = resourceId.split('_').map(str => (str === 'LEVEL1') ? 'LEVEL' : str).join('_');
@@ -33,10 +30,6 @@ export class ConsumableItems {
                         foodConsumption: 0,
                         amountCrafted: +item['craftingrequirements']?.['@amountcrafted'],
                     };
-
-                    if (!(itemId in items.consumableNames)) {
-                        items.consumableNames[itemId] = null;
-                    }
 
                     if (Array.isArray(craftResources)) {
                         for (let resource of craftResources) {

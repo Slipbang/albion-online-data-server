@@ -58,17 +58,15 @@ export class ArtefactItems {
         },
     }
 
-    createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory, findItemNameHandler){
+    createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory){
         obj.artefactItemId = resourceId;
         let {artefactType, artefactValue} = this._defineArtefactType_Value(resourceId);
         obj.foodConsumption = +((this._artefactIncreasingValue?.[itemCategory]?.[artefactType] || 0) + obj.foodConsumption).toFixed(2);
 
         if (artefactType in items.artefacts[obj.itemClass.toUpperCase()]) {
-            const artefactName = findItemNameHandler(resource['@uniquename']);
             const len = items.artefacts[obj.itemClass.toUpperCase()][artefactType].length;
             items.artefacts[obj.itemClass.toUpperCase()][artefactType].push({
                 id: `${obj.itemClass.toUpperCase()}_${artefactType}_${len + 1}`,
-                artefactName,
                 artefactId: resourceId,
                 equipmentImg: '',
                 itemValue: Array.from({length: 5}).fill(artefactValue).map((count => val => {

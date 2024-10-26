@@ -6,7 +6,6 @@ import {ConsumableItems} from "./src/ConsumableItems.js";
 import express from 'express';
 import {MaterialItems} from "./src/MaterialItems.js";
 import cors from 'cors';
-
 const port = process.env.PORT || 4000;
 
 // import * as fs from "fs";
@@ -54,23 +53,21 @@ const items = {
         }
     },
     materials: [],
-    consumableNames: {
-        T1_ALCHEMY_EXTRACT_LEVEL1: null,
-        T1_ALCHEMY_EXTRACT_LEVEL2: null,
-        T1_ALCHEMY_EXTRACT_LEVEL3: null,
-        T1_FISHSAUCE_LEVEL1: null,
-        T1_FISHSAUCE_LEVEL2: null,
-        T1_FISHSAUCE_LEVEL3: null,
-        T2_BEAN: null,
-        T1_ALCHEMY_EXTRACT_LEVEL: {
-            ru: 'Магические экстракты',
-            en: 'Arcane Extracts',
-        },
-        T1_FISHSAUCE_LEVEL: {
-            ru: 'Рыбные соусы',
-            en: 'Fish Sauces',
-        },
-    }
+    language: [
+        [
+            'T1_ALCHEMY_EXTRACT_LEVEL',
+            {
+                ru: 'Магические экстракты',
+                en: 'Arcane Extracts',
+            }
+        ],
+        ['T1_FISHSAUCE_LEVEL',
+            {
+                ru: 'Рыбные соусы',
+                en: 'Fish Sauces',
+            },
+        ]
+    ],
 }
 
 const weaponCategories = [
@@ -133,11 +130,11 @@ const fetchAllData = () => fetchItemNames()
         const weaponItems = new EquipmentItems(itemData.items.weapon);
         const consumableItems = new ConsumableItems(itemData.items.consumableitem);
         const materialItems = new MaterialItems(itemData.items.simpleitem);
-        weaponItems.createItems(weaponCategories, items, languageData.findItemNameHandler, artefactItems.createArtefactItem_Obj_Handler);
-        equipmentItems.createItems(equipmentCategories, items, languageData.findItemNameHandler, artefactItems.createArtefactItem_Obj_Handler);
+        weaponItems.createItems(weaponCategories, items, artefactItems.createArtefactItem_Obj_Handler);
+        equipmentItems.createItems(equipmentCategories, items, artefactItems.createArtefactItem_Obj_Handler);
         consumableItems.createConsumableItems(consumableCategories, items);
-        materialItems.createMaterialItems(materialCategories, items, languageData.findItemNameHandler)
-        languageData.createConsumableNames(items.consumableNames);
+        materialItems.createMaterialItems(materialCategories, items)
+        items.language = [...items.language, ...languageData.data.entries()];
 
         app.get('/data', (req, res) => {
             res.json(items);

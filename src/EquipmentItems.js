@@ -3,10 +3,10 @@ export class EquipmentItems {
         this.data = data;
     }
 
-    _buildingResourceObjectHandler(resource, itemCategory, items, obj, findItemNameHandler, createArtefactItem_Obj_Handler) {
+    _buildingResourceObjectHandler(resource, itemCategory, items, obj, createArtefactItem_Obj_Handler) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');
         if (resourceId.includes('ARTEFACT')) {
-            createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory, findItemNameHandler)
+            createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory)
         } else if (resourceId.includes('SKILLBOOK_STANDARD')) {
             obj.artefactItemId = resource['@uniquename'];
         } else {
@@ -150,7 +150,7 @@ export class EquipmentItems {
 
     _itemCategories = ["MAIN", "2H", "BAG", "CAPE", "ARMOR", "HEAD", "SHOES", "OFF",];
 
-    createItems(category, items, findItemNameHandler, createArtefactItem_Obj_Handler) {
+    createItems(category, items, createArtefactItem_Obj_Handler) {
         for (let item of this.data) {
             if ('craftingrequirements' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'];
@@ -164,7 +164,7 @@ export class EquipmentItems {
                     const obj = {
                         itemId: bodyId,
                         itemNode: shopsubcategory1,
-                        itemName: findItemNameHandler(ID),
+                        //itemName: findItemNameHandler(ID),
                         foodConsumption: 0,
                         itemType,
                         itemClass,
@@ -173,10 +173,10 @@ export class EquipmentItems {
 
                     if (Array.isArray(craftResources)) {
                         for (let resource of craftResources) {
-                            this._buildingResourceObjectHandler(resource, itemCategory, items, obj, findItemNameHandler, createArtefactItem_Obj_Handler)
+                            this._buildingResourceObjectHandler(resource, itemCategory, items, obj, createArtefactItem_Obj_Handler)
                         }
                     } else {
-                        this._buildingResourceObjectHandler(craftResources, itemCategory, items, obj, findItemNameHandler, createArtefactItem_Obj_Handler);
+                        this._buildingResourceObjectHandler(craftResources, itemCategory, items, obj, createArtefactItem_Obj_Handler);
                     }
                     items.craftItems[itemCategory].push(obj);
                 }

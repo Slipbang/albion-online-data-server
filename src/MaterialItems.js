@@ -9,7 +9,7 @@ export class MaterialItems {
 
     }
 
-    createMaterialItems(category, items, findItemNameHandler,) {
+    createMaterialItems(category, items,) {
         for (let item of this.data) {
             const shopsubcategory1 = item['@shopsubcategory1'];
             let ID = item['@uniquename'];
@@ -18,7 +18,7 @@ export class MaterialItems {
             if (!category.includes(shopsubcategory1) || ID.includes('_LEVEL') || +item['@tier'] < resourceTierAllowed) continue;
             const obj = {
                 itemId: ID,
-                itemName: findItemNameHandler(ID),
+                //itemName: findItemNameHandler(ID),
             }
             const craftResources = item.craftingrequirements?.[0]?.['craftresource'] || item.craftingrequirements?.['craftresource'];
             if (craftResources && !isResource) {
