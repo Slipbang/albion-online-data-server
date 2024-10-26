@@ -6,13 +6,14 @@ import {ConsumableItems} from "./src/ConsumableItems.js";
 import express from 'express';
 import {MaterialItems} from "./src/MaterialItems.js";
 import cors from 'cors';
+
 const port = process.env.PORT || 4000;
 
-// import * as fs from "fs";
-// import * as path from "path";
-// import {fileURLToPath} from 'url';
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+import * as fs from "fs";
+import * as path from "path";
+import {fileURLToPath} from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let itemsUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
 let localizationUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
@@ -53,21 +54,16 @@ const items = {
         }
     },
     materials: [],
-    language: [
-        [
-            'T1_ALCHEMY_EXTRACT_LEVEL',
-            {
-                ru: 'Магические экстракты',
-                en: 'Arcane Extracts',
-            }
-        ],
-        ['T1_FISHSAUCE_LEVEL',
-            {
-                ru: 'Рыбные соусы',
-                en: 'Fish Sauces',
-            },
-        ]
-    ],
+    language: {
+        'T1_ALCHEMY_EXTRACT_LEVEL': {
+            ru: 'Магические экстракты',
+            en: 'Arcane Extracts',
+        },
+        'T1_FISHSAUCE_LEVEL': {
+            ru: 'Рыбные соусы',
+            en: 'Fish Sauces',
+        },
+    }
 }
 
 const weaponCategories = [
@@ -134,7 +130,7 @@ const fetchAllData = () => fetchItemNames()
         equipmentItems.createItems(equipmentCategories, items, artefactItems.createArtefactItem_Obj_Handler);
         consumableItems.createConsumableItems(consumableCategories, items);
         materialItems.createMaterialItems(materialCategories, items)
-        items.language = [...items.language, ...languageData.data.entries()];
+        items.language = {...items.language, ...languageData.data};
 
         app.get('/data', (req, res) => {
             res.json(items);
@@ -142,9 +138,9 @@ const fetchAllData = () => fetchItemNames()
 
     }).finally(() => {
         console.log('Data is refreshed');
-        // fs.writeFile(path.resolve(__dirname, 'data.js'), JSON.stringify(items), (err) => {
-        //     if (err) throw err;
-        // })
+        fs.writeFile(path.resolve(__dirname, 'data.js'), JSON.stringify(items), (err) => {
+            if (err) throw err;
+        })
     })
 
 fetchAllData()
