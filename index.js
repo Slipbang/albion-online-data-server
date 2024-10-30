@@ -117,17 +117,14 @@ const fetchItems = async () => {
     }
 }
 
+const token = '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';
+
 const fetchAODGithubReposData = async () => {
-    const response = await fetch(githubApiUrl);
-
-    const response2 = await fetch(githubApiUrl2);
-
-    if (response2.ok) {
-        const test = await response2.json();
-        console.log('response2 is available')
-    } else {
-        console.log('response2 is unavailable: '+ response2.status);
-    }
+    const response = await fetch(githubApiUrl, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
 
     if (response.ok) {
         const githubData = await response.json();
