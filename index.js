@@ -18,6 +18,7 @@ const __dirname = path.dirname(__filename);
 let itemsUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
 let localizationUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
 const githubApiUrl = 'https://api.github.com/repos/ao-data/ao-bin-dumps/commits';
+const githubApiUrl2 = 'https://api.github.com/users/ao-data/repos';
 
 const items = {
     date: '',
@@ -115,14 +116,19 @@ const fetchItems = async () => {
         console.log('AOD github /master status: ' + response.status)
     }
 }
-const GITHUB_TOKEN = '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';
 
 const fetchAODGithubReposData = async () => {
-    const response = await fetch(githubApiUrl, {
-        headers: {
-            Authorization: `token ${GITHUB_TOKEN}`,
-        }
-    });
+    const response = await fetch(githubApiUrl);
+
+    const response2 = await fetch(githubApiUrl2);
+
+    if (response2.ok) {
+        const test = await response2.json();
+        console.log('response2 is available')
+    } else {
+        console.log(response2.status);
+    }
+
     if (response.ok) {
         const githubData = await response.json();
         githubCommitDate = githubData[0]['commit']['author']['date'];
