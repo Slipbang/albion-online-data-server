@@ -10,6 +10,7 @@ import * as path from "path";
 import {fileURLToPath} from 'url';
 import {Data} from "./src/Data.js";
 
+
 const port = process.env.PORT || 4000;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,7 +19,6 @@ const __dirname = path.dirname(__filename);
 let itemsUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
 let localizationUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
 const githubApiUrl = 'https://api.github.com/repos/ao-data/ao-bin-dumps/commits';
-const githubApiUrl2 = 'https://api.github.com/users/ao-data/repos';
 
 const items = {
     date: '',
@@ -121,8 +121,10 @@ const token = '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';
 
 const fetchAODGithubReposData = async () => {
     const response = await fetch(githubApiUrl, {
+        method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
         },
     });
 
