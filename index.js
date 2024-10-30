@@ -6,19 +6,21 @@ import {ConsumableItems} from "./src/ConsumableItems.js";
 import express from 'express';
 import {MaterialItems} from "./src/MaterialItems.js";
 import cors from 'cors';
+import * as path from "path";
+import {fileURLToPath} from 'url';
+import {Data} from "./src/Data.js";
 
 const port = process.env.PORT || 4000;
 
-import * as fs from "fs";
-import * as path from "path";
-import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 let itemsUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
 let localizationUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
+const githubApiUrl = 'https://api.github.com/repos/ao-data/ao-bin-dumps/commits';
 
 const items = {
+    date: '',
     craftItems: {
         "MAIN": [],
         "2H": [],
@@ -66,14 +68,12 @@ const items = {
     }
 }
 
-const weaponCategories = [
+const equipmentCategories = [
     'demolitionhammer', 'pickaxe', 'sickle', 'skinningknife', 'stonehammer',
     'woodaxe', 'fishing', 'bow', 'crossbow', 'cursestaff', 'firestaff', 'froststaff',
     'arcanestaff', 'holystaff', 'naturestaff', 'dagger', 'spear',
-    'axe', 'sword', 'quarterstaff', 'hammer', 'mace', 'knuckles'
-]
-
-const equipmentCategories = ['cape', 'bag', 'torch', 'totem', 'book',
+    'axe', 'sword', 'quarterstaff', 'hammer', 'mace', 'knuckles',
+    'cape', 'bag', 'torch', 'totem', 'book',
     'orb', 'shield', 'cloth_helmet', 'cloth_armor', 'cloth_shoes',
     'leather_helmet', 'leather_armor', 'leather_shoes', 'plate_helmet',
     'plate_armor', 'plate_shoes',
@@ -88,7 +88,9 @@ const consumableCategories = ['potion', 'cooked'];
 const materialCategories = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
 
 let itemData = {};
+let githubCommitDate = '';
 const languageData = new LanguageData();
+const node = new Data();
 
 const fetchItemNames = async () => {
     let response = await fetch(localizationUrl);
@@ -101,50 +103,90 @@ const fetchItemNames = async () => {
         }
     } else {
         console.log(response.status)
-        throw new Error('');
     }
 }
 
 const fetchItems = async () => {
-    let response = await fetch(itemsUrl);
+    const response = await fetch(itemsUrl);
 
     if (response.ok) {
         itemData = await response.json();
     } else {
         console.log(response.status)
-        throw new Error('');
+    }
+}
+
+const fetchAODGithubReposData = async () => {
+    const response = await fetch(githubApiUrl);
+    if (response.ok) {
+        const githubData = await response.json();
+        githubCommitDate = githubData[0]['commit']['author']['date'];
+    } else {
+        console.log(response.status)
     }
 }
 
 const app = express();
 
-const fetchAllData = () => fetchItemNames()
-    .then(() => fetchItems())
-    .then(() => {
-        const artefactItems = new ArtefactItems(itemData.items.simpleitem);
-        const equipmentItems = new EquipmentItems(itemData.items.equipmentitem);
-        const weaponItems = new EquipmentItems(itemData.items.weapon);
-        const consumableItems = new ConsumableItems(itemData.items.consumableitem);
-        const materialItems = new MaterialItems(itemData.items.simpleitem);
-        weaponItems.createItems(weaponCategories, items, artefactItems.createArtefactItem_Obj_Handler);
-        equipmentItems.createItems(equipmentCategories, items, artefactItems.createArtefactItem_Obj_Handler);
-        consumableItems.createConsumableItems(consumableCategories, items);
-        materialItems.createMaterialItems(materialCategories, items)
-        items.language = {...items.language, ...languageData.data};
+const fetchAllData = () =>
+    fetchItemNames()
+        .then(() => fetchItems())
+        .then(() => {
+            const equipmentItemData = [
+                ...itemData.items.weapon,
+                ...itemData.items.equipmentitem,
+            ]
+            const artefactItems = new ArtefactItems(itemData.items.simpleitem);
+            const equipmentItems = new EquipmentItems(equipmentItemData);
+            const consumableItems = new ConsumableItems(itemData.items.consumableitem);
+            const materialItems = new MaterialItems(itemData.items.simpleitem);
 
-        app.get('/data', (req, res) => {
-            res.json(items);
-        });
-
-    }).finally(() => {
-        console.log('Data is refreshed');
-        fs.writeFile(path.resolve(__dirname, 'data.js'), JSON.stringify(items), (err) => {
-            if (err) throw err;
+            equipmentItems.createItems(equipmentCategories, items, artefactItems.createArtefactItem_Obj_Handler);
+            consumableItems.createConsumableItems(consumableCategories, items);
+            materialItems.createMaterialItems(materialCategories, items)
+            items.language = {...items.language, ...languageData.data};
+            items.date = githubCommitDate;
         })
-    })
+        .finally(async () => {
+            await node.writeNewData(path.resolve(__dirname, 'data.txt'), items);
+            console.log('Data is refreshed/written');
+        })
 
-fetchAllData()
-    .then(() => setInterval(() => fetchAllData(), 259200000));
+
+const startCycle = () =>
+    fetchAODGithubReposData()
+        .then(() => {
+            node.readCurrentData(path.resolve(__dirname, 'data.txt'))
+                .then((data) => {
+                    if (data) {
+                        node.currentData = {...JSON.parse(data)};
+                    }
+
+                    if (node.currentData.date !== githubCommitDate) {
+                        fetchAllData()
+                            .then(() => startCycle())
+                    } else {
+                        app.get('/data', (req, res) => {
+                            res.json(node.currentData);
+                        });
+                        console.log('data end-pont is ready')
+                        setTimeout(() => startCycle(), 259200000);
+                    }
+                })
+                .catch(err => {
+                    if (err.code === 'ENOENT') {
+                        fetchAllData()
+                            .then(() => startCycle())
+                    } else {
+                        console.log(err)
+                    }
+                })
+        })
+        .catch(err => console.error(err));
+
+
+startCycle();
+
 
 app.use(cors())
 

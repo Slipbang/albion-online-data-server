@@ -18,7 +18,6 @@ export class MaterialItems {
             if (!category.includes(shopsubcategory1) || ID.includes('_LEVEL') || +item['@tier'] < resourceTierAllowed) continue;
             const obj = {
                 itemId: ID,
-                //itemName: findItemNameHandler(ID),
             }
             const craftResources = item.craftingrequirements?.[0]?.['craftresource'] || item.craftingrequirements?.['craftresource'];
             if (craftResources && !isResource) {
