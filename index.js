@@ -117,7 +117,7 @@ const fetchItems = async () => {
     }
 }
 
-const token = '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';
+const token = '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';
 
 const fetchAODGithubReposData = async () => {
     const response = await fetch(githubApiUrl, {
