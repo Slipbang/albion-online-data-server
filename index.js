@@ -117,13 +117,13 @@ const fetchItems = async () => {
     }
 }
 
-const token = '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';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 const fetchAODGithubReposData = async () => {
     const response = await fetch(githubApiUrl, {
         method: "GET",
         headers: {
-            Authorization: `token ${token}`,
+            Authorization: `token ${GITHUB_TOKEN}`,
             "Content-Type": "application/json",
         },
     });
