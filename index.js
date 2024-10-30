@@ -102,7 +102,7 @@ const fetchItemNames = async () => {
             languageData.addLanguageItem(item)
         }
     } else {
-        console.log('AOD github /master/formatted status:' + response.status)
+        console.log('AOD github /master/formatted status: ' + response.status)
     }
 }
 
@@ -112,12 +112,17 @@ const fetchItems = async () => {
     if (response.ok) {
         itemData = await response.json();
     } else {
-        console.log('AOD github /master status:' + response.status)
+        console.log('AOD github /master status: ' + response.status)
     }
 }
+const GITHUB_TOKEN = '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';
 
 const fetchAODGithubReposData = async () => {
-    const response = await fetch(githubApiUrl);
+    const response = await fetch(githubApiUrl, {
+        headers: {
+            Authorization: `token ${GITHUB_TOKEN}`,
+        }
+    });
     if (response.ok) {
         const githubData = await response.json();
         githubCommitDate = githubData[0]['commit']['author']['date'];
@@ -184,9 +189,7 @@ const startCycle = () =>
         })
         .catch(err => console.error(err));
 
-
-startCycle();
-
+startCycle().catch(err => console.log(err));
 
 app.use(cors())
 
