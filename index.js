@@ -102,7 +102,7 @@ const fetchItemNames = async () => {
             languageData.addLanguageItem(item)
         }
     } else {
-        console.log(response.status)
+        console.log('AOD github /master/formatted status:' + response.status)
     }
 }
 
@@ -112,7 +112,7 @@ const fetchItems = async () => {
     if (response.ok) {
         itemData = await response.json();
     } else {
-        console.log(response.status)
+        console.log('AOD github /master status:' + response.status)
     }
 }
 
@@ -122,7 +122,7 @@ const fetchAODGithubReposData = async () => {
         const githubData = await response.json();
         githubCommitDate = githubData[0]['commit']['author']['date'];
     } else {
-        console.log(response.status)
+        console.log('Github API status: ' + response.status)
     }
 }
 
