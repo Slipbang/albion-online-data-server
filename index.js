@@ -126,7 +126,7 @@ const fetchAODGithubReposData = async () => {
         const test = await response2.json();
         console.log('response2 is available')
     } else {
-        console.log(response2.status);
+        console.log('response2 is unavailable: '+ response2.status);
     }
 
     if (response.ok) {
