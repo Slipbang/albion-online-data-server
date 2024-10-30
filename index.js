@@ -115,7 +115,7 @@ const fetchItems = async () => {
         console.log('AOD github /master status: ' + response.status)
     }
 }
-const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = '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';
 
 const fetchAODGithubReposData = async () => {
     const response = await fetch(githubApiUrl, {
