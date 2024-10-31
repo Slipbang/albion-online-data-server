@@ -209,7 +209,7 @@ const fetchToWakeUpServer = async () => {
 
     const randomTime = Math.floor(Math.random() * 10000 + 40000);
 
-    //setInterval(() => fetchToWakeUpServer(), randomTime)
+    setTimeout(() => fetchToWakeUpServer(), randomTime)
 }
 
 fetchToWakeUpServer()
