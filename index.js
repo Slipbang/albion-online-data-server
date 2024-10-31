@@ -9,6 +9,9 @@ import cors from 'cors';
 import * as path from "path";
 import {fileURLToPath} from 'url';
 import {Data} from "./src/Data.js";
+import {items} from "./src/items.js";
+import {startBot} from "./src/TelegramBot.js";
+import TelegramApi from 'node-telegram-bot-api';
 
 const port = process.env.PORT || 4000;
 
@@ -18,55 +21,6 @@ const __dirname = path.dirname(__filename);
 let itemsUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
 let localizationUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
 const githubApiUrl = 'https://api.github.com/repos/ao-data/ao-bin-dumps/commits';
-
-const items = {
-    date: '',
-    craftItems: {
-        "MAIN": [],
-        "2H": [],
-        "BAG": [],
-        "CAPE": [],
-        "ARMOR": [],
-        "HEAD": [],
-        "SHOES": [],
-        "OFF": [],
-    },
-    consumableCraftItems: {
-        'potion': [],
-        'cooked': [],
-    },
-    artefacts: {
-        WARRIOR: {
-            RUNE: [],
-            SOUL: [],
-            RELIC: [],
-            AVALONIAN: [],
-        },
-        MAGE: {
-            RUNE: [],
-            SOUL: [],
-            RELIC: [],
-            AVALONIAN: [],
-        },
-        HUNTER: {
-            RUNE: [],
-            SOUL: [],
-            RELIC: [],
-            AVALONIAN: [],
-        }
-    },
-    materials: [],
-    language: {
-        'T1_ALCHEMY_EXTRACT_LEVEL': {
-            ru: 'Магические экстракты',
-            en: 'Arcane Extracts',
-        },
-        'T1_FISHSAUCE_LEVEL': {
-            ru: 'Рыбные соусы',
-            en: 'Fish Sauces',
-        },
-    }
-}
 
 const equipmentCategories = [
     'demolitionhammer', 'pickaxe', 'sickle', 'skinningknife', 'stonehammer',
@@ -86,6 +40,11 @@ const equipmentCategories = [
 
 const consumableCategories = ['potion', 'cooked'];
 const materialCategories = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
+
+const tgToken = process.env.TELEGRAM_TOKEN || '7549638739:AAEuAWtQq9w7q5EWR_quberO14qD2EBNcrk';
+const tgBot = new TelegramApi(tgToken, {polling: true});
+
+startBot(tgBot);
 
 let itemData = {};
 let githubCommitDate = '';

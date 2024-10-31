@@ -5,13 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js --port=3000 --hostname=127.1.1.0"
+    "start": "pm2 start index.js --name \"albion-toolkit-server\"",
+    "restart": "pm2 restart \"albion-toolkit-server\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.1",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "node-telegram-bot-api": "^0.66.0"
   }
 }
