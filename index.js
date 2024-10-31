@@ -41,7 +41,7 @@ const equipmentCategories = [
 const consumableCategories = ['potion', 'cooked'];
 const materialCategories = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
 
-const tgToken = process.env.TELEGRAM_TOKEN || '7549638739:AAEuAWtQq9w7q5EWR_quberO14qD2EBNcrk';
+const tgToken = process.env.TELEGRAM_TOKEN;
 const tgBot = new TelegramApi(tgToken, {polling: true});
 
 startBot(tgBot);
