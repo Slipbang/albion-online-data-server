@@ -10,7 +10,6 @@ import * as path from "path";
 import {fileURLToPath} from 'url';
 import {Data} from "./src/Data.js";
 
-
 const port = process.env.PORT || 4000;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -194,7 +193,22 @@ const startCycle = () =>
         })
         .catch(err => console.error(err));
 
-startCycle().catch(err => console.log(err));
+startCycle()
+    .catch(err => console.log(err));
+
+const serverUrl = 'https://albion-online-data-server.onrender.com/data'
+
+const fetchToWakeUpServer = async () => {
+    let response = await fetch(serverUrl);
+
+    if (response.ok) {
+        console.log('awaking server')
+    } else {
+        console.log('server status: ' + response.status)
+    }
+}
+
+setInterval(() => fetchToWakeUpServer(), 45000)
 
 app.use(cors())
 
