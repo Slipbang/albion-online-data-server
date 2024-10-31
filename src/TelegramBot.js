@@ -48,7 +48,7 @@ export const startBot = (bot) => {
 
                 if (text === '/server_logs') {
                     if (chatId === 1117019157) {
-                        const logFilePath = path.resolve(process.env.HOME || process.env.USERPROFILE, '.pm2/logs/albion-online-data-server-out.log');
+                        const logFilePath = path.resolve(process.env.HOME || process.env.USERPROFILE, 'pm2/logs/albion-online-data-server-out.log');
 
                         fs.readFile(logFilePath, 'utf8', (err, data) => {
                             if (err) {
@@ -68,7 +68,7 @@ export const startBot = (bot) => {
 
                 if (text === '/server_errors') {
                     if (chatId === 1117019157) {
-                        const logFilePath = path.resolve(process.env.HOME || process.env.USERPROFILE, '.pm2/logs/albion-online-data-server-error.log');
+                        const logFilePath = path.resolve(process.env.HOME || process.env.USERPROFILE, 'pm2/logs/albion-online-data-server-error.log');
 
                         fs.readFile(logFilePath, 'utf8', (err, data) => {
                             if (err) {
@@ -95,4 +95,3 @@ export const startBot = (bot) => {
 }
 // --port=3000 --hostname=127.1.1.0
 //pm2 start index.js --name "albion-online-data-server"
-//pm2 start npm --name "albion-toolkit-server" -- run "start:dev"
