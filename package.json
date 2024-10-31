@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start index.js --name \"albion-toolkit-server\"",
-    "restart": "pm2 restart \"albion-toolkit-server\""
+    "start": "pm2 start index.js --name \"albion-online-data-server\"",
+    "restart": "pm2 restart \"albion-online-data-server\""
   },
   "author": "",
   "license": "ISC",

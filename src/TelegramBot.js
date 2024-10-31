@@ -95,3 +95,4 @@ export const startBot = (bot) => {
 }
 // --port=3000 --hostname=127.1.1.0
 //pm2 start index.js --name "albion-online-data-server"
+//pm2 start npm --name "albion-toolkit-server" -- run "start:dev"
