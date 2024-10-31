@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start index.js --name \"albion-online-data-server\"",
-    "restart": "pm2 restart \"albion-online-data-server\""
+    "start": "node index.js --port=10000 --hostname=127.1.1.0"
   },
   "author": "",
   "license": "ISC",

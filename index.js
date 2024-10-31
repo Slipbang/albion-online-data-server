@@ -10,8 +10,8 @@ import * as path from "path";
 import {fileURLToPath} from 'url';
 import {Data} from "./src/Data.js";
 import {items} from "./src/items.js";
-import {startBot} from "./src/TelegramBot.js";
-import TelegramApi from 'node-telegram-bot-api';
+// import {startBot} from "./src/TelegramBot.js";
+// import TelegramApi from 'node-telegram-bot-api';
 
 const port = process.env.PORT || 4000;
 
@@ -41,10 +41,10 @@ const equipmentCategories = [
 const consumableCategories = ['potion', 'cooked'];
 const materialCategories = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
 
-const tgToken = process.env.TELEGRAM_TOKEN;
-const tgBot = new TelegramApi(tgToken, {polling: true});
-
-startBot(tgBot);
+// const tgToken = process.env.TELEGRAM_TOKEN;
+// const tgBot = new TelegramApi(tgToken, {polling: true});
+//
+// startBot(tgBot);
 
 let itemData = {};
 let githubCommitDate = '';
