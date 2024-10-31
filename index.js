@@ -206,9 +206,15 @@ const fetchToWakeUpServer = async () => {
     } else {
         console.log('server status: ' + response.status)
     }
+
+    const randomTime = Math.floor(Math.random() * 10000 + 40000);
+    console.log(randomTime)
+
+    setInterval(() => fetchToWakeUpServer(), randomTime)
 }
 
-setInterval(() => fetchToWakeUpServer(), 45000)
+fetchToWakeUpServer()
+    .catch(err => console.log(err))
 
 app.use(cors())
 
