@@ -52,45 +52,44 @@ const languageData = new LanguageData();
 const node = new Data();
 
 const fetchItemNames = async () => {
-    let response = await fetch(localizationUrl);
-
-    if (response.ok) {
+    try {
+        let response = await fetch(localizationUrl);
         const data = await response.json();
 
         for (let item of data) {
             languageData.addLanguageItem(item)
         }
-    } else {
-        console.log('AOD github /master/formatted status: ' + response.status)
+    } catch (err) {
+        console.log('AOD github /master/formatted error: ' + err)
     }
 }
 
 const fetchItems = async () => {
-    const response = await fetch(itemsUrl);
-
-    if (response.ok) {
+    try {
+        const response = await fetch(itemsUrl);
         itemData = await response.json();
-    } else {
-        console.log('AOD github /master status: ' + response.status)
+    } catch (err) {
+        console.log(`AOD github /master error: ${err}`)
     }
 }
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 const fetchAODGithubReposData = async () => {
-    const response = await fetch(githubApiUrl, {
-        method: "GET",
-        headers: {
-            Authorization: `token ${GITHUB_TOKEN}`,
-            "Content-Type": "application/json",
-        },
-    });
 
-    if (response.ok) {
+
+    try {
+        const response = await fetch(githubApiUrl, {
+            method: "GET",
+            headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+                "Content-Type": "application/json",
+            },
+        });
         const githubData = await response.json();
         githubCommitDate = githubData[0]['commit']['author']['date'];
-    } else {
-        console.log('Github API status: ' + response.status)
+    } catch (err) {
+        console.log(`Github API error: ${err}`)
     }
 }
 
@@ -158,12 +157,11 @@ startCycle()
 const serverUrl = 'https://albion-online-data-server.onrender.com/data'
 
 const fetchToWakeUpServer = async () => {
-    let response = await fetch(serverUrl);
-
-    if (response.ok) {
+    try {
+        let response = await fetch(serverUrl);
         console.log('awaking server')
-    } else {
-        console.log('server status: ' + response.status)
+    } catch (err) {
+        console.log(`ATServer error: ${err}`)
     }
 
     const randomTime = Math.floor(Math.random() * 10000 + 40000);
