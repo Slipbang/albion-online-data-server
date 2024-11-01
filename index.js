@@ -10,13 +10,12 @@ import * as path from "path";
 import {fileURLToPath} from 'url';
 import {Data} from "./src/Data.js";
 import {items} from "./src/items.js";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 // import {startBot} from "./src/TelegramBot.js";
 // import TelegramApi from 'node-telegram-bot-api';
 
 const port = process.env.PORT || 4000;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 let itemsUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
 let localizationUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
@@ -43,11 +42,8 @@ const materialCategories = ['metalbar', 'leather', 'cloth', 'planks', 'stonebloc
 
 // const tgToken = process.env.TELEGRAM_TOKEN;
 // const tgBot = new TelegramApi(tgToken, {polling: true});
-//
 // startBot(tgBot);
 
-let itemData = {};
-let githubCommitDate = '';
 const languageData = new LanguageData();
 const node = new Data();
 
@@ -60,14 +56,14 @@ const fetchItemNames = async () => {
             languageData.addLanguageItem(item)
         }
     } catch (err) {
-        console.log('AOD github /master/formatted error: ' + err)
+        console.log(`AOD github /master/formatted error: ${err}`)
     }
 }
 
-const fetchItems = async () => {
+const fetchItems = async (itemsUrl) => {
     try {
         const response = await fetch(itemsUrl);
-        itemData = await response.json();
+        return response.json();
     } catch (err) {
         console.log(`AOD github /master error: ${err}`)
     }
@@ -76,8 +72,6 @@ const fetchItems = async () => {
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 const fetchAODGithubReposData = async () => {
-
-
     try {
         const response = await fetch(githubApiUrl, {
             method: "GET",
@@ -87,17 +81,19 @@ const fetchAODGithubReposData = async () => {
             },
         });
         const githubData = await response.json();
-        githubCommitDate = githubData[0]['commit']['author']['date'];
+        return githubData[0]['commit']['author']['date'];
     } catch (err) {
-        console.log(`Github API error: ${err}`)
+        console.log(`Github API error: ${err}`);
+        return null;
     }
 }
 
+
 const app = express();
 
-const fetchAllData = () =>
-    fetchItemNames()
-        .then(() => fetchItems())
+const fetchAllData = async (githubCommitDate) => {
+    const itemData = await fetchItems(itemsUrl);
+    await fetchItemNames()
         .then(() => {
             const equipmentItemData = [
                 ...itemData.items.weapon,
@@ -118,44 +114,46 @@ const fetchAllData = () =>
             await node.writeNewData(path.resolve(__dirname, 'data.txt'), items);
             console.log('Data is refreshed/written');
         })
+}
 
+const startCycle = async () => {
+    const githubCommitDate = await fetchAODGithubReposData()
 
-const startCycle = () =>
-    fetchAODGithubReposData()
-        .then(() => {
-            node.readCurrentData(path.resolve(__dirname, 'data.txt'))
-                .then((data) => {
-                    if (data) {
-                        node.currentData = {...JSON.parse(data)};
-                    }
+    await node.readCurrentData(path.resolve(__dirname, 'data.txt'))
+        .then((data) => {
+            if (data) {
+                node.currentData = {...JSON.parse(data)};
+            }
 
-                    if (node.currentData.date !== githubCommitDate) {
-                        fetchAllData()
-                            .then(() => startCycle())
-                    } else {
-                        app.get('/data', (req, res) => {
-                            res.json(node.currentData);
-                        });
-                        console.log('data end-pont is ready')
-                        setTimeout(() => startCycle(), 259200000);
-                    }
+            if (node.currentData.date !== githubCommitDate) {
+                return fetchAllData(githubCommitDate)
+                    .then(() => startCycle())
+            } else {
+                app.get('/data', (req, res) => {
+                    res.json(node.currentData);
+                });
+                console.log('data end-pont is ready')
+                return new Promise(resolve => {
+                    setTimeout(() => resolve(startCycle()), 259200000);
                 })
-                .catch(err => {
-                    if (err.code === 'ENOENT') {
-                        fetchAllData()
-                            .then(() => startCycle())
-                    } else {
-                        console.log(err)
-                    }
-                })
+            }
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            if (err.code === 'ENOENT') {
+                return fetchAllData(githubCommitDate)
+                    .then(() => startCycle())
+            } else {
+                console.log(err)
+            }
+        })
+}
 
 startCycle()
-    .catch(err => console.log(err));
+    .catch(err => console.error(`An error occurred in startCycle: ${err}`));
 
 const serverUrl = 'https://albion-online-data-server.onrender.com/data'
 
+//для поддержания сервера активным
 const fetchToWakeUpServer = async () => {
     try {
         let response = await fetch(serverUrl);
@@ -169,7 +167,7 @@ const fetchToWakeUpServer = async () => {
 }
 
 fetchToWakeUpServer()
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 
 app.use(cors())
 
