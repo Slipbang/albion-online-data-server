@@ -159,7 +159,6 @@ const serverUrl = 'https://albion-online-data-server.onrender.com/data'
 const fetchToWakeUpServer = async () => {
     try {
         let response = await fetch(serverUrl);
-        console.log('awaking server')
     } catch (err) {
         console.log(`ATServer error: ${err}`)
     }
