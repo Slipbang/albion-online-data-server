@@ -17,9 +17,10 @@ const __dirname = path.dirname(__filename);
 
 const port = process.env.PORT || 4000;
 
-let itemsUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
-let localizationUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
+const itemsUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
+const localizationUrl = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
 const githubApiUrl = 'https://api.github.com/repos/ao-data/ao-bin-dumps/commits';
+const serverUrl = 'https://albion-online-data-server.onrender.com/data';
 
 const equipmentCategories = [
     'demolitionhammer', 'pickaxe', 'sickle', 'skinningknife', 'stonehammer',
@@ -92,32 +93,38 @@ const fetchAODGithubReposData = async () => {
 const app = express();
 
 const fetchAllData = async (githubCommitDate) => {
-    const itemData = await fetchItems(itemsUrl);
-    await fetchItemNames()
-        .then(() => {
-            const equipmentItemData = [
-                ...itemData.items.weapon,
-                ...itemData.items.equipmentitem,
-            ]
-            const artefactItems = new ArtefactItems(itemData.items.simpleitem);
-            const equipmentItems = new EquipmentItems(equipmentItemData);
-            const consumableItems = new ConsumableItems(itemData.items.consumableitem);
-            const materialItems = new MaterialItems(itemData.items.simpleitem);
+    const [itemData] = await Promise.all([fetchItems(itemsUrl), fetchItemNames()]);
 
-            equipmentItems.createItems(equipmentCategories, items, artefactItems.createArtefactItem_Obj_Handler);
-            consumableItems.createConsumableItems(consumableCategories, items);
-            materialItems.createMaterialItems(materialCategories, items)
-            items.language = {...items.language, ...languageData.data};
-            items.date = githubCommitDate;
-        })
-        .finally(async () => {
-            await node.writeNewData(path.resolve(__dirname, 'data.txt'), items);
-            console.log('Data is refreshed/written');
-        })
+    if (itemData && Object.keys(languageData.data).length > 0) {
+        const equipmentItemData = [
+            ...itemData.items.weapon,
+            ...itemData.items.equipmentitem,
+        ]
+        const artefactItems = new ArtefactItems(itemData.items.simpleitem);
+        const equipmentItems = new EquipmentItems(equipmentItemData);
+        const consumableItems = new ConsumableItems(itemData.items.consumableitem);
+        const materialItems = new MaterialItems(itemData.items.simpleitem);
+
+        equipmentItems.createItems(equipmentCategories, items, artefactItems.createArtefactItem_Obj_Handler);
+        consumableItems.createConsumableItems(consumableCategories, items);
+        materialItems.createMaterialItems(materialCategories, items)
+        items.language = {...items.language, ...languageData.data};
+        items.date = githubCommitDate;
+
+        await node.writeNewData(path.resolve(__dirname, 'data.txt'), items);
+        console.log('Data is refreshed/written');
+
+    } else if (!itemData && Object.keys(languageData.data).length > 0) {
+        throw new Error('NO_ITEMS_AND_NAMES_FETCHED');
+    } else if (!itemData) {
+        throw new Error('NO_ITEMS_FETCHED');
+    } else {
+        throw new Error('NO_NAMES_FETCHED')
+    }
 }
 
 const startCycle = async () => {
-    const githubCommitDate = await fetchAODGithubReposData()
+    const githubCommitDate = await fetchAODGithubReposData();
 
     await node.readCurrentData(path.resolve(__dirname, 'data.txt'))
         .then((data) => {
@@ -150,8 +157,6 @@ const startCycle = async () => {
 
 startCycle()
     .catch(err => console.error(`An error occurred in startCycle: ${err}`));
-
-const serverUrl = 'https://albion-online-data-server.onrender.com/data'
 
 //для поддержания сервера активным
 const fetchToWakeUpServer = async () => {

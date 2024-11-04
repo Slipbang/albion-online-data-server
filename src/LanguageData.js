@@ -1,6 +1,6 @@
 export class LanguageData {
     constructor() {
-        this.data = new Map();
+        this.data = {};
     }
 
     forbiddenTypes = ['UNIQUE_', 'SKIN_', 'PLAYERISLAND_', 'QUESTITEM_', '_LOOTBAG_', '_FIREWORKS_', 'TREASURE_', '_KILL_']
