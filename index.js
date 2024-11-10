@@ -154,7 +154,7 @@ const startCycle = async (githubCommitDate) => {
         return;
     }
 
-    await fs.readFile('./data.txt')
+    await fs.readFile('./data.txt', 'utf-8')
         .then((data) => {
             if (data) {
                 itemsData.currentData = {...JSON.parse(data)};
