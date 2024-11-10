@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import TelegramApi from 'node-telegram-bot-api';
 import TransportStream from "winston-transport";
 
-export class TGBot extends TransportStream{
+export class TelegramBot extends TransportStream{
     constructor(opts) {
         super(opts)
         this.botToken = opts.botToken;

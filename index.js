@@ -8,7 +8,7 @@ import {MaterialItems} from "./src/MaterialItems.js";
 import cors from 'cors';
 import {Data} from "./src/Data.js";
 import {items} from "./src/items.js";
-import {TGBot} from "./src/TelegramBot.js";
+import {TelegramBot} from "./src/TelegramBot.js";
 import winston from "winston";
 
 const port = process.env.PORT || 4000;
@@ -32,14 +32,15 @@ const EQUIPMENT_CATEGORIES = [
     'hidegatherer_helmet', 'hidegatherer_armor', 'hidegatherer_shoes',
     'oregatherer_helmet', 'oregatherer_armor', 'oregatherer_shoes',
     'rockgatherer_helmet', 'rockgatherer_armor', 'rockgatherer_shoes',
-    'woodgatherer_helmet', 'woodgatherer_armor', 'woodgatherer_shoes'];
+    'woodgatherer_helmet', 'woodgatherer_armor', 'woodgatherer_shoes'
+];
 
 const CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
 const MATERIAL_CATEGORIES = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
 
 const tgToken = process.env.TELEGRAM_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
-const newTGBot = new TGBot({botToken: tgToken, chatId: CHAT_ID});
+const newTGBot = new TelegramBot({botToken: tgToken, chatId: CHAT_ID});
 
 const languageData = new LanguageData();
 const node = new Data();
@@ -186,6 +187,7 @@ const startCycle = async (githubCommitDate) => {
         })
         .catch(err => {
             if (err.code === 'ENOENT') {
+                logger.error(`file missing, starting fetch items data: ${err}`);
                 return fetchAllData(githubCommitDate)
                     .then(() => startCycle(githubCommitDate))
                     .catch(err => logger.error(`catching fetchAllData error: ${err}`));
