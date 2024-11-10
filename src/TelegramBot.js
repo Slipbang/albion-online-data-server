@@ -1,96 +1,102 @@
-// import {exec} from 'child_process';
-// import * as fs from 'fs'
-// import * as path from "path";
-//
-// export const startBot = (bot) => {
-//     bot.setMyCommands([
-//         {command: '/start', description: 'Приветствие'},
-//         {command: '/restart_server', description: 'Перезапустить сервер'},
-//         {command: '/server_logs', description: 'Логи сервера'},
-//         {command: '/server_errors', description: 'Ошибки сервера'}
-//     ])
-//
-//     bot.on('message', async message => {
-//             const text = message.text;
-//             const chatId = message.chat.id;
-//
-//             try {
-//                 if (text === '/start') {
-//                     if (chatId === 1117019157) {
-//                         return bot.sendMessage(chatId, `Бот готов к работе.`);
-//                     } else {
-//                         return bot.sendMessage(chatId, `Данный бот предназначен для технического обслуживания сервера Albion-Toolkit`);
-//                     }
-//                 }
-//
-//
-//                 if (text === '/restart_server') {
-//                     if (chatId === 1117019157) {
-//                         exec('npm restart', (error, stdout, stderr) => {
-//                             if (error) {
-//                                 console.error(`Ошибка: ${error.message}`);
-//                                 bot.sendMessage(chatId, `Ошибка при перезапуске: ${error.message}`);
-//                                 return;
-//                             }
-//
-//                             if (stderr) {
-//                                 console.error(`Ошибка: ${stderr}`);
-//                                 bot.sendMessage(chatId, `Ошибка при перезапуске: ${stderr}`);
-//                                 return;
-//                             }
-//
-//                             return bot.sendMessage(chatId, 'Приложение успешно перезапущено.');
-//                         });
-//                     } else {
-//                         return bot.sendMessage(chatId, `Доступно только для админа`);
-//                     }
-//                 }
-//
-//                 if (text === '/server_logs') {
-//                     if (chatId === 1117019157) {
-//                         const logFilePath = path.resolve(process.env.HOME || process.env.USERPROFILE, 'pm2/logs/albion-online-data-server-out.log');
-//
-//                         fs.readFile(logFilePath, 'utf8', (err, data) => {
-//                             if (err) {
-//                                 bot.sendMessage(chatId, `Ошибка при чтении логов: ${err.message}`);
-//                                 return;
-//                             }
-//
-//                             const logContent = data.slice(-2096);
-//                             return bot.sendMessage(chatId, `Последние логи:\n\n${logContent}`);
-//                         });
-//
-//                     } else {
-//                         return bot.sendMessage(chatId, `Доступно только для админа`);
-//                     }
-//
-//                 }
-//
-//                 if (text === '/server_errors') {
-//                     if (chatId === 1117019157) {
-//                         const logFilePath = path.resolve(process.env.HOME || process.env.USERPROFILE, 'pm2/logs/albion-online-data-server-error.log');
-//
-//                         fs.readFile(logFilePath, 'utf8', (err, data) => {
-//                             if (err) {
-//                                 bot.sendMessage(chatId, `Ошибка при чтении логов: ${err.message}`);
-//                                 return;
-//                             }
-//
-//                             const logContent = data.slice(-2096);
-//                             return bot.sendMessage(chatId, `Последние логи:\n\n${logContent}`);
-//                         });
-//
-//                     } else {
-//                         return bot.sendMessage(chatId, `Доступно только для админа`);
-//                     }
-//
-//                 }
-//
-//             } catch
-//                 (err) {
-//                 return bot.sendMessage(chatId, `Произошла ошибка (${err.message})`);
-//             }
-//         }
-//     )
-// }
+//import {exec} from 'child_process';
+import * as fs from 'fs';
+import TelegramApi from 'node-telegram-bot-api';
+import TransportStream from "winston-transport";
+
+export class TGBot extends TransportStream{
+    constructor(opts) {
+        super(opts)
+        this.botToken = opts.botToken;
+        this.ADMIN_CHAT_ID = opts.chatId;
+        this.bot = new TelegramApi(this.botToken, {polling: true});
+
+        this.bot.setMyCommands([
+            {command: '/start', description: 'Приветствие'},
+            // {command: '/restart_server', description: 'Перезапустить сервер'},
+            {command: '/server_logs', description: 'Логи сервера'},
+            {command: '/server_errors', description: 'Ошибки сервера'},
+        ])
+
+        this.bot.on('message', async message => {
+            const text = message.text;
+            const chatId = message.chat.id;
+
+            try {
+                switch (text) {
+                    case '/start': {
+                        if (this.ADMIN_CHAT_ID === chatId) {
+                            return this.bot.sendMessage(chatId, `Бот готов к работе.`);
+                        } else {
+                            return this.bot.sendMessage(chatId, `Данный бот предназначен для технического обслуживания сервера Albion-Toolkit.`);
+                        }
+                    }
+                    // case '/restart_server': {
+                    //     if (this.ADMIN_CHAT_ID === chatId) {
+                    //         return exec('npm restart', (error, stdout, stderr) => {
+                    //             if (error) {
+                    //                 console.error(`Ошибка: ${error.message}`);
+                    //                 this.bot.sendMessage(chatId, `Ошибка при перезапуске: ${error.message}`);
+                    //                 return;
+                    //             }
+                    //
+                    //             if (stderr) {
+                    //                 console.error(`Ошибка: ${stderr}`);
+                    //                 this.bot.sendMessage(chatId, `Ошибка при перезапуске: ${stderr}`);
+                    //                 return;
+                    //             }
+                    //
+                    //             return this.bot.sendMessage(chatId, 'Приложение успешно перезапущено.');
+                    //         });
+                    //     } else {
+                    //         return this.bot.sendMessage(chatId, `Доступно только для админа`);
+                    //     }
+                    // }
+                    case '/server_logs': {
+                        if (this.ADMIN_CHAT_ID === chatId) {
+
+                            return fs.readFile('./combined.log', 'utf8', (err, data) => {
+                                if (err) {
+                                    return this.bot.sendMessage(chatId, `Ошибка при чтении логов: ${err.message}`);
+                                }
+
+                                const logContent = data.slice(-2096) || 'Логи отсутствуют';
+                                return this.bot.sendMessage(chatId, `Последние логи:\n\n${logContent}`);
+                            });
+
+                        } else {
+                            return this.bot.sendMessage(chatId, `Доступно только для админа`);
+                        }
+                    }
+                    case '/server_errors': {
+                        if (this.ADMIN_CHAT_ID === chatId) {
+
+                            return fs.readFile('./error.log', 'utf8', (err, data) => {
+                                if (err) {
+                                    this.bot.sendMessage(chatId, `Ошибка при чтении логов: ${err.message}`);
+                                    return;
+                                }
+
+                                const logContent = data.slice(-2096) || 'Логи ошибок отсутствуют';
+                                return this.bot.sendMessage(chatId, `Последние логи:\n\n${logContent}`);
+                            });
+
+                        } else {
+                            return this.bot.sendMessage(chatId, `Доступно только для админа`);
+                        }
+                    }
+                }
+            } catch (err) {
+                return this.bot.sendMessage(chatId, `Произошла ошибка (${err.message})`);
+            }
+        })
+    }
+
+    log(info, callback) {
+        const message = `${info.timestamp} [${info.level.toUpperCase()}]: ${info.message}`;
+
+        this.bot.sendMessage(this.ADMIN_CHAT_ID, message);
+
+        callback();
+    }
+}
 
