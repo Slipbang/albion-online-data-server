@@ -38,8 +38,8 @@ const CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
 const MATERIAL_CATEGORIES = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
 
 const tgToken = process.env.TELEGRAM_TOKEN;
-const ADMIN_CHAT_ID = process.env.CHAT_ID;
-const newTGBot = new TGBot({botToken: tgToken, chatId: ADMIN_CHAT_ID});
+const CHAT_ID = process.env.CHAT_ID;
+const newTGBot = new TGBot({botToken: tgToken, chatId: CHAT_ID});
 
 const languageData = new LanguageData();
 const node = new Data();

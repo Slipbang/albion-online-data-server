@@ -7,7 +7,7 @@ export class TGBot extends TransportStream{
     constructor(opts) {
         super(opts)
         this.botToken = opts.botToken;
-        this.ADMIN_CHAT_ID = opts.chatId;
+        this.ADMIN_CHAT_ID = +opts.chatId;
         this.bot = new TelegramApi(this.botToken, {polling: true});
 
         this.bot.setMyCommands([

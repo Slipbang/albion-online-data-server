@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js output.log 2>&1"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",

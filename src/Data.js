@@ -26,7 +26,7 @@ export class Data {
 
     writeNewData(filePath, data, logger) {
         fs.writeFile(filePath, JSON.stringify(data), (err) => {
-            if (err) throw err;
+            if (err) logger.error(err);
             else logger.info('Data is refreshed/written');
         })
     }
