@@ -134,7 +134,7 @@ const fetchAllData = async (githubCommitDate) => {
         items.language = {...items.language, ...languageData.data};
         items.date = githubCommitDate;
 
-        await fs.writeFile('./data.txt', items)
+        await fs.writeFile('./data.txt', JSON.stringify(items))
             .then(() => logger.info('Data is refreshed/written'))
             .catch(err => logger.error(`Node JS file writing error: ${err}`));
 
