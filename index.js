@@ -10,6 +10,7 @@ import {Data} from "./src/Data.js";
 import {items} from "./src/items.js";
 import {TelegramBot} from "./src/TelegramBot.js";
 import winston from "winston";
+import * as fs from "fs/promises";
 
 const port = process.env.PORT || 4000;
 
@@ -43,7 +44,7 @@ const CHAT_ID = process.env.CHAT_ID;
 const newTGBot = new TelegramBot({botToken: tgToken, chatId: CHAT_ID});
 
 const languageData = new LanguageData();
-const node = new Data();
+const itemsData = new Data();
 
 const customFormat = winston.format.printf(({ level, message, timestamp }) => {
     return `${timestamp} [${level.toUpperCase()}]: ${message}`;
@@ -133,7 +134,9 @@ const fetchAllData = async (githubCommitDate) => {
         items.language = {...items.language, ...languageData.data};
         items.date = githubCommitDate;
 
-        await node.writeNewData('./data.txt', items, logger);
+        await fs.writeFile('./data.txt', items)
+            .then(() => logger.info('Data is refreshed/written'))
+            .catch(err => logger.error(`Node JS file writing error: ${err}`));
 
     } else if (!itemData && Object.keys(languageData.data).length > 0) {
         throw new Error('NO_ITEMS_AND_NAMES_FETCHED');
@@ -151,19 +154,19 @@ const startCycle = async (githubCommitDate) => {
         return;
     }
 
-    await node.readCurrentData('./data.txt')
+    await fs.readFile('./data.txt')
         .then((data) => {
             if (data) {
-                node.currentData = {...JSON.parse(data)};
+                itemsData.currentData = {...JSON.parse(data)};
             }
 
-            if (node.currentData.date !== githubCommitDate) {
+            if (itemsData.currentData.date !== githubCommitDate) {
                 return fetchAllData(githubCommitDate)
                     .then(() => startCycle(githubCommitDate))
                     .catch(err => logger.error(`catching fetchAllData error: ${err}`));
             } else {
                 app.get('/data', (req, res) => {
-                    res.json(node.currentData);
+                    res.json(itemsData.currentData);
                 });
                 logger.info(`Albion Toolkit server data end-pont is ready`);
 
