@@ -159,7 +159,7 @@ const startCycle = async (githubCommitDate) => {
             if (node.currentData.date !== githubCommitDate) {
                 return fetchAllData(githubCommitDate)
                     .then(() => startCycle(githubCommitDate))
-                    .catch(err => logger.error(err));
+                    .catch(err => logger.error(`catching fetchAllData error: ${err}`));
             } else {
                 app.get('/data', (req, res) => {
                     res.json(node.currentData);
@@ -188,9 +188,9 @@ const startCycle = async (githubCommitDate) => {
             if (err.code === 'ENOENT') {
                 return fetchAllData(githubCommitDate)
                     .then(() => startCycle(githubCommitDate))
-                    .catch(err => logger.error(err));
+                    .catch(err => logger.error(`catching fetchAllData error: ${err}`));
             } else {
-                logger.error(err);
+                logger.error(`catching file reading errors: ${err}`);
             }
         })
 }
@@ -217,7 +217,7 @@ const fetchToWakeUpServer = async () => {
 }
 
 fetchToWakeUpServer()
-    .catch(err => logger.error(err));
+    .catch(err => logger.error(`Catching waking up fetches errors: ${err}`));
 
 
 app.use(cors())
