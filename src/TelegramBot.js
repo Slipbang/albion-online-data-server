@@ -92,7 +92,7 @@ export class TelegramBot extends TransportStream{
     }
 
     log(info, callback) {
-        const message = `${info.timestamp} [**${info.level.toUpperCase()}**]: ${info.message}`;
+        const message = `${info.timestamp} [${info.level.toUpperCase()}]: ${info.message}`;
 
         this.bot.sendMessage(this.ADMIN_CHAT_ID, message);
 
