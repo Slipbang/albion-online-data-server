@@ -1,9 +1,7 @@
 export class Data {
     constructor() {
-
+        this._currentData = {};
     }
-
-    _currentData = {};
 
     get currentData() {
         return this._currentData;
