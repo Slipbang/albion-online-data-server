@@ -7,14 +7,15 @@ export class AppRouter {
         this.router = express.Router();
         this.clients = [];
 
-        this.router.use('/date', dateRouter(dataRef, this.clients));
-        this.router.use('/data', dataRouter(dataRef));
+        this.data = dataRef;
+        this.router.use('/date', dateRouter(this.data, this.clients));
+        this.router.use('/data', dataRouter(this.data));
     }
 
     resendDateInfo() {
         if (this.clients.length) {
             this.clients.forEach((client) => {
-                client.write(`UPLOAD_NEW_DATA\n\n`);
+                client.write(`data: ${this.data.currentData.date}\n\n`);
             });
         }
     }
