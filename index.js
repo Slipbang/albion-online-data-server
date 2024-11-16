@@ -234,8 +234,6 @@ fetchToWakeUpServer()
 
 app.use(appRouter.router);
 
-app.use(cors());
-
 app.listen(port, () => {
     logger.info(`Server started on port: ${port}`);
 })
