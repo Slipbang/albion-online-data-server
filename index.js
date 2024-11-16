@@ -4,7 +4,6 @@ import cors from 'cors';
 import winston from "winston";
 import fs from "fs/promises";
 import {existsSync} from 'fs';
-import {EventEmitter} from 'events';
 
 import {ArtefactItems} from "./src/services/ArtefactItems.js";
 import {EquipmentItems} from "./src/services/EquipmentItems.js";
