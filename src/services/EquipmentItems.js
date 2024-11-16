@@ -164,7 +164,6 @@ export class EquipmentItems {
                     const obj = {
                         itemId: bodyId,
                         itemNode: shopsubcategory1,
-                        //itemName: findItemNameHandler(ID),
                         foodConsumption: 0,
                         itemType,
                         itemClass,

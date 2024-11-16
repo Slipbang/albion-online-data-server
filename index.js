@@ -1,16 +1,25 @@
 import fetch from "node-fetch";
-import {ArtefactItems} from "./src/ArtefactItems.js";
-import {EquipmentItems} from "./src/EquipmentItems.js";
-import {LanguageData} from "./src/LanguageData.js";
-import {ConsumableItems} from "./src/ConsumableItems.js";
 import express from 'express';
-import {MaterialItems} from "./src/MaterialItems.js";
 import cors from 'cors';
-import {Data} from "./src/Data.js";
-import {items} from "./src/items.js";
-import {TelegramBot} from "./src/TelegramBot.js";
 import winston from "winston";
-import * as fs from "fs/promises";
+import fs from "fs/promises";
+import {existsSync} from 'fs';
+import {EventEmitter} from 'events';
+
+import {ArtefactItems} from "./src/services/ArtefactItems.js";
+import {EquipmentItems} from "./src/services/EquipmentItems.js";
+import {LanguageData} from "./src/services/LanguageData.js";
+import {ConsumableItems} from "./src/services/ConsumableItems.js";
+import {MaterialItems} from "./src/services/MaterialItems.js";
+import {Data} from "./src/services/Data.js";
+import {items} from "./src/services/items.js";
+import {TelegramBot} from "./src/api/TelegramBot.js";
+import {AppRouter} from './src/routes/index.js';
+
+if (existsSync('.env')) {
+    const {config} = await import('dotenv');
+    config();
+}
 
 const port = process.env.PORT || 4000;
 
@@ -40,11 +49,12 @@ const CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
 const MATERIAL_CATEGORIES = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
 
 const tgToken = process.env.TELEGRAM_TOKEN;
-const CHAT_ID = process.env.CHAT_ID;
-const newTGBot = new TelegramBot({botToken: tgToken, chatId: CHAT_ID});
+const CHAT_ID = +process.env.CHAT_ID;
+const TGBot = new TelegramBot({botToken: tgToken, chatId: CHAT_ID});
 
 const languageData = new LanguageData();
 const itemsData = new Data();
+const appRouter = new AppRouter(itemsData);
 
 const customFormat = winston.format.printf(({ level, message, timestamp }) => {
     return `${timestamp} [${level.toUpperCase()}]: ${message}`;
@@ -68,7 +78,7 @@ const logger = winston.createLogger({
             maxsize: 200000,
             maxFiles: 1,
         }),
-        newTGBot,
+        TGBot,
     ]
 })
 
@@ -147,7 +157,6 @@ const fetchAllData = async (githubCommitDate) => {
     }
 }
 
-
 const startCycle = async (githubCommitDate) => {
     if (!githubCommitDate) {
         logger.info('No gitHub date fetched');
@@ -162,12 +171,11 @@ const startCycle = async (githubCommitDate) => {
 
             if (itemsData.currentData.date !== githubCommitDate) {
                 return fetchAllData(githubCommitDate)
+                    .then(() => appRouter.resendDateInfo())
                     .then(() => startCycle(githubCommitDate))
                     .catch(err => logger.error(`catching fetchAllData error: ${err}`));
             } else {
-                app.get('/data', (req, res) => {
-                    res.json(itemsData.currentData);
-                });
+
                 logger.info(`Albion Toolkit server data end-pont is ready`);
 
                 const gitHubFetchInterval = setInterval(async () => {
@@ -179,6 +187,7 @@ const startCycle = async (githubCommitDate) => {
                         logger.info(`Albion Online dumps in gitHub repository was updated`);
 
                         return startCycle(newGithubCommitDate)
+                            .then(() => appRouter.resendDateInfo())
                             .catch(err => logger.error(`An error occurred in startCycle: ${err}`));
                     } else if (!newGithubCommitDate) {
                         logger.error(`No gitHub date fetched`);
@@ -224,8 +233,9 @@ const fetchToWakeUpServer = async () => {
 fetchToWakeUpServer()
     .catch(err => logger.error(`Catching waking up fetches errors: ${err}`));
 
+app.use(appRouter.router);
 
-app.use(cors())
+app.use(cors());
 
 app.listen(port, () => {
     logger.info(`Server started on port: ${port}`);

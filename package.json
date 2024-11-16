@@ -17,5 +17,8 @@
     "pm2": "^5.4.2",
     "winston": "^3.17.0",
     "winston-transport": "^4.9.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
   }
 }
