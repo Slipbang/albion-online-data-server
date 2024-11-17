@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
 import express from 'express';
-import cors from 'cors';
 import winston from "winston";
 import fs from "fs/promises";
 import {existsSync} from 'fs';
