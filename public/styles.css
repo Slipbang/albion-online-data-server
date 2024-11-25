@@ -214,8 +214,8 @@ h1, h3 {
 }
 
 pre {
-    min-width: 350px;
-    max-width: 850px;
+    border: var(--special-border);
+    padding: 20px;
 }
 
 img:hover {
