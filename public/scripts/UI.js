@@ -12,8 +12,6 @@ function detectmob() {
 
 const imgs = document.querySelectorAll('img');
 
-
-
 imgs.forEach(img => {
     img.onclick = () => {
         let modalWin = document.createElement('div');
@@ -36,10 +34,6 @@ imgs.forEach(img => {
         document.querySelector('body').appendChild(modalWin);
     }
 })
-
-if (detectmob()) {
-    document.querySelector('.sideBar').remove();
-}
 
 //navigation
 const navs = document.querySelectorAll('.navButtonsStyles nav');
