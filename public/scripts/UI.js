@@ -10,35 +10,59 @@ function detectmob() {
         navigator.userAgent.match(/Windows Phone/i));
 }
 
+const imgs = document.querySelectorAll('img');
+
+
+
+imgs.forEach(img => {
+    img.onclick = () => {
+        let modalWin = document.createElement('div');
+        let cloneImg = img.cloneNode(true);
+        let container = document.createElement('div');
+        container.classList.add('testDivClass')
+        modalWin.appendChild(container);
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'x';
+        container.appendChild(cloneImg);
+        container.appendChild(closeButton);
+        closeButton.onclick = () => {
+            closeButton.onclick = null;
+            document.querySelector('body').removeChild(modalWin);
+            modalWin = null;
+            container = null;
+            cloneImg = null;
+        }
+        modalWin.classList.add('imgModalWin');
+        document.querySelector('body').appendChild(modalWin);
+    }
+})
+
+if (detectmob()) {
+    document.querySelector('.sideBar').remove();
+}
+
 //navigation
-const navs = document.querySelectorAll('.asideStyles nav');
+const navs = document.querySelectorAll('.navButtonsStyles nav');
 
 function clearFunc() {
     navs.forEach(item => item.classList.replace('displayFlexClass', 'displayNoneClass'));
-    navs.forEach(item => item.classList.replace('visibleElem', 'hiddenElem'));
 }
 
 const toggleClassesHandler = (selectedClass) => {
-    document.querySelector(selectedClass).classList.toggle('displayNoneClass');
-    document.querySelector(selectedClass).classList.toggle('displayFlexClass');
+    const element = document.querySelector(selectedClass);
 
-    setTimeout(() => {
-        document.querySelector(selectedClass).classList.toggle('hiddenElem');
-        document.querySelector(selectedClass).classList.toggle('visibleElem');
-    }, 60)
+    if (!element) return;
+
+    element.classList.toggle('displayNoneClass');
+    element.classList.toggle('displayFlexClass');
 };
 
-const classCondition = (selectedClass) => {
-    return document.querySelector(selectedClass).classList.contains('displayFlexClass')
-};
+const classCondition = (selectedClass) => document.querySelector(selectedClass).classList.contains('displayFlexClass');
 
-const asides = document.querySelector('aside');
-const navButtons = asides.querySelectorAll('button');
-const navigationLinks = asides.querySelectorAll('nav');
 
-let navigArr = [];
-navigationLinks.forEach(n => navigArr.push(n));
-navigArr = navigArr.filter(el => {
+const asides = document.querySelector('.navButtonsStyles');
+
+let navigArr = [...asides.querySelectorAll('nav')].filter(el => {
     switch (el.classList[0]) {
         case 'JSbasicsNav':
             return false;
@@ -57,15 +81,14 @@ navigArr = navigArr.filter(el => {
     }
 });
 
-const buttsArr = [];
-navButtons.forEach((b, index) => index !== 0 && buttsArr.push(b));
+const buttsArr = [...asides.querySelectorAll('button')];
+
 buttsArr.forEach((butt, index) => {
     butt.onclick = () => {
-        if (classCondition(`.${navigArr[index].classList[0]}`)) {
-            return;
+        if (!classCondition(`.${navigArr[index].classList[0]}`)) {
+            clearFunc();
+            toggleClassesHandler(`.${navigArr[index].classList[0]}`)
         }
-        clearFunc();
-        toggleClassesHandler(`.${navigArr[index].classList[0]}`)
     }
 });
 
@@ -95,74 +118,33 @@ reactFullCoursesAnc.forEach(a => {
     }
 });
 
-const buttons = document.querySelectorAll('.asideStyles button');
-
-const buttonsArray = [];
-buttons.forEach((elem, index) => index !== 0 && buttonsArray.push(elem));
+const buttonsArray = [...document.querySelectorAll('.navButtonsStyles button')];
 
 document.querySelector('#navButtons').onclick = () => {
     clearFunc();
     if (document.querySelector('#HTMLnavButt').classList.contains('displayNoneClass')) {
-        document.querySelector('#navButtons').innerHTML = 'х';
-        document.querySelector('#navButtons').classList.replace('slidingTop', 'slidingBack');
         buttonsArray.forEach(button => button.classList.replace('displayNoneClass', 'displayFlexClass'));
-        setTimeout(() => {
-            buttonsArray.forEach(button => button.classList.replace('hiddenElem', 'visibleElem'));
-        }, 4)
     } else {
         clearFunc();
-        document.querySelector('#navButtons').innerHTML = 'Navigation';
-        document.querySelector('#navButtons').classList.replace('slidingBack', 'slidingTop')
         buttonsArray.forEach(button => button.classList.replace('displayFlexClass', 'displayNoneClass'));
-        buttonsArray.forEach(button => button.classList.replace('visibleElem', 'hiddenElem'));
     }
 };
 
 document.querySelector("main").onclick = () => {
     if (document.querySelector('#HTMLnavButt').classList.contains('displayFlexClass')) {
         clearFunc();
-        document.querySelector('#navButtons').innerHTML = 'Navigation';
-        document.querySelector('#navButtons').classList.replace('slidingBack', 'slidingTop')
         buttonsArray.forEach(button => button.classList.replace('displayFlexClass', 'displayNoneClass'));
-        buttonsArray.forEach(button => button.classList.replace('visibleElem', 'hiddenElem'));
     }
 };
 
-const images = document.querySelectorAll('img');
-
-images.forEach((img) => {
-    if (!detectmob()) {
-        img.onclick = function () {
-            !img.classList.contains('UIscale')
-                ? img.classList.add('UIscale')
-                : img.classList.remove('UIscale');
-
-        }
-    }
-});
-
-const jsEngTheoryElems = document.querySelectorAll('.engJSTheory');
-const jsRuTheoryElems = document.querySelectorAll('.ruJSTheory');
-
-jsEngTheoryElems.forEach(elem => elem.classList.add('jsTheoryDisplayNone'));
-
-function toggleLanguageHandler() {
-    jsEngTheoryElems.forEach(elem => elem.classList.toggle('jsTheoryDisplayNone'));
-    jsRuTheoryElems.forEach(elem => elem.classList.toggle('jsTheoryDisplayNone'));
-}
-
-document.querySelector('#languageSwitcher').onclick = () => {
-    toggleLanguageHandler();
-};
-document.removeEventListener()
 let prevClass = null;
 const h3 = document.createElement('h3');
 h3.classList.add('sideBarTitle');
-document.querySelector('.sideBar').prepend(h3);
+document.querySelector('aside').prepend(h3);
 const sideBar = document.querySelector('.sideBarContainer');
 const sideBarBuilder = (selectedClass) => {
     if (selectedClass !== prevClass) {
-        const navlist = document.querySelector(`.${selectedClass}`).cloneNode(true);
+        const navlist = document.querySelector(`.${selectedClass}`)?.cloneNode(true);
         let buttons = document.querySelector(`#${selectedClass}Butt`);
         h3.textContent = buttons.textContent;
         sideBar.innerHTML = '';
@@ -174,7 +156,7 @@ const sideBarBuilder = (selectedClass) => {
     }
     prevClass = selectedClass;
 };
-//IntersectionObserver
+
 const anchorsH3 = document.querySelectorAll('h3');
 
 // const throttle = (func, limit) => {
@@ -198,13 +180,14 @@ function debounce(func, timeout = 300) {
     };
 }
 
+
 const anchorHandler = debounce((anchor, observer) => {
     anchor.forEach(elem => {
+        const id = elem.target.id;
+        if (id && !detectmob()) {
+            let ancs = document?.querySelector(`a[href*=${id}]`);
 
-        let ancs = document.querySelector(`a[href*=${elem.target.id}]`);
-
-        if (ancs.parentElement && !detectmob()) {
-            sideBarBuilder(ancs.parentElement.classList[0])
+            if (!!ancs?.parentElement) sideBarBuilder(ancs.parentElement.classList[0]);
         }
     })
 });

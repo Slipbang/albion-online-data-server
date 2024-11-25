@@ -4690,7 +4690,7 @@ document.querySelector('.checkboxevent8').onchange = () => {
 //T9
 //Дан блок .outevent9. Внутри блока - изображение 1.png. При клике правой кнопкой мыши - меняйте изображение на 2.png. Надеюсь вы догадаетесь изменить только src изображения?
 function funcevent9() {
-    document.querySelector('.event9 img').setAttribute('src', 'jojo2.png');
+    document.querySelector('.event9 img').setAttribute('src', './JSImages/jojo2.png');
 }
 
 document.querySelector('.event9').oncontextmenu = funcevent9;
@@ -4699,7 +4699,7 @@ document.querySelector('.event9').oncontextmenu = funcevent9;
 //T10
 //Дан блок .event10. Внутри блока - изображение 1.png. При наведении мыши (mouseenter) - меняйте изображение на 2.png.
 function funcevent10() {
-    document.querySelector('.event10 img').setAttribute('src', 'jojo2.png');
+    document.querySelector('.event10 img').setAttribute('src', './JSImages/jojo2.png');
 }
 
 document.querySelector('.event10').onmouseenter = funcevent10;
@@ -4708,13 +4708,13 @@ document.querySelector('.event10').onmouseenter = funcevent10;
 //T11
 //Дан блок .event11. Внутри блока - изображение 1.png. При наведении мыши (mouseenter) - меняйте изображение на 2.png. При уведении мыши - mouseleave - возвращайте исходное изображение.
 function funcevent11_1() {
-    document.querySelector('.event11 img').setAttribute('src', 'jojo1.png');
+    document.querySelector('.event11 img').setAttribute('src', './JSImages/jojo1.png');
 }
 
 document.querySelector('.event11').onmouseenter = funcevent11_1;
 
 function funcevent11_2() {
-    document.querySelector('.event11 img').setAttribute('src', 'jojo2.png');
+    document.querySelector('.event11 img').setAttribute('src', './JSImages/jojo2.png');
 }
 
 document.querySelector('.event11').onmouseleave = funcevent11_2;
@@ -5478,7 +5478,8 @@ function funcLS8() {
     storagearray8 = JSON.parse(storagearray8);
     storagearray8.pop();
     localStorage.setItem('arrayLS7', JSON.stringify(storagearray8));
-};document.querySelector('#buttLS8').onclick = funcLS8;
+}
+document.querySelector('#buttLS8').onclick = funcLS8;
 
 
 //UNIT 25. AJAX - АСИНХРОННЫЙ JAVASCRIPT
@@ -5495,14 +5496,14 @@ xhttp.onreadystatechange = function () {
     }
 };
 
-xhttp.open('GET', 'https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=1', true);
-xhttp.send();
+// xhttp.open('GET', 'https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=1', true);
+// xhttp.send();
 
 function myAJAXfunction(data) {
     console.log('GET запрос:');
     aAJAX = data;
     console.log(data)
-};
+}
 
 console.log(aAJAX); // манипуляции с переменными ссылающимися на сервер за пределами колбэк функции бессмысленны
 
@@ -5517,9 +5518,9 @@ xhttp2.onreadystatechange = function () {
 };
 let aJAXpostrequest = {auth: '7859d9d42a8834141d529577207c9596', action: 2, name: 'Dmitry'};
 let AJAXstring = new URLSearchParams(aJAXpostrequest);
-xhttp2.open('POST', 'https://getpost.itgid.info/index2.php', true);
-xhttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-xhttp2.send(AJAXstring); // 'auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy'
+// xhttp2.open('POST', 'https://getpost.itgid.info/index2.php', true);
+// xhttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+// xhttp2.send(AJAXstring); // 'auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy'
 
 function myAJAXfunction2(data) {
     console.log('POST запрос:');
@@ -5896,37 +5897,37 @@ document.querySelector('#buttAJAX18').onclick = function myAJAXfunction18() {
 //UNIT 26. УЧИМ FETCH НА ПРАКТИКЕ
 
 
-//fetch запрос с гет параметром
-fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=1')
-    .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
-        console.log(data)
-        // data.text().then(data2 => {
-        //     console.log(data2)
-        // });
-        return data.text();
-    })
-    .then(data => {
-        console.log('fetch get запрос: ' + data);
-    });
-
-
-//fetch запрос с пост параметром
-fetch('https://getpost.itgid.info/index2.php', {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    // mode: 'cors', // no-cors, *cors, same-origin
-    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    // credentials: 'same-origin', // include, *same-origin, omit
-    headers: {
-        //'Content-Type': 'application/json'
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }, // redirect: 'follow', // manual, *follow, error
-    // referrerPolicy: 'no-referrer', // no-referrer, *client
-    body: 'auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy', // JSON.stringify(data) // body data type must match "Content-Type" header
-})
-    .then(response => response.text()) // либо .then(response => response.json()); если в headers - 'Content-Type': 'application/json'
-    .then(response => {
-        console.log('fetch post запрос: ' + response)
-    })
+// //fetch запрос с гет параметром
+// fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=1')
+//     .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
+//         console.log(data)
+//         // data.text().then(data2 => {
+//         //     console.log(data2)
+//         // });
+//         return data.text();
+//     })
+//     .then(data => {
+//         console.log('fetch get запрос: ' + data);
+//     });
+//
+//
+// //fetch запрос с пост параметром
+// fetch('https://getpost.itgid.info/index2.php', {
+//     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+//     // mode: 'cors', // no-cors, *cors, same-origin
+//     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+//     // credentials: 'same-origin', // include, *same-origin, omit
+//     headers: {
+//         //'Content-Type': 'application/json'
+//         'Content-Type': 'application/x-www-form-urlencoded',
+//     }, // redirect: 'follow', // manual, *follow, error
+//     // referrerPolicy: 'no-referrer', // no-referrer, *client
+//     body: 'auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy', // JSON.stringify(data) // body data type must match "Content-Type" header
+// })
+//     .then(response => response.text()) // либо .then(response => response.json()); если в headers - 'Content-Type': 'application/json'
+//     .then(response => {
+//         console.log('fetch post запрос: ' + response)
+//     })
 
 
 //fetch get запросы
@@ -5973,7 +5974,6 @@ document.querySelector('#buttfetch3').onclick = function () {
         });
 }
 
-
 //T4
 //Отправьте GET запрос (fetch) на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 4. Добавьте параметр num1 и num2 содержащие числа.
 //Если все сделано верно, сервер вернет случайное число в заданном диапазоне. Не забывайте указывать параметр auth (ключ в чате). Выведите в outfetch4 результат.
@@ -5988,7 +5988,6 @@ document.querySelector('#buttfetch4').onclick = function () {
             document.querySelector('.outfetch4').innerHTML = data;
         });
 }
-
 
 //T5
 //Отправьте GET запрос (fetch) на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 5. Если все сделано верно, сервер вернет текущее время и дату.
@@ -6217,23 +6216,23 @@ document.querySelector('#buttfetch18').onclick = function () {
 
 //UNIT 27. РАБОТАЕМ С ПРОМИСАМИ (PROMISE)
 
-let promiseA = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=1')
-        .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
-            resolve(data.text());
-        })
-})
-let promiseB = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy')
-        .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
-            resolve(data.text());
-        })
-})
-Promise.all([promiseA, promiseB]).then(value => {
-    console.log(value);
-    console.log(value[0]);
-    console.log(value[1]);
-})
+// let promiseA = new Promise((resolve, reject) => {
+//     fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=1')
+//         .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
+//             resolve(data.text());
+//         })
+// })
+// let promiseB = new Promise((resolve, reject) => {
+//     fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy')
+//         .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
+//             resolve(data.text());
+//         })
+// })
+// Promise.all([promiseA, promiseB]).then(value => {
+//     console.log(value);
+//     console.log(value[0]);
+//     console.log(value[1]);
+// })
 
 // promiseA.then(data => {
 //     console.log('promise: ' + data);
@@ -6247,19 +6246,19 @@ Promise.all([promiseA, promiseB]).then(value => {
 //Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 1.
 //Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 2.
 //Два запроса объедините с помощью promiseAll. Результат выведите в outpromise1 результат. Запускаться функция должна по нажатию buttpromise1.
-let promiseA1 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=1')
-        .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
-            resolve(data.text());
-        });
-});
-let promiseB1 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy')
-        .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
-            resolve(data.text());
-        });
-});
 document.querySelector('#buttpromise1').onclick = function () {
+    let promiseA1 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=1')
+            .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
+                resolve(data.text());
+            });
+    });
+    let promiseB1 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy')
+            .then(data => {   // либо сокращенно   .then(data => data.text()).then(data => {console.log('fetch запрос: ' + data);})
+                resolve(data.text());
+            });
+    });
     Promise.all([promiseA1, promiseB1]).then(value => {
         document.querySelector('.outpromise1').innerHTML = value[0] + ' ' + value[1];
     });
@@ -6270,19 +6269,19 @@ document.querySelector('#buttpromise1').onclick = function () {
 //Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 3. Добавьте параметр num1 и num2 содержащие числа. Если все сделано верно, сервер вернет сумму чисел.
 //Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 4. Добавьте параметр num1 и num2 содержащие числа. Если все сделано верно, сервер вернет случайное число в заданном диапазоне.
 //Два запроса объедините с помощью promiseAll. Выведите в outpromise2 результат. Запускаться функция должна по нажатию buttpromise2.
-let promiseA2 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=3&num1=50&num2=150')
-        .then(data => {
-            resolve(data.text());
-        });
-});
-let promiseB2 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=4&num1=25&num2=75')
-        .then(data => {
-            resolve(data.text());
-        });
-});
 document.querySelector('#buttpromise2').onclick = function () {
+    let promiseA2 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=3&num1=50&num2=150')
+            .then(data => {
+                resolve(data.text());
+            });
+    });
+    let promiseB2 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=4&num1=25&num2=75')
+            .then(data => {
+                resolve(data.text());
+            });
+    });
     Promise.all([promiseA2, promiseB2]).then(value => {
         document.querySelector('.outpromise2').innerHTML = value[0] + ' ' + value[1];
     });
@@ -6293,19 +6292,19 @@ document.querySelector('#buttpromise2').onclick = function () {
 //Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 5. Если все сделано верно, сервер вернет текущее время и дату. Не забывайте указывать параметр auth (ключ в чате).
 //Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 6. Добавьте параметр num1 и num2 содержащие числа. Если все сделано верно, сервер вернет большее число.
 //Два запроса объедините с помощью promiseAll. Выведите в outpromise3 результат. Запускаться функция должна по нажатию buttpromise3.
-let promiseA3 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=5')
-        .then(data => {
-            resolve(data.text());
-        });
-});
-let promiseB3 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=6&num1=100&num2=1000')
-        .then(data => {
-            resolve(data.text());
-        });
-});
 document.querySelector('#buttpromise3').onclick = function () {
+    let promiseA3 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=5')
+            .then(data => {
+                resolve(data.text());
+            });
+    });
+    let promiseB3 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=6&num1=100&num2=1000')
+            .then(data => {
+                resolve(data.text());
+            });
+    });
     Promise.all([promiseA3, promiseB3]).then(value => {
         document.querySelector('.outpromise3').innerHTML = value[0] + ' ' + value[1];
     });
@@ -6316,19 +6315,19 @@ document.querySelector('#buttpromise3').onclick = function () {
 //Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 7. Если все сделано верно, сервер случайную ссылку на изображение. Не забывайте указывать параметр auth (ключ в чате).
 //Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 8. В качестве параметра по очереди укажите year равный году вашего рождения. Если все правильно сервер вернет ваш возраст.
 //Выведите в outpromise4 результат. Запускаться функция должна по нажатию buttpromise4.
-let promiseA4 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=7')
-        .then(data => {
-            resolve(data.text());
-        });
-});
-let promiseB4 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=8&year=1993')
-        .then(data => {
-            resolve(data.text());
-        });
-});
 document.querySelector('#buttpromise4').onclick = function () {
+    let promiseA4 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=7')
+            .then(data => {
+                resolve(data.text());
+            });
+    });
+    let promiseB4 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php?auth=7859d9d42a8834141d529577207c9596&action=8&year=1993')
+            .then(data => {
+                resolve(data.text());
+            });
+    });
     Promise.all([promiseA4, promiseB4]).then(value => {
         document.querySelector('.outpromise4').innerHTML = value[0] + ' ' + value[1];
     });
@@ -6339,27 +6338,28 @@ document.querySelector('#buttpromise4').onclick = function () {
 //Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 1.
 //Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 2.
 //Два запроса объедините с помощью promiseAll. Результат выведите в outpromise5 результат. Запускаться функция должна по нажатию buttpromise5.
-let promiseA5 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'auth=7859d9d42a8834141d529577207c9596&action=1',
-    })
-        .then(response => {
-            resolve(response.text());
-        })
-});
-let promiseB5 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy',
-    })
-        .then(response => {
-            resolve(response.text());
-        })
-});
+
 document.querySelector('#buttpromise5').onclick = function () {
+    let promiseA5 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, body: 'auth=7859d9d42a8834141d529577207c9596&action=1',
+        })
+            .then(response => {
+                resolve(response.text());
+            })
+    });
+    let promiseB5 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, body: 'auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy',
+        })
+            .then(response => {
+                resolve(response.text());
+            })
+    });
     Promise.all([promiseA5, promiseB5]).then(value => {
         document.querySelector('.outpromise5').innerHTML = value[0] + ' ' + value[1];
     })
@@ -6370,27 +6370,28 @@ document.querySelector('#buttpromise5').onclick = function () {
 //Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 3. Добавьте параметр num1 и num2 содержащие числа. Если все сделано верно, сервер вернет сумму чисел.
 //Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 4. Добавьте параметр num1 и num2 содержащие числа. Если все сделано верно, сервер вернет случайное число в заданном диапазоне.
 //Два запроса объедините с помощью promiseAll. Выведите в outpromise6 результат. Запускаться функция должна по нажатию buttpromise6.
-let promiseA6 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'auth=7859d9d42a8834141d529577207c9596&action=3&num1=39&num2=41',
-    })
-        .then(response => {
-            resolve(response.text());
+
+document.querySelector('#buttpromise6').onclick = () => {
+    let promiseA6 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, body: 'auth=7859d9d42a8834141d529577207c9596&action=3&num1=39&num2=41',
         })
-});
-let promiseB6 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'auth=7859d9d42a8834141d529577207c9596&action=4&num1=18&num2=65',
-    })
-        .then(response => {
-            resolve(response.text());
+            .then(response => {
+                resolve(response.text());
+            })
+    });
+    let promiseB6 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, body: 'auth=7859d9d42a8834141d529577207c9596&action=4&num1=18&num2=65',
         })
-});
-document.querySelector('#buttpromise6').onclick = function () {
+            .then(response => {
+                resolve(response.text());
+            })
+    });
     Promise.all([promiseA6, promiseB6]).then(value => {
         document.querySelector('.outpromise6').innerHTML = value[0] + ' ' + value[1];
     })
@@ -6401,58 +6402,59 @@ document.querySelector('#buttpromise6').onclick = function () {
 //Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 5. Если все сделано верно, сервер вернет текущее время и дату. Не забывайте указывать параметр auth (ключ в чате).
 //Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 6. Добавьте параметр num1 и num2 содержащие числа. Если все сделано верно, сервер вернет большее число.
 //Два запроса объедините с помощью promiseAll. Выведите в outpromise7 результат. Запускаться функция должна по нажатию buttpromise7.
-let promiseA7 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'auth=7859d9d42a8834141d529577207c9596&action=5',
-    })
-        .then(response => {
-            resolve(response.text());
+
+document.querySelector('#buttpromise7').onclick = () => {
+    let promiseA7 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, body: 'auth=7859d9d42a8834141d529577207c9596&action=5',
         })
-});
-let promiseB7 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'auth=7859d9d42a8834141d529577207c9596&action=6&num1=500&num2=200',
-    })
-        .then(response => {
-            resolve(response.text());
+            .then(response => {
+                resolve(response.text());
+            })
+    });
+    let promiseB7 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, body: 'auth=7859d9d42a8834141d529577207c9596&action=6&num1=500&num2=200',
         })
-});
-document.querySelector('#buttpromise7').onclick = function () {
+            .then(response => {
+                resolve(response.text());
+            })
+    })
     Promise.all([promiseA7, promiseB7]).then(value => {
         document.querySelector('.outpromise7').innerHTML = value[0] + ' ' + value[1];
     })
-};
+}
 
 
 //T8
 //Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 7. Если все сделано верно, сервер случайную ссылку на изображение. Не забывайте указывать параметр auth (ключ в чате).
 //Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите 8. В качестве параметра по очереди укажите year равный году вашего рождения. Если все правильно сервер вернет ваш возраст.
 //Два запроса объедините с помощью promiseAll. Выведите в outpromise8 результат. Запускаться функция должна по нажатию buttpromise8
-let promiseA8 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'auth=7859d9d42a8834141d529577207c9596&action=7',
-    })
-        .then(response => {
-            resolve(response.text());
+document.querySelector('#buttpromise8').onclick = () => {
+    let promiseA8 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, body: 'auth=7859d9d42a8834141d529577207c9596&action=7',
         })
-});
-let promiseB8 = new Promise((resolve, reject) => {
-    fetch('https://getpost.itgid.info/index2.php', {
-        method: 'POST', headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }, body: 'auth=7859d9d42a8834141d529577207c9596&action=8&year=1993',
-    })
-        .then(response => {
-            resolve(response.text());
-        });
-});
-document.querySelector('#buttpromise8').onclick = function () {
+            .then(response => {
+                resolve(response.text());
+            })
+    });
+    let promiseB8 = new Promise((resolve, reject) => {
+        fetch('https://getpost.itgid.info/index2.php', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, body: 'auth=7859d9d42a8834141d529577207c9596&action=8&year=1993',
+        })
+            .then(response => {
+                resolve(response.text());
+            });
+    });
     Promise.all([promiseA8, promiseB8]).then(value => {
         document.querySelector('.outpromise8').innerHTML = value[0] + ' ' + value[1];
     });
