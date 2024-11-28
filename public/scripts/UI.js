@@ -35,12 +35,71 @@ imgs.forEach(img => {
     }
 })
 
+const sections = document.querySelectorAll('main > div > section');
+
+const createNav = (section, headers3) => {
+    const nav = document.createElement('nav');
+    nav.classList.add(`${section.id.replace('Butt', '')}`,'displayNoneClass', 'hiddenElem');
+    headers3.forEach(header3 => {
+        const link = document.createElement('a');
+        link.href = `#${header3.id}`;
+        link.textContent = header3.textContent;
+        nav.appendChild(link);
+    })
+
+    return nav;
+}
+
+const buildNavigator = (section) => {
+    const navMenu = document.querySelector('#navMenu');
+    const navMenuButtons = document.querySelector('#navMenuButtons');
+    const navigatorButton = document.createElement('button');
+    const header1 = section.querySelector('section > h1');
+
+
+    navigatorButton.textContent = header1.textContent.replace('Основы ', '');
+    navigatorButton.id = `${section.id}Butt`;
+    navigatorButton.classList.add('displayNoneClass');
+
+    navMenuButtons.appendChild(navigatorButton)
+
+    const subSections = [...section.querySelectorAll('section > section')].filter(section => section.hasAttribute('id'));
+
+    if (subSections.length) {
+        const subNav = document.createElement('nav');
+        subNav.classList.add(`${section.id.replace('Butt', '')}`, 'displayNoneClass');
+        subSections.forEach(subSection => {
+            const header2 = subSection.querySelector('section > h2');
+            const subNavigatorButton = document.createElement('a');
+
+            subNavigatorButton.textContent = header2.textContent.replace('Основы ', '');
+            subNavigatorButton.id = `${subSection.id}Butt`;
+
+            subNav.appendChild(subNavigatorButton);
+
+            navMenu.appendChild(subNav);
+
+            const subHeaders3 = subSection.querySelectorAll('h3');
+
+            const nav = createNav(subSection, subHeaders3);
+
+            navMenu.appendChild(nav);
+        })
+    } else {
+        const headers3 = section.querySelectorAll('h3');
+        const nav = createNav(section, headers3);
+        navMenu.appendChild(nav);
+    }
+}
+
+sections.forEach(section => buildNavigator(section));
+
 //navigation
 const navs = document.querySelectorAll('.navButtonsStyles nav');
 
-function clearFunc() {
-    navs.forEach(item => item.classList.replace('displayFlexClass', 'displayNoneClass'));
-}
+console.log(navs)
+
+const clearFunc = () => navs.forEach(item => item.classList.replace('displayFlexClass', 'displayNoneClass'));
 
 const toggleClassesHandler = (selectedClass) => {
     const element = document.querySelector(selectedClass);
@@ -56,46 +115,45 @@ const classCondition = (selectedClass) => document.querySelector(selectedClass).
 
 const asides = document.querySelector('.navButtonsStyles');
 
-let navigArr = [...asides.querySelectorAll('nav')].filter(el => {
-    switch (el.classList[0]) {
-        case 'JSbasicsNav':
-            return false;
-        case 'JSbasicsForEmploymentNav':
-            return false
-        case 'JSpracticeNav':
-            return false;
-        case 'ReactNav':
-            return false;
-        case 'reactReduxNav':
-            return false;
-        case 'reactRouterBNav':
-            return false;
-        default:
-            return true;
-    }
-});
+const buttsArr = asides.querySelectorAll('button');
 
-const buttsArr = [...asides.querySelectorAll('button')];
+console.log(buttsArr)
 
 buttsArr.forEach((butt, index) => {
+    const currentClass = butt.id.replace('Butt', '')
     butt.onclick = () => {
-        if (!classCondition(`.${navigArr[index].classList[0]}`)) {
+        if (!classCondition(`.${currentClass}`)) {
             clearFunc();
-            toggleClassesHandler(`.${navigArr[index].classList[0]}`)
+            toggleClassesHandler(`.${currentClass}`)
         }
     }
 });
+
+const cssBasicsNav = document.querySelector('.CSSnav');
+const cssBasicsAnc = cssBasicsNav.querySelectorAll('a');
+
+cssBasicsAnc.forEach(a => {
+    const currentClass = a.id.replace('Butt', '');
+    a.onclick = () => {
+        if (classCondition(`.${currentClass}`)) {
+            return;
+        }
+        clearFunc();
+        toggleClassesHandler(`.${currentClass}`)
+    }
+})
 
 const jsBasicsNav = document.querySelector('.JSnav');
 const jsBasicsAnc = jsBasicsNav.querySelectorAll('a');
 
 jsBasicsAnc.forEach(a => {
+    const currentClass = a.id.replace('Butt', '');
     a.onclick = () => {
-        if (classCondition(`.${a.id.replace('Butt', '')}`)) {
+        if (classCondition(`.${currentClass}`)) {
             return;
         }
         clearFunc();
-        toggleClassesHandler(`.${a.id.replace('Butt', '')}`)
+        toggleClassesHandler(`.${currentClass}`)
     }
 });
 
@@ -103,19 +161,21 @@ const reactFullCoursesNav = document.querySelector('.ReactFullCoursesNav');
 const reactFullCoursesAnc = reactFullCoursesNav.querySelectorAll('a');
 
 reactFullCoursesAnc.forEach(a => {
+    const currentClass = a.id.replace('Butt', '');
     a.onclick = () => {
-        if (classCondition(`.${a.id.replace('Butt', '')}`)) {
+        if (classCondition(`.${currentClass}`)) {
             return;
         }
         clearFunc();
-        toggleClassesHandler(`.${a.id.replace('Butt', '')}`)
+        toggleClassesHandler(`.${currentClass}`)
     }
 });
 
-const buttonsArray = [...document.querySelectorAll('.navButtonsStyles button')];
+const buttonsArray = document.querySelectorAll('.navButtonsStyles button');
 
 document.querySelector('#navButtons').onclick = () => {
     clearFunc();
+    console.log(document.querySelector('#HTMLnavButt button'))
     if (document.querySelector('#HTMLnavButt').classList.contains('displayNoneClass')) {
         buttonsArray.forEach(button => button.classList.replace('displayNoneClass', 'displayFlexClass'));
     } else {
@@ -132,19 +192,14 @@ document.querySelector("main").onclick = () => {
 };
 
 let prevClass = null;
-const h3 = document.createElement('h3');
-h3.classList.add('sideBarTitle');
-document.querySelector('aside').prepend(h3);
 const sideBar = document.querySelector('.sideBarContainer');
 const sideBarBuilder = (selectedClass) => {
     if (selectedClass !== prevClass) {
-        const navlist = document.querySelector(`.${selectedClass}`)?.cloneNode(true);
-        let buttons = document.querySelector(`#${selectedClass}Butt`);
-        h3.textContent = buttons.textContent;
+        const navList = document.querySelector(`.${selectedClass}`)?.cloneNode(true);
         sideBar.innerHTML = '';
-        const aList = navlist.querySelectorAll('a');
+        const aList = navList?.querySelectorAll('a');
 
-        aList.forEach(el => {
+        aList?.forEach(el => {
             sideBar.append(el);
         })
     }
