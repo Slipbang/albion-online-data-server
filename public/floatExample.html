@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Float Layout</title>
+  <style>
+    .container {
+      width: 100%;
+    }
+
+    .left {
+      float: left;
+      width: 70%; /* Ширина левой колонки */
+      background-color: lightblue;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .right {
+      float: right;
+      width: 30%; /* Ширина правой колонки */
+      background-color: lightgreen;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both; /* Сбрасываем "обтекание" для родителя */
+    }
+
+    /*-------------------------------------------------------------*/
+
+    .text-container img {
+      float: left; /* Изображение "плавает" слева */
+      margin: 0 15px 15px 0; /* Отступы вокруг изображения */
+      width: 200px; /* Фиксированная ширина изображения */
+    }
+    .text-container {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /*-------------------------------------------------------------*/
+
+    .iteme {
+      padding: 20px;
+    }
+
+    .wrapper {
+      background-color: gray;
+    }
+
+    .iteml {
+      background-color: crimson;
+      float: left;
+    }
+
+    .itemr {
+      background-color: cyan;
+      float: right;
+    }
+
+    .itemn {
+      background-color: blueviolet;
+    }
+  </style>
+</head>
+<body>
+<div class="iteme wrapper">
+  <div class="iteme iteml">1</div>
+  <div class="iteme itemr">2</div>
+  <div class="iteme itemn">3</div>
+</div>
+
+<hr>
+
+<div class="container clearfix">
+  <div class="left">Левая колонка (70%)</div>
+  <div class="right">Правая колонка (30%)</div>
+</div>
+
+<hr>
+
+<div class="text-container">
+  <img src="https://via.placeholder.com/200" alt="Example Image">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
+    Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+    Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
+  </p>
+  <p>
+    Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
+    Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim.
+  </p>
+</div>
+</body>
+</html>
