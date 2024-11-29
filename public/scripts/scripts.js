@@ -2295,13 +2295,13 @@ function funct20() {
 
 // UNIT 10. МАССИВЫ В JAVASCRIPT
 
-let massive = ['Иван', 37, 'Овен'];
-console.log(massive[0]);
-console.log(massive[1]);
-console.log(massive[2]);
-console.log(massive[3]);
-console.log(massive);
-console.log(massive.length);
+let array = ['Иван', 37, 'Овен'];
+console.log(array[0]);
+console.log(array[1]);
+console.log(array[2]);
+console.log(array[3]);
+console.log(array);
+console.log(array.length);
 
 let zodiak = ['Козерог', 1, 1, 19]
 console.log(zodiak);
@@ -2324,15 +2324,15 @@ console.log(numbers);
 // первый вариант записи массива в HTML
 
 // for (let i = 0; i < numbers.length; i++) {
-//     document.querySelector('.outmassive').innerHTML += numbers[i] + ' ';
+//     document.querySelector('.outarray').innerHTML += numbers[i] + ' ';
 // };
 
 
-let outmassive = '';
+let outarray = '';
 for (let i = 0; i < numbers.length; i++) {
-    outmassive += numbers[i] + ' ';
+    outarray += numbers[i] + ' ';
 }
-;document.querySelector('.outmassive').innerHTML = outmassive;
+;document.querySelector('.outarray').innerHTML = outarray;
 
 let numbers2 = [4, 2, 5, 23, 43, 4, 2, 6, 12]
 
@@ -2360,177 +2360,177 @@ console.log('min: ' + min);
 
 
 //sum
-let summassive = 0; // 4
+let sumarray = 0; // 4
 
 for (let i = 0; i < numbers2.length; i++) {
-    summassive = summassive + numbers2[i];
+    sumarray = sumarray + numbers2[i];
 }
-;console.log('сумма: ' + summassive);
+;console.log('сумма: ' + sumarray);
 
 
-let firstmassive = ['one', 2, true, false];
+let firstarray = ['one', 2, true, false];
 
 function masfunct1() {
 
-    document.querySelector('.outmassive1').innerHTML = firstmassive;
-};document.querySelector('#massivebut1').onclick = masfunct1;
+    document.querySelector('.outarray1').innerHTML = firstarray;
+};document.querySelector('#arraybut1').onclick = masfunct1;
 
 
-let secondmassive = ['three', 4, true, false];
+let secondarray = ['three', 4, true, false];
 
 function masfunct2() {
-    let outmassive2 = '';
-    for (let i = 0; i < secondmassive.length; i++) {
-        outmassive2 += secondmassive[i] + ' ';
+    let outarray2 = '';
+    for (let i = 0; i < secondarray.length; i++) {
+        outarray2 += secondarray[i] + ' ';
     }
-    document.querySelector('.outmassive2').innerHTML = outmassive2;
-};document.querySelector('#massivebut2').onclick = masfunct2;
+    document.querySelector('.outarray2').innerHTML = outarray2;
+};document.querySelector('#arraybut2').onclick = masfunct2;
 
 
-let thirdmassive = ['five', 6, true, false];
+let thirdarray = ['five', 6, true, false];
 
 function masfunct3() {
 
-    document.querySelector('.outmassive3').innerHTML = thirdmassive.length;
-};document.querySelector('#massivebut3').onclick = masfunct3;
+    document.querySelector('.outarray3').innerHTML = thirdarray.length;
+};document.querySelector('#arraybut3').onclick = masfunct3;
 
 
-let fourthmassive = ['один', 2, 'три', 4, 'пять', 6, 'семь', 8, 'девять', 10];
+let fourtharray = ['один', 2, 'три', 4, 'пять', 6, 'семь', 8, 'девять', 10];
 
 function masfunct4() {
-    let outmassive4 = '';
-    outmassive4 += fourthmassive[0] + ' ' + fourthmassive[3] + ' ' + fourthmassive[8];
+    let outarray4 = '';
+    outarray4 += fourtharray[0] + ' ' + fourtharray[3] + ' ' + fourtharray[8];
 
-    document.querySelector('.outmassive4').innerHTML = outmassive4;
-};document.querySelector('#massivebut4').onclick = masfunct4;
+    document.querySelector('.outarray4').innerHTML = outarray4;
+};document.querySelector('#arraybut4').onclick = masfunct4;
 
 
-let fifthmassive = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+let fiftharray = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 function masfunct5() {
-    let outmassive5 = '';
-    outmassive5 = fifthmassive[0] + fifthmassive[2] + fifthmassive[3];
+    let outarray5 = '';
+    outarray5 = fiftharray[0] + fiftharray[2] + fiftharray[3];
 
-    document.querySelector('.outmassive5').innerHTML = outmassive5;
-};document.querySelector('#massivebut5').onclick = masfunct5;
+    document.querySelector('.outarray5').innerHTML = outarray5;
+};document.querySelector('#arraybut5').onclick = masfunct5;
 
 
-let sixthmassive = ['Dmitry', 'Sagittarius', 28, 'november'];
+let sixtharray = ['Dmitry', 'Sagittarius', 28, 'november'];
 
 function masfunct6() {
-    let outmassive6 = '';
-    for (let i = 0; i < sixthmassive.length; i++) {
-        outmassive6 += sixthmassive[i] + ' ';
+    let outarray6 = '';
+    for (let i = 0; i < sixtharray.length; i++) {
+        outarray6 += sixtharray[i] + ' ';
     }
-    document.querySelector('.outmassive6').innerHTML = outmassive6;
-};document.querySelector('#massivebut6').onclick = masfunct6;
+    document.querySelector('.outarray6').innerHTML = outarray6;
+};document.querySelector('#arraybut6').onclick = masfunct6;
 
 
-let seventhmassive = ['china', 'india', 'brazil', 'japan', 'egypt'];
+let seventharray = ['china', 'india', 'brazil', 'japan', 'egypt'];
 
 function masfunct7() {
-    seventhmassive[7] = 'vietnam';
-    seventhmassive[6] = 'turkey';
-    seventhmassive[5] = 'italy';
-    let outmassive7 = '';
-    for (let i = 0; i < seventhmassive.length; i++) {
-        outmassive7 += seventhmassive[i] + ' ';
+    seventharray[7] = 'vietnam';
+    seventharray[6] = 'turkey';
+    seventharray[5] = 'italy';
+    let outarray7 = '';
+    for (let i = 0; i < seventharray.length; i++) {
+        outarray7 += seventharray[i] + ' ';
     }
-    document.querySelector('.outmassive7').innerHTML = outmassive7;
-};document.querySelector('#massivebut7').onclick = masfunct7;
+    document.querySelector('.outarray7').innerHTML = outarray7;
+};document.querySelector('#arraybut7').onclick = masfunct7;
 
 
-let eighthmassive = [];
+let eightharray = [];
 
 function masfunct8() {
-    eighthmassive[3] = 3.14;
-    eighthmassive[4] = 17;
-    eighthmassive[6] = 5;
-    let outmassive8 = '';
-    for (let i = 0; i < eighthmassive.length; i++) {
-        outmassive8 += eighthmassive[i] + '-';
+    eightharray[3] = 3.14;
+    eightharray[4] = 17;
+    eightharray[6] = 5;
+    let outarray8 = '';
+    for (let i = 0; i < eightharray.length; i++) {
+        outarray8 += eightharray[i] + '-';
     }
-    document.querySelector('.outmassive8').innerHTML = outmassive8;
-    document.querySelector('.outmassive8-1').innerHTML = eighthmassive.length;
-};document.querySelector('#massivebut8').onclick = masfunct8;
+    document.querySelector('.outarray8').innerHTML = outarray8;
+    document.querySelector('.outarray8-1').innerHTML = eightharray.length;
+};document.querySelector('#arraybut8').onclick = masfunct8;
 
 
-let ninthmassive = [100, 200, 300, 400, 700, 121];
+let nintharray = [100, 200, 300, 400, 700, 121];
 
 function masfunct9() {
-    document.querySelector('.outmassive9').innerHTML = ninthmassive[ninthmassive.length - 1];
-};document.querySelector('#massivebut9').onclick = masfunct9;
+    document.querySelector('.outarray9').innerHTML = nintharray[nintharray.length - 1];
+};document.querySelector('#arraybut9').onclick = masfunct9;
 
 
-let tenthmassive = [100, 200, 300, 400, 700, 121];
+let tentharray = [100, 200, 300, 400, 700, 121];
 
 function masfunct10() {
-    document.querySelector('.outmassive10').innerHTML = tenthmassive[1] + tenthmassive[tenthmassive.length - 1];
-};document.querySelector('#massivebut10').onclick = masfunct10;
+    document.querySelector('.outarray10').innerHTML = tentharray[1] + tentharray[tentharray.length - 1];
+};document.querySelector('#arraybut10').onclick = masfunct10;
 
 
-let eleventhmassive = [2, 3, 4, 5, 6, 7];
+let eleventharray = [2, 3, 4, 5, 6, 7];
 
 function masfunct11() {
-    let swapnumb11 = eleventhmassive[2] // тут хранится 1
-    eleventhmassive[2] = eleventhmassive[4];
-    eleventhmassive[4] = swapnumb11;
-    let outmassive11 = '';
-    for (let i = 0; i < eleventhmassive.length; i++) {
-        outmassive11 += eleventhmassive[i] + ' ';
+    let swapnumb11 = eleventharray[2] // тут хранится 1
+    eleventharray[2] = eleventharray[4];
+    eleventharray[4] = swapnumb11;
+    let outarray11 = '';
+    for (let i = 0; i < eleventharray.length; i++) {
+        outarray11 += eleventharray[i] + ' ';
     }
-    document.querySelector('.outmassive11').innerHTML = outmassive11;
+    document.querySelector('.outarray11').innerHTML = outarray11;
 
-};document.querySelector('#massivebut11').onclick = masfunct11;
+};document.querySelector('#arraybut11').onclick = masfunct11;
 
 
-let twelfthmassive = ['test', 'west', 'list', 'class', 'best'];
+let twelftharray = ['test', 'west', 'list', 'class', 'best'];
 
 function masfunct12() {
-    let swapnumb12 = twelfthmassive[0]
-    twelfthmassive[0] = twelfthmassive[twelfthmassive.length - 1];
-    twelfthmassive[twelfthmassive.length - 1] = swapnumb12;
-    let outmassive12 = '';
-    for (let i = 0; i < twelfthmassive.length; i++) {
-        outmassive12 += twelfthmassive[i] + ' ';
+    let swapnumb12 = twelftharray[0]
+    twelftharray[0] = twelftharray[twelftharray.length - 1];
+    twelftharray[twelftharray.length - 1] = swapnumb12;
+    let outarray12 = '';
+    for (let i = 0; i < twelftharray.length; i++) {
+        outarray12 += twelftharray[i] + ' ';
     }
-    document.querySelector('.outmassive12').innerHTML = outmassive12;
-};document.querySelector('#massivebut12').onclick = masfunct12;
+    document.querySelector('.outarray12').innerHTML = outarray12;
+};document.querySelector('#arraybut12').onclick = masfunct12;
 
 
-let thirteenthmassive = ['test', 'west', 'list', 'class', 'best'];
+let thirteentharray = ['test', 'west', 'list', 'class', 'best'];
 
 function masfunct13() {
-    let outmassive13 = '';
-    for (let i = 0; i < thirteenthmassive.length; i++) {
-        outmassive13 += thirteenthmassive[i] + ' ' + [i] + ' ';
+    let outarray13 = '';
+    for (let i = 0; i < thirteentharray.length; i++) {
+        outarray13 += thirteentharray[i] + ' ' + [i] + ' ';
     }
-    document.querySelector('.outmassive13').innerHTML = outmassive13;
-};document.querySelector('#massivebut13').onclick = masfunct13;
+    document.querySelector('.outarray13').innerHTML = outarray13;
+};document.querySelector('#arraybut13').onclick = masfunct13;
 
 
-let fourteenthmassive = [1, 2, 3, 'hello', 66];
+let fourteentharray = [1, 2, 3, 'hello', 66];
 
 function masfunct14() {
-    let outmassive14 = '';
-    for (let i = fourteenthmassive.length - 1; i >= 0; i--) {
-        outmassive14 += fourteenthmassive[i] + ' ';
+    let outarray14 = '';
+    for (let i = fourteentharray.length - 1; i >= 0; i--) {
+        outarray14 += fourteentharray[i] + ' ';
     }
-    document.querySelector('.outmassive14').innerHTML = outmassive14;
-};document.querySelector('#massivebut14').onclick = masfunct14;
+    document.querySelector('.outarray14').innerHTML = outarray14;
+};document.querySelector('#arraybut14').onclick = masfunct14;
 
 
-let fifteenthmassive = [0, 2, 5, -4, 6, 22, -9, -12, 8, 12, 13, 78];
+let fifteentharray = [0, 2, 5, -4, 6, 22, -9, -12, 8, 12, 13, 78];
 
 function masfunct15() {
-    let outmassive15 = '';
-    for (let i = 0; i < fifteenthmassive.length; i++) {
-        if (fifteenthmassive[i] > 0) {
-            outmassive15 += fifteenthmassive[i] + ' ';
+    let outarray15 = '';
+    for (let i = 0; i < fifteentharray.length; i++) {
+        if (fifteentharray[i] > 0) {
+            outarray15 += fifteentharray[i] + ' ';
         }
     }
-    document.querySelector('.outmassive15').innerHTML = outmassive15;
-};document.querySelector('#massivebut15').onclick = masfunct15;
+    document.querySelector('.outarray15').innerHTML = outarray15;
+};document.querySelector('#arraybut15').onclick = masfunct15;
 
 
 let sixteenthassive = [0, 2, 5, -4, 6, 22, -9, -12, 8, 12, 13, 78];
@@ -2538,8 +2538,8 @@ let sixteenthassive_odd = [];
 let sixteenthassive_even = [];
 
 function masfunct16() {
-    let outmassive16Odd = '';
-    let outmassive16Even = '';
+    let outarray16Odd = '';
+    let outarray16Even = '';
     for (let i = 0; i < sixteenthassive.length; i++) {
         if (sixteenthassive[i] % 2 == 0) {
             sixteenthassive_odd[sixteenthassive_odd.length] = sixteenthassive[i];
@@ -2548,63 +2548,63 @@ function masfunct16() {
         }
     }
     for (let i = 0; i < sixteenthassive_odd.length; i++) {
-        outmassive16Odd += sixteenthassive_odd[i] + ' ';
+        outarray16Odd += sixteenthassive_odd[i] + ' ';
     }
     for (let i = 0; i < sixteenthassive_even.length; i++) {
-        outmassive16Even += sixteenthassive_even[i] + ' ';
+        outarray16Even += sixteenthassive_even[i] + ' ';
     }
-    document.querySelector('.outmassive16-odd').innerHTML = outmassive16Odd;
-    document.querySelector('.outmassive16-even').innerHTML = outmassive16Even;
-};document.querySelector('#massivebut16').onclick = masfunct16;
+    document.querySelector('.outarray16-odd').innerHTML = outarray16Odd;
+    document.querySelector('.outarray16-even').innerHTML = outarray16Even;
+};document.querySelector('#arraybut16').onclick = masfunct16;
 
 
-let seventeenthmassive = [3, 0, 2, 6, 0, 1, 3, 1, 9, 0, 2, 0];
+let seventeentharray = [3, 0, 2, 6, 0, 1, 3, 1, 9, 0, 2, 0];
 
 function masfunct17() {
     let count = 0;
-    for (let i = 0; i < fifteenthmassive.length; i++) {
-        if (seventeenthmassive[i] > 3) {
+    for (let i = 0; i < fifteentharray.length; i++) {
+        if (seventeentharray[i] > 3) {
             count++;
         }
     }
-    document.querySelector('.outmassive17').innerHTML = count;
-};document.querySelector('#massivebut17').onclick = masfunct17;
+    document.querySelector('.outarray17').innerHTML = count;
+};document.querySelector('#arraybut17').onclick = masfunct17;
 
 
-let eighteenthmassive = [15, 24, 13, 78, 21, 4, 45, 67];
+let eighteentharray = [15, 24, 13, 78, 21, 4, 45, 67];
 
 function masfunct18() {
-    let max18 = eighteenthmassive[0];
-    for (let i = 0; i < eighteenthmassive.length; i++) {
-        if (eighteenthmassive[i] > max18) {
-            max18 = eighteenthmassive[i];
+    let max18 = eighteentharray[0];
+    for (let i = 0; i < eighteentharray.length; i++) {
+        if (eighteentharray[i] > max18) {
+            max18 = eighteentharray[i];
         }
     }
-    document.querySelector('.outmassive18').innerHTML = max18;
-};document.querySelector('#massivebut18').onclick = masfunct18;
+    document.querySelector('.outarray18').innerHTML = max18;
+};document.querySelector('#arraybut18').onclick = masfunct18;
 
 
-let nineteenthmassive = [15, 424, 313, 78, 241, 4, 45, 67];
+let nineteentharray = [15, 424, 313, 78, 241, 4, 45, 67];
 
 function masfunct19() {
-    let min19 = nineteenthmassive[0];
-    for (let i = 0; i < nineteenthmassive.length; i++) {
-        if (nineteenthmassive[i] < min19) {
-            min19 = nineteenthmassive[i];
+    let min19 = nineteentharray[0];
+    for (let i = 0; i < nineteentharray.length; i++) {
+        if (nineteentharray[i] < min19) {
+            min19 = nineteentharray[i];
         }
     }
-    document.querySelector('.outmassive19').innerHTML = min19;
-};document.querySelector('#massivebut19').onclick = masfunct19;
+    document.querySelector('.outarray19').innerHTML = min19;
+};document.querySelector('#arraybut19').onclick = masfunct19;
 
 
-let twentiethmassive = [4, 5, 6, 7, 8, 9, 10];
-let summassive20 = 0; // 4
+let twentietharray = [4, 5, 6, 7, 8, 9, 10];
+let sumarray20 = 0; // 4
 function masfunct20() {
-    for (let i = 0; i < twentiethmassive.length; i++) {
-        summassive20 = summassive20 + twentiethmassive[i];
+    for (let i = 0; i < twentietharray.length; i++) {
+        sumarray20 = sumarray20 + twentietharray[i];
     }
-    document.querySelector('.outmassive20').innerHTML = summassive20;
-};document.querySelector('#massivebut20').onclick = masfunct20;
+    document.querySelector('.outarray20').innerHTML = sumarray20;
+};document.querySelector('#arraybut20').onclick = masfunct20;
 
 
 // UNIT 11. ДОБАВЛЕНИЕ И УДАЛЕНИЕ ЭЛЕМЕНТОВ В МАССИВЕ, POP, PUSH,SPLICE
@@ -2637,13 +2637,16 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive1 = [33, 'best', 66, 'best'];
+};
+
+let spl_array1 = [33, 'best', 66, 'best'];
 
 function funkmass1() {
     let input1 = document.querySelector('.inpmass1').value;
-    massive1.push(input1);
-    showArr('.divmassive1', massive1);
-};document.querySelector('#buttmassive1').onclick = funkmass1;
+    array1.push(input1);
+    showArr('.divarray1', array1);
+}
+document.querySelector('#buttarray1').onclick = funkmass1;
 
 
 function showArr(domElem, arr) {
@@ -2652,12 +2655,13 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive2 = [33, 'best', 66, 'best'];
+}
+let array2 = [33, 'best', 66, 'best'];
 
 function funkmass2() {
-    massive2.pop();
-    showArr('.divmassive2', massive2);
-};document.querySelector('#buttmassive2').onclick = funkmass2;
+    array2.pop();
+    showArr('.divarray2', array2);
+};document.querySelector('#buttarray2').onclick = funkmass2;
 
 
 function showArr(domElem, arr) {
@@ -2666,12 +2670,12 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive3 = [33, 'best', 66, 'best'];
+};let array3 = [33, 'best', 66, 'best'];
 
 function funkmass3() {
-    massive3.shift();
-    showArr('.divmassive3', massive3);
-};document.querySelector('#buttmassive3').onclick = funkmass3;
+    array3.shift();
+    showArr('.divarray3', array3);
+};document.querySelector('#buttarray3').onclick = funkmass3;
 
 
 function showArr(domElem, arr) {
@@ -2680,13 +2684,13 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive4 = [33, 'best', 66, 'best'];
+};let array4 = [33, 'best', 66, 'best'];
 
 function funkmass4() {
     let input4 = document.querySelector('.inpmass4').value;
-    massive4.push(input4);
-    showArr('.divmassive4', massive4);
-};document.querySelector('#buttmassive4').onclick = funkmass4;
+    array4.push(input4);
+    showArr('.divarray4', array4);
+};document.querySelector('#buttarray4').onclick = funkmass4;
 
 
 function showArr(domElem, arr) {
@@ -2695,13 +2699,13 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive5 = [33, 'best', 66, 'best'];
+};let array5 = [33, 'best', 66, 'best'];
 
 function funkmass5() {
     let input5 = document.querySelector('.inpmass5').value;
-    massive5.unshift(input5);
-    showArr('.divmassive5', massive5);
-};document.querySelector('#buttmassive5').onclick = funkmass5;
+    array5.unshift(input5);
+    showArr('.divarray5', array5);
+};document.querySelector('#buttarray5').onclick = funkmass5;
 
 
 function showArr(domElem, arr) {
@@ -2710,13 +2714,13 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive6 = ['test', 5, 12];
+};let array6 = ['test', 5, 12];
 
 function funkmass6() {
     let input6 = document.querySelector('.inpmass6').value;
-    massive6[massive6.length] = input6;
-    showArr('.divmassive6', massive6);
-};document.querySelector('#buttmassive6').onclick = funkmass6;
+    array6[array6.length] = input6;
+    showArr('.divarray6', array6);
+};document.querySelector('#buttarray6').onclick = funkmass6;
 
 
 function showArr(domElem, arr) {
@@ -2725,12 +2729,12 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive7 = ['china', 'india', 'brazil', 'japan', 'egypt'];
+};let array7 = ['china', 'india', 'brazil', 'japan', 'egypt'];
 
 function funkmass7() {
-    massive7.length = massive7.length - 1;
-    showArr('.divmassive7', massive7);
-};document.querySelector('#buttmassive7').onclick = funkmass7;
+    array7.length = array7.length - 1;
+    showArr('.divarray7', array7);
+};document.querySelector('#buttarray7').onclick = funkmass7;
 
 
 function showArr(domElem, arr) {
@@ -2739,18 +2743,18 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive8 = [2, '4', 12, 67, 'hello'];
+};let array8 = [2, '4', 12, 67, 'hello'];
 
 function funkmass8() {
     let input8 = document.querySelector('.inpmass8').value;
     let newArr = [];
-    for (let i = 0; i < massive8.length; i++) {
+    for (let i = 0; i < array8.length; i++) {
         newArr[0] = input8;
-        newArr[i + 1] = massive8[i];
+        newArr[i + 1] = array8[i];
     }
-    massive8 = newArr;
-    showArr('.divmassive8', massive8);
-};document.querySelector('#buttmassive8').onclick = funkmass8;
+    array8 = newArr;
+    showArr('.divarray8', array8);
+};document.querySelector('#buttarray8').onclick = funkmass8;
 
 
 function showArr(domElem, arr) {
@@ -2759,16 +2763,16 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive9 = [100, 200, 300, 400, 700, 121];
+};let array9 = [100, 200, 300, 400, 700, 121];
 
 function funkmass9() {
-    let emptymassive = [];
-    for (let i = 1; i < massive9.length; i++) {
-        emptymassive.push(massive9[i]);
+    let emptyarray = [];
+    for (let i = 1; i < array9.length; i++) {
+        emptyarray.push(array9[i]);
     }
-    massive9 = emptymassive;
-    showArr('.divmassive9', massive9);
-};document.querySelector('#buttmassive9').onclick = funkmass9;
+    array9 = emptyarray;
+    showArr('.divarray9', array9);
+};document.querySelector('#buttarray9').onclick = funkmass9;
 
 
 function showArr(domElem, arr) {
@@ -2777,61 +2781,61 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive10 = [3, 14, 15, 92, 6];
+};let array10 = [3, 14, 15, 92, 6];
 
 function funkmass10() {
-    massive10.reverse();
-    showArr('.divmassive10', massive10);
-};document.querySelector('#buttmassive10').onclick = funkmass10;
+    array10.reverse();
+    showArr('.divarray10', array10);
+};document.querySelector('#buttarray10').onclick = funkmass10;
 
 
-let massive11 = [2, 3, 4, 5, 6, 7];
+let array11 = [2, 3, 4, 5, 6, 7];
 
 function funkmass11() {
     let mass11 = '';
     let input11 = document.querySelector('.inpmass11').value;
-    mass11 = massive11.indexOf(parseInt(input11));
-    document.querySelector('.divmassive11').innerHTML = mass11;
-};document.querySelector('#buttmassive11').onclick = funkmass11;
+    mass11 = array11.indexOf(parseInt(input11));
+    document.querySelector('.divarray11').innerHTML = mass11;
+};document.querySelector('#buttarray11').onclick = funkmass11;
 
 
-let massive12 = [6, 62, 60, 70, 1, 5];
+let array12 = [6, 62, 60, 70, 1, 5];
 
 function funkmass12() {
     let searchinvalue = +document.querySelector('.inpmass12').value;
-    document.querySelector('.divmassive12').innerHTML = -1;
-    for (let i = 0; i < massive12.length; i++) {
-        if (massive12[i] == searchinvalue) {
-            document.querySelector('.divmassive12').innerHTML = [i];
+    document.querySelector('.divarray12').innerHTML = -1;
+    for (let i = 0; i < array12.length; i++) {
+        if (array12[i] == searchinvalue) {
+            document.querySelector('.divarray12').innerHTML = [i];
         }
     }
 }
 
-document.querySelector('#buttmassive12').onclick = funkmass12;
+document.querySelector('#buttarray12').onclick = funkmass12;
 
 
-let massive13 = [6, 0, 22, 1, 4, 76];
+let array13 = [6, 0, 22, 1, 4, 76];
 
 function funkmass13() {
-    let lastIndex = massive13.length - 1
-    let reversemassive13 = [];
-    for (let i = 0; i < massive13.length; i++) {
-        reversemassive13[i] = massive13[[lastIndex]];
+    let lastIndex = array13.length - 1
+    let reversearray13 = [];
+    for (let i = 0; i < array13.length; i++) {
+        reversearray13[i] = array13[[lastIndex]];
         lastIndex--;
     }
-    document.querySelector('.divmassive13').innerHTML = reversemassive13;
-};document.querySelector('#buttmassive13').onclick = funkmass13;
+    document.querySelector('.divarray13').innerHTML = reversearray13;
+};document.querySelector('#buttarray13').onclick = funkmass13;
 
 
-let massive14 = [];
+let array14 = [];
 
 function funkmass14() {
     let counter14 = +document.querySelector('.inpmass14').value;
     for (let i = 0; i < counter14; i++) {
-        massive14[i] = 1;
+        array14[i] = 1;
     }
-    document.querySelector('.divmassive14').innerHTML = massive14;
-};document.querySelector('#buttmassive14').onclick = funkmass14;
+    document.querySelector('.divarray14').innerHTML = array14;
+};document.querySelector('#buttarray14').onclick = funkmass14;
 
 
 function showArr(domElem, arr) {
@@ -2840,85 +2844,85 @@ function showArr(domElem, arr) {
         out += arr[i] + ' ';
     }
     document.querySelector(domElem).innerHTML = out;
-};let massive15 = [0, 2, 5, -4, 6, 22, -9, -12, 8, 12, 13, 78];
+};let array15 = [0, 2, 5, -4, 6, 22, -9, -12, 8, 12, 13, 78];
 
 function funkmass15() {
     let newelement15 = +document.querySelector('.inpmass15').value;
-    for (let i = 0; i < massive15.length; i++) {
-        if (massive15.indexOf(newelement15) != -1) {
-            document.querySelector('.divmassive15').innerHTML = massive15;
+    for (let i = 0; i < array15.length; i++) {
+        if (array15.indexOf(newelement15) != -1) {
+            document.querySelector('.divarray15').innerHTML = array15;
         } else {
-            massive15.push(newelement15);
-            document.querySelector('.divmassive15').innerHTML = massive15;
+            array15.push(newelement15);
+            document.querySelector('.divarray15').innerHTML = array15;
             break;
         }
     }
-};document.querySelector('#buttmassive15').onclick = funkmass15;
+};document.querySelector('#buttarray15').onclick = funkmass15;
 
 
-let massive16 = [];
-let massive16_1 = [5, 6, 7, 8, 9];
-let massive16_2 = [23, 24, 56, 87];
+let array16 = [];
+let array16_1 = [5, 6, 7, 8, 9];
+let array16_2 = [23, 24, 56, 87];
 
 function funkmass16() {
-    massive16 = massive16_1.concat(massive16_2);
-    document.querySelector('.divmassive16').innerHTML = massive16;
-};document.querySelector('#buttmassive16').onclick = funkmass16;
+    array16 = array16_1.concat(array16_2);
+    document.querySelector('.divarray16').innerHTML = array16;
+};document.querySelector('#buttarray16').onclick = funkmass16;
 
 
-let massive17 = [];
-let massive17_1 = ['a', 'b', 'c', 'd'];
-let massive17_2 = [1, 2, 3, 4, 5];
+let array17 = [];
+let array17_1 = ['a', 'b', 'c', 'd'];
+let array17_2 = [1, 2, 3, 4, 5];
 
 function funkmass17() {
-    for (let i = 0; i < massive17_1.length; i++) {
-        massive17.push(massive17_1[i]);
+    for (let i = 0; i < array17_1.length; i++) {
+        array17.push(array17_1[i]);
     }
-    for (let i = 0; i < massive17_2.length; i++) {
-        massive17.push(massive17_2[i]);
+    for (let i = 0; i < array17_2.length; i++) {
+        array17.push(array17_2[i]);
     }
-    document.querySelector('.divmassive17').innerHTML = massive17;
-};document.querySelector('#buttmassive17').onclick = funkmass17;
+    document.querySelector('.divarray17').innerHTML = array17;
+};document.querySelector('#buttarray17').onclick = funkmass17;
 
 
-let massive18 = ['b', 'c', '45', 'e', 'z', 'y'];
+let array18 = ['b', 'c', '45', 'e', 'z', 'y'];
 
 function funkmass18() {
     let mass18 = '';
     let input18 = document.querySelector('.inpmass18').value;
-    mass18 = massive18.includes(input18);
-    document.querySelector('.divmassive18').innerHTML = mass18;
-};document.querySelector('#buttmassive18').onclick = funkmass18;
+    mass18 = array18.includes(input18);
+    document.querySelector('.divarray18').innerHTML = mass18;
+};document.querySelector('#buttarray18').onclick = funkmass18;
 
 
-let massive19 = ['Your', 'payment', 'method', 'will', 'automatically', 'be', 'charged', 'in', 'advance', 'every']
+let array19 = ['Your', 'payment', 'method', 'will', 'automatically', 'be', 'charged', 'in', 'advance', 'every']
 let maxString = '';
 
 function funkmass19() {
-    for (let i = 0; i < massive19.length; i++) {
-        if (massive19[i].length > maxString.length) {
-            maxString = massive19[i];
+    for (let i = 0; i < array19.length; i++) {
+        if (array19[i].length > maxString.length) {
+            maxString = array19[i];
         }
     }
-    document.querySelector('.divmassive19').innerHTML = maxString;
+    document.querySelector('.divarray19').innerHTML = maxString;
 }
 
-document.querySelector('#buttmassive19').onclick = funkmass19;
+document.querySelector('#buttarray19').onclick = funkmass19;
 
 
-let massive20 = [4, 5, 6, 7, 8, 9, 10];
+let array20 = [4, 5, 6, 7, 8, 9, 10];
 
 function funkmass20() {
     let mass20 = '';
-    mass20 = massive20.join('');
-    document.querySelector('.divmassive20').innerHTML = mass20;
-};document.querySelector('#buttmassive20').onclick = funkmass20;
+    mass20 = array20.join('');
+    document.querySelector('.divarray20').innerHTML = mass20;
+};document.querySelector('#buttarray20').onclick = funkmass20;
 
 
 // UNIT 12. ДВУМЕРНЫЕ МАССИВЫ
 
 
-let array = [4, 5, 6];
+// let array = [4, 5, 6];
 let dualarray = [[1, 2, 3], [4, 5, 6], [7, 8, 9],];
 console.log(dualarray);
 
@@ -2939,16 +2943,16 @@ console.log(dualarray);
 // }
 
 
-let outarray = '';
+let outarray0 = '';
 
 for (let i = 0; i < dualarray.length; i++) {
     for (let k = 0; k < dualarray[i].length; k++) {
         console.log(dualarray[i][k]);
-        outarray += dualarray[i][k] + ' ';
+        outarray0 += dualarray[i][k] + ' ';
     }
-    outarray += '<br>';
+    outarray0 += '<br>';
 }
-document.querySelector('.outarray').innerHTML = outarray;
+document.querySelector('.outarray').innerHTML = outarray0;
 
 
 let outarrayH = ''
@@ -2960,7 +2964,7 @@ for (let i = 0; i < dualarray.length; i++) {
     }
     outarrayH += '<br>';
 }
-;document.querySelector('.outarrayh').innerHTML = outarrayH;
+document.querySelector('.outarrayh').innerHTML = outarrayH;
 
 
 let darray = [1, 0, 0, 0, 0];
@@ -2978,145 +2982,150 @@ document.querySelector('#butarray').onclick = () => {
 
 // TASKS UNIT12
 
-let array1 = [12, [45, 87], [55, 13]];
+let un12Array1 = [12, [45, 87], [55, 13]];
 
-function funcarray1() {
-    document.querySelector('.divarray1').innerHTML = array1[2][0];
-    return array1[2][0];
-};document.querySelector('#butarray1').onclick = funcarray1;
+document.querySelector('#butarray1').onclick = function () {
+    const div = document.querySelector('.un12divarray1');
+    div.innerHTML = un12Array1[2][0];
+
+    return un12Array1[2][0];
+}
 
 
-let array2 = [[12, 'hi'], [45, 87], [55, 13]];
+
+let un12Array2 = [[12, 'hi'], [45, 87], [55, 13]];
 
 function funcarray2() {
-    document.querySelector('.divarray2').innerHTML = array2[0][1];
-    return array2[0][1];
-};document.querySelector('#butarray2').onclick = funcarray2;
+    document.querySelector('.un12divarray2').innerHTML = un12Array2[0][1];
+    return un12Array2[0][1];
+}
+document.querySelector('#butarray2').onclick = funcarray2;
 
 
-let array3 = [[1, 2, 3], [3, 4, 5], [6, [7, 'my']]];
+let un12array3 = [[1, 2, 3], [3, 4, 5], [6, [7, 'my']]];
 
 function funcarray3() {
-    document.querySelector('.divarray3').innerHTML = array3[2][1][1];
-    return array3[2][1][1];
+    document.querySelector('.un12divarray3').innerHTML = un12array3[2][1][1];
+    return un12array3[2][1][1];
 };document.querySelector('#butarray3').onclick = funcarray3;
 
 
-let array4 = [[1, 2, 3], 'go', [3, 4, 5], [6, [7, 'my']]];
+let un12array4 = [[1, 2, 3], 'go', [3, 4, 5], [6, [7, 'my']]];
 
 function funcarray4() {
-    document.querySelector('.divarray4').innerHTML = array4[1][0] + array4[1][1];
-    return array4[1][0] + array4[1][1];
+    document.querySelector('.un12divarray4').innerHTML = un12array4[1][0] + un12array4[1][1];
+    return un12array4[1][0] + un12array4[1][1];
 };document.querySelector('#butarray4').onclick = funcarray4;
 
 
-let array5 = [[1, 2], [3, 4], [5, 6], [21, 34], [44, 56]];
+let un12array5 = [[1, 2], [3, 4], [5, 6], [21, 34], [44, 56]];
 
 function funcarray5() {
     let outarray5 = '';
     for (let i = 0; i < array5.length; i++) {
-        if (array5[i][0] % 2 == 0) outarray5 += array5[i][0] + ' ';
-        if (array5[i][1] % 2 == 0) outarray5 += array5[i][1] + ' ';
+        if (un12array5[i][0] % 2 === 0) outarray5 += un12array5[i][0] + ' ';
+        if (un12array5[i][1] % 2 === 0) outarray5 += un12array5[i][1] + ' ';
     }
-    document.querySelector('.divarray5').innerHTML = outarray5;
+    document.querySelector('.un12divarray5').innerHTML = outarray5;
 };document.querySelector('#butarray5').onclick = funcarray5;
 
 
-let array6 = [[1, 2], [3, 4], [5, 6], [21, 34], [44, 56]];
+let un12array6 = [[1, 2], [3, 4], [5, 6], [21, 34], [44, 56]];
 
 function funcarray6() {
     let outarray6 = '';
-    for (let i = 0; i < array6.length; i++) {
-        if (array6[i][0] % 2 != 0) outarray6 += array6[i][0] + ' ';
-        if (array6[i][1] % 2 != 0) outarray6 += array6[i][1] + ' ';
+    for (let i = 0; i < un12array6.length; i++) {
+        if (un12array6[i][0] % 2 != 0) outarray6 += un12array6[i][0] + ' ';
+        if (un12array6[i][1] % 2 != 0) outarray6 += un12array6[i][1] + ' ';
     }
-    document.querySelector('.divarray6').innerHTML = outarray6;
+    document.querySelector('.un12divarray6').innerHTML = outarray6;
 };document.querySelector('#butarray6').onclick = funcarray6;
 
 
-let array7 = [[1, 2, 3, 9], [3, 4, 7], [5, 6, 8, 32], [21, 34, 43], [44, 56]];
+let un12array7 = [[1, 2, 3, 9], [3, 4, 7], [5, 6, 8, 32], [21, 34, 43], [44, 56]];
 
 function funcarray7() {
     let outarray7 = '';
-    for (let i = 0; i < array7.length; i++) {
-        for (let k = 0; k < array7[i].length; k++) {
-            if (array7[i][k] % 2 == 0) outarray7 += array7[i][k] + ' ';
+    for (let i = 0; i < un12array7.length; i++) {
+        for (let k = 0; k < un12array7[i].length; k++) {
+            if (un12array7[i][k] % 2 === 0) outarray7 += un12array7[i][k] + ' ';
 
         }
     }
-    document.querySelector('.divarray7').innerHTML = outarray7;
+    document.querySelector('.un12divarray7').innerHTML = outarray7;
 };document.querySelector('#butarray7').onclick = funcarray7;
 
 
-let array8 = [[1, 2, 3, 9], [3, 4, 7], [5, 6, 8, 32], [21, 34, 43], [44, 56]];
+let un12array8 = [[1, 2, 3, 9], [3, 4, 7], [5, 6, 8, 32], [21, 34, 43], [44, 56]];
 
 function funcarray8() {
     let outarray8 = '';
-    for (let i = 0; i < array8.length; i++) {
-        for (let k = 0; k < array8[i].length; k++) {
-            if (array8[i][k] % 2 != 0) outarray8 += array8[i][k] + ' ';
+    for (let i = 0; i < un12array8.length; i++) {
+        for (let k = 0; k < un12array8[i].length; k++) {
+            if (un12array8[i][k] % 2 != 0) outarray8 += un12array8[i][k] + ' ';
 
         }
     }
-    document.querySelector('.divarray8').innerHTML = outarray8;
+    document.querySelector('.un12divarray8').innerHTML = outarray8;
 };document.querySelector('#butarray8').onclick = funcarray8;
 
 
-let array9 = [[-2, 7, -3], [3, 4, -7], [-5, 6, -8, 32], [21, -34, -43], [44, -56]];
+let un12array9 = [[-2, 7, -3], [3, 4, -7], [-5, 6, -8, 32], [21, -34, -43], [44, -56]];
 
 function funcarray9() {
     let outarray9 = '';
-    for (let i = 0; i < array9.length; i++) {
-        for (let k = 0; k < array9[i].length; k++) {
-            if (array9[i][k] > 0) outarray9 += array9[i][k] + ' ';
+    for (let i = 0; i < un12array9.length; i++) {
+        for (let k = 0; k < un12array9[i].length; k++) {
+            if (un12array9[i][k] > 0) outarray9 += un12array9[i][k] + ' ';
         }
     }
-    document.querySelector('.divarray9').innerHTML = outarray9;
+    document.querySelector('.un12divarray9').innerHTML = outarray9;
 };document.querySelector('#butarray9').onclick = funcarray9;
 
 
-let array10 = [[-2, '7', -3], [3, 4, -7], [-5, 6, -8, 32, 'a'], ['st', 21, -34, -43], [44, -56, 'task']];
+let un12array10 = [[-2, '7', -3], [3, 4, -7], [-5, 6, -8, 32, 'a'], ['st', 21, -34, -43], [44, -56, 'task']];
 
 function funcarray10() {
     let outarray10 = '';
-    for (let i = 0; i < array10.length; i++) {
-        for (let k = 0; k < array10[i].length; k++) {
-            if (typeof array10[i][k] == 'string') outarray10 += array10[i][k] + ' ';
+    for (let i = 0; i < un12array10.length; i++) {
+        for (let k = 0; k < un12array10[i].length; k++) {
+            if (typeof un12array10[i][k] == 'string') outarray10 += un12array10[i][k] + ' ';
         }
     }
-    document.querySelector('.divarray10').innerHTML = outarray10;
-};document.querySelector('#butarray10').onclick = funcarray10;
+    document.querySelector('.un12divarray10').innerHTML = outarray10;
+}
+document.querySelector('#butarray10').onclick = funcarray10;
 
 
-let array11 = [[4, 5, 6], [7, 8], [9, 10, 11, 12, 13]];
+let un12array11 = [[4, 5, 6], [7, 8], [9, 10, 11, 12, 13]];
 
 function funcarray11() {
     let outarray11 = '';
-    for (let i = 0; i < array11.length; i++) {
-        for (let k = array11[i].length - 1; k >= 0; k--) {
-            outarray11 += array11[i][k] + ' ';
+    for (let i = 0; i < un12array11.length; i++) {
+        for (let k = un12array11[i].length - 1; k >= 0; k--) {
+            outarray11 += un12array11[i][k] + ' ';
         }
     }
-    document.querySelector('.divarray11').innerHTML = outarray11;
+    document.querySelector('.un12divarray11').innerHTML = outarray11;
 };document.querySelector('#butarray11').onclick = funcarray11;
 
 
-let array12 = [[0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0],];
+let un12array12 = [[0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1], [1, 0, 1, 0, 1, 0, 1, 0],];
 
 function funcarray12() {
     let outarray12 = '';
-    for (let i = 0; i < array12.length; i++) {
-        for (let k = 0; k < array12[i].length; k++) {
-            if (array12[i][k] == 0) outarray12 += '&nbsp' + '&nbsp';
-            if (array12[i][k] == 1) outarray12 += array12[i][k] + '&nbsp';
+    for (let i = 0; i < un12array12.length; i++) {
+        for (let k = 0; k < un12array12[i].length; k++) {
+            if (un12array12[i][k] === 0) outarray12 += '&nbsp' + '&nbsp';
+            if (un12array12[i][k] === 1) outarray12 += un12array12[i][k] + '&nbsp';
         }
         outarray12 += '<br>';
     }
-    document.querySelector('.divarray12').innerHTML = outarray12;
+    document.querySelector('.un12divarray12').innerHTML = outarray12;
 };document.querySelector('#butarray12').onclick = funcarray12;
 
 
-let array13 = [];
+let un12array13 = [];
 
 function funcarray13() {
     let Soutarray13 = 0;
@@ -3124,86 +3133,86 @@ function funcarray13() {
         let Toutarray13 = [];
         for (let k = 0; k < 8; k++) {
             Toutarray13.push(Soutarray13);
-            if (Soutarray13 == 0) {
+            if (Soutarray13 === 0) {
                 Soutarray13 = 1
             } else {
                 Soutarray13 = 0;
             }
         }
-        if (Soutarray13 == 0) {
+        if (Soutarray13 === 0) {
             Soutarray13 = 1;
         } else {
             Soutarray13 = 0;
         }
-        array13.push(Toutarray13);
+        un12array13.push(Toutarray13);
     }
-    console.log(array13)
+    console.log(un12array13)
 };document.querySelector('#butarray13').onclick = funcarray13;
 
 
-let array14 = [[], [1, 0], [1, 0, 0, 0], [3, 4, 5, 6, 7, 8], [1, 2]];
+let un12array14 = [[], [1, 0], [1, 0, 0, 0], [3, 4, 5, 6, 7, 8], [1, 2]];
 
 function funcarray14() {
     let outarray14 = '';
-    for (let i = 0; i < array14.length; i++) {
-        outarray14 += array14[i].length + ' ';
+    for (let i = 0; i < un12array14.length; i++) {
+        outarray14 += un12array14[i].length + ' ';
     }
-    document.querySelector('.divarray14').innerHTML = outarray14;
+    document.querySelector('.un12divarray14').innerHTML = outarray14;
 };document.querySelector('#butarray14').onclick = funcarray14;
 
 
-let array15 = [[], [1, 0], [1, 0, 0, 0], [3, 4, 5, 6, 7, 8], [1, 2]];
+let un12array15 = [[], [1, 0], [1, 0, 0, 0], [3, 4, 5, 6, 7, 8], [1, 2]];
 
 function funcarray15() {
     let outarray15 = '';
-    let maxarray = array15[0];
-    for (let i = 0; i < array15.length; i++) {
-        if (array15[i].length > maxarray.length) {
-            maxarray = array15[i];
+    let maxarray = un12array15[0];
+    for (let i = 0; i < un12array15.length; i++) {
+        if (un12array15[i].length > maxarray.length) {
+            maxarray = un12array15[i];
         }
     }
     outarray15 += maxarray.length;
-    document.querySelector('.divarray15').innerHTML = outarray15;
+    document.querySelector('.un12divarray15').innerHTML = outarray15;
 };document.querySelector('#butarray15').onclick = funcarray15;
 
 
-let array16 = [[0, 7, 0, 6], 0, 0, 8];
+let un12array16 = [[0, 7, 0, 6], 0, 0, 8];
 console.group('array16');
-console.log(array16[3] == 8);
-console.log(array16[0][1] == 7);
-console.log(array16[0][3] == 6);
+console.log(un12array16[3] === 8);
+console.log(un12array16[0][1] === 7);
+console.log(un12array16[0][3] === 6);
 console.groupEnd();
 
 
-let array17 = [[0, 0, 6], [0, 7], 0, [0, 0, 8]];
+let un12array17 = [[0, 0, 6], [0, 7], 0, [0, 0, 8]];
 console.group('array17');
-console.log(array17[3][2] == 8);
-console.log(array17[1][1] == 7);
-console.log(array17[0][2] == 6);
+console.log(un12array17[3][2] == 8);
+console.log(un12array17[1][1] == 7);
+console.log(un12array17[0][2] == 6);
 console.groupEnd();
 
 
-let array18 = [3, 0, [0, 12], 0, [8]];
+let un12array18 = [3, 0, [0, 12], 0, [8]];
 console.group('array18');
-console.log(array18[0] == 3);
-console.log(array18[4][0] == 8);
-console.log(array18[2][1] == 12);
+console.log(un12array18[0] === 3);
+console.log(un12array18[4][0] === 8);
+console.log(un12array18[2][1] === 12);
 console.groupEnd();
 
 
-let array19 = [[[0, 3]], [[0, 0, 8]], [0, [12]]];
+let un12array19 = [[[0, 3]], [[0, 0, 8]], [0, [12]]];
 console.group('array19');
-console.log(array19[0][0][1] == 3);
-console.log(array19[1][0][2] == 8);
-console.log(array19[2][1][0] == 12);
+console.log(un12array19[0][0][1] === 3);
+console.log(un12array19[1][0][2] === 8);
+console.log(un12array19[2][1][0] === 12);
 console.groupEnd();
 
 
-let array20 = [0, [0, [0, 9]], [0, 0, 18], 12,];
+let un12array20 = [0, [0, [0, 9]], [0, 0, 18], 12,];
 console.group('array20');
-console.log(array20[1][1][1] == 9);
-console.log(array20[2][2] == 18);
-console.log(array20[3] == 12);
+console.log(un12array20[1][1][1] === 9);
+console.log(un12array20[2][2] === 18);
+console.log(un12array20[3] === 12);
 console.groupEnd();
 
 
@@ -6557,90 +6566,61 @@ let offsetMB = 0;
 let offsetMBB = 0;
 
 // let MB = document.querySelector('.moovingblock');
-
+let timeoutMove;
 function moove() {
     offsetMB += 5;
     document.querySelector('.moovingblock').style.left = offsetMB + 'px';
-    if (offsetMB === 300) {
+    if (offsetMB == 300) {
         return moovedown();
     }
-    setTimeout(moove, 50);
+    timeoutMove = setTimeout(moove, 50);
 }
 
 document.querySelector('#moovingbutt').onclick = moove;
 
-function mooveback() {
+let timeoutMooveBack;
+
+function moveback() {
     offsetMB -= 5;
     document.querySelector('.moovingblock').style.left = offsetMB + 'px';
-    if (offsetMB === 0) {
-        return moovetop();
+    if (offsetMB == 0) {
+        return movetop();
     }
-    setTimeout(mooveback, 50)
+    timeoutMooveBack = setTimeout(moveback, 50)
 }
 
+let timeoutMoveDown;
 
 function moovedown() {
     offsetMBB += 5;
     document.querySelector('.moovingblock').style.top = offsetMBB + 'px';
-    if (offsetMBB === 300) {
-        return mooveback();
+    if (offsetMBB == 300) {
+        return moveback();
     }
-    setTimeout(moovedown, 50)
+    timeoutMoveDown = setTimeout(moovedown, 50)
 }
 
+let timeoutMoveTop;
 
-function moovetop() {
+function movetop() {
     offsetMBB -= 5;
     document.querySelector('.moovingblock').style.top = offsetMBB + 'px';
     if (offsetMBB == 0) {
         return moove();
     }
-    setTimeout(moovetop, 50)
+    timeoutMoveTop = setTimeout(movetop, 50)
 }
 
-
-//repetition
-
-let offsetHorizontal = 0;
-let offsetVertical = 0;
-
-function horizontalright() {
-    offsetHorizontal += 5;
-    document.querySelector('#moovingbox').style.left = offsetHorizontal + 'px';
-    if (offsetHorizontal === 300) {
-        return verticaldown();
-    }
-    setTimeout(horizontalright, 50);
-}
-
-function verticaldown() {
-    offsetVertical += 5;
-    document.querySelector('#moovingbox').style.top = offsetVertical + 'px';
-    if (offsetVertical === 300) {
-        return horizontalleft();
-    }
-    setTimeout(verticaldown, 50);
-}
-
-function horizontalleft() {
-    offsetHorizontal -= 5;
-    document.querySelector('#moovingbox').style.left = offsetHorizontal + 'px';
-    if (offsetHorizontal === 0) {
-        return verticalup();
-    }
-    setTimeout(horizontalleft, 50);
-}
-
-function verticalup() {
-    offsetVertical -= 5;
-    document.querySelector('#moovingbox').style.top = offsetVertical + 'px';
-    if (offsetVertical === 0) {
-        return horizontalright();
-    }
-    setTimeout(verticalup, 50);
-}
-
-document.querySelector('#boxbutt').onclick = horizontalright;
+document.querySelector('#stopMoving').onclick = () => {
+    clearTimeout(timeoutMove);
+    clearTimeout(timeoutMoveTop);
+    clearTimeout(timeoutMooveBack);
+    clearTimeout(timeoutMoveDown);
+    document.querySelector('.moovingblock').style.left = '0px';
+    document.querySelector('.moovingblock').style.top = '0px';
+    offsetMB = 0;
+    offsetMBB = 0;
+};
 
 const person = {
     name: "gavrik", age: 228, greet: function () {

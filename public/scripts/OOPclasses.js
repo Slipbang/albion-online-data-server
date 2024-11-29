@@ -12,14 +12,13 @@ class Goods {
 
     draw() {
         let div = document.createElement('div');              //T3
-
+        div.classList.add('smallScreenContainer');
         let nameElem = document.createElement('p');          //  Добавьте в класс Goods метод draw, который будет выводить div с изображением, названием товара, ценой - в указанный элемент (дозапись).
         nameElem.innerHTML = this.name;
         let amountOfElem = document.createElement('p');
         amountOfElem.innerHTML = this.amount;
         let imageElem = document.createElement('img');
         imageElem.src = this.image;
-        imageElem.style.height = '250px';
         let countElem = document.createElement('p');
         countElem.innerHTML = this.count;
 

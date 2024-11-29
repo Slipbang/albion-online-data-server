@@ -17,7 +17,7 @@ imgs.forEach(img => {
         let modalWin = document.createElement('div');
         let cloneImg = img.cloneNode(true);
         let container = document.createElement('div');
-        container.classList.add('testDivClass')
+        container.classList.add('modalDiv')
         modalWin.appendChild(container);
         const closeButton = document.createElement('button');
         closeButton.textContent = 'x';
@@ -97,8 +97,6 @@ sections.forEach(section => buildNavigator(section));
 //navigation
 const navs = document.querySelectorAll('.navButtonsStyles nav');
 
-console.log(navs)
-
 const clearFunc = () => navs.forEach(item => item.classList.replace('displayFlexClass', 'displayNoneClass'));
 
 const toggleClassesHandler = (selectedClass) => {
@@ -116,8 +114,6 @@ const classCondition = (selectedClass) => document.querySelector(selectedClass).
 const asides = document.querySelector('.navButtonsStyles');
 
 const buttsArr = asides.querySelectorAll('button');
-
-console.log(buttsArr)
 
 buttsArr.forEach((butt, index) => {
     const currentClass = butt.id.replace('Butt', '')

@@ -342,9 +342,9 @@
                     const getDate = () => new Date;
                 </code>
                 <br>
+                <p>Тэг &lt;pre&gt;, внутри которого помещают тэг &lt;code&gt; Ссылка задается тегом с атрибутом::</p>
                 <pre>
             <code>
-Тэг &lt;pre&gt;, внутри которого помещают тэг &lt;code&gt; в котором пишут код для отображения, с сохранением форматирования:
 const args = {
      name: "Yauhen",
      age: 30
@@ -714,7 +714,8 @@ const getDate = () => new Date;
     -->
             <section>
                 <p>Ссылки:</p>
-                <p>Ссылка задается тегом с атрибутом: &lt;а href="ссылка на сайт"&gt;Имя ссылки&lt;/a&gt;</p>
+                <p>Ссылка задается тегом с атрибутом:</p>
+                <pre>&lt;а href="ссылка на сайт"&gt;Имя ссылки&lt;/a&gt;</pre>
                 <p>Пример с переходом в текущей странице браузера:</p>
                 <a href="https://youtube.com/YauhenKavalchuk">EXAMPLE</a>
                 <hr>
@@ -1415,7 +1416,7 @@ const getDate = () => new Date;
                     <p>Чтобы стилистика класса применялась к нужному тегу, нужно указать этот тег перед классом в
                         CSS:</p>
                     <pre>
-искомый тег.заданный класс {
+искомый тег .заданный класс {
    заданный стиль
 }
         </pre>
@@ -1555,29 +1556,41 @@ a[href*="link1"] {
    backgroung-color: rebeccapurple;
 }
 
-&lt;a href="http://test1.com">Test Link 1&lt;/a&gt;
-&lt;a href="http://test2.com" target="_blank"&gt;Test Link 2&lt;/a&gt;
-&lt;a href="http://test3.org" target="_top"&gt;Test Link 3&lt;/a&gt;
+&lt;div&gt;
+    &lt;a href="http://test1.com">Test Link 1&lt;/a&gt;
+    &lt;a href="http://test2.com" target="_blank"&gt;Test Link 2&lt;/a&gt;
+    &lt;a href="http://test3.org" target="_top"&gt;Test Link 3&lt;/a&gt;
+&lt;/div&gt;
 
-&lt;a href="http://test1.com"&gt;Test Link 1&lt;/a&gt;
-&lt;a href="http://test2.com" target="_blank"&gt;Test Link 2&lt;/a&gt;
-&lt;a href="http://test3.org" target="_top"&gt;Test Link 3&lt;/a&gt;
+&lt;div&gt;
+    &lt;a href="http://test1.com"&gt;Test Link 1&lt;/a&gt;
+    &lt;a href="http://test2.com" target="_blank"&gt;Test Link 2&lt;/a&gt;
+    &lt;a href="http://test3.org" target="_top"&gt;Test Link 3&lt;/a&gt;
+&lt;/div&gt;
 
-&lt;a href="http://123.com"&gt;Test Link 1&lt;/a&gt;
-&lt;a href="http://4link56.com" target="_blank"&gt;Test Link 2&lt;/a&gt;
-&lt;a href="http://678.jpg" target="_top"&gt;Test Link 3&lt;/a&gt;
+&lt;div&gt;
+    &lt;a href="http://123.com"&gt;Test Link 1&lt;/a&gt;
+    &lt;a href="http://4link56.com" target="_blank"&gt;Test Link 2&lt;/a&gt;
+    &lt;a href="http://678.jpg" target="_top"&gt;Test Link 3&lt;/a&gt;
+&lt;/div&gt;
                 </pre>
-                            <a href="http://test1.com">Test Link 1</a>
-                            <a href="http://test2.com" target="_blank">Test Link 2</a>
-                            <a href="http://test3.com" target="_top">Test Link 3</a>
+                            <div>
+                                <a href="http://test1.com">Test Link 1</a>
+                                <a href="http://test2.com" style="background-color: blue" target="_blank">Test Link 2</a>
+                                <a href="http://test3.com" style="background-color: yellow" target="_top">Test Link 3</a>
+                            </div>
 
-                            <a href="http://test1.com">Test Link 1</a>
-                            <a href="http://test2.com" target="_blank">Test Link 2</a>
-                            <a href="http://test3.com" target="_top">Test Link 3</a>
+                            <div>
+                                <a href="http://test1.com">Test Link 1</a>
+                                <a href="http://test2.com" style="background-color: blue" target="_blank">Test Link 2</a>
+                                <a href="http://test3.com" style="background-color: yellow" target="_top">Test Link 3</a>
+                            </div>
 
-                            <a href="http://123.com">Test Link 1</a>
-                            <a href="http://4link156.com" target="_blank" class="hrefWithLink">Test Link 2</a>
-                            <a href="http://678.jpg" target="_top">Test Link 3</a>
+                            <div>
+                                <a href="http://123.com" style="background-color: aqua">Test Link 1</a>
+                                <a href="http://4link156.com" style="background-color: rebeccapurple" target="_blank" class="hrefWithLink">Test Link 2</a>
+                                <a href="http://678.jpg" style="background-color: teal" target="_top">Test Link 3</a>
+                            </div>
                         </li>
                     </ol>
                 </section>
@@ -1592,22 +1605,22 @@ a[href*="link1"] {
 .example7:hover {
    color: red;
 }
-        </pre>
-                    <a class="example7" href="https://www.youtube.com/YauhenKavalchuk">webDev YouTube Chanel</a>
+                    </pre>
+                    <a class="example7" href="https://www.youtube.com/YauhenKavalchuk" target="_blank">webDev YouTube Chanel</a>
                     <p>Чтобы цвет ссылки менялся после посещения сайта используют псевдокласс "visited":</p>
                     <pre>
 .example8:visited {
    color: aqua;
 }
-        </pre>
-                    <a class="example8" href="https://www.youtube.com/YauhenKavalchuk">webDev YouTube Chanel</a>
+                    </pre>
+                    <a class="example8" href="https://www.youtube.com/YauhenKavalchuk" target="_blank">webDev YouTube Chanel</a>
                     <p>Чтобы цвет ссылки/кнопки менялся при клике мыши используют псевдокласс "active":</p>
                     <pre>
 .example9:active {
     color: qreen;
 }
-        </pre>
-                    <a class="example9" href="https://www.youtube.com/YauhenKavalchuk">webDev YouTube Chanel</a>
+                    </pre>
+                    <a class="example9" href="https://www.youtube.com/YauhenKavalchuk" target="_blank">webDev YouTube Chanel</a>
                     <hr>
                     <p>Псевдоэлементы.</p>
                     <p>Чтобы при передвижении по странице при помощи таба выделенный текст менялся- используют
@@ -1617,8 +1630,8 @@ a[href*="link1"] {
 .example10:focus {
    font-weight: bold;
 }
-        </pre>
-                    <a class="example10" href="https://www.youtube.com/YauhenKavalchuk">webDev YouTube Chanel</a>
+                    </pre>
+                    <a class="example10" href="https://www.youtube.com/YauhenKavalchuk" target="_blank">webDev YouTube Chanel</a>
                     <p>При стилизации фрагмента текста используются два псевдоэлемента- "first-letter" и
                         "first-line":</p>
                     <pre>
@@ -1628,7 +1641,7 @@ a[href*="link1"] {
 .example11::first-line {
    text-decoration: underline;
 }
-        </pre>
+                    </pre>
                     <p class="example11">Wer fremde Sprachen nicht kennt, weiß nichts von seiner eigenen.</p>
                     <p>Чтобы стилизировать выделение текста используют селектор "selection"(!размер текста увеличить
                         нельзя!):</p>
@@ -1637,7 +1650,7 @@ a[href*="link1"] {
    background-color: yellow;
    color: red;
 }
-        </pre>
+                    </pre>
                     <p class="example12">Wer fremde Sprachen nicht kennt, weiß nichts von seiner eigenen.</p>
                     <p>Для добавления дополнительного текста и раздельной его стилизации используют псевдоэлементы
                         "before"
@@ -2236,7 +2249,8 @@ big p {
     left: 0;
     visibility: hidden;
 }
-            </pre>
+
+                    </pre>
                     <button id="buttonexample1" type="button">Показать пример модального окна</button>
                     <br>
                     <p>Для того чтобы управлять уровнями элементов есть специальное свойство "z-index", присваивая ему
@@ -2291,47 +2305,9 @@ Rage, rage against the dying of the light.
 .example34 {
     float: right;
 }
-        </pre>
-                    <div class="smallScreenContainer">
-                        <img class="picdth"
-                             src="https://upload.wikimedia.org/wikipedia/commons/7/79/Portrait_of_Revd._Thomas_Thomas%2C_D.D_%284672349%29.jpg"
-                             width="400" alt="D. Thomas">
-                    </div>
-                    <blockquote class="example34">
-                        Do not go gentle into that good night,
-                        Old age should burn and rave at close of day;
-                        Rage, rage against the dying of the light.
-
-                        Though wise men at their end know dark is right,
-                        Because their words had forked no lightning they
-                        Do not go gentle into that good night.
-
-                        Good men, the last wave by, crying how bright
-                        Their frail deeds might have danced in a green bay,
-                        Rage, rage against the dying of the light.
-
-                        Wild men who caught and sang the sun in flight,
-                        And learn, too late, they grieved it on its way,
-                        Do not go gentle into that good night.
-
-                        Grave men, near death, who see with blinding sight
-                        Blind eyes could blaze like meteors and be gay,
-                        Rage, rage against the dying of the light.
-
-                        And you, my father, there on that sad height,
-                        Curse, bless, me now with your fierce tears, I pray.
-                        Do not go gentle into that good night.
-                        Rage, rage against the dying of the light.
-                        <address>D. Thomas</address>
-                    </blockquote>
+                    </pre>
                     <p>"float" вырывает элемент из нормального потока документа, т.е. остальные элементы перестают его
-                        видеть,
-                        так же теряется наследственная связь:</p>
-                    <div class="iteme wrapper">
-                        <div class="iteme iteml">1</div>
-                        <div class="iteme itemr">2</div>
-                        <div class="iteme itemn">3</div>
-                    </div>
+                        видеть, так же теряется наследственная связь</p>
                     <p>Для предотвращения схлопывания родительского элемента используется "overflow: auto;", добавление
                         пустого
                         элемента со свойством "clear: both;" или Clearfix- создание псевдоэлемента .class:after {
@@ -2339,6 +2315,7 @@ Rage, rage against the dying of the light.
                         '';
                         display: block; clear: both; }</p>
                     <p>Если задать свойство "float" строчному элементу, то он начинает вести себя как блочный!</p>
+                    <a href="./floatExample.html" target="_blank">Примеры верстки с float.</a>
                     <hr>
                 </section>
 
@@ -2597,7 +2574,7 @@ Rage, rage against the dying of the light.
                         можно указать с помощью значения "to top/bottom right/left":</p>
                     <pre>
 .gradientexample {
-    width: 500px;
+    max-width: 500px;
     height: 500px;
     background-image: linear-gradient(45deg,red,aqua);
 }
@@ -2608,7 +2585,7 @@ Rage, rage against the dying of the light.
                         linear-gradient(...deg, цвет ...%, цвет ...%, ...%, .....)</p>
                     <pre>
 .gradientexample1 {
-    width: 500px;
+    max-width: 500px;
     height: 500px;
     background-image: repeating-linear-gradient(45deg, yellow 25px,black 25px, black 50px,yellow 50px, yellow 75px, black 75px);
 }
@@ -2620,7 +2597,7 @@ Rage, rage against the dying of the light.
                         closest/farthest-side/corner, цвет px/%, цвет px/%);":</p>
                     <pre>
 .gradientexample2 {
-    width: 500px;
+    max-width: 500px;
     height: 300px;
     background-image: repeating-radial-gradient(ellipse, aqua 20px, red 80px);
 }
@@ -3070,8 +3047,6 @@ Rage, rage against the dying of the light.
                         <div class="flexitem item4">4</div>
                         <div class="flexitem item5">5</div>
                         <div class="flexitem item6">6</div>
-                        <div class="flexitem item7">7</div>
-                        <div class="flexitem item8">8</div>
                     </div>
                     <p>За расположение главной оси отвечает свойство "flex-direction", оно имеет следующие свойства:</p>
                     <button id="rowexample">flex-direction: row;(по умолчанию)</button>
@@ -6653,42 +6628,44 @@ console.log(count());  // 2
                         <p>Ниже приведены некоторые различия между файлами cookie, локальным хранилищем и хранилищем
                             сеансов.</p>
 
-                        <table class="jsTheoryTable">
-                            <thead>
-                            <tr>
-                                <td>Особенность</td>
-                                <td>Cookie</td>
-                                <td>Local storage</td>
-                                <td>Session storage</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Доступ на стороне клиента или сервера</td>
-                                <td>Как на стороне сервера, так и на стороне клиента</td>
-                                <td>только на стороне клиента</td>
-                                <td>только на стороне клиента</td>
-                            </tr>
-                            <tr>
-                                <td>Продолжит. жизни</td>
-                                <td>Как настроено с использованием параметра Expires</td>
-                                <td>пока не будет удален</td>
-                                <td>пока вкладка не закроется</td>
-                            </tr>
-                            <tr>
-                                <td>Поддержка SSL</td>
-                                <td>Поддерж.</td>
-                                <td>Не поддерж.</td>
-                                <td>Не поддерж.</td>
-                            </tr>
-                            <tr>
-                                <td>Макс. размер данных</td>
-                                <td>4 KB</td>
-                                <td>5 MB</td>
-                                <td>5 MB</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="tableWrapper">
+                            <table class="jsTheoryTable">
+                                <thead>
+                                <tr>
+                                    <td>Особенность</td>
+                                    <td>Cookie</td>
+                                    <td>Local storage</td>
+                                    <td>Session storage</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Доступ на стороне клиента или сервера</td>
+                                    <td>Как на стороне сервера, так и на стороне клиента</td>
+                                    <td>только на стороне клиента</td>
+                                    <td>только на стороне клиента</td>
+                                </tr>
+                                <tr>
+                                    <td>Продолжит. жизни</td>
+                                    <td>Как настроено с использованием параметра Expires</td>
+                                    <td>пока не будет удален</td>
+                                    <td>пока вкладка не закроется</td>
+                                </tr>
+                                <tr>
+                                    <td>Поддержка SSL</td>
+                                    <td>Поддерж.</td>
+                                    <td>Не поддерж.</td>
+                                    <td>Не поддерж.</td>
+                                </tr>
+                                <tr>
+                                    <td>Макс. размер данных</td>
+                                    <td>4 KB</td>
+                                    <td>5 MB</td>
+                                    <td>5 MB</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </section>
 
@@ -9647,40 +9624,42 @@ new Employee().prototype === undefined;
 
                         <p>Есть еще несколько отличий:</p>
 
-                        <table class="jsTheoryTable">
-                            <thead>
-                            <tr>
-                                <td>feature</td>
-                                <td>Prototype</td>
-                                <td>proto</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
+                        <div class="tableWrapper">
+                            <table class="jsTheoryTable">
+                                <thead>
+                                <tr>
+                                    <td>feature</td>
+                                    <td>Prototype</td>
+                                    <td>proto</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
 
-                                    <div>Доступ</div>
-                                </td>
-                                <td>Все конструкторы функций имеют свойство prototype.</td>
-                                <td>Все объекты имеют свойство __proto__.</td>
-                            </tr>
-                            <tr>
-                                <td>Цель</td>
-                                <td>Используется для уменьшения трат памяти с помощью одинарной копии функции.</td>
-                                <td>Используется в цепочке поиска для разрешения методов, конструкторов и т.д.</td>
-                            </tr>
-                            <tr>
-                                <td>ECMAScript</td>
-                                <td>Представлено в ES6</td>
-                                <td>Представлено в ES5</td>
-                            </tr>
-                            <tr>
-                                <td>Применение</td>
-                                <td>Часто используемый</td>
-                                <td>Редко используемый</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                        <div>Доступ</div>
+                                    </td>
+                                    <td>Все конструкторы функций имеют свойство prototype.</td>
+                                    <td>Все объекты имеют свойство __proto__.</td>
+                                </tr>
+                                <tr>
+                                    <td>Цель</td>
+                                    <td>Используется для уменьшения трат памяти с помощью одинарной копии функции.</td>
+                                    <td>Используется в цепочке поиска для разрешения методов, конструкторов и т.д.</td>
+                                </tr>
+                                <tr>
+                                    <td>ECMAScript</td>
+                                    <td>Представлено в ES6</td>
+                                    <td>Представлено в ES5</td>
+                                </tr>
+                                <tr>
+                                    <td>Применение</td>
+                                    <td>Часто используемый</td>
+                                    <td>Редко используемый</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </section>
 
@@ -11578,42 +11557,44 @@ console.log(greeting(user));
 
                         <p>Ниже приведен список различий между javascript и typescript:</p>
 
-                        <table class="jsTheoryTable">
-                            <thead>
-                            <tr>
-                                <td>feature</td>
-                                <td>typescript</td>
-                                <td>javascript</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Языковая парадигма</td>
-                                <td>Объектно-ориентированный язык программирования</td>
-                                <td>Язык сценариев</td>
-                            </tr>
-                            <tr>
-                                <td>Поддержка типов</td>
-                                <td>Поддерживает статическую типизацию.</td>
-                                <td>Имеет динамическую типизацию</td>
-                            </tr>
-                            <tr>
-                                <td>Модули</td>
-                                <td>Поддерживается</td>
-                                <td>Поддерживается только с ES6(2015)</td>
-                            </tr>
-                            <tr>
-                                <td>Интерфейс</td>
-                                <td>Имеет концепцию интерфейсов</td>
-                                <td>Не поддерживает интерфейсы</td>
-                            </tr>
-                            <tr>
-                                <td>Опциональные параметры</td>
-                                <td>Функции поддерживают необязательные параметры</td>
-                                <td>Нет поддержки опциональных параметров для функций.</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="tableWrapper">
+                            <table class="jsTheoryTable">
+                                <thead>
+                                <tr>
+                                    <td>feature</td>
+                                    <td>typescript</td>
+                                    <td>javascript</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Языковая парадигма</td>
+                                    <td>Объектно-ориентированный язык программирования</td>
+                                    <td>Язык сценариев</td>
+                                </tr>
+                                <tr>
+                                    <td>Поддержка типов</td>
+                                    <td>Поддерживает статическую типизацию.</td>
+                                    <td>Имеет динамическую типизацию</td>
+                                </tr>
+                                <tr>
+                                    <td>Модули</td>
+                                    <td>Поддерживается</td>
+                                    <td>Поддерживается только с ES6(2015)</td>
+                                </tr>
+                                <tr>
+                                    <td>Интерфейс</td>
+                                    <td>Имеет концепцию интерфейсов</td>
+                                    <td>Не поддерживает интерфейсы</td>
+                                </tr>
+                                <tr>
+                                    <td>Опциональные параметры</td>
+                                    <td>Функции поддерживают необязательные параметры</td>
+                                    <td>Нет поддержки опциональных параметров для функций.</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </section>
 
@@ -12007,32 +11988,34 @@ eval(
                     <div>
                         <p>Ниже приведены основные различия между обфускацией и шифрованием.</p>
 
-                        <table class="jsTheoryTable">
-                            <thead>
-                            <tr>
-                                <td>Feature</td>
-                                <td>Obfuscation</td>
-                                <td>Encryption</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Определение</td>
-                                <td>Изменение формы любых данных в любую другую форму</td>
-                                <td>Изменение формы информации в нечитаемый формат с помощью ключа</td>
-                            </tr>
-                            <tr>
-                                <td>Ключ для декодирования</td>
-                                <td>Можно расшифровать без какого-либо ключа</td>
-                                <td>Требуется</td>
-                            </tr>
-                            <tr>
-                                <td>Целевой формат данных</td>
-                                <td>Данные будут преобразованы в сложную форму</td>
-                                <td>Данные будут преобразованы в нечитаемый формат</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="tableWrapper">
+                            <table class="jsTheoryTable">
+                                <thead>
+                                <tr>
+                                    <td>Feature</td>
+                                    <td>Obfuscation</td>
+                                    <td>Encryption</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Определение</td>
+                                    <td>Изменение формы любых данных в любую другую форму</td>
+                                    <td>Изменение формы информации в нечитаемый формат с помощью ключа</td>
+                                </tr>
+                                <tr>
+                                    <td>Ключ для декодирования</td>
+                                    <td>Можно расшифровать без какого-либо ключа</td>
+                                    <td>Требуется</td>
+                                </tr>
+                                <tr>
+                                    <td>Целевой формат данных</td>
+                                    <td>Данные будут преобразованы в сложную форму</td>
+                                    <td>Данные будут преобразованы в нечитаемый формат</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </section>
 
@@ -12449,43 +12432,45 @@ console.log(convertToThousandFormat(12345.6789)); // 12,345.679
                             Давайте посмотрим основные различия в табличном формате:
                         </p>
 
-                        <table class="jsTheoryTable">
-                            <thead>
-                            <tr>
-                                <td>Feature</td>
-                                <td>Java</td>
-                                <td>JavaScript</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Типизация</td>
-                                <td>Строго типизированный язык</td>
-                                <td>Динамически типизированный язык</td>
-                            </tr>
-                            <tr>
-                                <td>Парадигма</td>
-                                <td>Объектно-ориентированного программирования</td>
-                                <td>Программирование на основе прототипов</td>
-                            </tr>
-                            <tr>
-                                <td>Scoping</td>
-                                <td>Block scoped</td>
-                                <td>Function-scoped</td>
-                            </tr>
-                            <tr>
-                                <td>Параллелизм</td>
-                                <td>На основе потоков</td>
-                                <td>На основе событий</td>
-                            </tr>
-                            <tr>
-                                <td>Память</td>
-                                <td>Использует больше памяти</td>
-                                <td>Использует меньше памяти. Следовательно, он будет использоваться для веб-страниц.
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="tableWrapper">
+                            <table class="jsTheoryTable">
+                                <thead>
+                                <tr>
+                                    <td>Feature</td>
+                                    <td>Java</td>
+                                    <td>JavaScript</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Типизация</td>
+                                    <td>Строго типизированный язык</td>
+                                    <td>Динамически типизированный язык</td>
+                                </tr>
+                                <tr>
+                                    <td>Парадигма</td>
+                                    <td>Объектно-ориентированного программирования</td>
+                                    <td>Программирование на основе прототипов</td>
+                                </tr>
+                                <tr>
+                                    <td>Scoping</td>
+                                    <td>Block scoped</td>
+                                    <td>Function-scoped</td>
+                                </tr>
+                                <tr>
+                                    <td>Параллелизм</td>
+                                    <td>На основе потоков</td>
+                                    <td>На основе событий</td>
+                                </tr>
+                                <tr>
+                                    <td>Память</td>
+                                    <td>Использует больше памяти</td>
+                                    <td>Использует меньше памяти. Следовательно, он будет использоваться для веб-страниц.
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </section>
 
@@ -16819,7 +16804,7 @@ console.log(output_final);
 
                 <div class="fraktion"></div>
 
-                <div class="jslink"></div>
+                <div class="jslink smallScreenContainer"></div>
 
                 <div class="calc"></div>
 
@@ -18146,49 +18131,49 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                 <p>Длинна массива это индекс последнего элемента +1.</p>
 
                 <p>Массив:</p>
-                <div class="outmassive"></div>
+                <div class="outarray"></div>
 
                 <ol>
                     <li>
                         <p>Создайте массив содержащий строки, числа, булевы значения. Выведите его в out-1. Вывод - по
                             нажатию
                             кнопки.</p>
-                        <button id="massivebut1">Task-1</button>
-                        <div class="outmassive1">out-1</div>
+                        <button id="arraybut1">Task-1</button>
+                        <div class="outarray1">out-1</div>
                     </li>
                     <li>
                         <p>Создайте массив содержащий строки, числа, булевы значения. Выведите его в div.out-2.
                             Используйте
                             шаблон вывода из кода в JS. Вывод - по нажатию кнопки.</p>
-                        <button id="massivebut2">Task-2</button>
-                        <div class="outmassive2">out-2</div>
+                        <button id="arraybut2">Task-2</button>
+                        <div class="outarray2">out-2</div>
                     </li>
                     <li>
-                        <p>Создайте массив "thirdmassive = ['five', 6, true, false]", заполните его любыми значениями.
+                        <p>Создайте массив "thirdarray = ['five', 6, true, false]", заполните его любыми значениями.
                             Выведите
                             длину массива.</p>
-                        <button id="massivebut3">Task-3 (длинна массива)</button>
-                        <div class="outmassive3">out-3</div>
+                        <button id="arraybut3">Task-3 (длинна массива)</button>
+                        <div class="outarray3">out-3</div>
                     </li>
                     <li>
-                        <p>Создайте массив "fourthmassive = ['один', 2, 'три', 4, 'пять', 6, 'семь', 8, 'девять', 10];".
+                        <p>Создайте массив "fourtharray = ['один', 2, 'три', 4, 'пять', 6, 'семь', 8, 'девять', 10];".
                             Выведите нулевой, третий, восьмой элемент массива в out-4 через пробел.</p>
-                        <button id="massivebut4">Task-4</button>
-                        <div class="outmassive4">out-4</div>
+                        <button id="arraybut4">Task-4</button>
+                        <div class="outarray4">out-4</div>
                     </li>
                     <li>
-                        <p>Создайте массив "fifthmassive = [10,20,30,40,50,60,70,80,90,100];". Выведите сумму нулевого,
+                        <p>Создайте массив "fiftharray = [10,20,30,40,50,60,70,80,90,100];". Выведите сумму нулевого,
                             второго
                             и третьего элементов массива (нуль, второй - и третий это индексы 0, 2, 3)</p>
-                        <button id="massivebut5">Task-5</button>
-                        <div class="outmassive5">out-5</div>
+                        <button id="arraybut5">Task-5</button>
+                        <div class="outarray5">out-5</div>
                     </li>
                     <li>
                         <p>Создайте массив, который содержит ваше имя, знак зодиака, день рождения и месяц рождения.
                             Выведите
                             массив на страницу в out-6. Разделитель - пробел.</p>
-                        <button id="massivebut6">Task-6</button>
-                        <div class="outmassive6">out-6</div>
+                        <button id="arraybut6">Task-6</button>
+                        <div class="outarray6">out-6</div>
                     </li>
                     <li>
                         <p>Добавьте в массив значения 'vietnam' с индексом 7 , 'turkey' с индексом 6, 'italy' с индексом
@@ -18197,69 +18182,69 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             -
                             пробел. Обращаю ваше внимание! Это программирование. Поэтому - никаких больших букв и тому
                             подобного!!!!</p>
-                        <button id="massivebut7">Task-7</button>
-                        <div class="outmassive7">out-7</div>
+                        <button id="arraybut7">Task-7</button>
+                        <div class="outarray7">out-7</div>
                     </li>
                     <li>
                         <p>Добавьте в массив третий (индекс 3) элемент равный 3.14, 4 (индекс 4) элемент равный 17, 6
                             элемент
                             (индекс 6) равный 5. Выведите массив в out-8. Разделитель - дефис. В out-8-1 выведите длину
                             массива.</p>
-                        <button id="massivebut8">Task-8</button>
-                        <div class="outmassive8">out-8</div>
-                        <div class="outmassive8-1">out-8-1</div>
+                        <button id="arraybut8">Task-8</button>
+                        <div class="outarray8">out-8</div>
+                        <div class="outarray8-1">out-8-1</div>
                     </li>
                     <li>
                         <p>Выведите последний элемент массива. Вывод последнего элемента - реализуйте по индексу. Чтобы
                             рассчитать индекс последнего элемента - используйте на длину массива.</p>
-                        <button id="massivebut9">Task-9</button>
-                        <div class="outmassive9">out-9</div>
+                        <button id="arraybut9">Task-9</button>
+                        <div class="outarray9">out-9</div>
                     </li>
                     <li>
-                        <p>Выведите сумму первого (индекс 1) и последнего массива "tenthmassive = [100, 200, 300, 400,
+                        <p>Выведите сумму первого (индекс 1) и последнего массива "tentharray = [100, 200, 300, 400,
                             700,
                             121];" в блок out-10. Индекс последнего элемента массива не указывайте напрямую, а
                             вычисляйте
                             через
                             длину массива.</p>
-                        <button id="massivebut10">Task-10</button>
-                        <div class="outmassive10">out-10</div>
+                        <button id="arraybut10">Task-10</button>
+                        <div class="outarray10">out-10</div>
                     </li>
                     <li>
                         <p>Напишите функцию, которая меняет местами второй (индекс 2) и четвертый (индекс 4) элемент
                             массива
-                            "eleventhmassive = [2,3,4,5,6,7];" и выводит его в out-11. Разделитель - пробел.</p>
-                        <button id="massivebut11">Task-11</button>
-                        <div class="outmassive11">out-11</div>
+                            "eleventharray = [2,3,4,5,6,7];" и выводит его в out-11. Разделитель - пробел.</p>
+                        <button id="arraybut11">Task-11</button>
+                        <div class="outarray11">out-11</div>
                     </li>
                     <li>
                         <p>Напишите функцию masfunct12, которая меняет местами нулевой и последний элемент массива
-                            "twelfthmassive = ['test', 'west', 'list', 'class', 'best'];" и выводит его в out-12.
+                            "twelftharray = ['test', 'west', 'list', 'class', 'best'];" и выводит его в out-12.
                             Разделитель -
                             пробел. Последний элемент вычислять через длину массива.</p>
-                        <button id="massivebut12">Task-12</button>
-                        <div class="outmassive12">out-12</div>
+                        <button id="arraybut12">Task-12</button>
+                        <div class="outarray12">out-12</div>
                     </li>
                     <li>
-                        <p>Выведите массив "thirteenthmassive = ['test', 'west', 'list', 'class', 'best'];" в out-13 в
+                        <p>Выведите массив "thirteentharray = ['test', 'west', 'list', 'class', 'best'];" в out-13 в
                             формате
                             индекс пробел значение пробел.</p>
-                        <button id="massivebut13">Task-13</button>
-                        <div class="outmassive13">out-13</div>
+                        <button id="arraybut13">Task-13</button>
+                        <div class="outarray13">out-13</div>
                     </li>
                     <li>
-                        <p>Используя цикл выведите на страницу массив "fourteenthmassive = [1, 2, 3, 'hello', 66];" в
+                        <p>Используя цикл выведите на страницу массив "fourteentharray = [1, 2, 3, 'hello', 66];" в
                             обратном
                             порядке. Разделитель - пробел.</p>
-                        <button id="massivebut14">Task-14</button>
-                        <div class="outmassive14">out-14</div>
+                        <button id="arraybut14">Task-14</button>
+                        <div class="outarray14">out-14</div>
                     </li>
                     <li>
-                        <p>Используя цикл выведите на страницу элементы массива "fifteenthmassive = [0, 2, 5, -4, 6, 22,
+                        <p>Используя цикл выведите на страницу элементы массива "fifteentharray = [0, 2, 5, -4, 6, 22,
                             -9,
                             -12, 8, 12, 13, 78];", которые больше нуля. Разделитель - пробел.</p>
-                        <button id="massivebut15">Task-15</button>
-                        <div class="outmassive15">out-15</div>
+                        <button id="arraybut15">Task-15</button>
+                        <div class="outarray15">out-15</div>
                     </li>
                     <li>
                         <p>Выполните перебор массива sixteenthassive. Четные элементы добавьте в массив
@@ -18269,35 +18254,35 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             задачу
                             на повторный запуск! Выведите sixteenthassive_odd в out-16-odd, а sixteenthassive_even в
                             out-16-even. Разделитель - пробел.</p>
-                        <button id="massivebut16">Task-16</button>
-                        <div class="outmassive16-odd">out-16-odd</div>
-                        <div class="outmassive16-even">out-16-even</div>
+                        <button id="arraybut16">Task-16</button>
+                        <div class="outarray16-odd">out-16-odd</div>
+                        <div class="outarray16-even">out-16-even</div>
                     </li>
                     <li>
-                        <p>Используя цикл выведите в out-17 количество элементов "seventeenthmassive = [3, 0, 2, 6, 0,
+                        <p>Используя цикл выведите в out-17 количество элементов "seventeentharray = [3, 0, 2, 6, 0,
                             1, 3,
                             1,
                             9, 0, 2, 0];", значение которых больше 3. Для расчета используйте цикл и переменную
                             счетчик.</p>
-                        <button id="massivebut17">Task-17</button>
-                        <div class="outmassive17">out-17</div>
+                        <button id="arraybut17">Task-17</button>
+                        <div class="outarray17">out-17</div>
                     </li>
                     <li>
-                        <p>Используя цикл выведите в out-18 максимальный элемент массива "eighteenthmassive =
+                        <p>Используя цикл выведите в out-18 максимальный элемент массива "eighteentharray =
                             [15,24,13,78,21,4,45,67];".</p>
-                        <button id="massivebut18">Task-18</button>
-                        <div class="outmassive18">out-18</div>
+                        <button id="arraybut18">Task-18</button>
+                        <div class="outarray18">out-18</div>
                     </li>
                     <li>
-                        <p>Выведите в out-19 индекс минимального элемента в массиве "nineteenthmassive =
+                        <p>Выведите в out-19 индекс минимального элемента в массиве "nineteentharray =
                             [15,424,313,78,241,4,45,67];" </p>
-                        <button id="massivebut19">Task-19</button>
-                        <div class="outmassive19">out-19</div>
+                        <button id="arraybut19">Task-19</button>
+                        <div class="outarray19">out-19</div>
                     </li>
                     <li>
-                        <p>Выведите в out-20 сумму элементов в массиве "twentiethmassive = [4,5,6,7,8,9,10];"</p>
-                        <button id="massivebut20">Task-20</button>
-                        <div class="outmassive20">out-20</div>
+                        <p>Выведите в out-20 сумму элементов в массиве "twentietharray = [4,5,6,7,8,9,10];"</p>
+                        <button id="arraybut20">Task-20</button>
+                        <div class="outarray20">out-20</div>
                     </li>
                 </ol>
 
@@ -18322,7 +18307,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
 
                 <ul>
                     <li>
-                        <p>Есть массив massive1 = [33,'best', 66, 'best'], кнопка b-1, input i-1. Напишите функцию f1,
+                        <p>Есть массив array1 = [33,'best', 66, 'best'], кнопка b-1, input i-1. Напишите функцию f1,
                             которая
                             при нажатии читает i-1 и добавляем его в массив. После чего выводит массив в .out-1.
                             Поскольку
@@ -18332,46 +18317,46 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             - она подготовлена. Изучите ее - это хороший способ оптимизировать код.</p>
                         <label for="inpmass1" class="form-control">Input i-1</label>
                         <input id="inpmass1" type="text" class="inpmass1">
-                        <button id="buttmassive1">Task-1</button>
-                        <div class="divmassive1"></div>
+                        <button id="buttarray1">Task-1</button>
+                        <div class="divarray1"></div>
                     </li>
                     <li>
-                        <p>Напишите функцию funkmass2, которая применяет метод pop к массиву massive2 = [33,'best', 66,
+                        <p>Напишите функцию funkmass2, которая применяет метод pop к массиву array2 = [33,'best', 66,
                             'best'],
                             а затем выводит его (showArr) в out-2</p>
-                        <button id="buttmassive2">Task-2</button>
-                        <div class="divmassive2">out-2</div>
+                        <button id="buttarray2">Task-2</button>
+                        <div class="divarray2">out-2</div>
                     </li>
                     <li>
-                        <p>Напишите функцию funkmass3, которая применяет метод shift к массиву massive3 = [33,'best',
+                        <p>Напишите функцию funkmass3, которая применяет метод shift к массиву array3 = [33,'best',
                             66,
                             'best'], а затем выводит его (showArr) в out-3</p>
-                        <button id="buttmassive3">Task-3</button>
-                        <div class="divmassive3">out-3</div>
+                        <button id="buttarray3">Task-3</button>
+                        <div class="divarray3">out-3</div>
                     </li>
                     <li>
-                        <p>Напишите функцию funkmass4, которая применяет метод push к массиву massive4 = [33,'best', 66,
+                        <p>Напишите функцию funkmass4, которая применяет метод push к массиву array4 = [33,'best', 66,
                             'best'], данные для массива берите из inpmass4, а затем выводит его (showArr) в out-4</p>
                         <label for="inpmass4" class="form-control">Input i-4</label>
                         <input id="inpmass4" type="text" class="inpmass4">
-                        <button id="buttmassive4">Task-4</button>
-                        <div class="divmassive4"></div>
+                        <button id="buttarray4">Task-4</button>
+                        <div class="divarray4"></div>
                     </li>
                     <li>
-                        <p>Напишите функцию funkmass5, которая применяет метод unshift к массиву massive5 = [33,'best',
+                        <p>Напишите функцию funkmass5, которая применяет метод unshift к массиву array5 = [33,'best',
                             66,
                             'best'], данные для массива берите из inpmass5, а затем выводит его (showArr) в out-5</p>
                         <label for="inpmass5" class="form-control">Input i-5</label>
                         <input id="inpmass5" type="text" class="inpmass5">
-                        <button id="buttmassive5">Task-5</button>
-                        <div class="divmassive5"></div>
+                        <button id="buttarray5">Task-5</button>
+                        <div class="divarray5"></div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass6, которая эмулирует работу метода push применительно к массиву
-                            massive6
+                            array6
                             =
                             ['test', 5, 12]. Т.е. добавляет
-                            значение из inpmass6 как последний элемент в массив massive6. Эмуляция, значит, что мы
+                            значение из inpmass6 как последний элемент в массив array6. Эмуляция, значит, что мы
                             получим
                             результат
                             аналогичный методу push без применения его. Эмуляция заключается в присвоение значения как
@@ -18383,147 +18368,145 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             элемента.</p>
                         <label for="inpmass6" class="form-control">Эмулируем push</label>
                         <input id="inpmass6" type="text" class="inpmass6">
-                        <button id="buttmassive6">Task-6</button>
-                        <div class="divmassive6"></div>
+                        <button id="buttarray6">Task-6</button>
+                        <div class="divarray6"></div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass7, которая эмулирует метод pop, т.е. удаляет последний элемент
                             массива
-                            massive7 = ['china', 'india', 'brazil', 'japan', 'egypt'];. Эмулировать
+                            array7 = ['china', 'india', 'brazil', 'japan', 'egypt'];. Эмулировать
                             - получать результат аналогичный pop, но без применения pop. Функция может быть вызвана
                             много
                             раз,
                             при
                             этом каждый раз должен удаляться последний элемент d7.</p>
-                        <button id="buttmassive7">Task-7</button>
-                        <div class="divmassive7">out-7</div>
+                        <button id="buttarray7">Task-7</button>
+                        <div class="divarray7">out-7</div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass8, которая эмулирует работу метода unShift - добавляем значение из
                             inpmass8
-                            в начало массива massive8 = [2,'4', 12, 67, 'hello'].</p>
+                            в начало массива array8 = [2,'4', 12, 67, 'hello'].</p>
                         <label for="inpmass8" class="form-control">Эмулируем unShift</label>
                         <input id="inpmass8" type="text" class="inpmass8">
-                        <button id="buttmassive8">Task-8</button>
-                        <div class="divmassive8"></div>
+                        <button id="buttarray8">Task-8</button>
+                        <div class="divarray8"></div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass9, которая эмулирует работу метода shift - на примере массива
-                            massive9 =
+                            array9 =
                             [100, 200, 300, 400, 700, 121].</p>
-                        <button id="buttmassive9">Task-9</button>
-                        <div class="divmassive9">out-9</div>
+                        <button id="buttarray9">Task-9</button>
+                        <div class="divarray9">out-9</div>
                     </li>
                     <li>
-                        <p>Напишите функцию funkmass10, которая применяет к массиву massive10 = [3,14,15,92,6] метод
+                        <p>Напишите функцию funkmass10, которая применяет к массиву array10 = [3,14,15,92,6] метод
                             reverse
                             и
                             выводит полученный массив в out-10</p>
-                        <button id="buttmassive10">Task-10</button>
-                        <div class="divmassive10">out-10</div>
+                        <button id="buttarray10">Task-10</button>
+                        <div class="divarray10">out-10</div>
                     </li>
                     <li>
                         <p>Напишите функцию, которая получает число из input inpmass11, переводит в число, и с помощью
                             метода
                             indexOf
-                            проверяет наличие в массиве massive11 = [2,3,4,5,6,7]. Функция выводит в out-11 -1 если
+                            проверяет наличие в массиве array11 = [2,3,4,5,6,7]. Функция выводит в out-11 -1 если
                             такого
                             числа
                             нет в массиве, либо его
                             индекс в массиве.</p>
                         <label for="inpmass11" class="form-control">indexOf</label>
                         <input id="inpmass11" type="text" class="inpmass11">
-                        <button id="buttmassive11">Task-11</button>
-                        <div class="divmassive11"></div>
+                        <button id="buttarray11">Task-11</button>
+                        <div class="divarray11"></div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass12, которая эмулирует работу метода indexOf - ищет введенное число в
                             массиве
-                            massive12 = [6,62,60,70,1,5] (перебором). Если числа нет - выводит -1, если есть - его
+                            array12 = [6,62,60,70,1,5] (перебором). Если числа нет - выводит -1, если есть - его
                             позицию в
                             массиве.</p>
                         <label for="inpmass12" class="form-control">эмуляция indexOf</label>
                         <input id="inpmass12" type="text" class="inpmass12">
-                        <button id="buttmassive12">Task-12</button>
-                        <div class="divmassive12"></div>
+                        <button id="buttarray12">Task-12</button>
+                        <div class="divarray12"></div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass13, которая эмулирует работу метода reverse. Т.е. создает новый
                             массив
                             на
-                            основе massive13 = [6, 0, 22, 1, 4, 76] с обратным порядком элементов и выводит в
+                            основе array13 = [6, 0, 22, 1, 4, 76] с обратным порядком элементов и выводит в
                             out-13.</p>
-                        <button id="buttmassive13">Task-13</button>
-                        <div class="divmassive13">out-13</div>
+                        <button id="buttarray13">Task-13</button>
+                        <div class="divarray13">out-13</div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass14, которая получает inpmass14, переводит в число, а потом заполняет
                             массив
-                            massive14 так, что
+                            array14 так, что
                             количество элементов равно введенному числу, и каждый элемент равен 1. Т.е. пользователь
                             ввел 5,
                             массив
                             будет [1,1,1,1,1]. Выведите массив в out-14.</p>
                         <label for="inpmass14" class="form-control">заполняем массив</label>
                         <input id="inpmass14" type="text" class="inpmass14">
-                        <button id="buttmassive14">Task-14</button>
-                        <div class="divmassive14">out-14</div>
+                        <button id="buttarray14">Task-14</button>
+                        <div class="divarray14">out-14</div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass15, которая вначале проверяет, есть ли элемент из inpmass15 в
                             массиве
-                            massive15 = [0, 2, 5, -4, 6, 22, -9, -12, 8, 12, 13, 78]; (переводим в
+                            array15 = [0, 2, 5, -4, 6, 22, -9, -12, 8, 12, 13, 78]; (переводим в
                             число), а потом - если нет - добавляет его в массив.</p>
                         <label for="inpmass15" class="form-control">заполняем массив</label>
                         <input id="inpmass15" type="text" class="inpmass15">
-                        <button id="buttmassive15">Task-15</button>
-                        <div class="divmassive15">out-15</div>
+                        <button id="buttarray15">Task-15</button>
+                        <div class="divarray15">out-15</div>
                     </li>
                     <li>
-                        <p>Даны два массива massive16_1 = [5,6,7,8,9]; и massive16_2 = [23,24,56,87]; - используя метод
+                        <p>Даны два массива array16_1 = [5,6,7,8,9]; и array16_2 = [23,24,56,87]; - используя метод
                             concat -
-                            добавьте в массив massive16 результат применения concat между массивом massive16_1 и
-                            massive16_2 </p>
-                        <button id="buttmassive16">Task-16</button>
-                        <div class="divmassive16">out-16</div>
+                            добавьте в массив array16 результат применения concat между массивом array16_1 и
+                            array16_2 </p>
+                        <button id="buttarray16">Task-16</button>
+                        <div class="divarray16">out-16</div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass17, которая эмулирует работу метода concat. Функция должна
                             объединять
-                            массивы massive17_1 = ['a', 'b', 'c', 'd'] и massive17_2 = [1,2,3,4,5] и записывать
+                            массивы array17_1 = ['a', 'b', 'c', 'd'] и array17_2 = [1,2,3,4,5] и записывать
                             результат в
-                            massive17. Для эмуляции используйтe цикл. </p>
-                        <button id="buttmassive17">Task-17</button>
-                        <div class="divmassive17">out-17</div>
+                            array17. Для эмуляции используйтe цикл. </p>
+                        <button id="buttarray17">Task-17</button>
+                        <div class="divarray17">out-17</div>
                     </li>
                     <li>
                         <p>Напишите функцию funkmass18, которая получает значение из inpmass18 и проверяет есть ли такое
-                            значение в массиве massive18 = ['b', 'c', '45', 'e', 'z', 'y'];
+                            значение в массиве array18 = ['b', 'c', '45', 'e', 'z', 'y'];
                             c использованием метода includes. Результат применения метода - выводится в out-18.</p>
                         <label for="inpmass18" class="form-control">заполняем массив</label>
                         <input id="inpmass18" type="text" class="inpmass18">
-                        <button id="buttmassive18">Task-18</button>
-                        <div class="divmassive18">out-18</div>
+                        <button id="buttarray18">Task-18</button>
+                        <div class="divarray18">out-18</div>
                     </li>
                     <li>
                         <p>Напишите фукнцию funkmass19, которая выводит самую длинную строку maxString из массива
-                            massive19
-                            =
-                            ['Your','payment','method','will','automatically','be','charged','in','advance','every'] в
-                            out-19.</p>
-                        <button id="buttmassive19">Task-19</button>
-                        <div class="divmassive19">out-19</div>
+                            array19 в out-19.</p>
+                        <pre>array19 = ['Your','payment','method','will','automatically','be','charged','in','advance','every']</pre>
+                        <button id="buttarray19">Task-19</button>
+                        <div class="divarray19">out-19</div>
                     </li>
                     <li>
-                        <p>Напишите функцию funkmass20, которая применяет к массиву massive20 = [4,5,6,7,8,9,10] метод
+                        <p>Напишите функцию funkmass20, которая применяет к массиву array20 = [4,5,6,7,8,9,10] метод
                             join
                             с
                             параметрами и соединяет элементы
-                            массива в одну строку. Результат выводит в out-20. Укажите мето так massive20.join('').
+                            массива в одну строку. Результат выводит в out-20. Укажите мето так array20.join('').
                             Обратите
                             внимание - между апострофами нет пробела!!!</p>
-                        <button id="buttmassive20">Task-20</button>
-                        <div class="divmassive20">out-20</div>
+                        <button id="buttarray20">Task-20</button>
+                        <div class="divarray20">out-20</div>
                     </li>
                 </ul>
 
@@ -18544,7 +18527,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             из
                             массива array1 = [12, [45, 87], [55, 13]]. Возвратите это значение.</p>
                         <button id="butarray1">Task-1</button>
-                        <div class="divarray1">out-1</div>
+                        <div class="un12divarray1">out-1</div>
                     </li>
                     <li>
                         <p>При нажатии butarray2 выполняете функцию funcarray2. Функция должна вывести в out-2 значение
@@ -18552,7 +18535,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             из
                             массива array2 = [[12, 'hi'], [45, 87], [55, 13]]. Возвратите это значение.</p>
                         <button id="butarray2">Task-2</button>
-                        <div class="divarray2">out-2</div>
+                        <div class="un12divarray2">out-2</div>
                     </li>
                     <li>
                         <p>При нажатии butarray3 выполняете функцию funcarray3. Функция должна вывести в out-3 значение
@@ -18560,7 +18543,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             из
                             массива array3 = [[1, 2, 3], [3, 4, 5], [6, [7, 'my']]]. Возвратите это значение.</p>
                         <button id="butarray3">Task-3</button>
-                        <div class="divarray3">out-3</div>
+                        <div class="un12divarray3">out-3</div>
                     </li>
                     <li>
                         <p>При нажатии butarray4 выполняете функцию funcarray4. Функция должна вывести в out-4 значение
@@ -18568,7 +18551,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             из
                             массива array4 = [[1, 2, 3], 'go', [3, 4, 5], [6, [7, 'my']]]. Возвратите это значение.</p>
                         <button id="butarray4">Task-4</button>
-                        <div class="divarray4">out-4</div>
+                        <div class="un12divarray4">out-4</div>
                     </li>
                     <li>
                         <p>При нажатии butarray5 выполняете функцию funcarray5. Функция должна вывести в out-5 четные
@@ -18576,7 +18559,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             из массива array5 = [[1, 2], [3, 4], [5, 6], [21, 34], [44, 56]]. Для перебора используем
                             цикл.</p>
                         <button id="butarray5">Task-5</button>
-                        <div class="divarray5">out-5</div>
+                        <div class="un12divarray5">out-5</div>
                     </li>
                     <li>
                         <p>При нажатии butarray6 выполняете функцию funcarray6. Функция должна вывести в out-6 нечетные
@@ -18585,7 +18568,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             цикл.
                             Делаем по образу предыдущей задачи.</p>
                         <button id="butarray6">Task-6</button>
-                        <div class="divarray6">out-6</div>
+                        <div class="un12divarray6">out-6</div>
                     </li>
                     <li>
                         <p>При нажатии butarray7 выполняете функцию funcarray7. Функция должна вывести в out-7 четные
@@ -18596,7 +18579,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             цикл.
                             Вывод - через пробел.</p>
                         <button id="butarray7">Task-7</button>
-                        <div class="divarray7">out-7</div>
+                        <div class="un12divarray7">out-7</div>
                     </li>
                     <li>
                         <p>При нажатии butarray8 выполняете функцию funcarray8. Функция должна вывести в out-8 нечетные
@@ -18607,7 +18590,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             цикл.
                             Вывод - через пробел</p>
                         <button id="butarray8">Task-8</button>
-                        <div class="divarray8">out-8</div>
+                        <div class="un12divarray8">out-8</div>
                     </li>
                     <li>
                         <p>При нажатии butarray9 выполняете функцию funcarray9. Функция должна вывести в out-9 значения
@@ -18616,7 +18599,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             больше
                             нуля. Используем цикл. Вывод - через пробел.</p>
                         <button id="butarray9">Task-9</button>
-                        <div class="divarray9">out-9</div>
+                        <div class="un12divarray9">out-9</div>
                     </li>
                     <li>
                         <p>При нажатии butarray10 выполняете функцию funcarray10. Функция должна вывести в out-10
@@ -18626,7 +18609,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             -56,
                             'task']]; которые являются строкой. Используем цикл. Вывод - через пробел.</p>
                         <button id="butarray10">Task-10</button>
-                        <div class="divarray10">out-10</div>
+                        <div class="un12divarray10">out-10</div>
                     </li>
                     <li>
                         <p>При нажатии butarray11 выполняете функцию funcarray11. Функция должна вывести в out-11
@@ -18639,7 +18622,7 @@ for (let i = 0; i < divfor.length; i = i + 1) {
                             8 7
                             13 12 11 10 9. Решаем задачу двумя циклами, без reverse.</p>
                         <button id="butarray11">Task-11</button>
-                        <div class="divarray11">out-11</div>
+                        <div class="un12divarray11">out-11</div>
                     </li>
                     <li>
                         <p>Дан массив array12 который моделирует шахматную доску. Используя цикл выведите в out-12
@@ -18661,7 +18644,7 @@ let array12 = [
 ];
             </pre>
                         <button id="butarray12">Task-12</button>
-                        <div class="divarray12">out-12</div>
+                        <div class="un12divarray12">out-12</div>
                     </li>
                     <li>
                         <p>При нажатии butarray13 выполняете функцию funcarray13. Функция должна присвоить переменной
@@ -18670,7 +18653,7 @@ let array12 = [
                             проверки
                             - выведите массив в консоль.</p>
                         <button id="butarray13">Task-13</button>
-                        <div class="divarray13">out-13</div>
+                        <div class="un12divarray13">out-13</div>
                     </li>
                     <li>
                         <p>При нажатии butarray14 выполняете функцию funcarray14. Функция должна вывести в out-14 длины
@@ -18685,7 +18668,7 @@ let array14 = [
 };
             </pre>
                         <button id="butarray14">Task-14</button>
-                        <div class="divarray14">out-14</div>
+                        <div class="un12divarray14">out-14</div>
                     </li>
                     <li>
             <pre>
@@ -18701,7 +18684,7 @@ let array15 = [
                             самого
                             большого вложенного массива в array15.</p>
                         <button id="butarray15">Task-15</button>
-                        <div class="divarray15">out-15</div>
+                        <div class="un12divarray15">out-15</div>
                     </li>
                     <li>
                         <p>Впишите в переменную array16 массив, который соответствует всем условиям приведенным ниже
@@ -20323,7 +20306,6 @@ let arrayfor11 = {
                     <input type="submit" value="GO">
                 </form>
 
-                <p>index2.php?auth=7859d9d42a8834141d529577207c9596</p>
                 <ol>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20333,8 +20315,6 @@ let arrayfor11 = {
                             Не забывайте указывать параметр auth (ключ в чате). Используем POSTMAN. Данную работу на
                             проверку не
                             присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=1</p>
                     </li>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20345,8 +20325,6 @@ let arrayfor11 = {
                             auth
                             (ключ в чате).
                             Используем POSTMAN. Данную работу на проверку не присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=2&name=Dmitriy</p>
                     </li>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20355,8 +20333,6 @@ let arrayfor11 = {
                             Если все сделано верно, сервер вернет сумму чисел. Не забывайте указывать параметр auth
                             (ключ в
                             чате). Используем POSTMAN. Данную работу на проверку не присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=3&num1=1&num2=10</p>
                     </li>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20366,8 +20342,6 @@ let arrayfor11 = {
                             указывать
                             параметр auth (ключ в чате). Используем POSTMAN.
                             Данную работу на проверку не присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=4&num1=5&num2=15</p>
                     </li>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20377,8 +20351,6 @@ let arrayfor11 = {
                             Не забывайте указывать параметр auth (ключ в чате). Используем POSTMAN. Данную работу на
                             проверку не
                             присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=5</p>
                     </li>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20388,8 +20360,6 @@ let arrayfor11 = {
                             (ключ
                             в
                             чате). Используем POSTMAN. Данную работу на проверку не присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=6&num1=10&num2=4</p>
                     </li>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20399,8 +20369,6 @@ let arrayfor11 = {
                             Не забывайте указывать параметр auth (ключ в чате). Используем POSTMAN. Данную работу на
                             проверку не
                             присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=7</p>
                     </li>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20409,8 +20377,6 @@ let arrayfor11 = {
                             Если все правильно сервер вернет ваш возраст. Не забывайте указывать параметр auth (ключ в
                             чате).
                             Используем POSTMAN. Данную работу на проверку не присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=8&year=1993</p>
                     </li>
                     <li>
                         <p>Отправьте GET запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -20419,8 +20385,6 @@ let arrayfor11 = {
                             Если все сделано верно, сервер возвратит дату или месяц или год. Не забывайте указывать
                             параметр
                             auth (ключ в чате). Используем POSTMAN. Данную работу на проверку не присылаем.</p>
-                        <p>Запрашиваем:</p>
-                        <p>auth=7859d9d42a8834141d529577207c9596&action=9&d=1&m=1&y=1</p>
                     </li>
                     <li>
                         <p>Отправьте POST запрос на сайт http://getpost.itgid.info/index2.php. В качестве action укажите
@@ -21229,11 +21193,14 @@ console.log(Rectangle.name);
                         вернее
                         бесконечной рекурсии). </p>
 
-                    <div class="boxforbox">
-                        <div class="moovingblock"></div>
+                    <div class="tableWrapper">
+                        <div class="boxforbox">
+                            <div class="moovingblock"></div>
+                        </div>
                     </div>
                     <br>
                     <button id="moovingbutt">двигай</button>
+                    <button id="stopMoving">стоп</button>
 
                     <p>задание для unit24</p>
 
@@ -21249,12 +21216,6 @@ console.log(Rectangle.name);
                         <input aria-label="y" type="text" name="y" placeholder="y"><br>
                         <input aria-label="go" type="submit" value="go"><br>
                     </form>
-
-
-                    <div class="boxforbox">
-                        <div class="moovingblock" id="moovingbox"></div>
-                    </div>
-                    <button id="boxbutt">рекурсия</button>
                 </section>
             </section>
 
@@ -21300,10 +21261,10 @@ console.log(Rectangle.name);
                             функция, т.е. с return()),
                             которая потом импортируется как тэг в другой компонент или в корневой компонент</p>
                         <p>Пример</p>
-                        <div class="imgLongWidth">
-                            <img src="./images/component.png" alt="component" height="449">
+                        <div class="smallScreenContainer">
+                            <img src="./images/component.png" alt="component" style="max-height: 449px">
                         </div>
-                        <div class="imgLongWidth">
+                        <div class="smallScreenContainer">
                             <img src="./images/componentImport.png" alt="componentImport">
                         </div>
                         <p>"App" является корневым компонентом тк собирает в себе все остальные компоненты и потом в
@@ -21365,7 +21326,9 @@ function functionName (){
                     <div>
                         <p>Для отображения динамических данных используются одинарные фигурные скобки {expresion}</p>
                         <p>пример:</p>
-                        <img src="./images/динамическое_отображение_данных.png" alt="dinamicData">
+                        <div class="smallScreenContainer">
+                            <img src="./images/динамическое_отображение_данных.png" alt="dinamicData">
+                        </div>
                     </div>
                 </section>
 
@@ -21382,7 +21345,9 @@ function functionName (){
                         <p>Т.е. мы задаем некие атрибуты внутри тега компонента, и в файле где мы его настраиваем,
                             подключаем их
                             в скобках функции параметром "props" и потом в коде с помощью props.atribute :</p>
-                        <img src="./images/props1.png" alt="props1" height="386">
+                        <div class="smallScreenContainer">
+                            <img src="./images/props1.png" alt="props1" style="max-height: 386px">
+                        </div>
                         <div class="smallScreenContainer">
                             <img src="./images/props2.png" style="max-width: 400px" alt="props2">
                         </div>
@@ -21556,8 +21521,12 @@ function functionName (){
                             функцию в компоненте-наследнике, передав параметром в скобках этой функции нужную
                             информацию,
                             в итоге в параметр функции родительского компонента будет записана информация:</p>
-                        <img src="./images/relativComponentData.png" alt="relativComponentData" height="320">
-                        <img src="./images/childComponentData.png" alt="childComponentData" height="320">
+                        <div class="smallScreenContainer">
+                            <img src="./images/relativComponentData.png" alt="relativComponentData" style="max-height: 320px">
+                        </div>
+                        <div class="smallScreenContainer">
+                            <img src="./images/childComponentData.png" alt="childComponentData" style="max-height: 320px">
+                        </div>
                     </div>
                 </section>
 
@@ -21652,19 +21621,19 @@ setArrNAme(prevArr => {
                             выражение1
                             :
                             выражение2}:</p>
-                        <div class="imgLongWidth">
-                            <img src="./images/ternaryOperator1.png" alt="ternaryOperator1" height="430">
+                        <div class="smallScreenContainer">
+                            <img src="./images/ternaryOperator1.png" alt="ternaryOperator1" style="max-height: 430px">
                         </div>
                         <p>или {условие && выражение1}+{условие && выражение2} возвращается то, что соответствует
                             условию:</p>
-                        <div class="imgLongWidth">
-                            <img src="./images/ternaryOperator2.png" alt="ternaryOperator2" height="430">
+                        <div class="smallScreenContainer">
+                            <img src="./images/ternaryOperator2.png" alt="ternaryOperator2" style="max-height: 430px">
                         </div>
                         <p>или задать переменную с базовым контентом вне "return", через оператор if(){} задать условие
                             с
                             альтернативным контентом
                             и уже через expression{} вывести эту переменную в return:</p>
-                        <div class="imgLongWidth">
+                        <div class="smallScreenContainer">
                             <img src="./images/ifExpression3.png" alt="ifExpression3">
                         </div>
                     </div>
@@ -27480,7 +27449,7 @@ export const createTodo = createAsyncThunk<
                 </div>
             </section>
 
-            <h3 id="NJSCryptoModule">Потоки в node JS и модуль crypcto</h3>
+            <h3 id="NJSCryptoModule">Потоки в node JS и модуль crypto</h3>
 
             <section>
                 <div>
