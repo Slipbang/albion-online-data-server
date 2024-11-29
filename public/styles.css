@@ -472,7 +472,7 @@ big p {
     box-sizing: border-box;
     position: relative;
     top: 70px;
-    left: 150px;
+    left: 100px;
 }
 
 .example25 {
@@ -489,7 +489,7 @@ big p {
     box-sizing: border-box;
     position: absolute;
     top: 30px;
-    left: 250px;
+    left: 200px;
 }
 
 .example26 {
