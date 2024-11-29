@@ -944,7 +944,7 @@ big p {
 
 .flexcontainerexample3 {
     border: 10px solid #7f00ff;
-    width: 500px;
+    max-width: 500px;
     display: flex;
 }
 
@@ -956,7 +956,7 @@ big p {
 .flexcontainerexample4 {
     border: 10px solid #7f00ff;
     display: flex;
-    width: 600px;
+    max-width: 600px;
     height: 350px;
 }
 
@@ -967,7 +967,7 @@ big p {
 .flexcontainerexample5 {
     border: 10px solid #7f00ff;
     display: flex;
-    width: 600px;
+    max-width: 600px;
     height: 350px;
 }
 
@@ -978,7 +978,7 @@ big p {
 .flexcontainerexample6 {
     border: 10px solid #7f00ff;
     display: flex;
-    width: 480px;
+    max-width: 480px;
     height: 350px;
 }
 
@@ -989,7 +989,7 @@ big p {
 .flexcontainerexample7 {
     border: 10px solid #7f00ff;
     display: flex;
-    width: 480px;
+    max-width: 480px;
     height: 400px;
 }
 
@@ -1031,7 +1031,7 @@ big p {
 .flexcontainerexample8 {
     border: 10px solid #7f00ff;
     display: flex;
-    width: 560px;
+    max-width: 560px;
 }
 
 .flexcontainerexample8 .flexitem {
@@ -1045,7 +1045,8 @@ big p {
 .flexcontainerexample9 {
     border: 10px solid #7f00ff;
     display: flex;
-    width: 560px;
+    max-width: 560px;
+    overflow: auto;
 }
 
 .flexcontainerexample9 .flexitem {
@@ -1093,7 +1094,7 @@ big p {
     border: 10px solid #7f00ff;
     display: flex;
     flex-wrap: wrap;
-    width: 500px
+    max-width: 500px
 }
 
 .flexcontainerexample11 .item2 {
@@ -1125,7 +1126,7 @@ big p {
 .flexcontainerexample12 {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    max-width: 500px;
     height: 500px;
 }
 
@@ -1182,6 +1183,11 @@ big p {
 }
 
 .flex-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 1em;
+    max-width: 700px;
     background: linear-gradient(45deg, #84fab0, #8fd3f4);
     padding: 1em;
 }
@@ -1189,14 +1195,6 @@ big p {
 .flex-container p {
     color: #fff;
     font-size: 16px;
-}
-
-.flex-container {
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    gap: 1em;
-    max-width: 700px;
 }
 
 .content {
@@ -1323,17 +1321,17 @@ hr {
     visibility: hidden;
 }
 
-.containerkb11 {
-    display: flex;
-    text-align: center;
-}
+/*.containerkb11 {*/
+/*    display: flex;*/
+/*    text-align: center;*/
+/*}*/
 
-.containerkb11 div {
-    margin: 2px;
-    min-width: 15px;
-    height: 15px;
-    border: 2px solid black;
-}
+/*.containerkb11 div {*/
+/*    margin: 2px;*/
+/*    min-width: 15px;*/
+/*    height: 15px;*/
+/*    border: 2px solid black;*/
+/*}*/
 
 .touchevent, .touchevent-1 {
     width: 250px;

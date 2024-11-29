@@ -629,12 +629,12 @@ document.querySelector('#centerexample2').onclick = function () {
 };
 document.querySelector('#baselineexample').onclick = function () {
     document.querySelector('.flexcontainerexample5').style.alignItems = 'baseline';
-    document.querySelector('.flexcontainerexample5 .item1').style.fontSize = '50px';
-    document.querySelector('.flexcontainerexample5 .item2').style.fontSize = '70px';
-    document.querySelector('.flexcontainerexample5 .item3').style.fontSize = '90px';
-    document.querySelector('.flexcontainerexample5 .item4').style.fontSize = '110px';
-    document.querySelector('.flexcontainerexample5 .item5').style.fontSize = '130px';
-    document.querySelector('.flexcontainerexample5 .item6').style.fontSize = '150px';
+    document.querySelector('.flexcontainerexample5 .item1').style.fontSize = '30px';
+    document.querySelector('.flexcontainerexample5 .item2').style.fontSize = '40px';
+    document.querySelector('.flexcontainerexample5 .item3').style.fontSize = '60px';
+    document.querySelector('.flexcontainerexample5 .item4').style.fontSize = '80px';
+    document.querySelector('.flexcontainerexample5 .item5').style.fontSize = '100px';
+    document.querySelector('.flexcontainerexample5 .item6').style.fontSize = '120px';
 };
 document.querySelector('#resetfontsize').onclick = function () {
     document.querySelector('.flexcontainerexample5 .item1').style.fontSize = '60px';
@@ -5021,28 +5021,28 @@ document.querySelector('.inputkb10').onkeydown = function funckb10(eventkb10) {
 };
 
 
-//T11
-//1. Выполните в html верстку клавиш клавиатуры. Сверстайте – блок цифровых клавиш от 1 до 0. И ряд клавиш q – p. Добавьте
-//клавишу левый shift, левый alt, левый ctrl, пробел, enter.
+// //T11
+// //1. Выполните в html верстку клавиш клавиатуры. Сверстайте – блок цифровых клавиш от 1 до 0. И ряд клавиш q – p. Добавьте
+// //клавишу левый shift, левый alt, левый ctrl, пробел, enter.
+// //
+// //2. Добавьте на input .inputkb11 событие onkeypress или onkeyup или onkeydown ( по вашему выбору). Когда событие происходит (
+// //ввод символа в input) необходимо подсветить ( добавить класс active) клавише с таким символом. Со всех остальных клавиш
+// //– удалить класс active.
+// //
+// //3. Если вводится следующий символ – повторить удаление active и подсветить клавишу с введенным символом.
+// //
+// //4. Ограничения проекта – тестируются только указанные клавиши в латинской раскладке. Комбинации клавиш не тестируются.
+// //Т.е. нажиматься shift+A, ctrl+shift – не будут. Все символы вводятся в нижнем регистре.
+// document.querySelector('.inputkb11').onkeydown = function funckb11(eventkb11) {
+//     let keys11 = document.querySelectorAll('.containerkb11 div');
+//     for (let i = 0; i < keys11.length; i++) if (keys11[i].textContent == eventkb11.key || keys11[i].textContent == eventkb11.code) {
+//         keys11[i].classList.add('active');
 //
-//2. Добавьте на input .inputkb11 событие onkeypress или onkeyup или onkeydown ( по вашему выбору). Когда событие происходит (
-//ввод символа в input) необходимо подсветить ( добавить класс active) клавише с таким символом. Со всех остальных клавиш
-//– удалить класс active.
-//
-//3. Если вводится следующий символ – повторить удаление active и подсветить клавишу с введенным символом.
-//
-//4. Ограничения проекта – тестируются только указанные клавиши в латинской раскладке. Комбинации клавиш не тестируются.
-//Т.е. нажиматься shift+A, ctrl+shift – не будут. Все символы вводятся в нижнем регистре.
-document.querySelector('.inputkb11').onkeydown = function funckb11(eventkb11) {
-    let keys11 = document.querySelectorAll('.containerkb11 div');
-    for (let i = 0; i < keys11.length; i++) if (keys11[i].textContent == eventkb11.key || keys11[i].textContent == eventkb11.code) {
-        keys11[i].classList.add('active');
-
-    } else {
-        keys11[i].classList.remove('active');
-    }
-    return false;
-}
+//     } else {
+//         keys11[i].classList.remove('active');
+//     }
+//     return false;
+// }
 
 
 //UNIT 21. КРАТКИЙ ОБЗОР TOUCH СОБЫТИЙ
@@ -6564,10 +6564,12 @@ rec()
 
 let offsetMB = 0;
 let offsetMBB = 0;
+let isStarted = false;
 
 // let MB = document.querySelector('.moovingblock');
 let timeoutMove;
 function moove() {
+    isStarted = true;
     offsetMB += 5;
     document.querySelector('.moovingblock').style.left = offsetMB + 'px';
     if (offsetMB == 300) {
@@ -6576,7 +6578,9 @@ function moove() {
     timeoutMove = setTimeout(moove, 50);
 }
 
-document.querySelector('#moovingbutt').onclick = moove;
+document.querySelector('#moovingbutt').onclick = () => {
+    if (!isStarted) moove();
+};
 
 let timeoutMooveBack;
 
@@ -6620,6 +6624,7 @@ document.querySelector('#stopMoving').onclick = () => {
     document.querySelector('.moovingblock').style.top = '0px';
     offsetMB = 0;
     offsetMBB = 0;
+    isStarted = false;
 };
 
 const person = {
