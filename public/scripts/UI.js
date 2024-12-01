@@ -1,6 +1,6 @@
 'use strict';
 
-function detectmob() {
+function detectMobile() {
     return !!(navigator.userAgent.match(/Android/i) ||
         navigator.userAgent.match(/webOS/i) ||
         navigator.userAgent.match(/iPhone/i) ||
@@ -35,11 +35,11 @@ imgs.forEach(img => {
     }
 })
 
-const sections = document.querySelectorAll('main > div > section');
+//navigation
 
 const createNav = (section, headers3) => {
     const nav = document.createElement('nav');
-    nav.classList.add(`${section.id.replace('Butt', '')}`,'displayNoneClass', 'hiddenElem');
+    nav.classList.add(`${section.id.replace('Button', '')}`,'displayNoneClass');
     headers3.forEach(header3 => {
         const link = document.createElement('a');
         link.href = `#${header3.id}`;
@@ -50,15 +50,17 @@ const createNav = (section, headers3) => {
     return nav;
 }
 
-const buildNavigator = (section) => {
-    const navMenu = document.querySelector('#navMenu');
-    const navMenuButtons = document.querySelector('#navMenuButtons');
+const buildNavigation = (section, navMenu, navMenuButtons, headerLinks) => {
     const navigatorButton = document.createElement('button');
     const header1 = section.querySelector('section > h1');
 
+    const a = document.createElement('a');
+    a.href = `#${header1.id}`;
+    a.textContent = header1.textContent;
+    headerLinks.appendChild(a);
 
     navigatorButton.textContent = header1.textContent.replace('Основы ', '');
-    navigatorButton.id = `${section.id}Butt`;
+    navigatorButton.id = `${section.id}Button`;
     navigatorButton.classList.add('displayNoneClass');
 
     navMenuButtons.appendChild(navigatorButton)
@@ -67,13 +69,13 @@ const buildNavigator = (section) => {
 
     if (subSections.length) {
         const subNav = document.createElement('nav');
-        subNav.classList.add(`${section.id.replace('Butt', '')}`, 'displayNoneClass');
+        subNav.classList.add(`${section.id.replace('Button', '')}`, 'displayNoneClass');
         subSections.forEach(subSection => {
             const header2 = subSection.querySelector('section > h2');
-            const subNavigatorButton = document.createElement('a');
+            const subNavigatorButton = document.createElement('button');
 
             subNavigatorButton.textContent = header2.textContent.replace('Основы ', '');
-            subNavigatorButton.id = `${subSection.id}Butt`;
+            subNavigatorButton.id = `${subSection.id}Button`;
 
             subNav.appendChild(subNavigatorButton);
 
@@ -92,100 +94,56 @@ const buildNavigator = (section) => {
     }
 }
 
-sections.forEach(section => buildNavigator(section));
+const navMenu = document.querySelector('#navMenu');
+const navMenuButtons = document.querySelector('#navMenuButtons');
+const headerLinks = document.querySelector('.headerLinks');
+const sections = document.querySelectorAll('main > div > section');
+sections.forEach(section => buildNavigation(section, navMenu, navMenuButtons, headerLinks));
 
-//navigation
 const navs = document.querySelectorAll('.navButtonsStyles nav');
+const clearStylesFunction = () => navs.forEach(item => item.classList.replace('displayFlexClass', 'displayNoneClass'));
 
-const clearFunc = () => navs.forEach(item => item.classList.replace('displayFlexClass', 'displayNoneClass'));
+const containsElement_displayFlexClass = (element) => element.classList.contains('displayFlexClass');
 
-const toggleClassesHandler = (selectedClass) => {
-    const element = document.querySelector(selectedClass);
+const allAsidesButtons = document.querySelectorAll('.navButtonsStyles button');
 
-    if (!element) return;
-
+const toggleClassHandler = (element) => {
     element.classList.toggle('displayNoneClass');
-    element.classList.toggle('displayFlexClass');
+    element.classList.toggle('displayFlexClass')
 };
 
-const classCondition = (selectedClass) => document.querySelector(selectedClass).classList.contains('displayFlexClass');
-
-
-const asides = document.querySelector('.navButtonsStyles');
-
-const buttsArr = asides.querySelectorAll('button');
-
-buttsArr.forEach((butt, index) => {
-    const currentClass = butt.id.replace('Butt', '')
-    butt.onclick = () => {
-        if (!classCondition(`.${currentClass}`)) {
-            clearFunc();
-            toggleClassesHandler(`.${currentClass}`)
+const addOnClickEventToggleClassHandler = (element) => {
+    const requiredClass = `.${element.id.replace('Button', '')}`;
+    const requiredElement = document.querySelector(requiredClass);
+    element.onclick = () => {
+        if (!containsElement_displayFlexClass(requiredElement)) {
+            clearStylesFunction();
+            toggleClassHandler(requiredElement)
         }
     }
-});
+}
 
-const cssBasicsNav = document.querySelector('.CSSnav');
-const cssBasicsAnc = cssBasicsNav.querySelectorAll('a');
+allAsidesButtons.forEach((button) => addOnClickEventToggleClassHandler(button));
 
-cssBasicsAnc.forEach(a => {
-    const currentClass = a.id.replace('Butt', '');
-    a.onclick = () => {
-        if (classCondition(`.${currentClass}`)) {
-            return;
-        }
-        clearFunc();
-        toggleClassesHandler(`.${currentClass}`)
+const mainAsidesButtons = document.querySelectorAll('.navButtonsStyles > div > button');
+document.querySelector('#navButtons').onclick = () => mainAsidesButtons.forEach(button => toggleClassHandler(button));
+
+const hideButtons = () => {
+    if (document.querySelector('#AlgorithmsAnDataStructuresNavButton').classList.contains('displayFlexClass')) {
+        clearStylesFunction()
+        mainAsidesButtons.forEach(button => toggleClassHandler(button));
     }
-})
+}
 
-const jsBasicsNav = document.querySelector('.JSnav');
-const jsBasicsAnc = jsBasicsNav.querySelectorAll('a');
+const headerElems = [
+    document.querySelector('main'),
+    document.querySelector('aside'),
+    document.querySelector('.headerLinks'),
+    document.querySelector('h1')
+];
+headerElems.forEach(elem => elem.onclick = () => hideButtons());
 
-jsBasicsAnc.forEach(a => {
-    const currentClass = a.id.replace('Butt', '');
-    a.onclick = () => {
-        if (classCondition(`.${currentClass}`)) {
-            return;
-        }
-        clearFunc();
-        toggleClassesHandler(`.${currentClass}`)
-    }
-});
-
-const reactFullCoursesNav = document.querySelector('.ReactFullCoursesNav');
-const reactFullCoursesAnc = reactFullCoursesNav.querySelectorAll('a');
-
-reactFullCoursesAnc.forEach(a => {
-    const currentClass = a.id.replace('Butt', '');
-    a.onclick = () => {
-        if (classCondition(`.${currentClass}`)) {
-            return;
-        }
-        clearFunc();
-        toggleClassesHandler(`.${currentClass}`)
-    }
-});
-
-const buttonsArray = document.querySelectorAll('.navButtonsStyles button');
-
-document.querySelector('#navButtons').onclick = () => {
-    clearFunc();
-    console.log(document.querySelector('#HTMLnavButt button'))
-    if (document.querySelector('#HTMLnavButt').classList.contains('displayNoneClass')) {
-        buttonsArray.forEach(button => button.classList.replace('displayNoneClass', 'displayFlexClass'));
-    } else {
-        clearFunc();
-        buttonsArray.forEach(button => button.classList.replace('displayFlexClass', 'displayNoneClass'));
-    }
-};
-
-document.querySelector("main").onclick = () => {
-    if (document.querySelector('#HTMLnavButt').classList.contains('displayFlexClass')) {
-        clearFunc();
-        buttonsArray.forEach(button => button.classList.replace('displayFlexClass', 'displayNoneClass'));
-    }
-};
+//---------------------------------------------------------------------------------------------------------------------
 
 let prevClass = null;
 const sideBar = document.querySelector('.sideBarContainer');
@@ -226,10 +184,10 @@ function debounce(func, timeout = 300) {
 }
 
 
-const anchorHandler = debounce((anchor, observer) => {
-    anchor.forEach(elem => {
-        const id = elem.target.id;
-        if (id && !detectmob()) {
+const anchorHandler = debounce((anchors, observer) => {
+    anchors.forEach(anchor => {
+        const id = anchor.target.id;
+        if (id && !detectMobile()) {
             let ancs = document?.querySelector(`a[href*=${id}]`);
 
             if (!!ancs?.parentElement) sideBarBuilder(ancs.parentElement.classList[0]);
