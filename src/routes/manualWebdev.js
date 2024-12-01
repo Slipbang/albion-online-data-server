@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from "cors";
-import {ManualController} from "../services/manualController.js";
+import {ManualWebdev} from "../controllers/manualWebdev.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 
@@ -11,7 +11,7 @@ const publicPath = path.join(__dirname, '../../', 'public');
 const router = express.Router();
 
 router.use(express.static(publicPath));
-router.get('/', (req, res) => ManualController.getManual(req, res, publicPath));
+router.get('/', (req, res) => ManualWebdev.getManual(req, res, publicPath));
 router.use(cors());
 
 export default router;

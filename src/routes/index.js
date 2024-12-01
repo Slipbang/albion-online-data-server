@@ -1,7 +1,7 @@
 import express from 'express';
 import dataRouter from '../routes/appData.js';
 import dateRouter from "./githubDumpsDate.js";
-import manualRouter from "./manualRouter.js";
+import manualRouter from "./manualWebdev.js";
 
 export class AppRouter {
     constructor(dataRef) {
