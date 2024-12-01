@@ -187,7 +187,7 @@ export class EquipmentItemsCalculation extends ArtefactItemsCalculation{
 
                     if (Array.isArray(craftResources)) {
                         for (let resource of craftResources) {
-                            this._buildingResourceObjectHandler(resource, itemCategory, items, obj)
+                            this._buildingResourceObjectHandler(resource, itemCategory, items, obj, artefactsData)
                         }
                     } else {
                         this._buildingResourceObjectHandler(craftResources, itemCategory, items, obj, artefactsData);

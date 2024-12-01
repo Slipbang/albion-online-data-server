@@ -1,12 +1,8 @@
 export class ArtefactItemsCalculation {
-    // constructor(data) {
-    //     this.data = data; // .items.simpleitem
-    //
-    //     this.createArtefactItem_Obj_Handler = this.createArtefactItem_Obj_Handler.bind(this)
-    // }
+
 
     _defineArtefactType_Value (artefactId, artefactData) {
-        const requiredArtefact = artefactData.find(artefact => artefact.id === artefactId);
+        const requiredArtefact = artefactData?.find(artefact => artefact["@uniquename"].includes(artefactId));
 
         if (requiredArtefact) {
             return {
@@ -14,7 +10,10 @@ export class ArtefactItemsCalculation {
                 artefactValue: +requiredArtefact['@itemvalue'],
             }
         }
-        return null;
+        return {
+            artefactType: '',
+            artefactValue: 0,
+        }
     }
 
     _artefactIncreasingValue = {
