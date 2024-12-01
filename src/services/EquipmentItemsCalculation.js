@@ -1,12 +1,11 @@
-export class EquipmentItems {
-    constructor(data) {
-        this.data = data;
-    }
+import {ArtefactItemsCalculation} from "./ArtefactItemsCalculation.js";
 
-    _buildingResourceObjectHandler(resource, itemCategory, items, obj, createArtefactItem_Obj_Handler) {
+export class EquipmentItemsCalculation extends ArtefactItemsCalculation{
+
+    _buildingResourceObjectHandler(resource, itemCategory, items, obj, artefactsData) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');
         if (resourceId.includes('ARTEFACT')) {
-            createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory)
+            this.createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory, artefactsData)
         } else if (resourceId.includes('SKILLBOOK_STANDARD')) {
             obj.artefactItemId = resource['@uniquename'];
         } else {
@@ -137,7 +136,7 @@ export class EquipmentItems {
         }
     }
 
-    _itemExamples = {
+    _ITEM_EXAMPLES = {
         "MAIN": ['FROSTSTAFF', 'ARCANESTAFF', 'CURSEDSTAFF', 'FIRESTAFF', 'HOLYSTAFF', 'NATURESTAFF', 'AXE', 'DAGGER', 'MACE', 'SPEAR', 'SWORD',],
         "2H": ['KNUCKLES_SET1', 'QUARTERSTAFF', 'BOW', 'CROSSBOW',],
         "BAG": ['BAG',],
@@ -148,16 +147,32 @@ export class EquipmentItems {
         "OFF": ['SHIELD', 'BOOK', 'ORB_MORGANA', 'TOTEM_KEEPER', 'TORCH',],
     };
 
-    _itemCategories = ["MAIN", "2H", "BAG", "CAPE", "ARMOR", "HEAD", "SHOES", "OFF",];
+    _ITEM_TYPES = ["MAIN", "2H", "BAG", "CAPE", "ARMOR", "HEAD", "SHOES", "OFF",];
+    _EQUIPMENT_CATEGORIES = [
+        'demolitionhammer', 'pickaxe', 'sickle', 'skinningknife', 'stonehammer',
+        'woodaxe', 'fishing', 'bow', 'crossbow', 'cursestaff', 'firestaff', 'froststaff',
+        'arcanestaff', 'holystaff', 'naturestaff', 'dagger', 'spear',
+        'axe', 'sword', 'quarterstaff', 'hammer', 'mace', 'knuckles',
+        'cape', 'bag', 'torch', 'totem', 'book',
+        'orb', 'shield', 'cloth_helmet', 'cloth_armor', 'cloth_shoes',
+        'leather_helmet', 'leather_armor', 'leather_shoes', 'plate_helmet',
+        'plate_armor', 'plate_shoes',
+        'fibergatherer_helmet', 'fibergatherer_armor', 'fibergatherer_shoes',
+        'fishgatherer_helmet', 'fishgatherer_armor', 'fishgatherer_shoes',
+        'hidegatherer_helmet', 'hidegatherer_armor', 'hidegatherer_shoes',
+        'oregatherer_helmet', 'oregatherer_armor', 'oregatherer_shoes',
+        'rockgatherer_helmet', 'rockgatherer_armor', 'rockgatherer_shoes',
+        'woodgatherer_helmet', 'woodgatherer_armor', 'woodgatherer_shoes'
+    ];
 
-    createItems(category, items, createArtefactItem_Obj_Handler) {
-        for (let item of this.data) {
+    createItems(data, artefactsData, items) {
+        for (let item of data) {
             if ('craftingrequirements' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'];
                 let ID = item['@uniquename'];
                 const bodyId = ID.split('_').filter((_, index) => index > 1).join('_') || ID.split('_').filter((_, index) => index > 0).join('_');
                 let itemCategory = ID.split('_')[1];
-                if (item['@tier'] !== '4' || !category.includes(shopsubcategory1) || !this._itemCategories.includes(itemCategory) || (ID.includes('TOOL') && ID.includes('AVALON'))) continue;
+                if (item['@tier'] !== '4' || !this._EQUIPMENT_CATEGORIES.includes(shopsubcategory1) || !this._ITEM_TYPES.includes(itemCategory) || (ID.includes('TOOL') && ID.includes('AVALON'))) continue;
                 const craftResources = item.craftingrequirements?.[0]?.['craftresource'] || item.craftingrequirements?.['craftresource'];
                 if (craftResources) {
                     const {itemType, itemClass} = this._defineAOTItemParams(shopsubcategory1, ID);
@@ -167,15 +182,15 @@ export class EquipmentItems {
                         foodConsumption: 0,
                         itemType,
                         itemClass,
-                        itemExample: this._itemExamples[itemCategory]?.includes(bodyId) || false,
+                        itemExample: this._ITEM_EXAMPLES[itemCategory]?.includes(bodyId) || false,
                     }
 
                     if (Array.isArray(craftResources)) {
                         for (let resource of craftResources) {
-                            this._buildingResourceObjectHandler(resource, itemCategory, items, obj, createArtefactItem_Obj_Handler)
+                            this._buildingResourceObjectHandler(resource, itemCategory, items, obj)
                         }
                     } else {
-                        this._buildingResourceObjectHandler(craftResources, itemCategory, items, obj, createArtefactItem_Obj_Handler);
+                        this._buildingResourceObjectHandler(craftResources, itemCategory, items, obj, artefactsData);
                     }
                     items.craftItems[itemCategory].push(obj);
                 }

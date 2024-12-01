@@ -1,17 +1,17 @@
-export class ArtefactItems {
-    constructor(data) {
-        this.data = data; // .items.simpleitem
+export class ArtefactItemsCalculation {
+    // constructor(data) {
+    //     this.data = data; // .items.simpleitem
+    //
+    //     this.createArtefactItem_Obj_Handler = this.createArtefactItem_Obj_Handler.bind(this)
+    // }
 
-        this.createArtefactItem_Obj_Handler = this.createArtefactItem_Obj_Handler.bind(this)
-    }
+    _defineArtefactType_Value (artefactId, artefactData) {
+        const requiredArtefact = artefactData.find(artefact => artefact.id === artefactId);
 
-    _defineArtefactType_Value (artefactId) {
-        for (let item of this.data) {
-            if (item["@uniquename"].includes(artefactId)) {
-                return {
-                    artefactType: item['craftingrequirements']['craftresource']['@uniquename']?.split('_')?.pop(),
-                    artefactValue: +item['@itemvalue'],
-                };
+        if (requiredArtefact) {
+            return {
+                artefactType: requiredArtefact['craftingrequirements']['craftresource']['@uniquename']?.split('_')?.pop(),
+                artefactValue: +requiredArtefact['@itemvalue'],
             }
         }
         return null;
@@ -58,9 +58,9 @@ export class ArtefactItems {
         },
     }
 
-    createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory){
+    createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory, artefactData){
         obj.artefactItemId = resourceId;
-        let {artefactType, artefactValue} = this._defineArtefactType_Value(resourceId);
+        let {artefactType, artefactValue} = this._defineArtefactType_Value(resourceId, artefactData);
         obj.foodConsumption = +((this._artefactIncreasingValue?.[itemCategory]?.[artefactType] || 0) + obj.foodConsumption).toFixed(2);
 
         if (artefactType in items.artefacts[obj.itemClass.toUpperCase()]) {

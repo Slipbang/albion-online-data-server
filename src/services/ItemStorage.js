@@ -1,4 +1,4 @@
-export class Data {
+export class ItemStorage {
     constructor() {
         this._currentData = {};
     }

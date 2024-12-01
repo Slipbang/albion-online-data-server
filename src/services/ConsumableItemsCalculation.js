@@ -1,7 +1,4 @@
-export class ConsumableItems {
-    constructor(data) {
-        this.data = data;
-    }
+export class ConsumableItemsCalculation {
 
     _buildConsumableResourceObjectHandler (resource, obj) {
         const special = ['T1_FISHSAUCE_LEVEL1', 'T1_ALCHEMY_EXTRACT_LEVEL1'];
@@ -17,11 +14,13 @@ export class ConsumableItems {
         obj[resourceId] = +resource["@count"];
     }
 
-    createConsumableItems (category, items) {
-        for (let item of this.data) {
+    _CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
+
+    createConsumableItems (data, items) {
+        for (let item of data) {
             if ('enchantments' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'];
-                if (+item['@tier'] < 4 || !category.includes(shopsubcategory1)) continue;
+                if (+item['@tier'] < 4 || !this._CONSUMABLE_CATEGORIES.includes(shopsubcategory1)) continue;
                 const craftResources = item.enchantments?.enchantment[0]?.['craftingrequirements']['craftresource'];
                 const itemId = item["@uniquename"];
                 if (craftResources) {

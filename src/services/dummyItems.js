@@ -1,4 +1,4 @@
-export const items = {
+export const dummyItems = {
     date: '',
     craftItems: {
         "MAIN": [],

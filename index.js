@@ -4,13 +4,12 @@ import winston from "winston";
 import fs from "fs/promises";
 import {existsSync} from 'fs';
 
-import {ArtefactItems} from "./src/services/ArtefactItems.js";
-import {EquipmentItems} from "./src/services/EquipmentItems.js";
+import {EquipmentItemsCalculation} from "./src/services/EquipmentItemsCalculation.js";
 import {LanguageData} from "./src/services/LanguageData.js";
-import {ConsumableItems} from "./src/services/ConsumableItems.js";
-import {MaterialItems} from "./src/services/MaterialItems.js";
-import {Data} from "./src/services/Data.js";
-import {items} from "./src/services/items.js";
+import {ConsumableItemsCalculation} from "./src/services/ConsumableItemsCalculation.js";
+import {MaterialItemsCalculation} from "./src/services/MaterialItemsCalculation.js";
+import {ItemStorage} from "./src/services/ItemStorage.js";
+import {dummyItems} from "./src/services/dummyItems.js";
 import {TelegramBot} from "./src/api/TelegramBot.js";
 import {AppRouter} from './src/routes/index.js';
 
@@ -26,33 +25,17 @@ const LOCALIZATION_URL = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps
 const GITHUB_API_URL = 'https://api.github.com/repos/ao-data/ao-bin-dumps/commits';
 const CURRENT_SERVER_URL = 'https://albion-online-data-server.onrender.com/data';
 
-const EQUIPMENT_CATEGORIES = [
-    'demolitionhammer', 'pickaxe', 'sickle', 'skinningknife', 'stonehammer',
-    'woodaxe', 'fishing', 'bow', 'crossbow', 'cursestaff', 'firestaff', 'froststaff',
-    'arcanestaff', 'holystaff', 'naturestaff', 'dagger', 'spear',
-    'axe', 'sword', 'quarterstaff', 'hammer', 'mace', 'knuckles',
-    'cape', 'bag', 'torch', 'totem', 'book',
-    'orb', 'shield', 'cloth_helmet', 'cloth_armor', 'cloth_shoes',
-    'leather_helmet', 'leather_armor', 'leather_shoes', 'plate_helmet',
-    'plate_armor', 'plate_shoes',
-    'fibergatherer_helmet', 'fibergatherer_armor', 'fibergatherer_shoes',
-    'fishgatherer_helmet', 'fishgatherer_armor', 'fishgatherer_shoes',
-    'hidegatherer_helmet', 'hidegatherer_armor', 'hidegatherer_shoes',
-    'oregatherer_helmet', 'oregatherer_armor', 'oregatherer_shoes',
-    'rockgatherer_helmet', 'rockgatherer_armor', 'rockgatherer_shoes',
-    'woodgatherer_helmet', 'woodgatherer_armor', 'woodgatherer_shoes'
-];
-
-const CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
-const MATERIAL_CATEGORIES = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
-
 const tgToken = process.env.TELEGRAM_TOKEN;
 const CHAT_ID = +process.env.CHAT_ID;
 const TGBot = new TelegramBot({botToken: tgToken, chatId: CHAT_ID});
 
 const languageData = new LanguageData();
-const itemsData = new Data();
-const appRouter = new AppRouter(itemsData);
+const itemStorage = new ItemStorage();
+const equipmentItemsCalculation = new EquipmentItemsCalculation();
+const consumableItemsCalculation = new ConsumableItemsCalculation();
+const materialItemsCalculation = new MaterialItemsCalculation();
+
+const appRouter = new AppRouter(itemStorage);
 
 const customFormat = winston.format.printf(({ level, message, timestamp }) => {
     return `${timestamp} [${level.toUpperCase()}]: ${message}`;
@@ -124,21 +107,19 @@ const fetchAODGithubReposData = async () => {
 const app = express();
 
 const fetchAllData = async (githubCommitDate) => {
-    const [itemData] = await Promise.all([fetchItems(ITEMS_URL), fetchItemNames()]);
+    const [currentData] = await Promise.all([fetchItems(ITEMS_URL), fetchItemNames()]);
 
-    if (itemData && Object.keys(languageData.data).length > 0) {
+    if (currentData && Object.keys(languageData.data).length > 0) {
         const equipmentItemData = [
-            ...itemData.items.weapon,
-            ...itemData.items.equipmentitem,
+            ...currentData.items.weapon,
+            ...currentData.items.equipmentitem,
         ]
-        const artefactItems = new ArtefactItems(itemData.items.simpleitem);
-        const equipmentItems = new EquipmentItems(equipmentItemData);
-        const consumableItems = new ConsumableItems(itemData.items.consumableitem);
-        const materialItems = new MaterialItems(itemData.items.simpleitem);
 
-        equipmentItems.createItems(EQUIPMENT_CATEGORIES, items, artefactItems.createArtefactItem_Obj_Handler);
-        consumableItems.createConsumableItems(CONSUMABLE_CATEGORIES, items);
-        materialItems.createMaterialItems(MATERIAL_CATEGORIES, items)
+        const items = JSON.parse(JSON.stringify(dummyItems));
+
+        equipmentItemsCalculation.createItems(equipmentItemData, currentData.items.simpleitem, items);
+        consumableItemsCalculation.createConsumableItems(currentData.items.consumableitem, items);
+        materialItemsCalculation.createMaterialItems(currentData.items.simpleitem, items)
         items.language = {...items.language, ...languageData.data};
         items.date = githubCommitDate;
 
@@ -146,9 +127,9 @@ const fetchAllData = async (githubCommitDate) => {
             .then(() => logger.info('Data is refreshed/written'))
             .catch(err => logger.error(`Node JS file writing error: ${err}`));
 
-    } else if (!itemData && Object.keys(languageData.data).length > 0) {
+    } else if (!currentData && Object.keys(languageData.data).length > 0) {
         throw new Error('NO_ITEMS_AND_NAMES_FETCHED');
-    } else if (!itemData) {
+    } else if (!currentData) {
         throw new Error('NO_ITEMS_FETCHED');
     } else {
         throw new Error('NO_NAMES_FETCHED');
@@ -164,10 +145,10 @@ const startCycle = async (githubCommitDate) => {
     await fs.readFile('./data.txt', 'utf-8')
         .then((data) => {
             if (data) {
-                itemsData.currentData = {...JSON.parse(data)};
+                itemStorage.currentData = {...JSON.parse(data)};
             }
 
-            if (itemsData.currentData.date !== githubCommitDate) {
+            if (itemStorage.currentData.date !== githubCommitDate) {
                 return fetchAllData(githubCommitDate)
                     .then(() => appRouter.resendDateInfo())
                     .then(() => startCycle(githubCommitDate))
@@ -230,6 +211,18 @@ const fetchToWakeUpServer = async () => {
 
 fetchToWakeUpServer()
     .catch(err => logger.error(`Catching waking up fetches errors: ${err}`));
+
+// const memoryUsage = process.memoryUsage();
+// console.log(memoryUsage)
+
+// 02.12.2024 убрал из классов хранение объектов
+// {
+//     rss: 62480384,
+//     heapTotal: 37027840,
+//     heapUsed: 22638216,
+//     external: 4713253,
+//     arrayBuffers: 431920
+// }
 
 app.use(appRouter.router);
 

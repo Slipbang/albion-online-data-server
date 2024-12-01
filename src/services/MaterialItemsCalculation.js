@@ -1,7 +1,4 @@
-export class MaterialItems {
-    constructor(data) {
-        this.data = data;
-    }
+export class MaterialItemsCalculation {
 
     _buildingResourceObjectHandler(resource, obj) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');
@@ -9,13 +6,15 @@ export class MaterialItems {
 
     }
 
-    createMaterialItems(category, items,) {
-        for (let item of this.data) {
+    _MATERIAL_CATEGORIES = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
+
+    createMaterialItems(data, items) {
+        for (let item of data) {
             const shopsubcategory1 = item['@shopsubcategory1'];
             let ID = item['@uniquename'];
             const isResource = '@resourcetype' in item;
             const resourceTierAllowed = isResource ? 4 : 3;
-            if (!category.includes(shopsubcategory1) || ID.includes('_LEVEL') || +item['@tier'] < resourceTierAllowed) continue;
+            if (!this._MATERIAL_CATEGORIES.includes(shopsubcategory1) || ID.includes('_LEVEL') || +item['@tier'] < resourceTierAllowed) continue;
             const obj = {
                 itemId: ID,
             }
