@@ -14,7 +14,7 @@ const TGBot = new TelegramBot({botToken: tgToken, chatId: CHAT_ID});
 const customFormat = winston.format.printf(({ level, message, timestamp }) => {
     return `${timestamp} [${level.toUpperCase()}]: ${message}`;
 });
-export const logger = winston.createLogger({
+const winstonConfiguration = {
     level: 'info',
     format: winston.format.combine(
         winston.format.timestamp(),
@@ -35,4 +35,8 @@ export const logger = winston.createLogger({
         }),
         TGBot,
     ]
-})
+}
+
+export {
+    winstonConfiguration,
+}

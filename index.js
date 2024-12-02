@@ -1,10 +1,6 @@
 import express from 'express';
 import {existsSync} from 'fs';
-import {logger} from "./src/services/instances/loggerInstance.js";
-import {fetchAODGithubReposData} from "./src/services/processes/fetchAODGithubReposData.js";
-import {startWorkingCycle} from "./src/services/processes/startWorkingCycle.js";
-import {fetchToWakeUpServer} from "./src/services/processes/fetchToWakeUpServer.js";
-import {appRouter} from "./src/services/instances/appRouterInstance.js";
+import {AppController} from "./src/routes/index.js";
 
 if (existsSync('.env')) {
     const {config} = await import('dotenv');
@@ -13,24 +9,25 @@ if (existsSync('.env')) {
 
 const port = process.env.PORT || 4000;
 
+const appController = new AppController();
 const app = express();
 
-const githubCommitDate = await fetchAODGithubReposData();
+const githubCommitDate = await appController.fetchAODGithubReposData();
 
 if (githubCommitDate) {
-    startWorkingCycle(githubCommitDate)
-        .catch(err => logger.error(`An error occurred in startWorkingCycle: ${err}`));
+    appController.startWorkingCycle(githubCommitDate)
+        .catch(err => appController.logger.error(`An error occurred in startWorkingCycle: ${err}`));
 } else {
-    logger.error(`No gitHub date fetched`);
+    appController.logger.error(`No gitHub date fetched`);
 }
 
-fetchToWakeUpServer()
-    .catch(err => logger.error(`Catching waking up fetches errors: ${err}`));
+appController.fetchToWakeUpServer()
+    .catch(err => appController.logger.error(`Catching waking up fetches errors: ${err}`));
 
 // const memoryUsage = process.memoryUsage();
 // console.log(memoryUsage)
 
-// 02.12.2024 убрал из классов хранение объектов
+// 02.12.2024 убрал из конфиг классов хранение объектов
 // {
 //     rss: 62480384,
 //     heapTotal: 37027840,
@@ -39,8 +36,8 @@ fetchToWakeUpServer()
 //     arrayBuffers: 431920
 // }
 
-app.use(appRouter.router);
+app.use(appController.router);
 
 app.listen(port, () => {
-    logger.info(`Server started on port: ${port}`);
+    appController.logger.info(`Server started on port: ${port}`);
 })

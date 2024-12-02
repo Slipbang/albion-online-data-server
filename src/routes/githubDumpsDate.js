@@ -2,11 +2,11 @@ import express from 'express';
 import {DateController} from "../controllers/githubDumpsDate.js";
 import cors from "cors";
 
-const dateRouter = (currentDate, clients) => {
+const dateRouter = (itemStorage, clients) => {
     const router = express.Router();
 
     router.use(cors());
-    router.get('/', (req, res) => DateController.getDate(req,res, currentDate, clients));
+    router.get('/', (req, res) => DateController.getDate(req,res, itemStorage, clients));
 
     return router;
 }

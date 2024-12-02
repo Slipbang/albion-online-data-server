@@ -1,4 +1,3 @@
-//import {exec} from 'child_process';
 import * as fs from 'fs';
 import TelegramApi from 'node-telegram-bot-api';
 import TransportStream from "winston-transport";
@@ -12,7 +11,6 @@ export class TelegramBot extends TransportStream{
 
         this.bot.setMyCommands([
             {command: '/start', description: 'Приветствие'},
-            // {command: '/restart_server', description: 'Перезапустить сервер'},
             {command: '/server_logs', description: 'Логи сервера'},
             {command: '/server_errors', description: 'Ошибки сервера'},
         ])
@@ -30,27 +28,6 @@ export class TelegramBot extends TransportStream{
                             return this.bot.sendMessage(chatId, `Данный бот предназначен для технического обслуживания сервера Albion-Toolkit.`);
                         }
                     }
-                    // case '/restart_server': {
-                    //     if (this.ADMIN_CHAT_ID === chatId) {
-                    //         return exec('npm restart', (error, stdout, stderr) => {
-                    //             if (error) {
-                    //                 console.error(`Ошибка: ${error.message}`);
-                    //                 this.bot.sendMessage(chatId, `Ошибка при перезапуске: ${error.message}`);
-                    //                 return;
-                    //             }
-                    //
-                    //             if (stderr) {
-                    //                 console.error(`Ошибка: ${stderr}`);
-                    //                 this.bot.sendMessage(chatId, `Ошибка при перезапуске: ${stderr}`);
-                    //                 return;
-                    //             }
-                    //
-                    //             return this.bot.sendMessage(chatId, 'Приложение успешно перезапущено.');
-                    //         });
-                    //     } else {
-                    //         return this.bot.sendMessage(chatId, `Доступно только для админа`);
-                    //     }
-                    // }
                     case '/server_logs': {
                         if (this.ADMIN_CHAT_ID === chatId) {
 

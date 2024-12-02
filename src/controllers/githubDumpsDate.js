@@ -1,5 +1,5 @@
 export class DateController {
-    static getDate(req, res, dataInstance, clients) {
+    static getDate(req, res, itemStorage, clients) {
         res.setHeader('Content-Type', 'text/event-stream');
         res.setHeader('Cache-Control', 'no-cache');
         res.setHeader('Connection', 'keep-alive');
@@ -7,8 +7,8 @@ export class DateController {
         clients.push(res);
 
         const versionMeta = {
-            githubCommitDate: dataInstance.currentData.githubCommitDate,
-            appVersion: dataInstance.currentData.appVersion,
+            githubCommitDate: itemStorage.currentData.githubCommitDate,
+            appVersion: itemStorage.currentData.appVersion,
         }
 
         res.write(`data: ${JSON.stringify(versionMeta)}\n\n`);
