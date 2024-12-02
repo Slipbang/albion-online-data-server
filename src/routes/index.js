@@ -9,7 +9,7 @@ export class AppRouter {
         this.clients = [];
 
         this.data = dataRef;
-        this.router.use('/date', dateRouter(this.data, this.clients));
+        this.router.use('/ctrlinfo', dateRouter(this.data, this.clients));
         this.router.use('/data', dataRouter(this.data));
         this.router.use('/webdevmanual', manualRouter);
     }

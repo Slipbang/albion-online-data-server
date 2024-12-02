@@ -25,6 +25,7 @@ const LOCALIZATION_URL = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps
 const GITHUB_API_URL = 'https://api.github.com/repos/ao-data/ao-bin-dumps/commits';
 const CURRENT_SERVER_URL = 'https://albion-online-data-server.onrender.com/data';
 
+const appVersion = process.env.APP_VERSION;
 const tgToken = process.env.TELEGRAM_TOKEN;
 const CHAT_ID = +process.env.CHAT_ID;
 const TGBot = new TelegramBot({botToken: tgToken, chatId: CHAT_ID});
@@ -121,7 +122,8 @@ const fetchAllData = async (githubCommitDate) => {
         consumableItemsCalculation.createConsumableItems(currentData.items.consumableitem, items);
         materialItemsCalculation.createMaterialItems(currentData.items.simpleitem, items)
         items.language = {...items.language, ...languageData.data};
-        items.date = githubCommitDate;
+        items.githubCommitDate = githubCommitDate;
+        items.appVersion = appVersion;
 
         await fs.writeFile('./data.txt', JSON.stringify(items))
             .then(() => logger.info('Data is refreshed/written'))

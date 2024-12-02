@@ -6,7 +6,12 @@ export class DateController {
 
         clients.push(res);
 
-        res.write(`data: ${dataInstance.currentData.date}\n\n`);
+        const versionMeta = {
+            githubCommitDate: dataInstance.currentData.githubCommitDate,
+            appVersion: dataInstance.currentData.appVersion,
+        }
+
+        res.write(`data: ${JSON.stringify(versionMeta)}\n\n`);
 
         req.on('close', () => {
             clients.splice(clients.indexOf(res), 1);

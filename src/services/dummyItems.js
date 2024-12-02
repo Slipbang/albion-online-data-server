@@ -1,5 +1,6 @@
 export const dummyItems = {
-    date: '',
+    githubCommitDate: '',
+    appVersion: '',
     craftItems: {
         "MAIN": [],
         "2H": [],
