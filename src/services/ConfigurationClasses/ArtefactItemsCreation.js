@@ -1,5 +1,4 @@
-export class ArtefactItemsCalculation {
-
+export class ArtefactItemsCreation {
 
     _defineArtefactType_Value (artefactId, artefactData) {
         const requiredArtefact = artefactData?.find(artefact => artefact["@uniquename"].includes(artefactId));

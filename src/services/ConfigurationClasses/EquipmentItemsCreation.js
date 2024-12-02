@@ -1,6 +1,6 @@
-import {ArtefactItemsCalculation} from "./ArtefactItemsCalculation.js";
+import {ArtefactItemsCreation} from "./ArtefactItemsCreation.js";
 
-export class EquipmentItemsCalculation extends ArtefactItemsCalculation{
+export class EquipmentItemsCreation extends ArtefactItemsCreation{
 
     _buildingResourceObjectHandler(resource, itemCategory, items, obj, artefactsData) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');

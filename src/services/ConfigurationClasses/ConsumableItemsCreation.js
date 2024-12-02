@@ -1,4 +1,4 @@
-export class ConsumableItemsCalculation {
+export class ConsumableItemsCreation {
 
     _buildConsumableResourceObjectHandler (resource, obj) {
         const special = ['T1_FISHSAUCE_LEVEL1', 'T1_ALCHEMY_EXTRACT_LEVEL1'];

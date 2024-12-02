@@ -1,4 +1,4 @@
-export class MaterialItemsCalculation {
+export class MaterialItemsCreation {
 
     _buildingResourceObjectHandler(resource, obj) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');
