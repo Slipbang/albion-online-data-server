@@ -165,6 +165,10 @@ export class EquipmentItemsCalculation extends ArtefactItemsCalculation{
         'woodgatherer_helmet', 'woodgatherer_armor', 'woodgatherer_shoes'
     ];
 
+    _FORBIDDEN = [/_ROYAL/]; // РЕГУЛЯРКИ!!!
+
+    _hasForbiddenParts = (ID) => this._FORBIDDEN.some(pattern => pattern.test(ID));
+
     createItems(data, artefactsData, items) {
         for (let item of data) {
             if ('craftingrequirements' in item) {
@@ -172,7 +176,8 @@ export class EquipmentItemsCalculation extends ArtefactItemsCalculation{
                 let ID = item['@uniquename'];
                 const bodyId = ID.split('_').filter((_, index) => index > 1).join('_') || ID.split('_').filter((_, index) => index > 0).join('_');
                 let itemCategory = ID.split('_')[1];
-                if (item['@tier'] !== '4' || !this._EQUIPMENT_CATEGORIES.includes(shopsubcategory1) || !this._ITEM_TYPES.includes(itemCategory) || (ID.includes('TOOL') && ID.includes('AVALON'))) continue;
+
+                if (this._hasForbiddenParts(ID) || item['@tier'] !== '4' || !this._EQUIPMENT_CATEGORIES.includes(shopsubcategory1) || !this._ITEM_TYPES.includes(itemCategory) || (ID.includes('TOOL') && ID.includes('AVALON'))) continue;
                 const craftResources = item.craftingrequirements?.[0]?.['craftresource'] || item.craftingrequirements?.['craftresource'];
                 if (craftResources) {
                     const {itemType, itemClass} = this._defineAOTItemParams(shopsubcategory1, ID);
