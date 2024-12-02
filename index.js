@@ -150,7 +150,7 @@ const startCycle = async (githubCommitDate) => {
                 itemStorage.currentData = {...JSON.parse(data)};
             }
 
-            if (itemStorage.currentData.date !== githubCommitDate) {
+            if (itemStorage.currentData.githubCommitDate !== githubCommitDate) {
                 return fetchAllData(githubCommitDate)
                     .then(() => appRouter.resendDateInfo())
                     .then(() => startCycle(githubCommitDate))
