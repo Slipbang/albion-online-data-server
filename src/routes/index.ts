@@ -2,7 +2,7 @@ import express, {Router, Response} from 'express';
 import winston from "winston";
 
 import manualRouter from "./manualWebdev";
-import dataRouter from './appData.ts';
+import dataRouter from './appData';
 import dateRouter from "./githubDumpsDate";
 import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage";
 import {startWorkingCycle} from "../services/processes/startWorkingCycle";
