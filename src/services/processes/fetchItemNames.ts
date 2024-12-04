@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
-import {AppController} from "../../routes/index";
-import {TaodLanguage} from "../../types/AODPLanguage";
+import {AppController} from "../../routes/index.js";
+import {TaodLanguage} from "../../types/AODPLanguage.js";
 
 const LOCALIZATION_URL = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
 

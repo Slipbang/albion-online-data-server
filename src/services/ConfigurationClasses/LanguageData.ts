@@ -1,4 +1,4 @@
-import {TLocalizedNames} from "../../types/AODPLanguage";
+import {TLocalizedNames} from "../../types/AODPLanguage.js";
 
 type TMainLanguages = 'ru' | 'en';
 

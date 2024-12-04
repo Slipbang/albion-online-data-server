@@ -1,6 +1,6 @@
-import {ArtefactItemsCreation} from "./ArtefactItemsCreation";
-import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems";
-import {IAppItems, TCraftItem, TCraftItemsTypes, TResourceType} from "../dummyItems";
+import {ArtefactItemsCreation} from "./ArtefactItemsCreation.js";
+import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.js";
+import {IAppItems, TCraftItem, TCraftItemsTypes, TResourceType} from "../dummyItems.js";
 
 export class EquipmentItemsCreation extends ArtefactItemsCreation{
 
