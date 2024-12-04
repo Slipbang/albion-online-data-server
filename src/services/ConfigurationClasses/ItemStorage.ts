@@ -1,4 +1,4 @@
-import {IAppItems} from "../dummyItems.js";
+import {IAppItems} from "../dummyItems.ts";
 
 export class ItemStorage {
     protected _currentData: IAppItems;

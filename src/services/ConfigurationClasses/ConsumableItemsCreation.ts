@@ -1,5 +1,5 @@
-import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.js";
-import {IAppItems, TConsumableCraftItem, TConsumableTypes} from "../dummyItems.js";
+import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.ts";
+import {IAppItems, TConsumableCraftItem, TConsumableTypes} from "../dummyItems.ts";
 
 export class ConsumableItemsCreation {
 

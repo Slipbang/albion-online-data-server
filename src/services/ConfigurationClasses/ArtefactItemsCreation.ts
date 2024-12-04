@@ -1,5 +1,5 @@
-import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.js";
-import {IAppItems, TArtefactClasses, TArtefactTypes, TCraftItem, TCraftItemsTypes} from "../dummyItems.js";
+import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.ts";
+import {IAppItems, TArtefactClasses, TArtefactTypes, TCraftItem, TCraftItemsTypes} from "../dummyItems.ts";
 
 type TArtefacts = {
     [key in TCraftItemsTypes]: {

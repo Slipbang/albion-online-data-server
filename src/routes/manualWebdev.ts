@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from "cors";
-import {ManualWebdev} from "../controllers/manualWebdev.js";
+import {ManualWebdev} from "../controllers/manualWebdev.ts";
 import path from "path";
 import { fileURLToPath } from 'url';
 

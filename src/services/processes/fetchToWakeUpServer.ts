@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import {AppController} from "../../routes/index.js";
+import {AppController} from "../../routes/index.ts";
 
 const CURRENT_SERVER_URL = 'https://albion-online-data-server.onrender.com/data';
 

@@ -1,5 +1,5 @@
-import {IaodItems, ICraftResourceItem} from "../../types/AODPItems.js";
-import {IAppItems, TMaterial, TResourceType} from "../dummyItems.js";
+import {IaodItems, ICraftResourceItem} from "../../types/AODPItems.ts";
+import {IAppItems, TMaterial, TResourceType} from "../dummyItems.ts";
 
 export class MaterialItemsCreation {
 

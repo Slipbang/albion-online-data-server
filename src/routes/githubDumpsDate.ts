@@ -1,8 +1,8 @@
 import express from 'express';
-import {DateController} from "../controllers/githubDumpsDate.js";
+import {DateController} from "../controllers/githubDumpsDate.ts";
 import cors from "cors";
 import {SSEClients} from "./index";
-import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.js";
+import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.ts";
 
 const dateRouter = (itemStorage: ItemStorage, clients: SSEClients) => {
     const router = express.Router();

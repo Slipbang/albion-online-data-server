@@ -1,19 +1,19 @@
 import express, {Router, Response} from 'express';
 import winston from "winston";
 
-import manualRouter from "./manualWebdev.js";
-import dataRouter from './appData.js';
-import dateRouter from "./githubDumpsDate.js";
-import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.js";
-import {startWorkingCycle} from "../services/processes/startWorkingCycle.js";
-import {fetchAllData} from "../services/processes/fetchAllData.js";
-import {fetchItems} from "../services/processes/fetchItems.js";
-import {fetchItemNames} from "../services/processes/fetchItemNames.js";
-import {fetchAODGithubReposData} from "../services/processes/fetchAODGithubReposData.js";
-import {fetchToWakeUpServer} from "../services/processes/fetchToWakeUpServer.js";
+import manualRouter from "./manualWebdev.ts";
+import dataRouter from './appData.ts';
+import dateRouter from "./githubDumpsDate.ts";
+import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.ts";
+import {startWorkingCycle} from "../services/processes/startWorkingCycle.ts";
+import {fetchAllData} from "../services/processes/fetchAllData.ts";
+import {fetchItems} from "../services/processes/fetchItems.ts";
+import {fetchItemNames} from "../services/processes/fetchItemNames.ts";
+import {fetchAODGithubReposData} from "../services/processes/fetchAODGithubReposData.ts";
+import {fetchToWakeUpServer} from "../services/processes/fetchToWakeUpServer.ts";
 
-import {LanguageData} from "../services/ConfigurationClasses/LanguageData.js";
-import {winstonConfiguration} from "../services/tgBot_winstonConfig/winstonConfiguration.js";
+import {LanguageData} from "../services/ConfigurationClasses/LanguageData.ts";
+import {winstonConfiguration} from "../services/tgBot_winstonConfig/winstonConfiguration.ts";
 
 export type SSEClients = Response[];
 

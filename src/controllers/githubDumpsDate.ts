@@ -1,6 +1,6 @@
-import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.js";
+import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.ts";
 import { Response, Request } from 'express';
-import {SSEClients} from "../routes/index.js";
+import {SSEClients} from "../routes/index.ts";
 
 export class DateController {
     static getDate(req: Request, res: Response, itemStorage: ItemStorage, clients: SSEClients) {
