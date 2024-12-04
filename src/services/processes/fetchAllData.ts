@@ -4,6 +4,8 @@ import {EquipmentItemsCreation} from "../ConfigurationClasses/EquipmentItemsCrea
 import {ConsumableItemsCreation} from "../ConfigurationClasses/ConsumableItemsCreation.js";
 import {MaterialItemsCreation} from "../ConfigurationClasses/MaterialItemsCreation.js";
 import {existsSync} from "fs";
+import {AppController} from "../../routes/index.js";
+import {I_AOD_JSON_DATA} from "../../types/AODPItems.js";
 
 if (existsSync('.env')) {
     const {config} = await import('dotenv');
@@ -13,8 +15,8 @@ if (existsSync('.env')) {
 const ITEMS_URL = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/items.json';
 const appVersion = process.env.APP_VERSION;
 
-export const fetchAllData = async function (githubCommitDate) {
-    const [receivedData] = await Promise.all([this.fetchItems(ITEMS_URL), this.fetchItemNames()]);
+export const fetchAllData = async function (this: AppController, githubCommitDate: string) {
+    const [receivedData] = await Promise.all([this.fetchItems(ITEMS_URL), this.fetchItemNames()]) as [I_AOD_JSON_DATA, void];
 
     if (receivedData && Object.keys(this.languageData.data).length > 0) {
         const equipmentItemData = [

@@ -2,21 +2,29 @@
   "name": "albion-online-data-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start:dev": "node --loader ts-node/esm src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.1",
+    "@types/node-telegram-bot-api": "^0.64.7",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "node-fetch": "^3.3.2",
     "node-telegram-bot-api": "^0.66.0",
     "pm2": "^5.4.2",
-    "winston": "^3.17.0",
-    "winston-transport": "^4.9.0"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2",
+    "winston": "^3.8.2",
+    "winston-transport": "^4.5.0"
   },
   "devDependencies": {
     "dotenv": "^16.4.5"

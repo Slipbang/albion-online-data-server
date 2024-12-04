@@ -1,6 +1,6 @@
 import express from 'express';
 import {existsSync} from 'fs';
-import {AppController} from "./src/routes/index.js";
+import {AppController} from "./routes/index.js";
 
 if (existsSync('.env')) {
     const {config} = await import('dotenv');
@@ -27,14 +27,15 @@ appController.fetchToWakeUpServer()
 // const memoryUsage = process.memoryUsage();
 // console.log(memoryUsage)
 
-// 02.12.2024 убрал из конфиг классов хранение объектов
+// 03.12.2024
 // {
-//     rss: 62480384,
-//     heapTotal: 37027840,
-//     heapUsed: 22638216,
-//     external: 4713253,
-//     arrayBuffers: 431920
+//     rss: 66084864,
+//     heapTotal: 38076416,
+//     heapUsed: 22029040,
+//     external: 5003967,
+//     arrayBuffers: 366383
 // }
+
 
 app.use(appController.router);
 

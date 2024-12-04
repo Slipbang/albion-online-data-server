@@ -1,8 +1,9 @@
 import fetch from "node-fetch";
+import {AppController} from "../../routes/index.js";
 
 const CURRENT_SERVER_URL = 'https://albion-online-data-server.onrender.com/data';
 
-export const fetchToWakeUpServer = async function () {
+export const fetchToWakeUpServer = async function (this: AppController) {
     try {
         let response = await fetch(CURRENT_SERVER_URL);
     } catch (err) {

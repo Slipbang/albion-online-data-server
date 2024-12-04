@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
 import {existsSync} from "fs";
+import {AppController} from "../../routes/index.js";
+import {TGithubApiTypes} from "../../types/githubApiTypes";
 
 if (existsSync('.env')) {
     const {config} = await import('dotenv');
@@ -9,7 +11,7 @@ if (existsSync('.env')) {
 const GITHUB_API_URL = 'https://api.github.com/repos/ao-data/ao-bin-dumps/commits';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-export const fetchAODGithubReposData = async function () {
+export const fetchAODGithubReposData = async function (this: AppController) {
     try {
         const response = await fetch(GITHUB_API_URL, {
             method: "GET",
@@ -18,10 +20,10 @@ export const fetchAODGithubReposData = async function () {
                 "Content-Type": "application/json",
             },
         });
-        const githubData = await response.json();
+        const githubData = await response.json() as TGithubApiTypes;
         return githubData[0]['commit']['author']['date'];
     } catch (err) {
-        this.logger.error(`Github API error: ${err}`);
+        console.error(`Github API error: ${err}`);
         return null;
     }
 }
