@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-import {AppController} from "../../routes/index.ts";
+import {AppController} from "../../routes/index";
 
 export const startWorkingCycle = async function (this: AppController, githubCommitDate: string,) {
     if (!githubCommitDate) {

@@ -1,11 +1,11 @@
-import {dummyItems} from "../dummyItems.ts";
+import {dummyItems} from "../dummyItems";
 import fs from "fs/promises";
-import {EquipmentItemsCreation} from "../ConfigurationClasses/EquipmentItemsCreation.ts";
-import {ConsumableItemsCreation} from "../ConfigurationClasses/ConsumableItemsCreation.ts";
-import {MaterialItemsCreation} from "../ConfigurationClasses/MaterialItemsCreation.ts";
+import {EquipmentItemsCreation} from "../ConfigurationClasses/EquipmentItemsCreation";
+import {ConsumableItemsCreation} from "../ConfigurationClasses/ConsumableItemsCreation";
+import {MaterialItemsCreation} from "../ConfigurationClasses/MaterialItemsCreation";
 import {existsSync} from "fs";
-import {AppController} from "../../routes/index.ts";
-import {I_AOD_JSON_DATA} from "../../types/AODPItems.ts";
+import {AppController} from "../../routes/index";
+import {I_AOD_JSON_DATA} from "../../types/AODPItems";
 
 if (existsSync('.env')) {
     const {config} = await import('dotenv');

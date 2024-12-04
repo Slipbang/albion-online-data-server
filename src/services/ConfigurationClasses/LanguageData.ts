@@ -1,4 +1,4 @@
-import {TLocalizedNames} from "../../types/AODPLanguage.ts";
+import {TLocalizedNames} from "../../types/AODPLanguage";
 
 type TMainLanguages = 'ru' | 'en';
 

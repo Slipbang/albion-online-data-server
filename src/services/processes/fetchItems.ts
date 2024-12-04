@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import {AppController} from "../../routes/index.ts";
+import {AppController} from "../../routes/index";
 
 export const fetchItems = async function (this: AppController, itemsUrl: string) {
     try {

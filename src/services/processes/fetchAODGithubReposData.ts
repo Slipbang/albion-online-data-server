@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import {existsSync} from "fs";
-import {AppController} from "../../routes/index.ts";
-import {TGithubApiTypes} from "../../types/githubApiTypes.ts";
+import {AppController} from "../../routes/index";
+import {TGithubApiTypes} from "../../types/githubApiTypes";
 
 if (existsSync('.env')) {
     const {config} = await import('dotenv');

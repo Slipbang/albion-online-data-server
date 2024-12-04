@@ -1,7 +1,7 @@
 import express from 'express';
-import {DataController} from "../controllers/appData.ts";
+import {DataController} from "../controllers/appData";
 import cors from 'cors';
-import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.ts";
+import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage";
 
 const dataRouter = (itemStorage: ItemStorage) => {
     const router = express.Router();

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.ts";
+import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage";
 
 export class DataController {
     static getData(req: Request, res: Response, itemStorage: ItemStorage) {
