@@ -1,6 +1,6 @@
 import express from 'express';
 import {existsSync} from 'fs';
-import {AppController} from "./routes/index.ts";
+import {AppController} from "./routes/index";
 
 if (existsSync('.env')) {
     const {config} = await import('dotenv');
