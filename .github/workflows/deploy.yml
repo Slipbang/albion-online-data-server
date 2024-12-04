@@ -1,0 +1,24 @@
+name: Build and Deploy Site
+
+on:
+  push:
+    branches:
+      - master  # Укажите ветку, при пуше в которую будет запускаться workflow
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # Используем Ubuntu для запуска
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3  # Клонируем репозиторий
+
+    - name: Install dependencies
+      run: npm install 
+      
+    - name: Build the project
+      run: npm run build  
+
+
+    - name: Start the server
+      run: npm start у
