@@ -1,11 +1,13 @@
 import fetch from "node-fetch";
+import {AppController} from "../../routes/index.js";
+import {TaodLanguage} from "../../types/AODPLanguage.js";
 
 const LOCALIZATION_URL = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/refs/heads/master/formatted/items.json';
 
-export const fetchItemNames = async function () {
+export const fetchItemNames = async function (this: AppController) {
     try {
         let response = await fetch(LOCALIZATION_URL);
-        const data = await response.json();
+        const data = await response.json() as TaodLanguage;
 
         for (let item of data) {
             this.languageData.addLanguageItem(item);

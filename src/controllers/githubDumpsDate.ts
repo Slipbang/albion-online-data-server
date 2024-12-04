@@ -1,5 +1,9 @@
+import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.js";
+import { Response, Request } from 'express';
+import {SSEClients} from "../routes/index.js";
+
 export class DateController {
-    static getDate(req, res, itemStorage, clients) {
+    static getDate(req: Request, res: Response, itemStorage: ItemStorage, clients: SSEClients) {
         res.setHeader('Content-Type', 'text/event-stream');
         res.setHeader('Cache-Control', 'no-cache');
         res.setHeader('Connection', 'keep-alive');

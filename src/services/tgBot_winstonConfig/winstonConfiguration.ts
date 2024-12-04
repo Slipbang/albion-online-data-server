@@ -1,6 +1,7 @@
-import winston from "winston";
+import {format, LoggerOptions, transports} from "winston";
 import {TelegramBot} from "../../api/TelegramBot.js";
 import {existsSync} from "fs";
+import TransportStream from "winston-transport";
 
 if (existsSync('.env')) {
     const {config} = await import('dotenv');
@@ -8,32 +9,32 @@ if (existsSync('.env')) {
 }
 
 const tgToken = process.env.TELEGRAM_TOKEN;
-const CHAT_ID = +process.env.CHAT_ID;
-const TGBot = new TelegramBot({botToken: tgToken, chatId: CHAT_ID});
+const CHAT_ID = Number(process.env.CHAT_ID);
+const TGBot = new TelegramBot({botToken: tgToken!, chatId: CHAT_ID!});
 
-const customFormat = winston.format.printf(({ level, message, timestamp }) => {
+const customFormat = format.printf(({ level, message, timestamp }) => {
     return `${timestamp} [${level.toUpperCase()}]: ${message}`;
 });
-const winstonConfiguration = {
+const winstonConfiguration: LoggerOptions = {
     level: 'info',
-    format: winston.format.combine(
-        winston.format.timestamp(),
+    format: format.combine(
+        format.timestamp(),
         customFormat
     ),
     transports: [
-        new winston.transports.Console(),
-        new winston.transports.File({
+        new transports.Console(),
+        new transports.File({
             filename: 'combined.log',
             maxsize: 200000,
             maxFiles: 1,
         }),
-        new winston.transports.File({
+        new transports.File({
             filename: 'error.log',
             level: 'error',
             maxsize: 200000,
             maxFiles: 1,
         }),
-        TGBot,
+        TGBot as TransportStream,
     ]
 }
 

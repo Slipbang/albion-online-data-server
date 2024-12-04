@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
-// import {logger} from "../instances/loggerInstance.js";
+import {AppController} from "../../routes/index.js";
 
-export const fetchItems = async function (itemsUrl) {
+export const fetchItems = async function (this: AppController, itemsUrl: string) {
     try {
         const response = await fetch(itemsUrl);
         return await response.json();

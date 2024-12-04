@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Router, Response} from 'express';
 import winston from "winston";
 
 import manualRouter from "./manualWebdev.js";
@@ -15,7 +15,15 @@ import {fetchToWakeUpServer} from "../services/processes/fetchToWakeUpServer.js"
 import {LanguageData} from "../services/ConfigurationClasses/LanguageData.js";
 import {winstonConfiguration} from "../services/tgBot_winstonConfig/winstonConfiguration.js";
 
+export type SSEClients = Response[];
+
 export class AppController {
+    public router: Router;
+    public logger: winston.Logger;
+    public itemStorage: ItemStorage;
+    public languageData: LanguageData;
+    protected clients: SSEClients;
+
     constructor() {
         this.router = express.Router();
         this.logger = winston.createLogger(winstonConfiguration);
@@ -31,7 +39,11 @@ export class AppController {
     resendDateInfo() {
         if (this.clients.length) {
             this.clients.forEach((client) => {
-                client.write(`data: ${this.itemStorage.currentData.date}\n\n`);
+                const versionMeta = {
+                    githubCommitDate: this.itemStorage.currentData.githubCommitDate,
+                    appVersion: this.itemStorage.currentData.appVersion,
+                }
+                client.write(`data: ${JSON.stringify(versionMeta)}\n\n`);
             });
         }
     }

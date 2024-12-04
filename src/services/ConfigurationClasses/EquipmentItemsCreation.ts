@@ -1,31 +1,35 @@
 import {ArtefactItemsCreation} from "./ArtefactItemsCreation.js";
+import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.js";
+import {IAppItems, TCraftItem, TCraftItemsTypes, TResourceType} from "../dummyItems.js";
 
 export class EquipmentItemsCreation extends ArtefactItemsCreation{
 
-    _buildingResourceObjectHandler(resource, itemCategory, items, obj, artefactsData) {
+    _buildingResourceObjectHandler(resource: ICraftResourceItem, itemCategory: TCraftItemsTypes, items: IAppItems, itemObj: TCraftItem, artefactsData: IaodItems['simpleitem']) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');
         if (resourceId.includes('ARTEFACT')) {
-            this.createArtefactItem_Obj_Handler(items, obj, resourceId, resource, itemCategory, artefactsData)
+            this.createArtefactItem_Obj_Handler(items, itemObj, resourceId, itemCategory, artefactsData);
         } else if (resourceId.includes('SKILLBOOK_STANDARD')) {
-            obj.artefactItemId = resource['@uniquename'];
+            itemObj.artefactItemId = resource['@uniquename'];
         } else {
-            obj[resourceId] = +resource['@count'];
-            obj.foodConsumption += +resource['@count'] * 1.8;
+            itemObj[resourceId as TResourceType] = +resource['@count'];
+            itemObj.foodConsumption += +resource['@count'] * 1.8;
         }
     }
 
-    _defineAOTItemParams(shopsubcategory1, id) {
+    _defineAOTItemParams(shopsubcategory1: string, id: string) {
         if (shopsubcategory1.includes('_')) {
-            const [materialType, itemType] = shopsubcategory1.split('_');
+            const [materialType, itemType] = shopsubcategory1.split('_') as [string, string];
             const itemClasses = {
                 plate: 'warrior',
                 cloth: 'mage',
                 leather: 'hunter',
             }
+            type MaterialType = keyof typeof itemClasses;
+
             if (materialType in itemClasses) {
                 return {
                     itemType,
-                    itemClass: itemClasses[materialType],
+                    itemClass: itemClasses[materialType as MaterialType],
                 }
             }
         }
@@ -77,7 +81,7 @@ export class EquipmentItemsCreation extends ArtefactItemsCreation{
                 }
 
             case 'torch': {
-                const params = {itemType: 'offHand'}
+                const params: {itemType: string, itemClass?: string} = {itemType: 'offHand'}
                 if (id.includes('CENSER_AVALON')) {
                     params.itemClass = 'mage';
                 } else {
@@ -167,26 +171,26 @@ export class EquipmentItemsCreation extends ArtefactItemsCreation{
 
     _FORBIDDEN = [/_ROYAL/]; // РЕГУЛЯРКИ!!!
 
-    _hasForbiddenParts = (ID) => this._FORBIDDEN.some(pattern => pattern.test(ID));
+    _hasForbiddenParts = (ID: string) => this._FORBIDDEN.some(pattern => pattern.test(ID));
 
-    createItems(data, artefactsData, items) {
+    createItems(data: IaodItems['weapon'], artefactsData: IaodItems['simpleitem'], items: IAppItems) {
         for (let item of data) {
             if ('craftingrequirements' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'];
                 let ID = item['@uniquename'];
                 const bodyId = ID.split('_').filter((_, index) => index > 1).join('_') || ID.split('_').filter((_, index) => index > 0).join('_');
-                let itemCategory = ID.split('_')[1];
+                let itemCategory = ID.split('_')[1] as TCraftItemsTypes;
 
                 if (this._hasForbiddenParts(ID) || item['@tier'] !== '4' || !this._EQUIPMENT_CATEGORIES.includes(shopsubcategory1) || !this._ITEM_TYPES.includes(itemCategory) || (ID.includes('TOOL') && ID.includes('AVALON'))) continue;
-                const craftResources = item.craftingrequirements?.[0]?.['craftresource'] || item.craftingrequirements?.['craftresource'];
+                const craftResources = (item.craftingrequirements as ICraftingRequirements[])?.[0]?.['craftresource'] || (item.craftingrequirements as ICraftingRequirements)?.['craftresource'];
                 if (craftResources) {
                     const {itemType, itemClass} = this._defineAOTItemParams(shopsubcategory1, ID);
-                    const obj = {
+                    const obj: TCraftItem = {
                         itemId: bodyId,
                         itemNode: shopsubcategory1,
                         foodConsumption: 0,
-                        itemType,
-                        itemClass,
+                        itemType: itemType!,
+                        itemClass: itemClass!,
                         itemExample: this._ITEM_EXAMPLES[itemCategory]?.includes(bodyId) || false,
                     }
 

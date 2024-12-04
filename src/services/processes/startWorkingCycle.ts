@@ -1,11 +1,12 @@
 import fs from "fs/promises";
+import {AppController} from "../../routes/index.js";
 
-export const startWorkingCycle = async function (githubCommitDate) {
+export const startWorkingCycle = async function (this: AppController, githubCommitDate: string,) {
     if (!githubCommitDate) {
         this.logger.info('No gitHub date fetched');
         return;
     }
-
+    const newGithubCommitDate = this.fetchAODGithubReposData();
     await fs.readFile('./data.txt', 'utf-8')
         .then((data) => {
             if (data) {
