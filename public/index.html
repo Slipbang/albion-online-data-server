@@ -22775,7 +22775,7 @@ someMethod() {
 
                 <section>
                     <div>
-                        <p>Для того чтобы предоставить хранилище всему React приложению, в index.ts файле (где
+                        <p>Для того чтобы предоставить хранилище всему React приложению, в index.js файле (где
                             отображается
                             корневой
                             компонент приложения) нужно импортировать {Provider} из "react-redux" и обернуть им корневой
@@ -23283,7 +23283,7 @@ export default store;
                             где
                             "someUrlName" это предполагаемый энд-поинт который будет выводить пользователя на компонент
                             который
-                            разработчик поместит между < Router>< Some Component>< /Router>. Далее требуется в index.ts
+                            разработчик поместит между < Router>< Some Component>< /Router>. Далее требуется в index.js
                             импортировать компонент {BrowserRouter} из "react-router-dom" и обернуть им App
                             компонент:</p>
                         <pre>
@@ -28138,7 +28138,7 @@ module.exports = {
     favoriteNumber
 }
 
-// index.ts
+// index.js
 const {name: myName, favoriteNumber, hobbies} = require('./multiple-exports.js');
 const greetingFunction = require('./single-export.js');
 
@@ -28340,7 +28340,7 @@ module.exports = commentsRouter;
 
 //---------------------------------------------
 
-// routes/index.ts
+// routes/index.js
 const express = require('express');
 const commentsRouter = require('./routes/comments.js');
 
@@ -28353,7 +28353,7 @@ module.exports = router;
 
 // app.js
 const express = require('express');
-const router = require('./routes/index.ts');
+const router = require('./routes/index.js');
 
 const app = express();
 app.use(router);
@@ -28416,7 +28416,7 @@ app.use(cors()); // обязательно с вызовом cors
 </main>
 
 <div id="navMenu" class="navButtonsStyles">
-    <div id="navMenuButtons" class="displayFlexClass"></div>
+    <div id="navMenuButtons" class="displayNoneClass"></div>
 </div>
 
 <aside class="asideBar">

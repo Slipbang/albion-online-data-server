@@ -10,32 +10,49 @@ function detectMobile() {
         navigator.userAgent.match(/Windows Phone/i));
 }
 
-const imgs = document.querySelectorAll('img');
+let modalWin = document.createElement('div');
+modalWin.classList.add('imgModalWin');
+let container = document.createElement('div');
+container.classList.add('modalDiv')
+modalWin.appendChild(container);
+const closeButton = document.createElement('button');
+closeButton.textContent = 'x';
+container.appendChild(closeButton);
+document.querySelector('body').appendChild(modalWin);
+closeButton.setAttribute('aria-label', 'Close modal window');
+closeButton.setAttribute('tabindex', '0');
 
-imgs.forEach(img => {
-    img.onclick = () => {
-        let modalWin = document.createElement('div');
-        let cloneImg = img.cloneNode(true);
-        let container = document.createElement('div');
-        container.classList.add('modalDiv')
-        modalWin.appendChild(container);
-        const closeButton = document.createElement('button');
-        closeButton.textContent = 'x';
-        container.appendChild(cloneImg);
-        container.appendChild(closeButton);
-        closeButton.onclick = () => {
-            closeButton.onclick = null;
-            document.querySelector('body').removeChild(modalWin);
-            modalWin = null;
-            container = null;
-            cloneImg = null;
-        }
-        modalWin.classList.add('imgModalWin');
-        document.querySelector('body').appendChild(modalWin);
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modalWin.style.display === 'flex') {
+        closeModal();
+    }
+});
+
+
+const showBigPicture = (img) => {
+    let cloneImg = img.cloneNode(true);
+    const existingImg = container.querySelector('img');
+    if (existingImg) existingImg.remove();
+    container.appendChild(cloneImg);
+    modalWin.style.display = 'flex';
+};
+
+const closeModal = () => {
+    modalWin.style.display = 'none';
+};
+
+document.querySelector('main').addEventListener('click', (event) => {
+    if (event.target.tagName === 'IMG' && event.target.closest('main')) {
+        showBigPicture(event.target);
     }
 })
 
-//navigation
+closeButton.addEventListener('click', closeModal);
+modalWin.addEventListener('click', (event) => {
+    if (event.target === modalWin) {
+        closeModal();
+    }
+});
 
 const createNav = (section, headers3) => {
     const nav = document.createElement('nav');
@@ -61,7 +78,6 @@ const buildNavigation = (section, navMenu, navMenuButtons, headerLinks) => {
 
     navigatorButton.textContent = header1.textContent.replace('Основы ', '');
     navigatorButton.id = `${section.id}Button`;
-    navigatorButton.classList.add('displayNoneClass');
 
     navMenuButtons.appendChild(navigatorButton)
 
@@ -105,35 +121,28 @@ const clearStylesFunction = () => navs.forEach(item => item.classList.replace('d
 
 const containsElement_displayFlexClass = (element) => element.classList.contains('displayFlexClass');
 
-const allAsidesButtons = document.querySelectorAll('.navButtonsStyles button');
-
 const toggleClassHandler = (element) => {
     element.classList.toggle('displayNoneClass');
     element.classList.toggle('displayFlexClass')
 };
 
-const addOnClickEventToggleClassHandler = (element) => {
-    const requiredClass = `.${element.id.replace('Button', '')}`;
-    const requiredElement = document.querySelector(requiredClass);
-    element.onclick = () => {
+const mainNavigation = document.querySelector('.navButtonsStyles');
+
+mainNavigation.addEventListener('click', (event) => {
+    if (event.target.tagName === 'BUTTON') {
+        const requiredClass = `.${event.target.id.replace('Button', '')}`;
+        const requiredElement = document.querySelector(requiredClass);
         if (!containsElement_displayFlexClass(requiredElement)) {
             clearStylesFunction();
             toggleClassHandler(requiredElement)
         }
     }
-}
+})
 
-allAsidesButtons.forEach((button) => addOnClickEventToggleClassHandler(button));
-
-const mainAsidesButtons = document.querySelectorAll('.navButtonsStyles > div > button');
-document.querySelector('#navButtons').onclick = () => mainAsidesButtons.forEach(button => toggleClassHandler(button));
-
-const hideButtons = () => {
-    if (document.querySelector('#AlgorithmsAnDataStructuresNavButton').classList.contains('displayFlexClass')) {
-        clearStylesFunction()
-        mainAsidesButtons.forEach(button => toggleClassHandler(button));
-    }
-}
+document.querySelector('#navButtons').addEventListener('click', () => {
+    clearStylesFunction();
+    mainNavigation.style.display = 'block';
+});
 
 const headerElems = [
     document.querySelector('main'),
@@ -141,7 +150,7 @@ const headerElems = [
     document.querySelector('.headerLinks'),
     document.querySelector('h1')
 ];
-headerElems.forEach(elem => elem.onclick = () => hideButtons());
+headerElems.forEach(elem => elem.addEventListener('click', () => mainNavigation.style.display = 'none'));
 
 //---------------------------------------------------------------------------------------------------------------------
 

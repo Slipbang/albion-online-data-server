@@ -109,14 +109,13 @@ footer {
 
 .imgModalWin {
     position: fixed;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.5);
-    border: 1px solid black;
     width: 100%;
     height: 100%;
     z-index: 9999;
@@ -135,13 +134,27 @@ footer {
     object-fit: contain;
     width: 100%;
     height: 100%;
+    padding: 0;
 }
 
 
-.imgModalWin button {
+.modalDiv button {
     position: absolute;
     top: 0;
     right: 0;
+    cursor: pointer;
+    border: none;
+    background-color: #515151;
+    width: 30px;
+    height: 20px;
+    text-align: center;
+    line-height: 10px;
+    color: rgb(98, 134, 166);;
+}
+
+.modalDiv button:hover {
+    background-color: red;
+    color: white;
 }
 
 .figureExampleStyle {
@@ -1432,6 +1445,7 @@ hr {
     top: 0;
     right: 0;
     cursor: pointer;
+    display: none;
 }
 
 .navButtonsStyles div {
@@ -1637,7 +1651,7 @@ footer a {
     color: white;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 975px) {
     aside {
         transform: translateX(-100%);
     }
