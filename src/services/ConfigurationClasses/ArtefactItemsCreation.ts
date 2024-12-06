@@ -9,7 +9,7 @@ type TArtefacts = {
 
 export class ArtefactItemsCreation {
 
-    _defineArtefactType_Value (artefactId: string, artefactData: IaodItems['simpleitem']): {artefactType: TArtefactTypes, artefactValue: number} {
+    private _defineArtefactType_Value (artefactId: string, artefactData: IaodItems['simpleitem']): {artefactType: TArtefactTypes, artefactValue: number} {
         const requiredArtefact = artefactData.find(artefact => artefact["@uniquename"].includes(artefactId));
 
         return {
@@ -18,7 +18,7 @@ export class ArtefactItemsCreation {
         }
     }
 
-    _artefactIncreasingValue: TArtefacts = {
+    private _artefactIncreasingValue: TArtefacts = {
         'MAIN': {
             'RUNE': 10.8,
             'SOUL': 32.4,
@@ -73,7 +73,7 @@ export class ArtefactItemsCreation {
                 equipmentImg: '',
                 itemValue: Array.from({length: 5}).fill(artefactValue).map(((count) => (val) => {
                     const res = val as number * count;
-                    count *= 2; // Локальная модификация
+                    count *= 2;
                     return res;
                 })(1)),
             })
