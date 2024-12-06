@@ -16,7 +16,7 @@ let container = document.createElement('div');
 container.classList.add('modalDiv')
 modalWin.appendChild(container);
 const closeButton = document.createElement('button');
-closeButton.textContent = 'x';
+closeButton.innerHTML = '&times;';
 container.appendChild(closeButton);
 document.querySelector('body').appendChild(modalWin);
 closeButton.setAttribute('aria-label', 'Close modal window');
@@ -56,7 +56,7 @@ modalWin.addEventListener('click', (event) => {
 
 const createNav = (section, headers3) => {
     const nav = document.createElement('nav');
-    nav.classList.add(`${section.id.replace('Button', '')}`,'displayNoneClass');
+    nav.classList.add(`${section.id.replace('Button', '')}`, 'displayNoneClass');
     headers3.forEach(header3 => {
         const link = document.createElement('a');
         link.href = `#${header3.id}`;
@@ -119,22 +119,15 @@ sections.forEach(section => buildNavigation(section, navMenu, navMenuButtons, he
 const navs = document.querySelectorAll('.navButtonsStyles nav');
 const clearStylesFunction = () => navs.forEach(item => item.classList.replace('displayFlexClass', 'displayNoneClass'));
 
-const containsElement_displayFlexClass = (element) => element.classList.contains('displayFlexClass');
-
-const toggleClassHandler = (element) => {
-    element.classList.toggle('displayNoneClass');
-    element.classList.toggle('displayFlexClass')
-};
-
 const mainNavigation = document.querySelector('.navButtonsStyles');
 
 mainNavigation.addEventListener('click', (event) => {
     if (event.target.tagName === 'BUTTON') {
         const requiredClass = `.${event.target.id.replace('Button', '')}`;
         const requiredElement = document.querySelector(requiredClass);
-        if (!containsElement_displayFlexClass(requiredElement)) {
+        if (requiredElement.classList.contains('displayNoneClass')) {
             clearStylesFunction();
-            toggleClassHandler(requiredElement)
+            requiredElement.classList.replace('displayNoneClass', 'displayFlexClass')
         }
     }
 })
@@ -171,17 +164,6 @@ const sideBarBuilder = (selectedClass) => {
 
 const anchorsH3 = document.querySelectorAll('h3');
 
-// const throttle = (func, limit) => {
-//     let inThrottle;
-//     return (...args) => {
-//         if (!inThrottle) {
-//             func.apply(this, args);
-//             inThrottle = true;
-//             setTimeout(() => (inThrottle = false), limit);
-//         }
-//     };
-// };
-
 function debounce(func, timeout = 300) {
     let timer;
     return (...args) => {
@@ -210,8 +192,63 @@ const anchorObserver = new IntersectionObserver(anchorHandler, {
     threshold: 0.5,
 });
 
-anchorsH3.forEach(elem => {
-    anchorObserver.observe(elem)
-});
+anchorsH3.forEach(elem => anchorObserver.observe(elem));
 
-//----------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
+
+// // бесполезно, хоть элементов и меньше отслеживается, но отслеживание часто не срабатывает на границах двух разных модулей
+// const asideBar = document.querySelector('.asideBar');
+// const sideBarBuilder = (className) => {
+//     const asideNav = asideBar.querySelector('nav');
+//
+//     if (!asideNav || !asideNav.classList.contains(className)) {
+//         const cloneNav = document.querySelector(`.${className}`).cloneNode(true);
+//         cloneNav.classList.remove('displayNoneClass', 'displayFlexClass');
+//         cloneNav.classList.add('sideBarContainer');
+//         if (asideNav) {
+//             asideNav.replaceWith(cloneNav);
+//         } else {
+//             asideBar.appendChild(cloneNav);
+//         }
+//     }
+//
+// };
+//
+// function debounce(func, timeout = 300) {
+//     let timer;
+//     return (...args) => {
+//         clearTimeout(timer);
+//         timer = setTimeout(() => func(...args), timeout);
+//     };
+// }
+//
+// const asideBarHandler = debounce((entries) => {
+//     entries.forEach(entry => {
+//         console.log(entry)
+//         if (entry.isIntersecting) {
+//             const id = entry.target.id;
+//             if (id && !detectMobile()) {
+//                 sideBarBuilder(id);
+//             }
+//         }
+//     });
+// });
+//
+// const asideObserver = new IntersectionObserver(asideBarHandler, {
+//     root: null,
+//     rootMargin: '100px',
+//     threshold: 0,
+// });
+//
+// const mainSections = [...sections].map(elem => {
+//     const subSections = [...elem.querySelectorAll('section > section')].filter(section => section.hasAttribute('id'));
+//     if (subSections.length) {
+//         return subSections;
+//     } else {
+//         return elem;
+//     }
+// }).flat();
+//
+// console.log(mainSections)
+//
+// mainSections.forEach(section => asideObserver.observe(section));

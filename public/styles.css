@@ -40,6 +40,10 @@ header {
     align-items: center;
 }
 
+header h1 {
+    font-size: 2rem;
+}
+
 .headerSvg {
     min-width: var(--header-height);
     min-height: var(--header-height);
@@ -145,16 +149,18 @@ footer {
     cursor: pointer;
     border: none;
     background-color: #515151;
-    width: 30px;
+    width: 35px;
     height: 20px;
-    text-align: center;
-    line-height: 10px;
-    color: rgb(98, 134, 166);;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
 }
 
 .modalDiv button:hover {
     background-color: red;
-    color: white;
 }
 
 .figureExampleStyle {
@@ -1438,7 +1444,7 @@ hr {
 
 .navButtonsStyles {
     z-index: 9998;
-    width: 370px;
+    width: 340px;
     max-height: 400px;
     box-sizing: border-box;
     position: fixed;
@@ -1590,14 +1596,6 @@ pre:hover {
     width: 300px;
     height: 100%;
     border: var(--special-border);
-}
-@media (width: 7000px) {
-    .sideBar {
-        display: none;
-    }
-    body {
-        margin: 15px;
-    }
 }
 
 .sideBarContainer {
