@@ -4,7 +4,7 @@ import {IAppItems, TCraftItem, TCraftItemsTypes, TResourceType} from "../dummyIt
 
 export class EquipmentItemsCreation extends ArtefactItemsCreation{
 
-    _buildingResourceObjectHandler(resource: ICraftResourceItem, itemCategory: TCraftItemsTypes, items: IAppItems, itemObj: TCraftItem, artefactsData: IaodItems['simpleitem']) {
+    private static _buildingResourceObjectHandler(resource: ICraftResourceItem, itemCategory: TCraftItemsTypes, items: IAppItems, itemObj: TCraftItem, artefactsData: IaodItems['simpleitem']) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');
         if (resourceId.includes('ARTEFACT')) {
             this.createArtefactItem_Obj_Handler(items, itemObj, resourceId, itemCategory, artefactsData);
@@ -16,7 +16,7 @@ export class EquipmentItemsCreation extends ArtefactItemsCreation{
         }
     }
 
-    _defineAOTItemParams(shopsubcategory1: string, id: string) {
+    private static _defineAOTItemParams(shopsubcategory1: string, id: string) {
         if (shopsubcategory1.includes('_')) {
             const [materialType, itemType] = shopsubcategory1.split('_') as [string, string];
             const itemClasses = {
@@ -140,7 +140,7 @@ export class EquipmentItemsCreation extends ArtefactItemsCreation{
         }
     }
 
-    _ITEM_EXAMPLES = {
+    private static _ITEM_EXAMPLES = {
         "MAIN": ['FROSTSTAFF', 'ARCANESTAFF', 'CURSEDSTAFF', 'FIRESTAFF', 'HOLYSTAFF', 'NATURESTAFF', 'AXE', 'DAGGER', 'MACE', 'SPEAR', 'SWORD',],
         "2H": ['KNUCKLES_SET1', 'QUARTERSTAFF', 'BOW', 'CROSSBOW',],
         "BAG": ['BAG',],
@@ -151,8 +151,8 @@ export class EquipmentItemsCreation extends ArtefactItemsCreation{
         "OFF": ['SHIELD', 'BOOK', 'ORB_MORGANA', 'TOTEM_KEEPER', 'TORCH',],
     };
 
-    _ITEM_TYPES = ["MAIN", "2H", "BAG", "CAPE", "ARMOR", "HEAD", "SHOES", "OFF",];
-    _EQUIPMENT_CATEGORIES = [
+    private static _ITEM_TYPES = ["MAIN", "2H", "BAG", "CAPE", "ARMOR", "HEAD", "SHOES", "OFF",];
+    private static _EQUIPMENT_CATEGORIES = [
         'demolitionhammer', 'pickaxe', 'sickle', 'skinningknife', 'stonehammer',
         'woodaxe', 'fishing', 'bow', 'crossbow', 'cursestaff', 'firestaff', 'froststaff',
         'arcanestaff', 'holystaff', 'naturestaff', 'dagger', 'spear',
@@ -169,11 +169,11 @@ export class EquipmentItemsCreation extends ArtefactItemsCreation{
         'woodgatherer_helmet', 'woodgatherer_armor', 'woodgatherer_shoes'
     ];
 
-    _FORBIDDEN = [/_ROYAL/]; // РЕГУЛЯРКИ!!!
+    private static _FORBIDDEN = [/_ROYAL/]; // РЕГУЛЯРКИ!!!
 
-    _hasForbiddenParts = (ID: string) => this._FORBIDDEN.some(pattern => pattern.test(ID));
+    private static _hasForbiddenParts = (ID: string) => this._FORBIDDEN.some(pattern => pattern.test(ID));
 
-    createItems(data: IaodItems['weapon'], artefactsData: IaodItems['simpleitem'], items: IAppItems) {
+    static createItems(data: IaodItems['weapon'], artefactsData: IaodItems['simpleitem'], items: IAppItems) {
         for (let item of data) {
             if ('craftingrequirements' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'];

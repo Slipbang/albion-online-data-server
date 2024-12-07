@@ -9,7 +9,7 @@ type TArtefacts = {
 
 export class ArtefactItemsCreation {
 
-    private _defineArtefactType_Value (artefactId: string, artefactData: IaodItems['simpleitem']): {artefactType: TArtefactTypes, artefactValue: number} {
+    private static _defineArtefactType_Value (artefactId: string, artefactData: IaodItems['simpleitem']): {artefactType: TArtefactTypes, artefactValue: number} {
         const requiredArtefact = artefactData.find(artefact => artefact["@uniquename"].includes(artefactId));
 
         return {
@@ -18,7 +18,7 @@ export class ArtefactItemsCreation {
         }
     }
 
-    private _artefactIncreasingValue: TArtefacts = {
+    private static _artefactIncreasingValue: TArtefacts = {
         'MAIN': {
             'RUNE': 10.8,
             'SOUL': 32.4,
@@ -59,7 +59,7 @@ export class ArtefactItemsCreation {
         },
     }
 
-    public createArtefactItem_Obj_Handler(items: IAppItems, itemObj: TCraftItem, resourceId: string, itemCategory: TCraftItemsTypes, artefactData: IaodItems['simpleitem']){
+    static createArtefactItem_Obj_Handler(items: IAppItems, itemObj: TCraftItem, resourceId: string, itemCategory: TCraftItemsTypes, artefactData: IaodItems['simpleitem']){
         itemObj.artefactItemId = resourceId;
         let {artefactType, artefactValue} = this._defineArtefactType_Value(resourceId, artefactData);
         itemObj.foodConsumption = +((this._artefactIncreasingValue?.[itemCategory]?.[artefactType!] || 0) + itemObj.foodConsumption).toFixed(2);

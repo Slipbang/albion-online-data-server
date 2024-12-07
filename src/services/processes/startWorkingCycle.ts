@@ -6,7 +6,7 @@ export const startWorkingCycle = async function (this: AppController, githubComm
         this.logger.info('No gitHub date fetched');
         return;
     }
-    const newGithubCommitDate = this.fetchAODGithubReposData();
+
     await fs.readFile('./data.txt', 'utf-8')
         .then((data) => {
             if (data) {

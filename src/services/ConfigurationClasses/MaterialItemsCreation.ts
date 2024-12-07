@@ -3,15 +3,15 @@ import {IAppItems, TMaterial, TResourceType} from "../dummyItems.js";
 
 export class MaterialItemsCreation {
 
-    _buildingResourceObjectHandler(resource: ICraftResourceItem, materialObj: TMaterial) {
+    private static _buildingResourceObjectHandler(resource: ICraftResourceItem, materialObj: TMaterial) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_') as TResourceType;
         materialObj[resourceId] = +resource['@count'];
 
     }
 
-    _MATERIAL_CATEGORIES = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
+    private static _MATERIAL_CATEGORIES = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
 
-    createMaterialItems(data: IaodItems['simpleitem'], items: IAppItems) {
+    static createMaterialItems(data: IaodItems['simpleitem'], items: IAppItems) {
         for (let item of data) {
             const shopsubcategory1 = item['@shopsubcategory1'];
             let ID = item['@uniquename'];

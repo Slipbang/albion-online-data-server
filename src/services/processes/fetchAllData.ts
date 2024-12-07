@@ -26,13 +26,9 @@ export const fetchAllData = async function (this: AppController, githubCommitDat
 
         const items = JSON.parse(JSON.stringify(dummyItems));
 
-        const equipmentItemsCreation = new EquipmentItemsCreation();
-        const consumableItemsCreation = new ConsumableItemsCreation();
-        const materialItemsCreation = new MaterialItemsCreation();
-
-        equipmentItemsCreation.createItems(equipmentItemData, receivedData.items.simpleitem, items);
-        consumableItemsCreation.createConsumableItems(receivedData.items.consumableitem, items);
-        materialItemsCreation.createMaterialItems(receivedData.items.simpleitem, items)
+        EquipmentItemsCreation.createItems(equipmentItemData, receivedData.items.simpleitem, items);
+        ConsumableItemsCreation.createConsumableItems(receivedData.items.consumableitem, items);
+        MaterialItemsCreation.createMaterialItems(receivedData.items.simpleitem, items)
         items.language = {...items.language, ...this.languageData.data};
         items.githubCommitDate = githubCommitDate;
         items.appVersion = appVersion;

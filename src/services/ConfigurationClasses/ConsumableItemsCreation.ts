@@ -3,7 +3,7 @@ import {IAppItems, TConsumableCraftItem, TConsumableTypes} from "../dummyItems.j
 
 export class ConsumableItemsCreation {
 
-    _buildConsumableResourceObjectHandler (resource: ICraftResourceItem, obj: TConsumableCraftItem) {
+    private static _buildConsumableResourceObjectHandler (resource: ICraftResourceItem, obj: TConsumableCraftItem) {
         const special = ['T1_FISHSAUCE_LEVEL1', 'T1_ALCHEMY_EXTRACT_LEVEL1'];
         let resourceId = resource['@uniquename'];
         const foodConsumptionCount = resourceId.includes('QUESTITEM_TOKEN_AVALON') ? 7.2 : 4.5;
@@ -17,9 +17,9 @@ export class ConsumableItemsCreation {
         obj[resourceId] = +resource["@count"];
     }
 
-    _CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
+    private static _CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
 
-    createConsumableItems (data: IaodItems['consumableitem'], items: IAppItems) {
+    static createConsumableItems (data: IaodItems['consumableitem'], items: IAppItems) {
         for (let item of data) {
             if ('enchantments' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'] as TConsumableTypes;
