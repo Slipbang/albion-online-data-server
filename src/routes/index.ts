@@ -2,6 +2,7 @@ import express, {Router, Response} from 'express';
 import winston from "winston";
 
 import manualRouter from "./manualWebdev.js";
+import albionToolkitRouter from "./albionToolkit.js";
 import dataRouter from './appData.js';
 import dateRouter from "./githubDumpsDate.js";
 import {ItemStorage} from "../services/ConfigurationClasses/ItemStorage.js";
@@ -34,6 +35,7 @@ export class AppController {
         this.router.use('/ctrlinfo', dateRouter(this.itemStorage, this.clients));
         this.router.use('/data', dataRouter(this.itemStorage));
         this.router.use('/webdevmanual', manualRouter);
+        this.router.use('/', albionToolkitRouter)
     }
 
     resendDateInfo() {
