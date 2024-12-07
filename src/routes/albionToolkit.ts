@@ -12,6 +12,9 @@ const publicPath = path.join(__dirname, '../../', 'public_albionToolkit');
 const router = express.Router();
 
 router.use(express.static(publicPath));
+router.use("*", (req, res) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+});
 router.get('/', (req, res) => AlbionToolkit.getAlbionToolkit(req, res, publicPath));
 router.use(cors());
 
