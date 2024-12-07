@@ -2,12 +2,12 @@ import {ArtefactItemsCreation} from "./ArtefactItemsCreation.js";
 import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.js";
 import {IAppItems, TCraftItem, TCraftItemsTypes, TResourceType} from "../dummyItems.js";
 
-export class EquipmentItemsCreation extends ArtefactItemsCreation{
+export class EquipmentItemsCreation {
 
     private static _buildingResourceObjectHandler(resource: ICraftResourceItem, itemCategory: TCraftItemsTypes, items: IAppItems, itemObj: TCraftItem, artefactsData: IaodItems['simpleitem']) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');
         if (resourceId.includes('ARTEFACT')) {
-            this.createArtefactItem_Obj_Handler(items, itemObj, resourceId, itemCategory, artefactsData);
+            ArtefactItemsCreation.createArtefactItem_Obj_Handler(items, itemObj, resourceId, itemCategory, artefactsData);
         } else if (resourceId.includes('SKILLBOOK_STANDARD')) {
             itemObj.artefactItemId = resource['@uniquename'];
         } else {
