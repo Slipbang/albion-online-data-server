@@ -63,11 +63,11 @@ export class ArtefactItemsCreation {
         return Array.from({ length }).map((_, i) => baseValue * Math.pow(2, i));
     }
 
-    static createArtefactItem_Obj_Handler(items: IAppItems, itemObj: TCraftItem, resourceId: string, itemCategory: TCraftItemsTypes, artefactData: IaodItems['simpleitem']){
-        itemObj.artefactItemId = resourceId;
+    static createArtefactItem_Obj_Handler(items: IAppItems, itemObject: TCraftItem, resourceId: string, itemCategory: TCraftItemsTypes, artefactData: IaodItems['simpleitem']){
+        itemObject.artefactItemId = resourceId;
         let {artefactType, artefactValue} = this._defineArtefactType_Value(resourceId, artefactData);
-        itemObj.foodConsumption = +((this._artefactIncreasingValue?.[itemCategory]?.[artefactType!] || 0) + itemObj.foodConsumption).toFixed(2);
-        const artefactClass = itemObj.itemClass.toUpperCase() as TArtefactClasses;
+        itemObject.foodConsumption = +((this._artefactIncreasingValue?.[itemCategory]?.[artefactType!] || 0) + itemObject.foodConsumption).toFixed(2);
+        const artefactClass = itemObject.itemClass.toUpperCase() as TArtefactClasses;
 
         if (artefactType && artefactType in items.artefacts[artefactClass]) {
             const len = items.artefacts[artefactClass][artefactType!].length;
