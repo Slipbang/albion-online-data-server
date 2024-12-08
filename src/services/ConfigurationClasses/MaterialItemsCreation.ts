@@ -3,9 +3,9 @@ import {IAppItems, TMaterial, TResourceType} from "../dummyItems.js";
 
 export class MaterialItemsCreation {
 
-    private static _buildingResourceObjectHandler(resource: ICraftResourceItem, materialObj: TMaterial) {
+    private static _buildingResourceObjectHandler(resource: ICraftResourceItem, materialObject: TMaterial) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_') as TResourceType;
-        materialObj[resourceId] = +resource['@count'];
+        materialObject[resourceId] = +resource['@count'];
 
     }
 
@@ -18,7 +18,7 @@ export class MaterialItemsCreation {
             const isResource = '@resourcetype' in item;
             const resourceTierAllowed = isResource ? 4 : 3;
             if (!this._MATERIAL_CATEGORIES.includes(shopsubcategory1) || ID.includes('_LEVEL') || +item['@tier'] < resourceTierAllowed) continue;
-            const materialObj: TMaterial = {
+            const materialObject: TMaterial = {
                 itemId: ID,
             }
             const craftResources =
@@ -29,14 +29,14 @@ export class MaterialItemsCreation {
             if (craftResources && !isResource) {
                 if (Array.isArray(craftResources)) {
                     for (let resource of craftResources) {
-                        this._buildingResourceObjectHandler(resource, materialObj)
+                        this._buildingResourceObjectHandler(resource, materialObject)
                     }
                 } else {
-                    this._buildingResourceObjectHandler(craftResources, materialObj);
+                    this._buildingResourceObjectHandler(craftResources, materialObject);
                 }
             }
 
-            items.materials.push(materialObj);
+            items.materials.push(materialObject);
         }
     }
 }
