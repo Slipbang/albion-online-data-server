@@ -59,6 +59,10 @@ export class ArtefactItemsCreation {
         },
     }
 
+    private static _calculateItemValue(baseValue: number, length: number): number[] {
+        return Array.from({ length }).map((_, i) => baseValue * Math.pow(2, i));
+    }
+
     static createArtefactItem_Obj_Handler(items: IAppItems, itemObj: TCraftItem, resourceId: string, itemCategory: TCraftItemsTypes, artefactData: IaodItems['simpleitem']){
         itemObj.artefactItemId = resourceId;
         let {artefactType, artefactValue} = this._defineArtefactType_Value(resourceId, artefactData);
@@ -67,15 +71,11 @@ export class ArtefactItemsCreation {
 
         if (artefactType && artefactType in items.artefacts[artefactClass]) {
             const len = items.artefacts[artefactClass][artefactType!].length;
-            items.artefacts[itemObj.itemClass.toUpperCase() as TArtefactClasses][artefactType! as TArtefactTypes].push({
-                id: `${itemObj.itemClass.toUpperCase()}_${artefactType}_${len + 1}`,
+            items.artefacts[artefactClass][artefactType! as TArtefactTypes].push({
+                id: `${artefactClass}_${artefactType}_${len + 1}`,
                 artefactId: resourceId,
                 equipmentImg: '',
-                itemValue: Array.from({length: 5}).fill(artefactValue).map(((count) => (val) => {
-                    const res = val as number * count;
-                    count *= 2;
-                    return res;
-                })(1)),
+                itemValue: this._calculateItemValue(artefactValue, 5),
             })
         }
     }
