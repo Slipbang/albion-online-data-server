@@ -185,7 +185,7 @@ export class EquipmentItemsCreation {
                 const craftResources = (item.craftingrequirements as ICraftingRequirements[])?.[0]?.['craftresource'] || (item.craftingrequirements as ICraftingRequirements)?.['craftresource'];
                 if (craftResources) {
                     const {itemType, itemClass} = this._defineAOTItemParams(shopsubcategory1, ID);
-                    const obj: TCraftItem = {
+                    const itemObject: TCraftItem = {
                         itemId: bodyId,
                         itemNode: shopsubcategory1,
                         foodConsumption: 0,
@@ -196,12 +196,12 @@ export class EquipmentItemsCreation {
 
                     if (Array.isArray(craftResources)) {
                         for (let resource of craftResources) {
-                            this._buildingResourceObjectHandler(resource, itemCategory, items, obj, artefactsData)
+                            this._buildingResourceObjectHandler(resource, itemCategory, items, itemObject, artefactsData)
                         }
                     } else {
-                        this._buildingResourceObjectHandler(craftResources, itemCategory, items, obj, artefactsData);
+                        this._buildingResourceObjectHandler(craftResources, itemCategory, items, itemObject, artefactsData);
                     }
-                    items.craftItems[itemCategory].push(obj);
+                    items.craftItems[itemCategory].push(itemObject);
                 }
             }
         }
