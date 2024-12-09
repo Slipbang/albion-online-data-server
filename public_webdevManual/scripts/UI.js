@@ -252,3 +252,12 @@ anchorsH3.forEach(elem => anchorObserver.observe(elem));
 // console.log(mainSections)
 //
 // mainSections.forEach(section => asideObserver.observe(section));
+
+(function monitorEvents() {
+    const originalAddEventListener = EventTarget.prototype.addEventListener;
+
+    EventTarget.prototype.addEventListener = function (type, listener, options) {
+        console.log(`Event listener added: ${type}`, this);
+        return originalAddEventListener.call(this, type, listener, options);
+    };
+})();

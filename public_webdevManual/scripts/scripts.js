@@ -776,7 +776,7 @@ document.querySelector('#queryselector2').innerHTML = "<data>28.11.1993</data>";
 document.querySelector('.tree').innerHTML = '<h3>произвольный текст</h3>';
 document.querySelector('.fraktion').innerHTML = 3.14;
 let jslink = document.querySelector('.jslink');
-jslink.innerHTML = '<img src="https://cdn4.iconfinder.com/data/icons/food-and-drink-flat-gradient/32/cone_ice_cream_food_drink_sweet-512.png" alt="">';
+jslink.innerHTML = '<img src="../images/imageExample.png" alt="imageExample">';
 
 let z1 = 6;
 let z2 = 3;
@@ -922,8 +922,6 @@ const out2 = document.querySelector('.out-2');
 b2.onclick = () => {
     let A21 = +a21.value;
     let A22 = +a22.value;
-    console.log(A21);
-    console.log(A22);
     if (A21 > A22) {
         out2.textContent = A21;
     } else if (A21 == A22) {
@@ -938,11 +936,12 @@ let i32 = document.querySelector('#i-32');
 let b3 = document.querySelector('#b-3');
 let out3 = document.querySelector('.out-3');
 b3.onclick = () => {
-
-    if (I31 > I32) {
-        out3.innerHTML = +i31.value;
+    let i31value = i31.value;
+    let i32value = i32.value
+    if (+i31value > +i32value) {
+        out3.textContent = i31value;
     } else {
-        out3.innerHTML = +i32.value;
+        out3.textContent = i32value;
     }
 }
 
@@ -6526,7 +6525,6 @@ function closureTwo() {
     }
 
 }
-
 
 //UNIT 29. ЗАМЫКАНИЯ
 let Bclosure = closureTwo();
