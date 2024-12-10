@@ -1,9 +1,9 @@
-import {IAppItems} from "../dummyItems.js";
+import {AppItems} from "../dummyItems.js";
 
 export class ItemStorage {
-    protected _currentData: IAppItems;
+    protected _currentData: AppItems;
 
-    constructor(initialData: IAppItems = {} as IAppItems) {
+    constructor(initialData: AppItems = {} as AppItems) {
         this._currentData = initialData;
     }
 

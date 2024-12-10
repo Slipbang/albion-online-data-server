@@ -1,5 +1,15 @@
 export type TCraftItemsTypes = "MAIN" | "2H" | "BAG" | "CAPE" | "ARMOR" | "HEAD" | "SHOES" | "OFF";
-export type TResourceType = 'METALBAR' | 'LEATHER' | 'CLOTH' | 'PLANKS' | 'STONEBLOCK' | 'ORE' | 'WOOD' | 'HIDE' | 'FIBER' | 'ROCK';
+export type TResourceType =
+    'METALBAR'
+    | 'LEATHER'
+    | 'CLOTH'
+    | 'PLANKS'
+    | 'STONEBLOCK'
+    | 'ORE'
+    | 'WOOD'
+    | 'HIDE'
+    | 'FIBER'
+    | 'ROCK';
 
 export type TCraftItem = {
     itemId: string;
@@ -14,7 +24,7 @@ export type TCraftItem = {
     [key in TResourceType]?: number;
 }
 
-type TCraftItems = {
+export type TCraftItems = {
     [key in TCraftItemsTypes]: TCraftItem[];
 }
 
@@ -26,7 +36,7 @@ export type TConsumableCraftItem = {
     "amountCrafted": number;
 } & Record<string, string | number>;
 
-type TConsumableCraftItems = {
+export type TConsumableCraftItems = {
     [key in TConsumableTypes]: TConsumableCraftItem[];
 }
 
@@ -40,7 +50,7 @@ export interface IArtefact {
     "itemValue": number[]
 }
 
-type TArtefacts = {
+export type TArtefacts = {
     [key in TArtefactClasses]: {
         [key in TArtefactTypes]: IArtefact[];
     }
@@ -61,62 +71,31 @@ export type TLanguage = {
     }
 }
 
-export interface IAppItems {
+export class AppItems {
     githubCommitDate: string;
     appVersion: string;
     craftItems: TCraftItems;
     consumableCraftItems: TConsumableCraftItems;
     artefacts: TArtefacts;
-    materials: TMaterial[],
+    materials: TMaterial[];
     language: TLanguage;
-}
 
-export const dummyItems: IAppItems = {
-    githubCommitDate: '',
-    appVersion: '',
-    craftItems: {
-        "MAIN": [],
-        "2H": [],
-        "BAG": [],
-        "CAPE": [],
-        "ARMOR": [],
-        "HEAD": [],
-        "SHOES": [],
-        "OFF": [],
-    },
-    consumableCraftItems: {
-        'potion': [],
-        'cooked': [],
-    },
-    artefacts: {
-        WARRIOR: {
-            RUNE: [],
-            SOUL: [],
-            RELIC: [],
-            AVALONIAN: [],
-        },
-        MAGE: {
-            RUNE: [],
-            SOUL: [],
-            RELIC: [],
-            AVALONIAN: [],
-        },
-        HUNTER: {
-            RUNE: [],
-            SOUL: [],
-            RELIC: [],
-            AVALONIAN: [],
-        }
-    },
-    materials: [],
-    language: {
-        'T1_ALCHEMY_EXTRACT_LEVEL': {
-            ru: 'Магические экстракты',
-            en: 'Arcane Extracts',
-        },
-        'T1_FISHSAUCE_LEVEL': {
-            ru: 'Рыбные соусы',
-            en: 'Fish Sauces',
-        },
+    constructor(
+            githubCommitDate: string,
+            appVersion: string,
+            craftItems: TCraftItems,
+            consumableCraftItems: TConsumableCraftItems,
+            artefacts: TArtefacts,
+            materials: TMaterial[],
+            language: TLanguage
+    ) {
+        this.githubCommitDate = githubCommitDate;
+        this.appVersion = appVersion;
+        this.craftItems = craftItems;
+        this.consumableCraftItems = consumableCraftItems;
+        this.artefacts = artefacts;
+        this.materials = materials;
+        this.language = language;
     }
+
 }

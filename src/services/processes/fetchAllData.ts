@@ -1,4 +1,4 @@
-import {dummyItems} from "../dummyItems.js";
+import {AppItems, TLanguage} from "../dummyItems.js";
 import fs from "fs/promises";
 import {EquipmentItemsCreation} from "../ConfigurationClasses/EquipmentItemsCreation.js";
 import {ConsumableItemsCreation} from "../ConfigurationClasses/ConsumableItemsCreation.js";
@@ -18,20 +18,28 @@ const appVersion = process.env.APP_VERSION;
 export const fetchAllData = async function (this: AppController, githubCommitDate: string) {
     const [receivedData] = await Promise.all([this.fetchItems(ITEMS_URL), this.fetchItemNames()]) as [I_AOD_JSON_DATA, void];
 
-    if (receivedData && Object.keys(this.languageData.data).length > 0) {
+    if (receivedData && Object.keys(this.languageData.data).length > 0 && appVersion) {
         const equipmentItemData = [
             ...receivedData.items.weapon,
             ...receivedData.items.equipmentitem,
         ]
 
-        const items = JSON.parse(JSON.stringify(dummyItems));
+        const {craftItems, artefacts} = EquipmentItemsCreation.createItems(equipmentItemData, receivedData.items.simpleitem);
+        const consumableCraftItems = ConsumableItemsCreation.createConsumableItems(receivedData.items.consumableitem);
+        const materials = MaterialItemsCreation.createMaterialItems(receivedData.items.simpleitem);
+        const language = {
+            'T1_ALCHEMY_EXTRACT_LEVEL': {
+                ru: 'Магические экстракты',
+                en: 'Arcane Extracts',
+            },
+            'T1_FISHSAUCE_LEVEL': {
+                ru: 'Рыбные соусы',
+                en: 'Fish Sauces',
+            },
+            ...this.languageData.data
+        } as TLanguage;
 
-        EquipmentItemsCreation.createItems(equipmentItemData, receivedData.items.simpleitem, items);
-        ConsumableItemsCreation.createConsumableItems(receivedData.items.consumableitem, items);
-        MaterialItemsCreation.createMaterialItems(receivedData.items.simpleitem, items)
-        items.language = {...items.language, ...this.languageData.data};
-        items.githubCommitDate = githubCommitDate;
-        items.appVersion = appVersion;
+        const items = new AppItems(githubCommitDate, appVersion, craftItems, consumableCraftItems, artefacts, materials, language);
 
         await fs.writeFile('./data.txt', JSON.stringify(items))
             .then(() => this.logger.info('Data is refreshed/written'))

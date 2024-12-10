@@ -1,5 +1,5 @@
 import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems";
-import {IAppItems, TArtefactClasses, TArtefactTypes, TCraftItem, TCraftItemsTypes} from "../dummyItems";
+import {IArtefact, TArtefactClasses, TArtefactTypes, TCraftItemsTypes} from "../dummyItems";
 
 type TArtefacts = {
     [key in TCraftItemsTypes]: {
@@ -7,9 +7,17 @@ type TArtefacts = {
     }
 }
 
+export interface IArtefactParams {
+    artefact: IArtefact,
+    params: {
+        artefactClass: TArtefactClasses;
+        artefactType: TArtefactTypes;
+    }
+}
+
 export class ArtefactItemsCreation {
 
-    private static _defineArtefactType_Value (artefactId: string, artefactData: IaodItems['simpleitem']): {artefactType: TArtefactTypes, artefactValue: number} {
+    private static _defineArtefactType_Value(artefactId: string, artefactData: IaodItems['simpleitem']): { artefactType: TArtefactTypes, artefactValue: number } {
         const requiredArtefact = artefactData.find(artefact => artefact["@uniquename"].includes(artefactId));
 
         return {
@@ -58,25 +66,38 @@ export class ArtefactItemsCreation {
             'AVALONIAN': 54,
         },
     }
+    private static readonly ALLOWED_ARTEFACTS: TArtefactTypes[] = ['RUNE', 'SOUL', 'RELIC', 'AVALONIAN'];
 
     private static _calculateItemValue(baseValue: number, length: number): number[] {
-        return Array.from({ length }).map((_, i) => baseValue * Math.pow(2, i));
+        return Array.from({length}).map((_, i) => baseValue * Math.pow(2, i));
     }
 
-    static createArtefactItem_Obj_Handler(items: IAppItems, itemObject: TCraftItem, resourceId: string, itemCategory: TCraftItemsTypes, artefactData: IaodItems['simpleitem']){
-        itemObject.artefactItemId = resourceId;
+    static createArtefactItemHandler(itemClass: string, foodConsumption: number, resourceId: string, itemCategory: TCraftItemsTypes, artefactData: IaodItems['simpleitem']) {
+        let artefactObject: IArtefactParams | null  = null
         let {artefactType, artefactValue} = this._defineArtefactType_Value(resourceId, artefactData);
-        itemObject.foodConsumption = +((this._artefactIncreasingValue?.[itemCategory]?.[artefactType!] || 0) + itemObject.foodConsumption).toFixed(2);
-        const artefactClass = itemObject.itemClass.toUpperCase() as TArtefactClasses;
+        const artefactClass = itemClass.toUpperCase() as TArtefactClasses;
 
-        if (artefactType && artefactType in items.artefacts[artefactClass]) {
-            const len = items.artefacts[artefactClass][artefactType!].length;
-            items.artefacts[artefactClass][artefactType! as TArtefactTypes].push({
-                id: `${artefactClass}_${artefactType}_${len + 1}`,
-                artefactId: resourceId,
-                equipmentImg: '',
-                itemValue: this._calculateItemValue(artefactValue, 5),
-            })
+        if (artefactType && this.ALLOWED_ARTEFACTS.includes(artefactType)) {
+            artefactObject = {
+                artefact: {
+                    id: `${artefactClass}_${artefactType}_${resourceId}`,
+                    artefactId: resourceId,
+                    equipmentImg: '',
+                    itemValue: this._calculateItemValue(artefactValue, 5),
+                },
+                params: {
+                    artefactClass,
+                    artefactType,
+                }
+            }
         }
+
+        return {
+            artefactObject,
+            itemParams: {
+                artefactItemId: resourceId,
+                foodConsumption: +((this._artefactIncreasingValue?.[itemCategory]?.[artefactType!] || 0) + foodConsumption).toFixed(2),
+            }
+        };
     }
 }

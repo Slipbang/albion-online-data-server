@@ -1,25 +1,42 @@
 import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.js";
-import {IAppItems, TConsumableCraftItem, TConsumableTypes} from "../dummyItems.js";
+import {TConsumableCraftItem, TConsumableCraftItems, TConsumableTypes} from "../dummyItems.js";
 
 export class ConsumableItemsCreation {
 
-    private static _buildConsumableResourceObjectHandler (resource: ICraftResourceItem, consumableObject: TConsumableCraftItem) {
+    private static _buildConsumableResourceObjectHandler (resource: ICraftResourceItem) {
         const special = ['T1_FISHSAUCE_LEVEL1', 'T1_ALCHEMY_EXTRACT_LEVEL1'];
         let resourceId = resource['@uniquename'];
         const foodConsumptionCount = resourceId.includes('QUESTITEM_TOKEN_AVALON') ? 7.2 : 4.5;
+        let consumableObject: Partial<TConsumableCraftItem> = {
+            foodConsumption: 0,
+        };
+
         if (special.includes(resourceId)) {
             resourceId = resourceId.split('_').map(str => (str === 'LEVEL1') ? 'LEVEL' : str).join('_');
         } else {
+            // в случае если ресурс специфичный - налог не считается.
             if (!resourceId.includes('_FISH_') && !resourceId.includes('_ALCHEMY_')) {
-                consumableObject.foodConsumption += +resource["@count"] * foodConsumptionCount;
+                consumableObject = {
+                    ...consumableObject,
+                    foodConsumption: consumableObject.foodConsumption! + Number(resource["@count"]) * foodConsumptionCount,
+                }
             }
         }
-        consumableObject[resourceId] = +resource["@count"];
+        consumableObject = {
+            ...consumableObject,
+            [resourceId]: Number(resource["@count"]),
+        }
+
+        return consumableObject;
     }
 
     private static _CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
 
-    static createConsumableItems (data: IaodItems['consumableitem'], items: IAppItems) {
+    static createConsumableItems (data: IaodItems['consumableitem']) {
+        const consumableCraftItems: TConsumableCraftItems = {
+            potion: [],
+            cooked: [],
+        };
         for (let item of data) {
             if ('enchantments' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'] as TConsumableTypes;
@@ -33,17 +50,23 @@ export class ConsumableItemsCreation {
                         amountCrafted: +(item['craftingrequirements'] as ICraftingRequirements)?.['@amountcrafted']!,
                     };
 
-                    if (Array.isArray(craftResources)) {
-                        for (let resource of craftResources) {
-                            this._buildConsumableResourceObjectHandler(resource, consumableObject)
+                    const resources = Array.isArray(craftResources) ? craftResources : [craftResources];
+
+                    for (let resource of resources) {
+                        const calculationResult = this._buildConsumableResourceObjectHandler(resource);
+
+                        consumableObject = {
+                            ...consumableObject,
+                            ...calculationResult,
+                            foodConsumption: consumableObject.foodConsumption + (calculationResult?.foodConsumption || 0),
                         }
-                    } else {
-                        this._buildConsumableResourceObjectHandler(craftResources, consumableObject)
                     }
 
-                    items.consumableCraftItems[shopsubcategory1].push(consumableObject);
+                    consumableCraftItems[shopsubcategory1].push(consumableObject);
                 }
             }
         }
+
+        return consumableCraftItems;
     }
 }

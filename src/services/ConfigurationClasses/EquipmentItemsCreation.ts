@@ -1,18 +1,35 @@
-import {ArtefactItemsCreation} from "./ArtefactItemsCreation.js";
+import {ArtefactItemsCreation, IArtefactParams} from "./ArtefactItemsCreation.js";
 import {IaodItems, ICraftingRequirements, ICraftResourceItem} from "../../types/AODPItems.js";
-import {IAppItems, TCraftItem, TCraftItemsTypes, TResourceType} from "../dummyItems.js";
+import {
+    TArtefacts,
+    TCraftItem,
+    TCraftItems,
+    TCraftItemsTypes,
+    TResourceType
+} from "../dummyItems.js";
 
 export class EquipmentItemsCreation {
 
-    private static _buildingResourceObjectHandler(resource: ICraftResourceItem, itemCategory: TCraftItemsTypes, items: IAppItems, itemObj: TCraftItem, artefactsData: IaodItems['simpleitem']) {
+    private static _buildingResource_Artefact_ObjectHandler(resource: ICraftResourceItem, itemCategory: TCraftItemsTypes, itemObject: TCraftItem, artefactsData: IaodItems['simpleitem']) {
         let resourceId = resource['@uniquename'].split('_').filter((str, index) => index > 0).join('_');
+        let artefactObject: IArtefactParams | null  = null
+        let itemParams: Partial<TCraftItem>;
         if (resourceId.includes('ARTEFACT')) {
-            ArtefactItemsCreation.createArtefactItem_Obj_Handler(items, itemObj, resourceId, itemCategory, artefactsData);
+            ({artefactObject, itemParams} = ArtefactItemsCreation.createArtefactItemHandler(itemObject.itemClass, itemObject.foodConsumption, resourceId, itemCategory, artefactsData))
         } else if (resourceId.includes('SKILLBOOK_STANDARD')) {
-            itemObj.artefactItemId = resource['@uniquename'];
+            itemParams = {
+                artefactItemId: resource['@uniquename'],
+            }
         } else {
-            itemObj[resourceId as TResourceType] = +resource['@count'];
-            itemObj.foodConsumption += +resource['@count'] * 1.8;
+            itemParams = {
+                [resourceId as TResourceType]: +resource['@count'],
+                foodConsumption: itemObject.foodConsumption + Number(resource['@count']) * 1.8,
+            }
+        }
+
+        return {
+            artefactObject,
+            itemParams,
         }
     }
 
@@ -140,7 +157,7 @@ export class EquipmentItemsCreation {
         }
     }
 
-    private static _ITEM_EXAMPLES = {
+    private static readonly ITEM_EXAMPLES = {
         "MAIN": ['FROSTSTAFF', 'ARCANESTAFF', 'CURSEDSTAFF', 'FIRESTAFF', 'HOLYSTAFF', 'NATURESTAFF', 'AXE', 'DAGGER', 'MACE', 'SPEAR', 'SWORD',],
         "2H": ['KNUCKLES_SET1', 'QUARTERSTAFF', 'BOW', 'CROSSBOW',],
         "BAG": ['BAG',],
@@ -151,8 +168,8 @@ export class EquipmentItemsCreation {
         "OFF": ['SHIELD', 'BOOK', 'ORB_MORGANA', 'TOTEM_KEEPER', 'TORCH',],
     };
 
-    private static _ITEM_TYPES = ["MAIN", "2H", "BAG", "CAPE", "ARMOR", "HEAD", "SHOES", "OFF",];
-    private static _EQUIPMENT_CATEGORIES = [
+    private static readonly ITEM_TYPES = ["MAIN", "2H", "BAG", "CAPE", "ARMOR", "HEAD", "SHOES", "OFF"];
+    private static readonly EQUIPMENT_CATEGORIES = [
         'demolitionhammer', 'pickaxe', 'sickle', 'skinningknife', 'stonehammer',
         'woodaxe', 'fishing', 'bow', 'crossbow', 'cursestaff', 'firestaff', 'froststaff',
         'arcanestaff', 'holystaff', 'naturestaff', 'dagger', 'spear',
@@ -169,11 +186,26 @@ export class EquipmentItemsCreation {
         'woodgatherer_helmet', 'woodgatherer_armor', 'woodgatherer_shoes'
     ];
 
-    private static _FORBIDDEN = [/_ROYAL/]; // РЕГУЛЯРКИ!!!
+    private static readonly FORBIDDEN = [/_ROYAL/]; // РЕГУЛЯРКИ!!!
 
-    private static _hasForbiddenParts = (ID: string) => this._FORBIDDEN.some(pattern => pattern.test(ID));
+    private static _hasForbiddenParts = (ID: string) => this.FORBIDDEN.some(pattern => pattern.test(ID));
 
-    static createItems(data: IaodItems['weapon'], artefactsData: IaodItems['simpleitem'], items: IAppItems) {
+    static createItems(data: IaodItems['weapon'], artefactsData: IaodItems['simpleitem']) {
+        const craftItems: TCraftItems = {
+            "MAIN": [],
+            "2H": [],
+            "BAG": [],
+            "CAPE": [],
+            "ARMOR": [],
+            "HEAD": [],
+            "SHOES": [],
+            "OFF": [],
+        };
+        const artefacts: TArtefacts = {
+            WARRIOR: { RUNE: [], SOUL: [], RELIC: [], AVALONIAN: [] },
+            MAGE: { RUNE: [], SOUL: [], RELIC: [], AVALONIAN: [] },
+            HUNTER: {RUNE: [], SOUL: [], RELIC: [], AVALONIAN: [] }
+        };
         for (let item of data) {
             if ('craftingrequirements' in item) {
                 const shopsubcategory1 = item['@shopsubcategory1'];
@@ -181,29 +213,56 @@ export class EquipmentItemsCreation {
                 const bodyId = ID.split('_').filter((_, index) => index > 1).join('_') || ID.split('_').filter((_, index) => index > 0).join('_');
                 let itemCategory = ID.split('_')[1] as TCraftItemsTypes;
 
-                if (this._hasForbiddenParts(ID) || item['@tier'] !== '4' || !this._EQUIPMENT_CATEGORIES.includes(shopsubcategory1) || !this._ITEM_TYPES.includes(itemCategory) || (ID.includes('TOOL') && ID.includes('AVALON'))) continue;
+                if (this._hasForbiddenParts(ID) || item['@tier'] !== '4' || !this.EQUIPMENT_CATEGORIES.includes(shopsubcategory1) || !this.ITEM_TYPES.includes(itemCategory) || (ID.includes('TOOL') && ID.includes('AVALON'))) continue;
                 const craftResources = (item.craftingrequirements as ICraftingRequirements[])?.[0]?.['craftresource'] || (item.craftingrequirements as ICraftingRequirements)?.['craftresource'];
                 if (craftResources) {
                     const {itemType, itemClass} = this._defineAOTItemParams(shopsubcategory1, ID);
-                    const itemObject: TCraftItem = {
+                    let itemObject: TCraftItem = {
                         itemId: bodyId,
                         itemNode: shopsubcategory1,
                         foodConsumption: 0,
                         itemType: itemType!,
                         itemClass: itemClass!,
-                        itemExample: this._ITEM_EXAMPLES[itemCategory]?.includes(bodyId) || false,
+                        itemExample: this.ITEM_EXAMPLES[itemCategory]?.includes(bodyId) || false,
                     }
 
-                    if (Array.isArray(craftResources)) {
-                        for (let resource of craftResources) {
-                            this._buildingResourceObjectHandler(resource, itemCategory, items, itemObject, artefactsData)
+                    let artefactObject: IArtefactParams | null  = null
+
+                    const resources = Array.isArray(craftResources) ? craftResources : [craftResources];
+
+                    for (let resource of resources) {
+                        let calculationResult = this._buildingResource_Artefact_ObjectHandler(
+                            resource,
+                            itemCategory,
+                            itemObject,
+                            artefactsData
+                        );
+
+                        itemObject = {
+                            ...itemObject,
+                            ...calculationResult.itemParams,
+                        };
+
+                        if (calculationResult.artefactObject) {
+                            artefactObject = {...calculationResult.artefactObject};
                         }
-                    } else {
-                        this._buildingResourceObjectHandler(craftResources, itemCategory, items, itemObject, artefactsData);
                     }
-                    items.craftItems[itemCategory].push(itemObject);
+
+
+                    craftItems[itemCategory].push(itemObject);
+
+                    if (artefactObject) {
+                        const {artefact, params} = artefactObject;
+                        const {artefactClass, artefactType} = params;
+
+                        artefacts[artefactClass][artefactType].push(artefact);
+                    }
                 }
             }
         }
+        return {
+            craftItems,
+            artefacts,
+        };
     }
 }
