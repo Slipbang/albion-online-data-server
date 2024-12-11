@@ -18,14 +18,14 @@
     <!-- For mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- For mobile & no resize -->
-    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Use latest version of IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- For external styles -->
     <link rel="stylesheet" href="styles.css">
     <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
 
     <!-- External scripts files -->
@@ -306,7 +306,7 @@
                 </blockquote>
                 <address>Конфуций</address>
                 <br>
-                <time>Тэг &lt;time&gt; предназначен для обозначения дат: 03.08.2022</time>
+                <p>Тэг &lt;time&gt; предназначен для обозначения дат: <time>03.08.2022</time></p>
                 <br>
                 <time datetime="03.08.2022">Тег &lt;time&gt; с атрибутом " datetime='дата' ", херня для даунов, которые
                     думают, что их сайт из говна и палок будут считывать через ИИ. Дата присвоенная к атрибуту не
@@ -565,14 +565,14 @@ const getDate = () => new Date;
         </pre>
                 <figure>
                     <div class="smallScreenContainer">
-                        <img src="./images/imageExample.png" alt="Just image"/>
+                        <img src="./images/imageExample.png" alt="Just image">
                     </div>
                     <figcaption>It is a simple description for a picture above</figcaption>
                 </figure>
                 <figure class="figureExampleStyle">
-                    <img src="./images/imageExample.png" alt="Just image"/>
-                    <img src="./images/imageExample.png" alt="Just image"/>
-                    <img src="./images/imageExample.png" alt="Just image"/>
+                    <img src="./images/imageExample.png" alt="Just image">
+                    <img src="./images/imageExample.png" alt="Just image">
+                    <img src="./images/imageExample.png" alt="Just image">
                     <figcaption>
                         <p>It is a simple description for a couple pictures above.</p>
                     </figcaption>
@@ -587,26 +587,23 @@ const getDate = () => new Date;
                 <p>Теги для создания таблиц.</p>
                 <p>Таблицы строятся последовательно вложенными тегами:</p>
                 <ol>
-                    <li> Во-первых идёт главный образующий тег < table>< /table></li>
-                    <li> После тега table идёт тег заголовка < caption>< /caption> (если требуется)</li>
-                    <li> Далее таблица делится на три основные части:
+                    <li>Во-первых идёт главный образующий тег <code>&lt;table&gt;&lt;/table&gt;</code></li>
+                    <li>После тега table идёт тег заголовка <code>&lt;caption&gt;&lt;/caption&gt;</code> (если требуется)</li>
+                    <li>Далее таблица делится на три основные части:
                         <ul>
                             <li>
-                                <pre>&lt;thead&gt;&lt;/thead&gt;</pre>
-                                Cтрока заголовка/шапка таблицы. Нужен для хранения одной или нескольких
+                                Cтрока заголовка/шапка таблицы: <code>&lt;thead&gt;&lt;/thead&gt;</code>. Нужен для хранения одной или нескольких
                                 строк, которые представлены вверху таблицы. Используется только 1 раз в 1 таблице. Чтобы
-                                заголовок был выделен жирным шрифтом, вместо тега td нужно использовать тег < th>< /th>.
+                                заголовок был выделен жирным шрифтом, вместо тега td нужно использовать тег <code>&lt;th&gt;&lt;/th&gt;</code>.
                             </li>
                             <li>
-                                <pre>&lt;tbody&gt;&lt;/tbody&gt;</pre>
-                                Основная часть таблицы. Предназначен для хранения основного контента
+                                Основная часть таблицы: <code>&lt;tbody&gt;&lt;/tbody&gt;</code>. Предназначен для хранения основного контента
                                 таблицы. Может содержать неограниченное количество строк. Может повторятся несколько раз
                                 в 1
                                 таблице.
                             </li>
                             <li>
-                                <pre>&lt;tfoot&gt;&lt;/tfoot&gt;</pre>
-                                Низ таблицы/футер/”подвал” (итоги, результаты). Нужен для хранения
+                                Низ таблицы/футер/”подвал” (итоги, результаты): <code>&lt;tfoot&gt;&lt;/tfoot&gt;</code>. Нужен для хранения
                                 одной или нескольких строк, которые идут внизу таблицы. Используется только 1 раз в 1
                                 таблице.
                             </li>
@@ -616,13 +613,11 @@ const getDate = () => new Date;
                 <p>Эти теги идут строго друг за другом!</p>
                 <p>Внутренная организация таблицы</p>
                 <ul>
-                    <li>Чтобы образовать строку таблицы, используется тег &lt;tr&gt;&lt;/tr&gt; (table row, табличная
+                    <li>Чтобы образовать строку таблицы, используется тег <code>&lt;tr&gt;&lt;/tr&gt;</code> (table row, табличная
                         строка).
                     </li>
-                    <li>Чтобы образовать ряд таблицы (ячейку с информацией), используется тег &lt;td&gt;&lt;/td&gt;
-                        (table
-                        data,
-                        данные). Ячейка таблицы записывается уже с какой-либо информацией.
+                    <li>Чтобы образовать ряд таблицы (ячейку с информацией), используется тег <code>&lt;td&gt;&lt;/td&gt;</code>
+                        (table data, данные). Ячейка таблицы записывается уже с какой-либо информацией.
                     </li>
                     <li>Чтобы объединить несколько ячеек, используется тег td с атрибутами:
                         <ul>
@@ -1204,8 +1199,8 @@ const getDate = () => new Date;
                 <p>*ВАЖНО!!! элементы дат поддерживаются не всеми браузерами!</p>
                 <p>Элемент "hidden" c атрибутом "value"- данный элемент скрывает дополнительное значение "value",
                     используется для корректной работы скриптов или трекинга информации:</p>
-                <p>&lt;input type="hidden" value="webDew"&gt;(внизу под скриптом между двумя < hr> невидимый
-                    результат)</p>
+                <pre>&lt;input type="hidden" value="webDew"&gt;</pre>
+                <p>(внизу под скриптом между двумя <code>&lt;hr&gt;</code> невидимый результат)</p>
                 <hr>
                 <input type="hidden" value="webDew">
                 <hr>
@@ -1356,7 +1351,7 @@ const getDate = () => new Date;
                             документе.
                             Пример:
                             <div class="smallScreenContainer">
-                                <img src="./images/example1.png" alt="example1"/>
+                                <img src="./images/example1.png" alt="example1">
                             </div>
                         </li>
                         <li>Инлайновые стили применяются непосредственно к определенному элементу. Не рекомендуется к
@@ -1378,7 +1373,7 @@ const getDate = () => new Date;
                         <li>Импорт стилей из уже существующих файлов CSS. Импорт встраивается в текущий файл CSS.
                             Пример:
                             <div class="smallScreenContainer">
-                                <img src="./images/example2.png" alt="example2"/>
+                                <img src="./images/example2.png" alt="example2">
                             </div>
                         </li>
                     </ol>
@@ -5253,8 +5248,7 @@ console.log(myArray); // --> [2, 5, 7]
 myArray.sum(); // --> 14
                     </pre>
 
-                    <p>В данном случае цепочка прототипов будет выглядеть так: myArray > NumbersArray > Array >
-                        Object</p>
+                    <p>В данном случае цепочка прототипов будет выглядеть так: myArray > NumbersArray > Array > Object</p>
                 </section>
 
 
@@ -5476,7 +5470,7 @@ asyncFunction()
                     <p>ключевое слово await можно использовать только в функциях с async</p>
                     <pre>
 const asyncFunction = async() => {
-    await < Promise >
+    await &lt;Promise&gt;
 }
 
 asyncFunction();
@@ -7100,7 +7094,7 @@ async1(function(){
 if (typeof EventSource !== "undefined") {
     var source = new EventSource("sse_generator.js");
     source.onmessage = function (event) {
-        document.getElementById("output").innerHTML += event.data + "< br>";
+        document.getElementById("output").innerHTML += event.data + "&lt;br&gt;";
     };
 }
                         </pre>
@@ -7889,7 +7883,7 @@ function submit() {
                         <p>Атрибуты определяются в разметке HTML, тогда как свойства определяются в DOM.
                             Например, приведенный ниже элемент HTML имеет 2 атрибута типа и значения:</p>
 
-                        <pre>< input type="text" value="Name:" ></pre>
+                        <pre>&lt;input type="text" value="Name:"&gt;</pre>
 
                         <p>Вы можете получить значение атрибута, как показано ниже:</p>
 
@@ -7929,16 +7923,12 @@ console.log(input.value); // Good evening
                     <h3 id="JSbasicsForEmployment95">Какова цель void(0)</h3>
 
                     <div>
-                        <p>Void(0) используется для предотвращения обновления страницы. Это поможет устранить
-                            нежелательный
-                            побочный эффект,
-                            поскольку вернет неопределенное примитивное значение. Обычно он используется для
-                            HTML-документов,
-                            использующих href="JavaScript:Void(0);" внутри элемента < a >. т. е. когда вы нажимаете
-                            ссылку, браузер загружает новую страницу или обновляет ту же страницу. Но такое поведение
-                            будет
-                            предотвращено с помощью этого выражения. Например, ссылка ниже уведомляет сообщение без
-                            перезагрузки страницы.</p>
+                        <p>Void(0) используется для предотвращения обновления страницы. Это поможет устранить нежелательный
+                            побочный эффект, поскольку вернет неопределенное примитивное значение. Обычно он используется для
+                            HTML-документов, использующих href="JavaScript:Void(0);" внутри элемента <code>&lt;a&gt;</code>.
+                            т. е. когда вы нажимаете ссылку, браузер загружает новую страницу или обновляет ту же страницу.
+                            Но такое поведение будет предотвращено с помощью этого выражения. Например, ссылка ниже уведомляет
+                            сообщение без перезагрузки страницы.</p>
 
                         <pre>
 &lt;a href="JavaScript:void(0);" onclick="alert('Well done!')"&gt;
@@ -8928,7 +8918,7 @@ for (i = 0; i < 10; i++) {
     if (i === 5) {
       break;
     }
-    text += "Number: " + i + "< br>";
+    text += "Number: " + i + "&lt;br&gt;";
 }
                 </pre>
 
@@ -8942,7 +8932,7 @@ for (i = 0; i < 10; i++) {
     if (i === 5) {
       continue;
     }
-    text += "Number: " + i + "< br>";
+    text += "Number: " + i + "&lt;br&gt;";
 }
                 </pre>
                     </div>
@@ -9621,7 +9611,7 @@ function traceValue(someParam) {
                         <ol>
                             <li>window.onload: window.onload = function ...</li>
                             <li>document.onload: document.onload = function ...</li>
-                            <li>body onload attribute: < body onload="script();"></li>
+                            <li>body onload attribute: &lt;body onload="script();"&gt;</li>
                         </ol>
                     </div>
                 </section>
@@ -9840,9 +9830,9 @@ toTitleCase("good morning john"); // Good Morning John
                     <h3 id="JSbasicsForEmployment182">Как обнаружить отключен ли JavaScript на странице</h3>
 
                     <div>
-                        <p>Вы можете использовать тег < noscript>, чтобы определить отключенный или нет
+                        <p>Вы можете использовать тег <code>&lt;noscript&gt;</code>, чтобы определить отключенный или нет
                             JavaScript. Блок кода
-                            внутри < noscript> выполняется, когда JavaScript отключен, и обычно используется для
+                            внутри <code>&lt;noscript&gt;</code> выполняется, когда JavaScript отключен, и обычно используется для
                             отображения
                             альтернативного контента, когда страница генерируется в JavaScript.
                         </p>
@@ -10548,7 +10538,7 @@ try {
                             Откроется диалоговое окно «Печать», в котором можно выбрать различные параметры печати.
                             Давайте посмотрим на использование метода print на примере:</p>
 
-                        <pre>< input type="button" value="Print" onclick="window.print()" /></pre>
+                        <pre>&lt;input type="button" value="Print" onclick="window.print()" /&gt;</pre>
                         <input type="button" value="Print" onclick="window.print()"/>
 
                         <p>Примечание: В большинстве браузеров он блокируется, пока открыто диалоговое окно печати.</p>
@@ -10893,7 +10883,7 @@ functionName(1);
 try {
     greeting("Welcome");
 } catch (err) {
-    console.log(err.name + "< br>" + err.message);
+    console.log(err.name + "&lt;br&gt;" + err.message);
 }
                         </pre>
                     </div>
@@ -11467,9 +11457,9 @@ for (let i = 0; i < a.length; a[i++] = 0);
                         </p>
 
                         <pre>
-< script type="module" src="welcome-module.js">< /script>;
+&lt;script type="module" src="welcome-module.js"&gt;&lt;/script&gt;;
 console.log(import.meta); // { url: "file:///home/user/welcome-module.js" }
-                </pre>
+                        </pre>
                     </div>
                 </section>
 
@@ -12762,7 +12752,7 @@ function myFunction() {
 
                         <p>и эта функция вызывается при загрузке страницы</p>
 
-                        <pre>< body onload="myFunction()">< /body></pre>
+                        <pre>&lt;body onload="myFunction()"&gt;&lt;/body&gt;</pre>
                     </div>
                 </section>
 
@@ -13557,7 +13547,7 @@ window.addEventListener("message", function(message){
                             checkbox HTML можно получить доступ с помощью JavaScript, как показано ниже:</p>
 
                         <pre>
-< input type="checkbox" id="checkboxname" value="Agree" /> Agree the conditions< br />
+&lt;input type="checkbox" id="checkboxname" value="Agree" &gt; // Agree the conditions
 
 console.log(document.getElementById(‘checkboxname’).checked); // true or false
                 </pre>
@@ -14621,7 +14611,7 @@ box.addEventListener('click', () => {
                             атрибута
                             oncontextmenu элемента body.</p>
 
-                        <pre>< body oncontextmenu="return false;">< /body></pre>
+                        <pre>&lt;body oncontextmenu="return false;"&gt;&lt;/body&gt;</pre>
                     </div>
                 </section>
 
@@ -14862,7 +14852,7 @@ Script loaded
                         <ol>
                             <li>
                                 Когда новая программа javascript запускается непосредственно из консоли или
-                                с помощью элемента < script>, задача будет добавлена в очередь задач.
+                                с помощью элемента <code>&lt;script&gt;</code>, задача будет добавлена в очередь задач.
                             </li>
                             <li>При возникновении события, обратный вызов события добавляется в очередь задач.</li>
                             <li>При достижении setTimeout или setInterval соответствующий обратный вызов добавляется в
@@ -16305,11 +16295,11 @@ const processChange = debounce(() => fetchResults());
                         <pre>
 // Input:
 
-< input type="text" onkeyup="processChange()" />
+&lt;input type="text" onkeyup="processChange()" /&gt;
 
 // Button:
 
-< button onclick="processChange()">Click me< /button>
+&lt;button onclick="processChange()"&gt;Click me&lt;/button&gt;
 
 // Windows event:
 
@@ -19786,7 +19776,7 @@ let arrayfor11 = {
                             <p>Дан блок .event9. Внутри блока - изображение 1.png. При клике правой кнопкой мыши - меняйте
                                 изображение на 2.png. Надеюсь вы догадаетесь изменить только src изображения?</p>
                             <div class="blockeventimage event9">task-9
-                                <img src="./JSImages/jojo1.png" width="150px" alt="">
+                                <img src="./JSImages/jojo1.png" width="150px" alt="jojo1">
                             </div>
                         </li>
                         <li>
@@ -19794,7 +19784,7 @@ let arrayfor11 = {
                                 меняйте
                                 изображение на 2.png.</p>
                             <div class="blockeventimage event10">task-10
-                                <img src="./JSImages/jojo1.png" width="150px" alt="">
+                                <img src="./JSImages/jojo1.png" width="150px" alt="jojo1">
                             </div>
                         </li>
                         <li>
@@ -20120,15 +20110,15 @@ let arrayfor11 = {
                                 произошло событие - заменилась главная картинка.</p>
 
                             <div class="diveventmove12-wrapper">
-                                <img src="./images/1.png" alt="" class="img-12-min active-img">
-                                <img src="./images/2.png" alt="" class="img-12-min">
-                                <img src="./images/3.png" alt="" class="img-12-min">
-                                <img src="./images/4.png" alt="" class="img-12-min">
-                                <img src="./images/5.png" alt="" class="img-12-min">
-                                <img src="./images/6.png" alt="" class="img-12-min">
+                                <img src="./images/1.png" alt="1" class="img-12-min active-img">
+                                <img src="./images/2.png" alt="2" class="img-12-min">
+                                <img src="./images/3.png" alt="3" class="img-12-min">
+                                <img src="./images/4.png" alt="4" class="img-12-min">
+                                <img src="./images/5.png" alt="5" class="img-12-min">
+                                <img src="./images/6.png" alt="6" class="img-12-min">
                             </div>
                             <div class="diveventmove12-max">
-                                <img src="./images/1.png" alt="" class="img-12-max"></div>
+                                <img src="./images/1.png" alt="1" class="img-12-max"></div>
                             <p class="img-12-text"></p>
                             <button class="prev12">Prev</button>
                             <button class="next12">Next</button>
@@ -21324,7 +21314,7 @@ function functionName (){
                             подключаем их
                             в скобках функции параметром "props" и потом в коде с помощью props.atribute :</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/props1.png" alt="props1" style="max-height: 386px">
+                            <img src="./images/props1.png" style="max-height: 386px" alt="props1">
                         </div>
                         <div class="smallScreenContainer">
                             <img src="./images/props2.png" style="max-width: 400px" alt="props2">
@@ -21447,8 +21437,7 @@ function functionName (){
                             количество
                             раз:</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/multipleUseStateUsage1.png" style="max-width: 500px"
-                                 alt="multipleUseStateUsage">
+                            <img src="./images/multipleUseStateUsage1.png" style="max-width: 500px" alt="multipleUseStateUsage">
                         </div>
                         <p>Так же в useState можно передать объект и управлять несколькими состояниями одновременно, при
                             этом
@@ -21456,15 +21445,13 @@ function functionName (){
                             учитывать все объекты при многократном вызове функции и считается не очень хорошей практикой
                             обновления состояния:</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/multipleUseStateUsage2.png" style="max-width: 500px"
-                                 alt="multipleUseStateUsage">
+                            <img src="./images/multipleUseStateUsage2.png" style="max-width: 500px" alt="multipleUseStateUsage">
                         </div>
                         <p>Лучше всего будет при втором способе в качестве параметра задать функцию с prevState в
                             скобках и
                             возвратить prevState вместе с изменяемым значением:</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/multipleUseStateUsage3.png" style="max-width: 500px"
-                                 alt="multipleUseStateUsage">
+                            <img src="./images/multipleUseStateUsage3.png" style="max-width: 500px" alt="multipleUseStateUsage">
                         </div>
                     </div>
                 </section>
@@ -21500,12 +21487,10 @@ function functionName (){
                             информацию,
                             в итоге в параметр функции родительского компонента будет записана информация:</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/relativComponentData.png" alt="relativComponentData"
-                                 style="max-height: 320px">
+                            <img src="./images/relativComponentData.png" alt="relativComponentData" style="max-height: 320px">
                         </div>
                         <div class="smallScreenContainer">
-                            <img src="./images/childComponentData.png" alt="childComponentData"
-                                 style="max-height: 320px">
+                            <img src="./images/childComponentData.png" alt="childComponentData" style="max-height: 320px">
                         </div>
                     </div>
                 </section>
@@ -21600,7 +21585,7 @@ setArrNAme(prevArr => {
                             :
                             выражение2}:</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/ternaryOperator1.png" alt="ternaryOperator1" style="max-height: 430px">
+                            <img src="./images/ternaryOperator1.png" style="max-height: 430px" alt="ternaryOperator1">
                         </div>
                         <p>или {условие && выражение1}+{условие && выражение2} возвращается то, что соответствует
                             условию:</p>
@@ -21872,7 +21857,7 @@ const Button = styled.button`
                             div в
                             DOM структуре:</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/wrapper.png" alt="wrapper"><br>
+                            <img src="./images/wrapper.png" alt="wrapper">
                         </div>
                         <div class="smallScreenContainer">
                             <img src="./images/wrapperUsage.png" alt="wrapperUsage">
@@ -22233,8 +22218,7 @@ context.a = ...
                             этот
                             компонент особенным образом с помощью React.forwardRef((props, ref) => {return (JSX)})</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/useImperativeHandle.png" style="max-width: 500px"
-                                 alt="useImperativeHandle"><br>
+                            <img src="./images/useImperativeHandle.png" style="max-width: 500px" alt="useImperativeHandle">
                         </div>
                         <div class="smallScreenContainer">
                             <img src="./images/importRef.png" style="max-width: 500px" alt="importedRef">
@@ -22839,7 +22823,7 @@ const someComponent = () => {
 someDispatchFunction({
    type: 'actionName'
 })
-            </pre>
+                        </pre>
                         <div class="smallScreenContainer">
                             <img src="./images/useDispatch.png" alt="useDispatch">
                         </div>
@@ -22872,10 +22856,10 @@ class someClassComponent extends Component {
 
    render() {
       return (
-         < div>
-            < div>{this.props.someStateName}< /div>
-            < button onClick={this.someHandler.bind(this)}>press< /button>)
-         < /div>
+         &lt;div&gt;
+            &lt;div&gt;{this.props.someStateName}&lt;/div&gt;
+            &lt;button onClick={this.someHandler.bind(this)}&gt;press&lt;/button&gt;)
+         &lt;/div&gt;
    }
 }
 
@@ -23279,15 +23263,12 @@ export default store;
                         <p>Компоненты учавствующие в маршрутизации по конвенции лучше помешать не в components папку, а
                             другую,
                             например pages.</p>
-                        <p>Для того чтобы установить маршрутизацию, в корневой файл (например App.js) импортируют
-                            компонент
-                            {Router}
-                            из "react-router-dom", далее в return блоке помещают Router компонент с props "/someUrlName"
-                            где
-                            "someUrlName" это предполагаемый энд-поинт который будет выводить пользователя на компонент
-                            который
-                            разработчик поместит между < Router>< Some Component>< /Router>. Далее требуется в index.js
-                            импортировать компонент {BrowserRouter} из "react-router-dom" и обернуть им App
+                        <p>Для того чтобы установить маршрутизацию, в корневой файл (например App.js) импортируют компонент
+                            {Router} из "react-router-dom", далее в return блоке помещают Router компонент с props "/someUrlName"
+                            где "someUrlName" это предполагаемый энд-поинт который будет выводить пользователя на компонент
+                            который разработчик поместит между: </p>>
+                        <pre>&lt;Router&gt;&lt;Some Component/&gt;&lt;/Router&gt;</pre>
+                        <p>Далее требуется в index.js импортировать компонент {BrowserRouter} из "react-router-dom" и обернуть им App
                             компонент:</p>
                         <pre>
 import {Router} from "react-router-dom";
@@ -23327,7 +23308,7 @@ root.render(&lt;BrowserRouter&gt;&lt;App/&gt;&lt;/BrowserRouter&gt;);
 import {Link} from "react-router-dom";
 ...
 &lt;Link to="/linkToSomeComponent1(2)"&gt;someComponent1(2)&lt;/Link&gt;
-            </pre>
+                        </pre>
                         <div class="smallScreenContainer">
                             <img src="./images/linkInRouterApp.png" alt="linkInRouterApp">
                         </div>
@@ -23396,8 +23377,7 @@ const params = useParams();
                             будет отражен первый компонент в списке и для того, чтобы исключить такое поведение в Route
                             используют props "exact", либо перемещают Route с более коротким url ниже по списку:</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/switchComponentReactRouter.png" style="max-width: 500px"
-                                 alt="switchComponentReactRouter">
+                            <img src="./images/switchComponentReactRouter.png" style="max-width: 500px" alt="switchComponentReactRouter">
                         </div>
                     </div>
                 </section>
@@ -23422,8 +23402,7 @@ const params = useParams();
                             компонент
                             Redirect оборачивается Route с props "path='/'" и props exact:</p>
                         <div class="smallScreenContainer">
-                            <img src="./images/redirectReactRouter.png" style="max-width: 500px"
-                                 alt="redirectReactRouter">
+                            <img src="./images/redirectReactRouter.png" style="max-width: 500px" alt="redirectReactRouter">
                         </div>
                         <p>В случае если требуется обработать невалидный ввод url после доменного имени, например
                             требуется
@@ -24234,7 +24213,7 @@ const someFunc = (): void => {
 
 const names = ['Anna', 'John'];
 
-names.forEach((name, index, array) => array.push('Hello')) //Array< string >.forEach(callbackfn: (value: string, index: number, array: string[]) => void, thisArg?: any): void
+names.forEach((name, index, array) => array.push('Hello')) //Array&lt;string&gt;.forEach(callbackfn: (value: string, index: number, array: string[]) => void, thisArg?: any): void
 //комментарий к методу forEach говорит о том что callback функция проигнорирует возвращаемые значения других методов)
             </pre>
                 </div>
@@ -24299,7 +24278,7 @@ const user: User = {
    //address: 'address',  // ошибки не будет
 }
 
-const userFreeze: Readonly< User > = {
+const userFreeze: Readonly&lt;User&gt; = {
    login: 'login',
    password: 'password',
    age: 30,
@@ -24321,7 +24300,7 @@ function sendUserData(obj: User, db?: string): void {
 }
 
 //const basicPorts: readonly number[] = [3000, 3001, 5555];
-const basicPorts: ReadonlyArray< number > = [3000, 3001, 5555]; // тоже самое что и readonly number[]
+const basicPorts: ReadonlyArray&lt;number&gt; = [3000, 3001, 5555]; // тоже самое что и readonly number[]
 //basicPorts[0] = 1000; //  Index signature in type 'readonly number[]' only permits reading
             </pre>
                 </div>
@@ -24737,7 +24716,7 @@ export class Company {
                         внимание будут приниматься только те свойства этих двух объектов, которые присутствуют в них
                         обоих.</p>
                     <pre>
-async addMarker(obj: Company | User): Promise< void > {
+async addMarker(obj: Company | User): Promise&lt;void&gt; {
    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
    const marker = new AdvancedMarkerElement({
       map: this.googleMap,
@@ -25170,17 +25149,17 @@ function repairVehicle1(vehicle: ComplexVehicle){
                         <li>Часто используется при написании повторно используемого кода</li>
                     </ul>
                     <pre>
-class HoldAnything< TypeOfData >{
+class HoldAnything&lt;TypeOfData&gt;{
    data: TypeOfData;
 }
 
-const holdNumber = new HoldAnything< number >();
+const holdNumber = new HoldAnything&lt;number&gt;();
 holdNumber.data = 111;
 
-const holdString = new HoldAnything< string >();
+const holdString = new HoldAnything&lt;string&gt;();
 holdString.data = 'something';
 
-function processingData< T, S >(data: T[], options: S): string {
+function processingData&lt;T, S&gt;(data: T[], options: S): string {
    switch (typeof data){
        case 'string':
            return `${data}, speed: ${options}`;
@@ -25196,10 +25175,10 @@ function processingData< T, S >(data: T[], options: S): string {
 let res1 = processingData([5], 'fast');
 let res2 = processingData(['5'], 'slow');
 const res3 = processingData([5], 5);
-const res4 = processingData< number, string >([5], 'slow');
+const res4 = processingData&lt;number, string&gt;([5], 'slow');
 
 interface DataSaver {
-   //processing: < T >(data: T) => T;
+   //processing: &lt;T&gt;(data: T) => T;
    processing: typeof processing;
 }
 
@@ -25211,7 +25190,7 @@ const saver: DataSaver = {
 }
 
 const saver2: DataSaver = {
-   processing: < T >(data: T) => data,
+   processing: &lt;T&gt;(data: T) => data,
 }
 
 const saver3: DataSaver = {
@@ -25221,7 +25200,7 @@ const saver3: DataSaver = {
    //processing: data => data;
 }
 
-class User2< T, S > {
+class User2&lt;T, S&gt; {
    name1: T;
    age: S;
 
@@ -25230,12 +25209,12 @@ class User2< T, S > {
        this.age = age;
    }
 
-   sayMyFullName< T >(surname: T): string{
+   sayMyFullName&lt;T&gt;(surname: T): string{
        return typeof surname !== 'string' ? `I have only name: ${this.name1}` : `Surname of ${this.name1} is ${surname}`
    }
 }
 
-class Admin< G > extends User2< string, number >{
+class Admin&lt;G&gt; extends User2&lt;string, number&gt;{
    rules: G;
    constructor(name1: string, age: number, rules: G) {
        super(name1, age);
@@ -25248,26 +25227,25 @@ const userJohn = new User2('John', 30);
 const nameData = 'David';
 const ageData = 30;
 
-const userDavid = new User2< string, number >(nameData, ageData);
-console.log(userDavid.sayMyFullName< string >('Bowie'));
+const userDavid = new User2&lt;string, number&gt;(nameData, ageData);
+console.log(userDavid.sayMyFullName&lt;string&gt;('Bowie'));
             </pre>
 
-                    <p>По конвенции используют короткое название < T ></p>
+                    <p>По конвенции используют короткое название &lt;T&gt;</p>
                     <pre>
-class HoldAnything< T >{
+class HoldAnything&lt;T&gt;{
    data: T;
 }
             </pre>
-                    <p>Для дженериков так же присущ автоматический вывод типов, НО, все-таки лучше указывать тип
-                        дженерика!:</p>
+                    <p>Для дженериков так же присущ автоматический вывод типов, НО, все-таки лучше указывать тип дженерика!:</p>
 
                     <pre>
-function printAnything< T >(arr: T[]){
+function printAnything&lt;T&gt;(arr: T[]){
    arr.forEach(el => console.log(el));
 }
 
-printAnything([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);  //function printAnything< number >, происходит автоматическое выведение типа
-printAnything< string >(['a', 'b', 'c', 'd', 'e', 'f', 'g']);  // НО все-таки лучше производить аннотацию типа!!!
+printAnything([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);  //function printAnything&lt;number&gt;, происходит автоматическое выведение типа
+printAnything&lt;string&gt;(['a', 'b', 'c', 'd', 'e', 'f', 'g']);  // НО все-таки лучше производить аннотацию типа!!!
             </pre>
 
                     <p>Чтобы ограничит дженерики там, где будут использоваться наши кастомные методы или функции, есть
@@ -25291,15 +25269,15 @@ interface Printable {
    print(): void;
 }
 
-function printClass< T extends Printable > (arg: T[]): void {
+function printClass&lt;T extends Printable&gt; (arg: T[]): void {
    arg.forEach(classEl => classEl.print());
 }
 
-printClass< Printable >([new Human(), new Robot(), new Human(), new Robot()]);
+printClass&lt;Printable&gt;([new Human(), new Robot(), new Human(), new Robot()]);
 
 //-----------------------------------------------------------------------------//
 
-interface User1< ParentsData extends ParentsOfUser > {
+interface User1&lt;ParentsData extends ParentsOfUser&gt; {
    login: string;
    age: number;
    parents: ParentsData
@@ -25323,13 +25301,13 @@ const user1: User1<{father: string, mother: string, married: boolean, anything: 
 
 //generic helpers type
 
-type OrNull< Type > = Type | null;
-type OneOrMany< Type > = Type | Type[];
+type OrNull&lt;Type&gt; = Type | null;
+type OneOrMany&lt;Type&gt; = Type | Type[];
 
-const data1: OneOrMany< number[] > = [5,5,5];
+const data1: OneOrMany&lt;number[]&gt; = [5,5,5];
 
 //-----------------------------------------------------------//
-const depositMoney = < T extends number | string >(amount: T): T => {
+const depositMoney = &lt;T extends number | string&gt;(amount: T): T => {
    console.log(`request to server with amount: ${amount}`);
    return amount;
 }
@@ -25338,7 +25316,7 @@ depositMoney(500);
 depositMoney('five hundreds');
             </pre>
 
-                    <p>Само ограничение создается при помощи синтаксиса < T extends ...></p>
+                    <p>Само ограничение создается при помощи синтаксиса &lt;T extends ...&gt;</p>
                     <p>Partial дженерики это встроенный дженерик который позволяет обойти обязательное использование
                         всех
                         свойств задекларированных в интерфейсе:</p>
@@ -25351,7 +25329,7 @@ interface IState {
    tag: string;
 }
 
-const state: Partial< IState > = {
+const state: Partial&lt;IState&gt; = {
    data: {
       name: 'John'
    }
@@ -25361,7 +25339,7 @@ const state: Partial< IState > = {
                     <p>Если требуется сделать объект иммутабельным, то в блоке аргументов требуется применить
                         ДЖЕНЕРИК(не
                         путать
-                        с модификатором!!!) Readonly< interface > где interface это выбранный нами интерфейс для данного
+                        с модификатором!!!) Readonly&lt;interface&gt; где interface это выбранный нами интерфейс для данного
                         объекта:</p>
 
                     <pre>
@@ -25372,7 +25350,7 @@ interface IState {
    tag: string;
 }
 
-const action = (state: Readonly< IState >) => {
+const action = (state: Readonly&lt;IState&gt;) => {
    const newObj = state.data;
 }
 
@@ -25385,7 +25363,7 @@ interface IState {
        };
        tag: string;
     }
-    const strictState: Required< IState > = {
+    const strictState: Required&lt;IState&gt; = {
        data: {
            name: 'David',
        },
@@ -25410,7 +25388,7 @@ interface ICompany {
 type CompanyKeys = keyof ICompany;
 const keys: CompanyKeys = 'name';
 
-function printDebts< T, K extends keyof T, S extends keyof T >(company: T, name: K, debts: S): void{
+function printDebts&lt;T, K extends keyof T, S extends keyof T&gt;(company: T, name: K, debts: S): void{
    console.log(`${company[name]}, debts: ${company[debts]}`);
 }
 
@@ -25580,7 +25558,7 @@ type CompanyDebtsTypeFromVariable = ICompany[typeof debtsVar]; //Initial type: n
                     <pre>
 type Example = 'string' extends 'Hello' ? string : number;
 
-type FromUserOrFromBase< T extends string | number > = T extends string
+type FromUserOrFromBase&lt;T extends string | number&gt; = T extends string
     ? IDataFromUser
     : IDataFromBase;
 
@@ -25592,15 +25570,15 @@ interface IDataFromBase {
     calories: number;
 }
 
-const testDataFromBase: FromUserOrFromBase< number > = {
+const testDataFromBase: FromUserOrFromBase&lt;number&gt; = {
     calories: 500;
 }
 
-const testDataFromUser: FromUserOrFromBase< string > = {
+const testDataFromUser: FromUserOrFromBase&lt;string&gt; = {
     weight: '500';
 }
 
-interface SomeUser< T extends 'created' | Date > {
+interface SomeUser&lt;T extends 'created' | Date&gt; {
     created: T extends 'created' ? 'created' : Date;
 }
 
@@ -25608,7 +25586,7 @@ const newUser: SomeUser<'created'> = {
     created: "created",
 }
 
-function calculateDailyCalories< T extends string | number >(numOrStr: T): T extends string ? IDataFromUser : IDataFromBase {
+function calculateDailyCalories&lt;T extends string | number&gt;(numOrStr: T): T extends string ? IDataFromUser : IDataFromBase {
     if (typeof numOrStr === 'string'){
         const userObj: IDataFromUser = {
             weight: numOrStr,
@@ -25633,10 +25611,10 @@ console.log(calculateDailyCalories('500'));
                     <p>Задача на собеседованиях, как сделать type с дженериком, который всегда будет возвращать массив
                         типов:</p>
                     <pre>
-type ToArray< Type > = Type extends any ? Type[] : never;
-type ExArray = ToArray< string >; //Initial type: string[]
-type ExArray2 = ToArray< number >; //Initial type: number[]
-            </pre>
+type ToArray&lt;Type&gt; = Type extends any ? Type[] : never;
+type ExArray = ToArray&lt;string&gt; //Initial type: string[]
+type ExArray2 = ToArray&lt;number&gt; //Initial type: number[]
+                    </pre>
                 </div>
             </section>
 
@@ -25671,9 +25649,9 @@ type Currencies = {
     kz: 'tenge';
 }
 
-//type ROnlyCurr = Readonly< Currencies >;
+//type ROnlyCurr = Readonly&lt;Currencies&gt;
 
-type CreateCustomCurrencies< T > = {
+type CreateCustomCurrencies&lt;T&gt; = {
     readonly [key in keyof T]?: string
 }
 
@@ -25684,7 +25662,7 @@ type CreateCustomCurrencies< T > = {
 //     kz: string;
 // }
 
-type CustomCurrencies = CreateCustomCurrencies< Currencies >; //Initial type:
+type CustomCurrencies = CreateCustomCurrencies&lt;Currencies&gt; //Initial type:
 //{readonly usa?: string, readonly china?: string, readonly ukraine?: string, readonly kz?: string}
             </pre>
                     <p>Чтобы добавлять модификаторы или их убирать требуется перед модификаторами ставить + или -
@@ -25697,11 +25675,11 @@ type Currencies = {
     readonly kz?: 'tenge';
 }
 
-type CreateCustomCurrencies< T > = {
+type CreateCustomCurrencies&lt;T&gt; = {
     -readonly [key in keyof T]-?: string
 }
 
-type CustomCurrencies = CreateCustomCurrencies< Currencies >; //Initial type: {usa: string, china: string, ukraine: string, kz: string}
+type CustomCurrencies = CreateCustomCurrencies&lt;Currencies&gt; //Initial type: {usa: string, china: string, ukraine: string, kz: string}
             </pre>
                 </div>
             </section>
@@ -25716,10 +25694,10 @@ type CustomCurrencies = CreateCustomCurrencies< Currencies >; //Initial type: {u
                     <pre>
 type MyAnimation = 'fade';
 type Direction = 'in' | 'out';
-type MyNewAnimation = `${MyAnimation}${Capitalize< Direction >}`; //Initial type:"fadeIn" | "fadeOut" | "swipeIn" | "swipeOut"
+type MyNewAnimation = `${MyAnimation}${Capitalize&lt;Direction&gt;}`; //Initial type:"fadeIn" | "fadeOut" | "swipeIn" | "swipeOut"
 
-type CreateCustomCurrencies1< T > = {
-    -readonly [key in keyof T as `custom${Capitalize< string & key >}`]-?: string
+type CreateCustomCurrencies1&lt;T&gt; = {
+    -readonly [key in keyof T as `custom${Capitalize&lt;string & key&gt;}`]-?: string
 }
 
 type Currencies1 = {
@@ -25729,11 +25707,10 @@ type Currencies1 = {
     readonly kz?: 'tenge';
 }
 
-type CustomCurrencies1 = CreateCustomCurrencies1< Currencies1 >; //Initial type: {customUsa: string, customChina: string, customUkraine: string, customKz: string}
+type CustomCurrencies1 = CreateCustomCurrencies1&lt;Currencies1&gt; //Initial type: {customUsa: string, customChina: string, customUkraine: string, customKz: string}
             </pre>
-                    <p>Дженерики Uppercase<>, Lowercase<>, Capitalize<>, Uncapitalize<> преобразуют строку в верхний
-                        регистр
-                        нижний регистр, делают первую букву заглавной или наоборот с малой.</p>
+                    <p>Дженерики <code>Uppercase&lt;&gt;, Lowercase&lt;&gt;, Capitalize&lt;&gt;, Uncapitalize&lt;&gt;</code> преобразуют
+                        строку в верхний регистр нижний регистр, делают первую букву заглавной или наоборот с малой.</p>
                 </div>
             </section>
 
@@ -25744,18 +25721,18 @@ type CustomCurrencies1 = CreateCustomCurrencies1< Currencies1 >; //Initial type:
                     <p>Существуют следующие встроенные типы:</p>
                     <pre>
 //Omit - исключение свойств типа
-type CurrenciesWithoutUSA = Omit< Currencies2, 'usa' > // Initial type: {china: "cny", ukraine: "uah", kz: "tenge"}
+type CurrenciesWithoutUSA = Omit&lt;Currencies2, 'usa'&gt; // Initial type: {china: "cny", ukraine: "uah", kz: "tenge"}
 
 //Pick - фильтрация по свойству
-type CurrenciesUSAAndUkraine = Pick< Currencies2, 'usa' | 'ukraine' > // Initial type: {usa: "usd", ukraine: "uah"}
+type CurrenciesUSAAndUkraine = Pick&lt;Currencies2, 'usa' | 'ukraine'&gt; // Initial type: {usa: "usd", ukraine: "uah"}
 
 //Exclude - удаление из union type
 type MyAnimation1 = 'fade' | 'swipe';
-type FadeType = Exclude< MyAnimation1, 'swipe' >; //Initial type: "fade"
-type CountriesWithoutUSA = Exclude< keyof Currencies2, 'usa' >; //Initial type: "china" | "ukraine" | "kz"
+type FadeType = Exclude&lt;MyAnimation1, 'swipe'&gt; //Initial type: "fade"
+type CountriesWithoutUSA = Exclude&lt;keyof Currencies2, 'usa'&gt; //Initial type: "china" | "ukraine" | "kz"
 
 //Extract - извлекает тип подходящий по условию
-type SwipeType = Extract< MyAnimation1, 'swipe' >; //Initial type: "swipe"
+type SwipeType = Extract&lt;MyAnimation1, 'swipe'&gt; //Initial type: "swipe"
 
 //Record - позволяет сконструировать другой тип в формате ключ - значение
 type Currencies2 = {
@@ -25765,12 +25742,12 @@ type Currencies2 = {
     kz: 'tenge';
 }
 type PlayersNames = 'Alex' | 'John';
-type CreateCustomCurrencies2< T > = {
-    -readonly [key in keyof T as `custom${Capitalize< string & key >}`]-?: string
+type CreateCustomCurrencies2&lt;T&gt; = {
+    -readonly [key in keyof T as `custom${Capitalize&lt;string & key&gt;}`]-?: string
 }
 
-type CustomCurrencies2 = CreateCustomCurrencies2< Currencies2 >; //Initial type: {customUsa: string, customChina: string, customUkraine: string, customKz: string}
-type GameDataCurrencies = Record< PlayersNames, CustomCurrencies2 >
+type CustomCurrencies2 = CreateCustomCurrencies2&lt;Currencies2&gt; //Initial type: {customUsa: string, customChina: string, customUkraine: string, customKz: string}
+type GameDataCurrencies = Record&lt;PlayersNames, CustomCurrencies2&gt;
 
 const gameData: GameDataCurrencies = {
     Alex: {
@@ -25792,12 +25769,12 @@ function calculate(a: number, b: number): number {
     return a*b;
 }
 
-type CalculateRT = ReturnType< typeof calculate >; //Initial type: number
+type CalculateRT = ReturnType&lt;typeof calculate&gt; //Initial type: number
 let anotherRes: CalculateRT = 5;
 
 Parameters - позволяет вернуть тип аргументов функции
-type calculatePT = Parameters< typeof calculate >; //Initial type: [number, number]
-type calculateFirstPT = Parameters< typeof calculate >[0]; //Initial type: number
+type calculatePT = Parameters&lt;typeof calculate&gt; //Initial type: [number, number]
+type calculateFirstPT = Parameters&lt;typeof calculate&gt;[0]; //Initial type: number
 
 ConstructorParameters - позволяет извлечь типы из аргументов конструктора класса
 
@@ -25806,14 +25783,14 @@ class Example3 {
     }
 }
 
-type ConstructorParams = ConstructorParameters< typeof Example3 > //Initial type: [number]
+type ConstructorParams = ConstructorParameters&lt;typeof Example3&gt; //Initial type: [number]
 
 //для того чтобы "вытащить" тип из промиса используется дженерик Awaited:
 interface AwaitedUser {
     name: string;
 }
 
-async function fetchUsers(): Promise< AwaitedUser[] >{
+async function fetchUsers(): Promise&lt;AwaitedUser[]&gt;{
     const users: AwaitedUser[] = [
         {
             name: "Alex"
@@ -25824,15 +25801,14 @@ async function fetchUsers(): Promise< AwaitedUser[] >{
 
 const users = fetchUsers();
 
-type FetchUsersReturnType = Awaited< ReturnType< typeof fetchUsers >>; //Initial type: AwaitedUser[]
+type FetchUsersReturnType = Awaited&lt;ReturnType&lt;typeof fetchUsers&gt;&gt; //Initial type: AwaitedUser[]
 
 //до введения данного дженерика это действие выглядело вот так:
-type UnwrappedPromise< T > = T extends Promise< infer Return > ? Return : T;
-type FetchDataReturnType = UnwrappedPromise< ReturnType< typeof fetchUsers >>; //Initial type: AwaitedUser[]
+type UnwrappedPromise&lt;T&gt; = T extends Promise&lt;infer Return&gt; ? Return : T;
+type FetchDataReturnType = UnwrappedPromise&lt;ReturnType&lt;typeof fetchUsers&gt;&gt; //Initial type: AwaitedUser[]
             </pre>
-                    <p><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html" target="_blank">Здесь
-                        можно
-                        посмотреть список всех встроенных типов.</a></p>
+                    <p><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html" target="_blank">
+                        Здесь можно посмотреть список всех встроенных типов.</a></p>
                 </div>
             </section>
 
@@ -25841,8 +25817,7 @@ type FetchDataReturnType = UnwrappedPromise< ReturnType< typeof fetchUsers >>; /
 
                 <div>
                     <p>Для того чтобы работать с fetch запросами и соответственно с json строкой нужно пользоваться
-                        защитой
-                        типов при присваивании переменным уже сформированный из json'a объект:</p>
+                        защитой типов при присваивании переменным уже сформированный из json'a объект:</p>
                     <pre>
 interface Todos {
     userId: number;
@@ -25869,7 +25844,7 @@ fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json()).then
 
                     <p>При создании же промисов, сам Promise можно использовать как дженерик:</p>
                     <pre>
-const proms = new Promise< string >((resolve,reject) => {
+const proms = new Promise&lt;string&gt;((resolve,reject) => {
     resolve('test');
 })
 
@@ -26335,7 +26310,7 @@ interface ICar {
     isOpenAndFuel: () => string;
 }
 
-function closeCarDec< T extends {new (...args: any[]): {}} >(constructor: T) {
+function closeCarDec&lt;T extends {new (...args: any[]): {}}&gt;(constructor: T) {
     //constructor.prototype.fuel = '100%' не изменяет свойство тк конструктор перезаписывает его!
     //constructor.prototype.open = false; не изменяет свойство тк конструктор перезаписывает его!
     return class extends constructor {
@@ -26433,7 +26408,7 @@ someCar.drive();
 
 function changeAmountOfFuel(amount: number){
     console.log('fuel init');  // в консоли будет 1м месте
-    return < T extends { new(...args: any[]): {} } >(constructor: T) => {
+    return &lt;T extends { new(...args: any[]): {} }&gt;(constructor: T) => {
         console.log('fuel changed'); // в консоли будет на 4м месте
         return class extends constructor {
             fuel = `${amount}%`;
@@ -26443,7 +26418,7 @@ function changeAmountOfFuel(amount: number){
 
 function changeDoorStatus(status: boolean) {
     console.log('door init'); // в консоли будет 2м месте
-    return < T extends { new(...args: any[]): {} } >(constructor: T) => {
+    return &lt;T extends { new(...args: any[]): {} }&gt;(constructor: T) => {
         console.log('door changed'); // в консоли будет 3м месте
         return class extends constructor {
             open = status;
@@ -26494,7 +26469,7 @@ console.log(newCar.isOpenAndFuel()); //false and 75%
                     <pre>
 function changeAmountOfFuel(amount: number){
     console.log('fuel init')
-    return < T extends { new(...args: any[]): {} } >(target: T) => {
+    return &lt;T extends { new(...args: any[]): {} }&gt;(target: T) => {
         console.log('fuel changed');
         return class extends target {
             fuel = `${amount}%`;
@@ -26504,7 +26479,7 @@ function changeAmountOfFuel(amount: number){
 
 function changeDoorStatus(status: boolean) {
     console.log('door init')
-    return < T extends { new(...args: any[]): {} } >(target: T) => {
+    return &lt;T extends { new(...args: any[]): {} }&gt;(target: T) => {
         console.log('door changed');
         return class extends target {
             open = status;
@@ -26894,8 +26869,7 @@ const backupConfig: ServerConfigurationWithRole = {
                     <p>в случае если нам нужно запретить передачу children при последующем использовании компонентов, то
                         нужно просто не передавать его в наш type alias, и обратно если нужно.</p>
                     <p>В случае если мы хотим стилизовать некий элемент, и нам требуется взять некие стили из props, мы
-                        так
-                        же можем их типизировать.</p>
+                        так же можем их типизировать.</p>
                     <pre>
 import React from "react";
 
@@ -26907,16 +26881,16 @@ type TodoItemProps = {
     style?: React.CSSProperties;
 }
 
-const TodoItem: React.FC< TodoItemProps> = ({id, title, completed, children, style}) => {
+const TodoItem: React.FC&lt;TodoItemProps&gt; = ({id, title, completed, children, style}) => {
     return (
-        < ul>
-            < li style={{color: "red", background: "white", ...style}}>
-                < input type="checkbox" checked={completed}/>
-            < /li>
-            < span>{title}< /span>
-            < span>&times;< /span>
-            < span>{children}< /span>
-        < /ul>
+        &lt;ul&gt;
+            &lt;li style={{color: "red", background: "white", ...style}}&gt;
+                &lt;input type="checkbox" checked={completed}/&gt;
+            &lt;/li&gt;
+            &lt;span&gt;{title}&lt;/span&gt;
+            &lt;span&gt;&times;&lt;/span&gt;
+            &lt;span&gt;{children}&lt;/span&gt;
+        &lt;/ul&gt;
     )
 }
 
@@ -26939,13 +26913,9 @@ const TodoItem = ({id, title, completed, children, style}: TodoItemProps) => {
             </pre>
 
                     <p>Когда мы работаем с useState, и передаем в него примитивные типы, то можно полагаться на вывод
-                        типов(type inference), вывод типов отлично справится с контролем ошибок, в случае если же
-                        передаем
-                        НЕ
-                        примитивные типы, массивы объекты и тд, то useState< T> можно использовать как дженерик, где
-                        вместо
-                        T мы
-                        подставим свой type alias или напрямую аннотируем тип(например < string[]>. [1]</p>
+                        типов(type inference), вывод типов отлично справится с контролем ошибок, в случае если же передаем НЕ
+                        примитивные типы, массивы объекты и тд, то useState&lt;T&gt; можно использовать как дженерик, где
+                        вместо T мы подставим свой type alias или напрямую аннотируем тип(например &lt;string[]&gt;. [1]</p>
 
                     <p>В случае если мы работаем с хендлерами и их ивентами, то нам нужно их типизировать следующим
                         образом:
@@ -26973,13 +26943,13 @@ const TodoItem = ({id, title, completed, children, style}: TodoItemProps) => {
 
 interface NewTodoFormProps {
     //value: string;
-    //onChange: (event: React.ChangeEvent< HTMLInputElement>) => void; //[2] //React.ChangeEventHandler< HTMLInputElement>
+    //onChange: (event: React.ChangeEvent&lt;HTMLInputElement&gt;) => void; //[2] //React.ChangeEventHandler&lt;HTMLInputElement&gt;
     clickHandler: (text: string) => void;
     //clickHandler: () => void; // [2]
 }
 
 const NewTodoForm = ({value, onChange, clickHandler }: NewTodoFormProps) => {
-    const inputRef = useRef< HTMLInputElement>(null); //[5]
+    const inputRef = useRef&lt;HTMLInputElement&gt;(null); //[5]
 
     const onClick = () => {
         if (inputRef.current){ //[5]
@@ -26989,15 +26959,15 @@ const NewTodoForm = ({value, onChange, clickHandler }: NewTodoFormProps) => {
 
     return (
         <>
-            < input
+            &lt;input
                 type="text"
                 placeholder='new todo'
                 //value={value}
-                //onChange={onChange} //[3] - React.InputHTMLAttributes< T>.onChange?: React.ChangeEventHandler< HTMLInputElement> | undefined
+                //onChange={onChange} //[3] - React.InputHTMLAttributes&lt;T&gt;.onChange?: React.ChangeEventHandler&lt;HTMLInputElement&gt; | undefined
                 ref={inputRef}
-            />
-            < button onClick={onClick /*clickHandler*/}>Add todo< /button>
-        < />
+            /&gt;
+            &lt;button onClick={onClick /*clickHandler*/}>Add todo&lt;/button&gt;
+        &lt;/&gt;
     )
 }
 
@@ -27021,9 +26991,9 @@ type ITodo = {
 
 function App() {
     //const [text, setText] = useState(''); //[1]
-    const [todos, setTodos] = useState< ITodo[]>([]); //[1]; если не типизировать дженерик то будет never[]
+    const [todos, setTodos] = useState&lt;ITodo[]&gt;([]); //[1]; если не типизировать дженерик то будет never[]
 
-    //const inputChangeHandler = (event: React.ChangeEvent< HTMLInputElement>) => {
+    //const inputChangeHandler = (event: React.ChangeEvent&lt;HTMLInputElement>) => {
     //    setText(event.target.value)
     //}
 
@@ -27057,14 +27027,14 @@ function App() {
     }, [])
 
     return (
-      < div className="App">
-          < NewTodoForm
+      &lt;div className="App"&gt;
+          &lt;NewTodoForm
                   //value={text}
                   //onChange={inputChangeHandler}
                   clickHandler={addTodoHandler}
-          />
-          < TodoItem id={'qwerty'} title={'someTodo'} completed={false} style={{border: '1px solid white',}}>Some children title< /TodoItem>
-      < /div>
+          /&gt;
+          &lt;TodoItem id={'qwerty'} title={'someTodo'} completed={false} style={{border: '1px solid white',}}&gt;Some children title&lt;/TodoItem&gt;
+      &lt;/div&gt;
     );
 }
 
@@ -27096,11 +27066,9 @@ export default App;
                         <li>Redux по своей сути функциональный и его трудно интегрировать с классами TS</li>
                     </ul>
 
-                    <p>Для того, чтобы работать с props и state в КЛАССОВЫХ компонентах React, нужно
-                        наследовать(extends)
-                        наш классовый компонент от дженерика React.Component< propArg, stateArg >, где propArg это
-                        интерфейс
-                        описывающий типы props, а stateArg это интерфейс описывающий типы состояний:</p>
+                    <p>Для того, чтобы работать с props и state в КЛАССОВЫХ компонентах React, нужно наследовать(extends)
+                        наш классовый компонент от дженерика React.Component&lt;propArg, stateArg&gt;, где propArg это
+                        интерфейс описывающий типы props, а stateArg это интерфейс описывающий типы состояний:</p>
                     <pre>
 import React from "react";
 import ReactDOM from "react-dom";
@@ -27113,7 +27081,7 @@ interface AppState {
    counter: number;
 }
 
-class App extends React.Component< AppProps, AppState >{
+class App extends React.Component&lt;AppProps, AppState&gt;{
 
     constructor(props: AppProps) {
         super(props);
@@ -27133,16 +27101,16 @@ class App extends React.Component< AppProps, AppState >{
 
     render() {
         return (
-            < div >
-                < p >{this.state.counter}< /p >
-                < button onClick={this.onIncrement.bind(this)}>+< /button>
-                < button onClick={this.onDecrement.bind(this)}>-< /button>
-            < /div >
+            &lt;div&gt;
+                &lt;p&gt;{this.state.counter}&lt;/p&gt;
+                &lt;button onClick={this.onIncrement.bind(this)}&gt;+&lt;/button&gt;
+                &lt;button onClick={this.onDecrement.bind(this)}&gt;-&lt;/button&gt;
+            &lt;/div&gt;
         )
     }
 }
 
-ReactDOM.render(< App color='green'/ >, document.getElementById('root'));
+ReactDOM.render(&lt;App color='green'/&gt;, document.getElementById('root'));
             </pre>
                 </div>
             </section>
@@ -27153,7 +27121,7 @@ ReactDOM.render(< App color='green'/ >, document.getElementById('root'));
                 <div>
                     <p>При миграции приложения на React-Redux в перую очередь нужно создать хранилище состояний(store,
                         который вложим в качестве зависимости, оборачивающего компонента
-                        < Provider store={store}> < App /> < Provider/>):</p>
+                        <code>&lt;Provider store={store}&gt;&lt;App/&gt;&lt;Provider/&gt;</code>):</p>
                     <pre>
 //store.ts
 
@@ -27166,8 +27134,8 @@ export const store = configureStore({
     reducer: rootReducer,
 });
 
-//export type RootState = ReturnType< typeof rootReducer >;
-export type RootState = ReturnType< typeof store.getState >;
+//export type RootState = ReturnType&lt;typeof rootReducer&gt;;
+export type RootState = ReturnType&lt;typeof store.getState&gt;;
 export type AppDispatch = typeof store.dispatch;
             </pre>
                     <p>Далее мы создаем файл с кастомными Redux хуками(вцелом можно обойтись и без данного файла и
@@ -27179,12 +27147,11 @@ export type AppDispatch = typeof store.dispatch;
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import { AppDispatch, RootState } from './store';
 
-export const useAppDispatch = () => useDispatch< AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook< RootState> = useSelector;
+export const useAppDispatch = () => useDispatch&lt;AppDispatch&gt;();
+export const useAppSelector: TypedUseSelectorHook&lt;RootState&gt; = useSelector;
             </pre>
                     <p>В файле со слайсами типизируются initialState и сами редьюсеры(а именно action при помощи
-                        дженерика
-                        PayloadAction<>):</p>
+                        дженерика <code>PayloadAction&lt;&gt;</code>):</p>
                     <pre>
 //todoSlice
 
@@ -27198,7 +27165,7 @@ const todoSlice = createSlice({
     name: '@todos',
     initialState,
     reducers: {
-        addTodo(state, action: PayloadAction< string>){
+        addTodo(state, action: PayloadAction&lt;string&gt;){
             const newTodo: Todo = {
                 id: new Date().toLocaleString(),
                 title: action.payload,
@@ -27207,7 +27174,7 @@ const todoSlice = createSlice({
 
             return [newTodo, ...state];
         },
-        toggleTodo(state, action: PayloadAction< Todo['id']>) {
+        toggleTodo(state, action: PayloadAction&lt;Todo['id']&gt;) {
             // return state.map(todo => {
             //         if (todo.id !== action.payload) return todo
             //         return {
@@ -27220,7 +27187,7 @@ const todoSlice = createSlice({
                 todo.completed = !todo.completed;
             }
         },
-        removeTodo(state, action: PayloadAction< Todo['id']>){
+        removeTodo(state, action: PayloadAction&lt;Todo['id']&gt;){
             return state.filter(todo => todo.id !== action.payload);
         }
     }
@@ -27365,10 +27332,10 @@ export const fetchAllTodos = createAsyncThunk<
     }
 )
 
-export const createTodo = createAsyncThunk<
+export const createTodo = createAsyncThunk&lt;
     Todo, // возвращаемое значение
     string // тип text
-    >(
+   &gt;(
     'todo/createTodo',
     async (text: string) => {
         const newTodo: Todo = {
