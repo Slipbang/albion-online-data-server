@@ -40,10 +40,6 @@ header {
     align-items: center;
 }
 
-header h1 {
-    font-size: 2rem;
-}
-
 .headerSvg {
     min-width: var(--header-height);
     min-height: var(--header-height);
@@ -51,15 +47,17 @@ header h1 {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
 }
 
-.headerSvg svg {
-    min-width: 40px;
-    height: 40px;
-    color: white;
-}
+/*.headerSvg svg {*/
+/*    min-width: 40px;*/
+/*    height: 40px;*/
+/*    color: white;*/
+/*}*/
 
 header h1 {
+    font-size: 2rem;
     display: flex;
     align-items: center;
     text-align: center;
@@ -234,8 +232,20 @@ pre::-webkit-scrollbar-thumb {
     border: 2px solid gray; /* padding вокруг плашки */
 }
 
-h1, h3 {
+main h1, main h3 {
     scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+main h1 {
+    font-size: 2rem;
+}
+
+main h2 {
+    font-size: 1.5rem;
+}
+
+main h3 {
+    font-size: 1.25rem;
 }
 
 pre {
@@ -272,7 +282,7 @@ img:hover {
     text-decoration: underline;
 }
 
-#cond {
+#idAttributeExample {
     font-size: 25px;
     border: 2px solid black;
 }
