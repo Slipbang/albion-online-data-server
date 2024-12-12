@@ -712,12 +712,12 @@ const getDate = () => new Date;
                 <hr>
                 <p>Приоритетно, чтобы ссылка открывалась на новой странице браузера, тогда в этом случае нужно задать
                     атрибут:</p>
-                <pre>&lt;a href="ссылка на сайт" target="_blank"&gt;Имя ссылки&lt;/a&gt;</pre>
+                <pre>&lt;a и функции id=href="ссылка на сайт" target="_blank"&gt;Имя ссылки&lt;/a&gt;</pre>
                 <a href="https://youtube.com/YauhenKavalchuk" target="_blank">Канал webDev Кавальчука</a>
                 <hr>
                 <p>Так же для функции href есть значения tel/mailto/skype.</p>
                 <p>Пример верстки и результирующие:</p>
-                <pre>&lt;a href="tel:номер телефона"&gt;текст который будет виден на вебстр&lt/a&gt;</pre>
+                <pre>&lt;a href="tel:номер телефона"&gt;текст который будет виден на вебстрке &lt;/a&gt;</pre>
                 <a href="tel:88005553535">88005553535</a>
                 <pre>&lt;a href="mailto:емейл на который хотим написать"&gt;текст который будет виден на вебстр&lt;/a&gt;</pre>
                 <a href="mailto:someEmail@mail.ru">someEmail@mail.ru</a>
@@ -725,12 +725,10 @@ const getDate = () => new Date;
                 <a href="skype:someSkype">someSkype</a>
                 <hr>
                 <p>Чтобы было удобно передвигаться по странице с ключевой точки, например с некоего примера, на текст
-                    описывающий этот пример, можно создать кнопку при помощи функции href="#айдисекция">название
-                    кнопки<; и функции id="айдисекция"</p>
-                <p>пример верстки и результирующая:</p>
+                    описывающий этот пример, можно создать кнопку следующего типа:
                 <pre>&lt;а href="#айди атрибут"&gt;Отображаемый текст&lt;/а&gt;</pre>
                 <pre>&lt;p id="айди атрибут"&gt;...&lt;/p&gt;</pre>
-                <a href="#Billy"> Борьба на подчиние </a>
+                <a href="#Billy">ссылка на картинку</a>
                 <hr>
                 <p>Кнопки:</p>
                 <p>Что же касается кнопок - это не самостоятельный элемент который задается следующей конструкцией:</p>
@@ -942,7 +940,7 @@ const getDate = () => new Date;
 
                     <fieldset>
                         <legend>Personal data</legend>
-                        <input aria-label="text input" type="text"/><br>
+                        <input aria-label="text input" type="text"><br>
                         <select aria-label="selector">
                             <option value="Front-end">Front-end</option>
                             <option value="Back-end">Back-end</option>
@@ -986,7 +984,7 @@ const getDate = () => new Date;
                     <fieldset>
                         <legend>Personal data</legend>
                         <label for="name">Your name</label>
-                        <input type="text" id="name"/><br>
+                        <input type="text" id="name"><br>
                         <label for="speciality">Choose your speciality</label>
                         <select id="speciality">
                             <option value="Front-end">Front-end</option>
@@ -1470,9 +1468,9 @@ div p span {
                         </li>
                         <li>Элемент прямого потомка:
                             <pre>
-<,>
+&lt;,&gt;
 ul li > example4 {
-   font-weight: bold;
+    font-weight: bold;
 }
 &lt;ul&gt;
    &lt;li&gt;&lt;p&gt;&lt;span class="example4"&gt;Span 1&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
@@ -2010,11 +2008,11 @@ big p {
     top: 20px;
     left: 150px;
 }
-        </pre>
-                    <h4> Просто текст Просто текст Просто текст Просто текст
+                    </pre>
+                    <div> Просто текст Просто текст Просто текст Просто текст
                         <div class="example23">div элемент example23</div>
                         Просто текст Просто текст Просто текст Просто текст
-                    </h4>
+                    </div>
                     <br>
                     <p>"position: absolute;"- В данном случае основной поток теряет связь с элементом и его место
                         заполняется,
@@ -2040,18 +2038,16 @@ big p {
     top: 30px;
     left: 250px;
 }
-        </pre>
-                    <h4 class="example25"> Просто текст Просто текст Просто текст Просто текст
+                    </pre>
+                    <div class="example25"> Просто текст Просто текст Просто текст Просто текст
                         <div class="example24">div элемент example24</div>
                         Просто текст Просто текст Просто текст Просто текст
-                    </h4>
+                    </div>
                     <br><br><br><br><br><br><br>
                     <p>"position: fixed;" аналог "position: absolute;" с тем различием, что позиционирование будет
                         ВСЕГДА
-                        отсчитываться от края окна браузера!!! Изменить ничего нельзя какие бы типы позиционирования ни
-                        были
-                        у
-                        родительского элемента!</p>
+                        отсчитываться от края окна браузера!!! Изменить ничего нельзя какие бы типы позиционирования ни были
+                        у родительского элемента!</p>
                     <pre>
 .example26 {
     border: 5px solid red;
@@ -3888,8 +3884,8 @@ console.log(b); // --> undefined
                             <ul>
                                 <li>===</li>
                                 <li>!==</li>
-                                <li><=</li>
-                                <li>>=</li>
+                                <li>&lt;=</li>
+                                <li>&gt;=</li>
                             </ul>
                         </li>
                         <li>логические
@@ -4221,7 +4217,7 @@ if (a > b) {
     console.log('a is larger');
 } // (точка с запятой не требуется)
 
-for (let i = 0; i++; i < 5) {
+for (let i = 0; i++; i &lt; 5) {
     console.log(i);
 } // (точка с запятой не требуется)
         </pre>
@@ -4602,7 +4598,7 @@ if (age >= 18) {
     console.log('is adult');
 }
 
-if (age >= 12 && age < 18) {
+if (age >= 12 && age &lt; 18) {
     console.log('is teenager');
 }
 
@@ -4621,7 +4617,7 @@ const sumPositiveNumbers = (a, b) => {
         return 'One of the arguments is not a number';
     }
 
-    if (a <= 0 || b <= 0) {
+    if (a &lt;= 0 || b <= 0) {
         return 'Numbers are not positive';
     }
 
@@ -4854,7 +4850,7 @@ for (начальная инструкция; условие; итерацион
 
 //-------------------------------------------------------
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i &lt; 5; i++) {
     console.log(i);
 } // --> 0 1 2 3 4
         </pre>
@@ -4866,7 +4862,7 @@ for (let i = 0; i < 5; i++) {
                     <pre>
 const someArray = ['first', 'second', 'third'];
 
-for (let i = 0; i < someArray.length; i++) {
+for (let i = 0; i &lt; someArray.length; i++) {
     console.log('for: ' + someArray[i] + ' ' + [i]);
 } // --> for: first 0 second 1 third 2
 
@@ -4888,7 +4884,7 @@ while (условие) {
 
 let i = 0;
 
-while (i < 5) {
+while (i &lt; 5) {
     console.log(i);
     i++;
 }
@@ -4911,14 +4907,14 @@ let i = 0;
 do {
     console.log(i);
     i++;
-} while (i < 5) // --> 0 1 2 3 4
+} while (i &lt; 5) // --> 0 1 2 3 4
 
 let i = 10;
 
 do {
     console.log(i);
     i++;
-} while (i < 5) // --> 10
+} while (i &lt; 5) // --> 10
         </pre>
                 </section>
 
@@ -7560,7 +7556,7 @@ function goForward() {
                             при повторном нажатии.</p>
 
                         <pre>
-&lt;input type="password" onmousedown="enterInput(event)" /&gt;
+&lt;input type="password" onmousedown="enterInput(event)"&gt;
 
 &lt;p id="feedback"&gt;&lt;/p&gt;
 
@@ -7576,7 +7572,7 @@ function goForward() {
     }
 &lt;/script&gt;
                 </pre>
-                        <input aria-label="password input" type="password" onclick="enterInput(event)"/>
+                        <input aria-label="password input" type="password" onclick="enterInput(event)">
 
                         <p id="feedback"></p>
 
@@ -8449,7 +8445,7 @@ regex.test(mainString);
                         <pre>
 function validateEmail(email) {
     let re =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        /^(([^&lt;&gt;()\[\]\\.,;:\s@"]+(\.[^&lt;&gt;()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
                 </pre>
@@ -8622,7 +8618,7 @@ function isEmpty(obj) {
                         <pre>
 function sum() {
     let total = 0;
-    for (let i = 0, len = arguments.length; i < len; ++i) {
+    for (let i = 0, len = arguments.length; i &lt; len; ++i) {
       total += arguments[i];
     }
     return total;
@@ -8735,7 +8731,7 @@ console.log(d1 === d2); // False
 
                         <pre>"  Hello World   ".trim(); //Hello World</pre>
 
-                        <p>Если ваш браузер (< IE9) не поддерживает этот метод, вы можете использовать
+                        <p>Если ваш браузер (&lt; IE9) не поддерживает этот метод, вы можете использовать
                             приведенный ниже полифилл.</p>
 
                         <pre>
@@ -8949,8 +8945,8 @@ for (i = 0; i < 10; i++) {
                         <pre>
 let i, j;
 
-loop1: for (i = 0; i < 3; i++) {
-    loop2: for (j = 0; j < 3; j++) {
+loop1: for (i = 0; i &lt; 3; i++) {
+    loop2: for (j = 0; j &lt; 3; j++) {
       if (i === j) {
         continue loop1;
       }
@@ -9384,9 +9380,8 @@ function getProfile() {
                 </section>
 
 
-                <setion>
-                    <h3 id="JSbasicsForEmployment164">Могу ли я использовать зарезервированные слова в качестве
-                        идентификаторов</h3>
+                <section>
+                    <h3 id="JSbasicsForEmployment164">Могу ли я использовать зарезервированные слова в качестве идентификаторов</h3>
 
                     <div>
                         <p>Нет, вы не можете использовать зарезервированные слова в качестве переменных,
@@ -9394,7 +9389,7 @@ function getProfile() {
 
                         <pre>let else = "hello"; // Uncaught SyntaxError: Unexpected token else</pre>
                     </div>
-                </setion>
+                </section>
 
                 <section>
                     <h3 id="JSbasicsForEmployment165">Как определить мобильный браузер</h3>
@@ -9449,15 +9444,12 @@ function detectmob() {
     }
 }
 detectmob();
-                </pre>
+                        </pre>
                     </div>
                 </section>
 
-
                 <section>
-                    <h3 id="JSbasicsForEmployment167">
-                        <div>Как получить ширину и высоту изображения с помощью JS?</div>
-                    </h3>
+                    <h3 id="JSbasicsForEmployment167">Как получить ширину и высоту изображения с помощью JS?</h3>
 
                     <div>
                         <p>Вы можете программно получить изображение и проверить размеры (ширину и высоту) с помощью
@@ -9800,7 +9792,7 @@ console.log(user.employment.department); //HR
 let language =
     (navigator.languages && navigator.languages[0]) ||  // Chrome / Firefox
     navigator.language ||                               // All browsers
-    navigator.userLanguage;                             // IE <= 10
+    navigator.userLanguage;                             // IE &lt;= 10
 
 console.log(language);
                 </pre>
@@ -9866,7 +9858,7 @@ toTitleCase("good morning john"); // Good Morning John
                             </li>
                             <li>
                                 Операторы сравнения: Включают == (Равно), != (Не Равно), === (Равно
-                                по типу), > (Больше), >= (Больше или Равно), < (Меньше), <= (Меньше или равно)
+                                по типу), &gt; (Больше), &gt;= (Больше или Равно), &lt; (Меньше), &lt;= (Меньше или равно)
                             </li>
                             <li>Логические операторы: Включают && (логическое И), || (логическое ИЛИ), ! (логическое
                                 НЕ).
@@ -9957,9 +9949,9 @@ function someFunc(a,…b,c){
                             <li>Побитовое ИЛИ ( | )</li>
                             <li>Побитовое исключающее ИЛИ ( ^ )</li>
                             <li>Побитовое НЕ ( ~ )</li>
-                            <li>Левый сдвиг ( << )</li>
-                            <li>Правый сдвиг, переносящий знак ( >> )</li>
-                            <li>Правый сдвиг с заполнением нулями ( >>> )</li>
+                            <li>Левый сдвиг ( &lt;&lt; )</li>
+                            <li>Правый сдвиг, переносящий знак ( &gt;&gt; )</li>
+                            <li>Правый сдвиг с заполнением нулями ( &gt;&gt;&gt; )</li>
                         </ol>
                     </div>
                 </section>
@@ -10538,8 +10530,8 @@ try {
                             Откроется диалоговое окно «Печать», в котором можно выбрать различные параметры печати.
                             Давайте посмотрим на использование метода print на примере:</p>
 
-                        <pre>&lt;input type="button" value="Print" onclick="window.print()" /&gt;</pre>
-                        <input type="button" value="Print" onclick="window.print()"/>
+                        <pre>&lt;input type="button" value="Print" onclick="window.print()"&gt;</pre>
+                        <input type="button" value="Print" onclick="window.print()">
 
                         <p>Примечание: В большинстве браузеров он блокируется, пока открыто диалоговое окно печати.</p>
                     </div>
@@ -11382,7 +11374,7 @@ function findMin(arr) {
     let length = arr.length;
     let min = Infinity;
     while (length--) {
-      if (arr[length] < min) {
+      if (arr[length] &lt; min) {
         min = arr[length];
       }
     }
@@ -11393,7 +11385,7 @@ function findMax(arr) {
     let length = arr.length;
     let max = -Infinity;
     while (length--) {
-      if (arr[length] > max) {
+      if (arr[length] &gt; max) {
         max = arr[length];
       }
     }
@@ -11411,10 +11403,10 @@ let marks = [50, 20, 70, 60, 45, 30];
 let min = marks[0];
 let max = marks[0];
 marks.forEach(el => {
-    if (el < min) {
+    if (el &lt; min) {
         min = el
     }
-    if (el > max) {
+    if (el &lt; max) {
         max = el
     }
 })
@@ -11440,7 +11432,7 @@ console.log(max) //70
 
                         <pre>
 // Initialize an array a
-for (let i = 0; i < a.length; a[i++] = 0);
+for (let i = 0; i &lt; a.length; a[i++] = 0);
                 </pre>
                     </div>
                 </section>
@@ -11467,14 +11459,9 @@ console.log(import.meta); // { url: "file:///home/user/welcome-module.js" }
                     <h3 id="JSbasicsForEmployment248">Что такое оператор запятая</h3>
 
                     <div>
-                        <p>Оператор запятая используется для оценки каждого из своих операндов слева направо и
-                            возвращает
-                            значение
-                            последнего операнда. Это полностью отличается от использования запятых в массивах, объектах,
-                            аргументах
-                            и параметрах функций. Например, использование числовых выражений будет выглядеть следующим
-                            образом:</p>
-
+                        <p>Оператор запятая используется для оценки каждого из своих операндов слева направо и возвращает значение
+                            последнего операнда. Это полностью отличается от использования запятых в массивах, объектах, аргументах
+                            и параметрах функций. Например, использование числовых выражений будет выглядеть следующим образом:</p>
                         <pre>
 let x = 1;
 x = (x++, x);
@@ -11499,18 +11486,16 @@ console.log(x); // 2
                             в одном месте с использованием оператора-запятой:
                         </p>
 
-                        <pre>for (let a = 0, b =10; a <= 10; a++, b--)</pre>
+                        <pre>for (let a = 0, b =10; a &lt;= 10; a++, b--)</pre>
 
-                        <p>Вы также можете использовать оператор запятой в операторе возврата, где он обрабатывается
-                            перед
-                            возвратом.</p>
+                        <p>Вы также можете использовать оператор запятой в операторе возврата, где он обрабатывается перед возвратом.</p>
 
                         <pre>
 function myFunction() {
     let a = 1;
     return (a += 10), a; // 11
 }
-                </pre>
+                        </pre>
                     </div>
                 </section>
 
@@ -11518,13 +11503,10 @@ function myFunction() {
                     <h3 id="JSbasicsForEmployment250">Что такое typescript</h3>
 
                     <div>
-                        <p>TypeScript — это типизированный расширенный набор JavaScript, созданный Microsoft, который
-                            добавляет
-                            дополнительные типы, классы, async/await и многие другие функции и компилируется в простой
-                            JavaScript.
+                        <p>TypeScript — это типизированный расширенный набор JavaScript, созданный Microsoft, который добавляет
+                            дополнительные типы, классы, async/await и многие другие функции и компилируется в простой JavaScript.
                             Angular полностью построен на TypeScript и используется в качестве основного языка. Вы
-                            можете
-                            установить его глобально как:</p>
+                            можете установить его глобально как:</p>
 
                         <pre>npm install -g typescript</pre>
 
@@ -12809,12 +12791,12 @@ with (a.b.c) {
 
                     <div>
                 <pre>
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i &lt; 4; i++) {
     // global scope
     setTimeout(() => console.log(i));
 }
 
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i &lt; 4; i++) {
     // block scope
     setTimeout(() => console.log(i));
 }
@@ -13078,9 +13060,9 @@ function myInfoTag(strings, userExp, experienceExp, skillExp) {
     var str2 = strings[2]; // "in"
 
     var expertiseStr;
-    if (experienceExp > 10) {
+    if (experienceExp &gt; 10) {
       expertiseStr = "expert developer";
-    } else if (skillExp > 5 && skillExp <= 10) {
+    } else if (skillExp &gt; 5 && skillExp &lt;= 10) {
       expertiseStr = "senior developer";
     } else {
       expertiseStr = "junior developer";
@@ -13096,8 +13078,7 @@ console.log(output1); // Mr/Ms. John is a/an expert developer in JavaScript
 console.log(output2); // Mr/Ms. Kane is a/an junior developer in JavaScript
                 </pre>
 
-                        <p>Подробнее модно почитать на <a href="https://habr.com/ru/companies/ruvds/articles/511590/"
-                                                          target="_blank">Habr</a></p>
+                        <p>Подробнее модно почитать на <a href="https://habr.com/ru/companies/ruvds/articles/511590/" target="_blank">Habr</a></p>
                     </div>
                 </section>
 
@@ -15867,11 +15848,11 @@ void (function (dt) {
                         <pre>
 const weather = (function getWeather(temp) {
    switch (true) {
-      case temp < 0:
+      case temp &lt; 0:
          return "freezing";
-      case temp < 10:
+      case temp &lt; 10:
          return "cold";
-      case temp < 24:
+      case temp &lt; 24:
          return "cool";
       default:
          return "unknown";
@@ -15888,7 +15869,7 @@ const weather = (function getWeather(temp) {
                         <p>Самый простой и безопасный способ игнорировать ошибки промисов — аннулировать
                             эту ошибку. Этот подход также дружелюбен к ESLint.</p>
 
-                        <pre>await promise.catch((e) => void e);</pre>
+                        <pre>await promise.catch((e) =&gt; void e);</pre>
                     </div>
                 </section>
 
@@ -15896,13 +15877,10 @@ const weather = (function getWeather(temp) {
                     <h3 id="JSbasicsForEmployment423">Как оформить вывод консоли с помощью CSS?</h3>
 
                     <div>
-                        <p>Вы можете добавить стиль CSS к выводу консоли, используя спецификатор содержимого формата CSS
-                            %c.
-                            Строковое сообщение консоли можно добавить после спецификатора и стиля CSS в другом
-                            аргументе.
+                        <p>Вы можете добавить стиль CSS к выводу консоли, используя спецификатор содержимого формата CSS %c.
+                            Строковое сообщение консоли можно добавить после спецификатора и стиля CSS в другом аргументе.
                             Давайте напечатаем текст красного цвета, используя console.log и спецификатор CSS, как
-                            показано
-                            ниже:</p>
+                            показано ниже:</p>
 
                         <pre>console.log("%cThis is a red text", "color:red");</pre>
 
@@ -16770,10 +16748,6 @@ console.log(output_final);
 
                     <p id="queryselector2"></p>
 
-                    <h4>Hello
-                        <div><span>everyone</span></div>
-                    </h4>
-
                     <div class="tree"></div>
 
                     <div class="fraktion"></div>
@@ -17067,8 +17041,8 @@ console.log(output_final);
                     <div class="showcheckbox">checkbox</div>
                     <br>
 
-                    <form id="formexamp" action="">
-                        <textarea aria-label="textarea" name="" id="textarea" cols="30" rows="10"></textarea>
+                    <form id="formexamp">
+                        <textarea aria-label="textarea" id="textarea" cols="30" rows="10"></textarea>
                         <input aria-label="text input" type="text" id="inptextform">
                         <button id="butform">push</button>
                         <div class="showform">результат</div>
@@ -17232,7 +17206,7 @@ console.log(output_final);
                                 нажатию кнопки выводите значение text и password в out-19 через пробел.
                                 Обратите внимание на хитрость. Мы, кнопку сейчас повесили за пределами формы. Чуть позже мы
                                 рассмотрим почему это делали.</p>
-                            <form action="">
+                            <form>
                                 <input aria-label="textinp191" type="text" id="textinp191">
                                 <input aria-label="passinp192" type="password" id="passinp192">
                             </form>
@@ -17240,8 +17214,7 @@ console.log(output_final);
                             <div class="outinp19">Task-19</div>
                         </li>
                         <li>
-                            <p>Создайте форму. В ней input(text) и input(password) - и кнопку button. По нажатию кнопки
-                                выводите
+                            <p>Создайте форму. В ней input(text) и input(password) - и кнопку button. По нажатию кнопки выводите
                                 значение из input text и password в out-20 через пробел. Используйте form.elements.</p>
                             <form id="forminp20">
                                 <input aria-label="username" type="text" name="username">
@@ -17259,7 +17232,7 @@ console.log(output_final);
                     <pre>
 let divfor = document.querySelectorAll('.divfor div');
 console.log(divfor);
-for (let i = 0; i < divfor.length; i = i + 1) {
+for (let i = 0; i &lt; divfor.length; i = i + 1) {
     console.log(divfor[i]);
     divfor[i].style.background = 'red';
 };
@@ -17919,9 +17892,9 @@ for (let i = 0; i < divfor.length; i = i + 1) {
 
                     <input aria-label="text input" type="text" class="gallons" placeholder="консоль">
                     <div>
-                        <button class="gas" data="1.2">A 92</button>
-                        <button class="gas" data="1.6">A 95</button>
-                        <button class="gas" data="1.9">A 98</button>
+                        <button class="gas" data-gas="1.2">A 92</button>
+                        <button class="gas" data-gas="1.6">A 95</button>
+                        <button class="gas" data-gas="1.9">A 98</button>
                     </div>
                     <br>
 
@@ -19297,11 +19270,11 @@ let asoarray20 = {
                 <section>
                     <h3 id="JSlesson16">UNIT 16. ПЕРЕБОР МАССИВОВ: FOR, FOR IN, FOR OF</h3>
 
-                    <span>
-        <div class="newelem">1</div>
-        <div class="newelem">2</div>
-        <div class="newelem">3</div>
-    </span>
+                    <div>
+                        <div class="newelem">1</div>
+                        <div class="newelem">2</div>
+                        <div class="newelem">3</div>
+                    </div>
 
                     <ol>
                         <li>
@@ -19593,9 +19566,9 @@ let arrayfor11 = {
                                 funcforeach4.</p>
                             <button id="buttforeach4">task 4</button>
                             <div>
-                                <span class="taskforeach-4" data="1">One span with data</span>
-                                <span class="taskforeach-4" data="34">Two span with data</span>
-                                <span class="taskforeach-4" data="66">Thre span with data</span>
+                                <span class="taskforeach-4" data-taskforeach4="1">One span with data</span>
+                                <span class="taskforeach-4" data-taskforeach4="34">Two span with data</span>
+                                <span class="taskforeach-4" data-taskforeach4="66">Thre span with data</span>
                             </div>
                             <div class="outforeach4">out-4:</div>
                         </li>
@@ -19606,9 +19579,9 @@ let arrayfor11 = {
                                 Напишите функцию funcforeach5, которая будет запускаться при клике и добавлять атрибут data
                                 элемента, по которому кликнули в массив arrayforeach5_res.</p>
                             <div>
-                                <p class="taskforeach-5" data="1">One p with data</p>
-                                <p class="taskforeach-5" data="34">Two p with data</p>
-                                <p class="taskforeach-5" data="66">Three p with data</p>
+                                <p class="taskforeach-5" data-taskforeach5="1">One p with data</p>
+                                <p class="taskforeach-5" data-taskforeach5="34">Two p with data</p>
+                                <p class="taskforeach-5" data-taskforeach5="66">Three p with data</p>
                             </div>
                         </li>
                         <li>
@@ -19776,7 +19749,7 @@ let arrayfor11 = {
                             <p>Дан блок .event9. Внутри блока - изображение 1.png. При клике правой кнопкой мыши - меняйте
                                 изображение на 2.png. Надеюсь вы догадаетесь изменить только src изображения?</p>
                             <div class="blockeventimage event9">task-9
-                                <img src="./JSImages/jojo1.png" width="150px" alt="jojo1">
+                                <img src="./JSImages/jojo1.png" width="150" alt="jojo1">
                             </div>
                         </li>
                         <li>
@@ -19784,7 +19757,7 @@ let arrayfor11 = {
                                 меняйте
                                 изображение на 2.png.</p>
                             <div class="blockeventimage event10">task-10
-                                <img src="./JSImages/jojo1.png" width="150px" alt="jojo1">
+                                <img src="./JSImages/jojo1.png" width="150" alt="jojo1">
                             </div>
                         </li>
                         <li>
@@ -19792,7 +19765,7 @@ let arrayfor11 = {
                                 меняйте
                                 изображение на 2.png. При уведении мыши - mouseleave - возвращайте исходное изображение.</p>
                             <div class="blockeventimage event11">task-11
-                                <img src="./JSImages/jojo1.png" alt="jojo1" width="150px">
+                                <img src="./JSImages/jojo1.png" alt="jojo1" width="150">
                             </div>
                         </li>
                         <li>
@@ -19960,7 +19933,7 @@ let arrayfor11 = {
                                 изображения. Одно нажатие клавиши - 1px.</p>
                             <input aria-label="inputkb10" type="text" class="inputkb10">
                             <div class="blockeventimage divkb10">
-                                <img src="./JSImages/jojo1.png" width="150px" height="80px" alt="" id="jojoimg10">
+                                <img src="./JSImages/jojo1.png" width="150" height="80" alt="" id="jojoimg10">
                             </div>
                             <div class="outkb10"></div>
                         </li>
@@ -21548,9 +21521,9 @@ function functionName (){
                             обновляющей
                             функции set() добавляем новые данные в массив сохраняя при этом старые данные:</p>
                         <pre>
-const [arrName, setArrName]= useState(oldArrName);
+const [arrName, setArrName] = useState(oldArrName);
 
-setArrNAme(prevArr => {
+setArrNAme(prevArr =&gt; {
      return [newArrElem, ...prevArr]
 });
             </pre>
@@ -24753,20 +24726,18 @@ export class User implements ObjInterface{
    }
 }
             </pre>
-                    <p>В случае если при использовании объединенных типов нужно использовать весь набор свойств и
-                        методов
-                        определенного значения, то нужно применить охрану типов, т.е условную конструкцию с
-                        instanceof:</p>
+                    <p>В случае если при использовании объединенных типов нужно использовать весь набор свойств и методов
+                        определенного значения, то нужно применить охрану типов, т.е условную конструкцию с instanceof:</p>
                     <pre>
 class Sorter {
    constructor(public collection: number[] | string) {}
    counter: number = 0;
    sorting(): void{
       let {length} = this.collection
-      for (let i = 0; i < length; i++){
-         for (let j = 0; j < length - i - 1; j++) {
+      for (let i = 0; i &lt; length; i++){
+         for (let j = 0; j &lt; length - i - 1; j++) {
             if (this.collection instanceof Array){  //или Array.isArray(this.collection[j]) - type guard
-               if (this.collection[j] > this.collection[j + 1]){
+               if (this.collection[j] &gt; this.collection[j + 1]){
                   this.counter += 1;
                   let acc = this.collection[j];
                   this.collection[j] = this.collection[j+1];
@@ -24780,7 +24751,7 @@ class Sorter {
       }
    }
 }
-            </pre>
+                    </pre>
                     <p>Если значения примитивного типа(string, number, symbol, boolean) то используется синтаксис
                         typeof,
                         если
@@ -24813,8 +24784,8 @@ export abstract class Sorter {
 
    sorting(): void {
       let {length} = this
-      for (let i = 0; i < length; i++) {
-         for (let j = 0; j < length - i - 1; j++) {
+      for (let i = 0; i &lt; length; i++) {
+         for (let j = 0; j &lt; length - i - 1; j++) {
             if (this.compare(j, j+1)){
                this.swap(j, j+1)
             }
@@ -24826,8 +24797,8 @@ export abstract class Sorter {
 interface IEngine {
     model: string;
     capacity: number;
-    startEngine: (time: Date) => string;
-    stopEngine: (time: Date) => string;
+    startEngine: (time: Date) =&gt; string;
+    stopEngine: (time: Date) =&gt; string;
 }
 
 abstract class AbstractVehicle{
@@ -24839,14 +24810,14 @@ abstract class AbstractVehicle{
         this.capacity = capacity;
     }
 
-    abstract startEngine: (time: Date) => string;
+    abstract startEngine: (time: Date) =&gt; string;
     stopEngine(time: Date): string {
         return `Engine Stopped at ${time.toLocaleString()}`
     }
 }
 
 class SomeVehicle extends AbstractVehicle{
-    startEngine = (time: Date): string => {
+    startEngine = (time: Date): string =&gt; {
         return `Engine Started at ${time.toLocaleString()}`;
     }
 }
@@ -24856,8 +24827,7 @@ newVehicle.startEngine(new Date());
 newVehicle.stopEngine(new Date());
             </pre>
                     <p>методы и свойства с модификатором abstract удаляются в js файле!(вопрос на собеседовании, что с
-                        ними
-                        происходит)</p>
+                        ними происходит)</p>
 
                     <p>Интерфейсы VS Абстрактные классы</p>
 
@@ -24919,17 +24889,14 @@ function frame(elem: string, dir: Directions, tFunction: TFunction): void {
 
 frame('id', Directions.RIGHT, TFunction.EASE);
             </pre>
-                    <p>Когда мы создаем enum, мы так же создаем новый тип, в случае из примера это будет
-                        MatchResult.</p>
+                    <p>Когда мы создаем enum, мы так же создаем новый тип, в случае из примера это будет MatchResult.</p>
                     <p>Enums перечисления:</p>
                     <ul>
                         <li>Соблюдает почти идентичные правила синтаксиса как обычный объект</li>
                         <li>Создает объект с такими же ключами и значениями при преобразовании из TS в JS</li>
                         <li>Основная цель - дать понять другим разработчикам, что все эти значения тесно связаны</li>
                         <li>Используются всякий раз, когда у нас есть небольшой фиксированный набор значений(15ед макс),
-                            которые
-                            тесно
-                            связаны и известны во время компиляции
+                            которые тесно связаны и известны во время компиляции
                         </li>
                     </ul>
                 </div>
@@ -24939,13 +24906,12 @@ frame('id', Directions.RIGHT, TFunction.EASE);
                 <h3 id="typeAssertions">Type assertions(утверждение типа)</h3>
 
                 <div>
-                    <p>Для того чтобы переприсвоить какой-то переменной определенный тип можно использовать следующий
-                        синтаксис:</p>
+                    <p>Для того чтобы переприсвоить какой-то переменной определенный тип можно использовать следующий синтаксис:</p>
                     <pre>
 get getData(): string[][] {
    return fs.readFileSync(this.fileName, {
       encoding: 'utf-8'
-}).split('\n').map((match: string): string[] => match.split(',')).map((stringArray: string[]): any => {
+}).split('\n').map((match: string): string[] =&gt; match.split(',')).map((stringArray: string[]): any =&gt; {
    return [
          dateStringToDate(stringArray[0]),
          stringArray[1],
@@ -24994,7 +24960,7 @@ const requestOptions = {
    method: 'GET',
 };
 
-fetchData(requestOptions.url, <"GET">requestOptions.method);
+fetchData(requestOptions.url, &lt;"GET"&gt;requestOptions.method);
             </pre>
 
                     <p>Работа с HTML элементами:</p>
@@ -25288,7 +25254,7 @@ interface ParentsOfUser {
    mother: string;
 }
 
-const user1: User1<{father: string, mother: string, married: boolean, anything: string}> = {
+const user1: User1&lt;{father: string, mother: string, married: boolean, anything: string}&gt;> = {
    login: 'some Login',
    age: 30,
    parents: {
@@ -26605,7 +26571,7 @@ function checkNumberOfSeats(limit: number){
             return value;
         }
         const setter = function (newAmount: number) {
-            if (newAmount >= 1 && newAmount < limit){
+            if (newAmount &gt;= 1 && newAmount &lt; limit){
                 value = newAmount;
             } else {
                 //console.log(`Больше ${limit} сидений быть не может`);
@@ -26958,7 +26924,7 @@ const NewTodoForm = ({value, onChange, clickHandler }: NewTodoFormProps) => {
     }
 
     return (
-        <>
+        &lt;&gt;
             &lt;input
                 type="text"
                 placeholder='new todo'
@@ -26997,7 +26963,7 @@ function App() {
     //    setText(event.target.value)
     //}
 
-    const addTodoHandler = (text: string) => { // const addTodoHandler = () => {...}; если не используем useRef
+    const addTodoHandler = (text: string) =&gt; { // const addTodoHandler = () => {...}; если не используем useRef
         const newTodo: ITodo = {
             id: new Date().toLocaleString(),
             title: text,
@@ -27856,13 +27822,13 @@ console.log(os.cpus())
                         <pre>
 // cluster.isMaster определяет является ли текущий процесс главым
 if (cluster.isMaster) {
-    for (let i = 0; i < os.cpus().length-2; i++) {
+    for (let i = 0; i &lt; os.cpus().length-2; i++) {
         // cluster.fork() запускает дочерний процессж
         cluster.fork();
     }
 
     cluster.on() - подписка на определенное событие, в примере ниже это событие 'exit'
-    cluster.on('exit', (worker, code, signal) => {
+    cluster.on('exit', (worker, code, signal) =&gt; {
         console.log(`Воркер с pid=${worker.process.pid} был остановлен`);
         if (code === '...') {
             cluster.fork()
@@ -27874,7 +27840,7 @@ if (cluster.isMaster) {
 } else {
     console.log(`Воркер с pid=${process.pid} запущен`)
 
-    setInterval(() => {
+    setInterval(() =&gt; {
         console.log(`Воркер с pid=${process.pid} работает`)
     }, 5000)
 }
@@ -27971,7 +27937,7 @@ stream.on('error', (err) => console.log(err));
 // Запись в файл при помощи стрима fs.createWriteStream()
 const writableStream = fs.createWriteStream(path.resolve(__dirname, 'test.txt'));
 
-for (let k = 0; k < 20; k++) {
+for (let k = 0; k &lt; 20; k++) {
     writableStream.write(k + '\n');
 }
 //writableStream нужно завершать в ручную!
@@ -27985,12 +27951,10 @@ writableStream.destroy();
             </pre>
 
                         <p>При работе с http сервером для нас доступно два объекта - request и response, они так же
-                            являются
-                            стримами! При этом request - readable stream, а response - writable stream.</p>
-
+                            являются стримами! При этом request - readable stream, а response - writable stream.</p>
                         <pre>
 const http = require('http');
-http.createServer((req, res) => {
+http.createServer((req, res) =&gt; {
     // req - readable stream
     // res - writable stream
     const stream = fs.createReadStream(path.resolve(__dirname, 'test.txt'));
@@ -27998,8 +27962,8 @@ http.createServer((req, res) => {
     Важный момент!!! Синхронизация стримов чтения и записи!
     stream.pipe(res)
 
-    stream.on('data', chunk => res.write(chunk));
-    stream.on('end', chunk => res.end());
+    stream.on('data', chunk =&gt; res.write(chunk));
+    stream.on('end', chunk =&gt; res.end());
 })
             </pre>
                     </div>
@@ -28037,7 +28001,7 @@ const server = http.createServer((req, res) => {
     }
 })
 
-server.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
+server.listen(PORT, () =&gt; console.log(`Server started on PORT ${PORT}`));
             </pre>
 
                         <p>Подробнее по созданию собственного сервера nodeJS можно изучить в <a
@@ -28179,7 +28143,7 @@ import {season as spring, temperature} from './someFile.mjs';
 console.log(spring, temperature);
 
 //НО для того чтобы не возникло путаницы лучше переименовывать переменную в импорте!
-            </pre>
+                        </pre>
                         <p>Импорт по умолчанию имеет следующий синтаксис:</p>
                         <pre>
 // default-export.mjs
@@ -28221,9 +28185,9 @@ const express = require('express'); / import express from 'express';
 
 const app = express();
 
-app.get('/', (req, res) => res.send('Response from Express'));
+app.get('/', (req, res) =&gt; res.send('Response from Express'));
 
-app.listen(5000, () => console.log('Server was started on port 5000'));
+app.listen(5000, () =&gt; console.log('Server was started on port 5000'));
                         </pre>
                     </div>
                 </section>

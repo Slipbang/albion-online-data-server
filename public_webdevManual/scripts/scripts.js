@@ -2112,7 +2112,7 @@ let gas = document.querySelectorAll('.gas');
 for (let i = 0; i < gas.length; i++) {
     gas[i].onclick = function () {
         let gallons = document.querySelector('.gallons').value;
-        let amount = this.getAttribute('data');
+        let amount = this.getAttribute('data-gas');
         console.log(gallons * amount);
     }
 }
@@ -4434,7 +4434,7 @@ let elemspan4 = document.querySelectorAll('.taskforeach-4');
 
 function funcforeach4() {
     elemspan4.forEach(function (elem4, index4) {
-        let atrib = elem4.getAttribute('data');
+        let atrib = elem4.getAttribute('data-taskforeach4');
         arrayforeach4_res.push(atrib);
     })
     console.log(arrayforeach4_res);
@@ -4448,7 +4448,7 @@ function funcforeach4() {
 let arrayforeach5_res = [];
 
 function funcforeach5() {
-    arrayforeach5_res.push(this.getAttribute('data'))
+    arrayforeach5_res.push(this.getAttribute('data-taskforeach5'))
     console.log(arrayforeach5_res);
 };document.querySelectorAll('.taskforeach-5').forEach((elem5) => {
     elem5.onclick = funcforeach5;
