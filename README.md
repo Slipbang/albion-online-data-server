@@ -1,4 +1,4 @@
-v# Albion Toolkit Server
+# Albion Toolkit Server
 
 ## Build Setup
 
