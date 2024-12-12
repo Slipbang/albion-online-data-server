@@ -225,6 +225,18 @@ main {
     padding: 35px;
 }
 
+main ul, main ol {
+    margin: 1rem;
+}
+
+li {
+    margin: 10px 0;
+}
+
+code {
+    color: rgb(231,167,77);
+}
+
 aside::-webkit-scrollbar,
 pre::-webkit-scrollbar {
     width: 12px; /* ширина scrollbar */
@@ -261,7 +273,8 @@ main h4 {
 
 pre {
     border: var(--special-border);
-    padding: 20px;
+    padding: 15px;
+    margin: 15px 0;
 }
 
 img:hover {

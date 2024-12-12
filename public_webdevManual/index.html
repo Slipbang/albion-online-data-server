@@ -1342,7 +1342,7 @@ const getDate = () =&gt; new Date;
                             использованию!
                             Пример с результатом:
                             <ul>
-                                <li>&lt;bb style="color:blue"&gt;Hello World!&lt;/bb&gt;</li>
+                                <li><code>&lt;bb style="color:blue"&gt;</code>Hello World!<code>&lt;/bb&gt;</code></li>
                                 <li>
                                     <p style="color:blue">Hello World!</p>
                                 </li>
@@ -1352,7 +1352,7 @@ const getDate = () =&gt; new Date;
                             весь
                             CSS код. Пример подключения:
                             <ul>
-                                <li>&lt;link rel="stylesheet" href="styles.css"&gt;</li>
+                                <li><code>&lt;link rel="stylesheet" href="styles.css"&gt;Базовый пример подключения middleware</code></li>
                             </ul>
                         <li>Импорт стилей из уже существующих файлов CSS. Импорт встраивается в текущий файл CSS.
                             Пример:
@@ -28289,7 +28289,7 @@ app.listen(5000, () => console.log('Server was started on port 5000'));
                             <li>Завершать цикл запрос-ответ</li>
                         </ul>
                         <p>В случае если middleware не отправляет ответ клиенту - требуется вызвать next() функцию.</p>
-                        <p>Базовый пример подключения middleware</p>
+                        <p>Базовый пример подключения middleware:</p>
                         <pre>
 import express from 'express';
 const app = express();

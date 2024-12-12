@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "start:dev": "node --loader ts-node/esm src/index.ts",
+    "start:dev": "nodemon --watch src --ext ts --exec \"node --loader ts-node/esm src/index.ts\"",
     "build": "tsc",
     "start": "node dist/index.js"
   },
@@ -27,6 +27,7 @@
     "winston-transport": "^4.5.0"
   },
   "devDependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.7"
   }
 }
