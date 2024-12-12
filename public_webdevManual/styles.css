@@ -1,9 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     background-color: #333232;
     scroll-behavior: smooth;
     color: rgb(98, 134, 166);
     font-family: "JetBrains Mono", serif;
     overflow-x: hidden;
+    width: 100%;
 }
 
 :root {
@@ -207,6 +213,7 @@ main {
     margin-top: var(--header-height);
     margin-bottom: 35px;
     transition: margin-left .2s;
+    width: calc(100% - 301px);
 }
 
 .mainContainer {
@@ -232,19 +239,19 @@ pre::-webkit-scrollbar-thumb {
     border: 2px solid gray; /* padding вокруг плашки */
 }
 
-main h1, main h3 {
+main h2, main h3, main h4 {
     scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
-main h1 {
+main h2 {
     font-size: 2rem;
 }
 
-main h2 {
+main h3 {
     font-size: 1.5rem;
 }
 
-main h3 {
+main h4 {
     font-size: 1.25rem;
 }
 
@@ -1098,7 +1105,7 @@ big p {
 }
 
 #rangeinputx {
-    width: 500px;
+    width: 300px;
 }
 
 #rangeinputy {
@@ -1665,6 +1672,7 @@ footer a {
     }
     main {
         margin-left: 0;
+        width: 100%;
     }
     .headerLinks {
         display: none;

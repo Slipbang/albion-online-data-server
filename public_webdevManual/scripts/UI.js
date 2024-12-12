@@ -1,13 +1,15 @@
 'use strict';
 
 function detectMobile() {
-    return !!(navigator.userAgent.match(/Android/i) ||
-        navigator.userAgent.match(/webOS/i) ||
-        navigator.userAgent.match(/iPhone/i) ||
-        navigator.userAgent.match(/iPad/i) ||
-        navigator.userAgent.match(/iPod/i) ||
-        navigator.userAgent.match(/BlackBerry/i) ||
-        navigator.userAgent.match(/Windows Phone/i));
+    const userAgent = navigator.userAgent;
+
+    return !!(userAgent.match(/Android/i) ||
+        userAgent.match(/webOS/i) ||
+        userAgent.match(/iPhone/i) ||
+        userAgent.match(/iPad/i) ||
+        userAgent.match(/iPod/i) ||
+        userAgent.match(/BlackBerry/i) ||
+        userAgent.match(/Windows Phone/i)) && window.screen.width < 975;
 }
 
 let modalWin = document.createElement('div');
@@ -54,14 +56,16 @@ modalWin.addEventListener('click', (event) => {
     }
 });
 
-const createNav = (section, headers3) => {
+const createNav = (section, headers4) => {
     const nav = document.createElement('nav');
     nav.classList.add(`${section.id.replace('Button', '')}`, 'displayNoneClass');
-    headers3.forEach(header3 => {
-        const link = document.createElement('a');
-        link.href = `#${header3.id}`;
-        link.textContent = header3.textContent;
-        nav.appendChild(link);
+    headers4.forEach(header4 => {
+        if (header4.id) {
+            const link = document.createElement('a');
+            link.href = `#${header4.id}`;
+            link.textContent = header4.textContent;
+            nav.appendChild(link);
+        }
     })
 
     return nav;
@@ -69,7 +73,7 @@ const createNav = (section, headers3) => {
 
 const buildNavigation = (section, navMenu, navMenuButtons, headerLinks) => {
     const navigatorButton = document.createElement('button');
-    const header1 = section.querySelector('section > h1');
+    const header1 = section.querySelector('section > h2');
 
     const a = document.createElement('a');
     a.href = `#${header1.id}`;
@@ -87,25 +91,25 @@ const buildNavigation = (section, navMenu, navMenuButtons, headerLinks) => {
         const subNav = document.createElement('nav');
         subNav.classList.add(`${section.id.replace('Button', '')}`, 'displayNoneClass');
         subSections.forEach(subSection => {
-            const header2 = subSection.querySelector('section > h2');
+            const header3 = subSection.querySelector('section > h3');
             const subNavigatorButton = document.createElement('button');
 
-            subNavigatorButton.textContent = header2.textContent.replace('Основы ', '');
+            subNavigatorButton.textContent = header3.textContent.replace('Основы ', '');
             subNavigatorButton.id = `${subSection.id}Button`;
 
             subNav.appendChild(subNavigatorButton);
 
             navMenu.appendChild(subNav);
 
-            const subHeaders3 = subSection.querySelectorAll('h3');
+            const subHeaders4 = subSection.querySelectorAll('h4');
 
-            const nav = createNav(subSection, subHeaders3);
+            const nav = createNav(subSection, subHeaders4);
 
             navMenu.appendChild(nav);
         })
     } else {
-        const headers3 = section.querySelectorAll('h3');
-        const nav = createNav(section, headers3);
+        const headers4 = section.querySelectorAll('h4');
+        const nav = createNav(section, headers4);
         navMenu.appendChild(nav);
     }
 }
@@ -162,7 +166,7 @@ const sideBarBuilder = (selectedClass) => {
     prevClass = selectedClass;
 };
 
-const anchorsH3 = document.querySelectorAll('h3');
+const anchorsH4 = document.querySelectorAll('h4');
 
 function debounce(func, timeout = 300) {
     let timer;
@@ -192,7 +196,7 @@ const anchorObserver = new IntersectionObserver(anchorHandler, {
     threshold: 0.5,
 });
 
-anchorsH3.forEach(elem => anchorObserver.observe(elem));
+anchorsH4.forEach(elem => anchorObserver.observe(elem));
 
 //---------------------------------------------------------------------------------------------------------------------
 

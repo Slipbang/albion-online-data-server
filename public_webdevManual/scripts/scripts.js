@@ -776,7 +776,7 @@ document.querySelector('#queryselector2').innerHTML = "<data>28.11.1993</data>";
 document.querySelector('.tree').innerHTML = '<h3>произвольный текст</h3>';
 document.querySelector('.fraktion').innerHTML = 3.14;
 let jslink = document.querySelector('.jslink');
-jslink.innerHTML = '<img src="../images/imageExample.png" alt="imageExample">';
+jslink.innerHTML = '<img src="./images/imageExample.png" alt="imageExample">';
 
 let z1 = 6;
 let z2 = 3;
