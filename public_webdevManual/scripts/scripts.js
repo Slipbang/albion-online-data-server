@@ -2103,7 +2103,7 @@ toggle.onclick = function () {
     this.classList.toggle('showstyle3');
 };
 
-console.log(showstyle.getAttribute('data'));
+console.log(showstyle.getAttribute('data-showstyle'));
 console.log(document.querySelectorAll('link')[1].getAttribute('href'));
 
 showstyle.setAttribute('data-num', 6);
