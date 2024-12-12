@@ -35,7 +35,7 @@ export const startWorkingCycle = async function (this: AppController, githubComm
                     } else if (!newGithubCommitDate) {
                         this.logger.error(`No gitHub date fetched`);
                     } else {
-                        this.logger.info(`AOD dumps date in gitHub repository is same`);
+                        this.logger.info(`AOD dumps date in gitHub repository is the same`);
                     }
                 }, 1800000)
             }
