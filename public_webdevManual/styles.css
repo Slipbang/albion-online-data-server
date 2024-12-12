@@ -53,7 +53,10 @@ header {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
 
+.headerSvg:hover {
+    color: white;
 }
 
 /*.headerSvg svg {*/
@@ -241,6 +244,7 @@ pre::-webkit-scrollbar-thumb {
 
 main h2, main h3, main h4 {
     scroll-margin-top: calc(var(--header-height) + 20px);
+    margin: 1rem 0;
 }
 
 main h2 {
@@ -263,7 +267,6 @@ pre {
 img:hover {
     cursor: pointer;
 }
-
 
 .binaryTreeExample {
     width: 644px;
@@ -1689,5 +1692,11 @@ footer a {
 @media (max-height: 935px) {
     aside .sideBarContainer a:last-child{
         margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.75rem;
     }
 }
