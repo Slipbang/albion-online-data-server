@@ -284,9 +284,9 @@
                 <address> тэг "address" - ссылка на автора</address>
                 <br>
                 <q>
-                    Тэг &lt;q&gt; - какая-то умная мысль автора, кавычки ставит сам тэг
+                    Тэг <code>&lt;q&gt;</code> - какая-то умная мысль автора, кавычки ставит сам тэг
                 </q>
-                <address>Тэг &lt;adress&gt;. Вкупе с тегом &lt;q&gt; дает семантически правильное построение цитаты с
+                <address>Тэг <code>&lt;adress&gt;</code>. Вкупе с тегом <code>&lt;q&gt;</code> дает семантически правильное построение цитаты с
                     авторством
                 </address>
                 <blockquote>
@@ -299,7 +299,7 @@
                 <br>
                 <p>Тэг &lt;time&gt; предназначен для обозначения дат: <time datetime="2022-08-03">2022-08-03</time></p>
                 <br>
-                <time datetime="2022-08-03">Тег &lt;time&gt; с атрибутом " datetime='дата' ", данный атрибут считывается
+                <time datetime="2022-08-03">Тег <code>&lt;time&gt;</code> с атрибутом " datetime='дата' ", данный атрибут считывается
                     поисковым роботом или скрин ридером. Дата присвоенная к атрибуту не отображается.</time>
                 <br>
                 <b>Тэг "b", по семантической составляющей эквивалентно тэгу "p", изменяет только визуальную составляющую
@@ -440,7 +440,6 @@ const getDate = () =&gt; new Date;
                     <li>Бэкэнд</li>
                     <li>фулстэк</li>
                 </ul>
-                <br>
                 <p>Пронумерованные же списки задаются тегом "ol", каждый отдельный элемент списка так же задается тэгом
                     "li", из особенностей- имеет два атрибута: start="число с которого нужно начать отсчет списка" и
                     reversed - ведет нумерацию списка в обратном порядке.</p>
@@ -27713,6 +27712,7 @@ const removeFileAsync = async (path) => {
         resolve();
     }))
 }
+
 writeFileAsync(path.resolve(__dirname, 'test1.txt'), 'data')
     .then(() => appendFileAsync(path.resolve(__dirname, 'test1.txt'), '123'))
     .then(() => appendFileAsync(path.resolve(__dirname, 'test1.txt'), '456'))
@@ -27925,6 +27925,7 @@ const writableStream = fs.createWriteStream(path.resolve(__dirname, 'test.txt'))
 for (let k = 0; k &lt; 20; k++) {
     writableStream.write(k + '\n');
 }
+
 //writableStream нужно завершать в ручную!
 writableStream.end();
 

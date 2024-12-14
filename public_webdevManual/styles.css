@@ -59,12 +59,6 @@ header {
     color: white;
 }
 
-/*.headerSvg svg {*/
-/*    min-width: 40px;*/
-/*    height: 40px;*/
-/*    color: white;*/
-/*}*/
-
 header h1 {
     font-size: 2rem;
     display: flex;
@@ -1527,11 +1521,12 @@ hr {
 .navButtonsStyles nav {
     background: #333232;
     overflow: auto;
-    width: 370px;
+    width: inherit;
     max-height: 450px;
     flex-direction: column;
     border: var(--special-border);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
 }
 
 .navButtonsStyles nav::-webkit-scrollbar {
@@ -1557,6 +1552,7 @@ hr {
 
 .displayFlexClass {
     display: flex;
+    width: inherit;
 }
 
 .displayNoneClass {
