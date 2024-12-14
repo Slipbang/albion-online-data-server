@@ -32,8 +32,8 @@ export class AppController {
         this.languageData = new LanguageData();
         this.clients = [];
 
-        this.router.use('/ctrlinfo', dateRouter(this.itemStorage, this.clients));
-        this.router.use('/data', dataRouter(this.itemStorage));
+        this.router.use('/api/ctrlinfo', dateRouter(this.itemStorage, this.clients));
+        this.router.use('/api/data', dataRouter(this.itemStorage));
         this.router.use('/webdevmanual', manualRouter);
         this.router.use('/', albionToolkitRouter)
     }
