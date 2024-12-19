@@ -85,24 +85,12 @@ export class TelegramBot extends TransportStream implements Writable {
         })
     }
 
-    messageQueue: number[] = [];
-
     log(info: any, callback: () => void): void {
-        const message = `${info.timestamp} [${info.level.toUpperCase()}]: ${info.message}`;
+        const log_message = `${info.timestamp} [${info.level.toUpperCase()}]: ${info.message}`;
 
-        this.bot.sendMessage(this.ADMIN_CHAT_ID, message)
-            .then((sentMessage) => {
-                this.messageQueue.push(sentMessage.message_id);
-                if (this.messageQueue.length > 5) {
-                    const messageIdToDelete = this.messageQueue.shift();
-                    this.bot.deleteMessage(this.ADMIN_CHAT_ID, messageIdToDelete!)
-                        .catch((err) => {
-                            console.error("Ошибка удаления старого сообщения:", err);
-                        });
-                }
-            })
+        this.bot.sendMessage(this.ADMIN_CHAT_ID, log_message)
             .catch((err) => {
-                console.error('Error sending log to Telegram:', err);
+                console.error('Ошибка отправки сообщения:', err);
             });
 
         callback();

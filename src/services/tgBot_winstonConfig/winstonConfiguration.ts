@@ -1,5 +1,5 @@
 import {format, LoggerOptions, transports} from "winston";
-import {TelegramBot} from "../../api/TelegramBot.js";
+import {TelegramBot} from "../../TelegramBot/TelegramBot.js";
 import {existsSync} from "fs";
 import TransportStream from "winston-transport";
 
