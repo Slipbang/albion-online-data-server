@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.13bd70a4.css",
-    "main.js": "/static/js/main.08873822.js",
+    "main.css": "/static/css/main.cc350681.css",
+    "main.js": "/static/js/main.a3bc6311.js",
     "static/media/backpack.png": "/static/media/backpack.3c0a0e801b1850dd933d.png",
     "static/media/transportation.jpg": "/static/media/transportation.51d7cc96a554d1ad14b3.jpg",
     "static/media/defaultCalculator.png": "/static/media/defaultCalculator.0fccdb2dfb5efe2c8bb0.png",
     "static/media/marketList.png": "/static/media/marketList.cce280cbc674c262575c.png",
     "static/media/artefacts.jpg": "/static/media/artefacts.5e1826fe9fdf58f0f420.jpg",
+    "static/media/guideBoard.png": "/static/media/guideBoard.0ec4973c5485c2c39cf8.png",
     "static/media/craftingCalculation.jpg": "/static/media/craftingCalculation.9f4a0fbd619bf207e9c6.jpg",
     "static/media/selectedItem.png": "/static/media/selectedItem.7ef9f105cf1ef7cc72de.png",
     "static/media/tableItems.png": "/static/media/tableItems.d9f4c36ec03e2b62f70f.png",
@@ -44,11 +45,11 @@
     "static/media/marketAvatar.png": "/static/media/marketAvatar.7f29983e4e5d8593628a.png",
     "static/media/weaverAvatar.png": "/static/media/weaverAvatar.a910d6d984cfdd4e18fb.png",
     "index.html": "/index.html",
-    "main.13bd70a4.css.map": "/static/css/main.13bd70a4.css.map",
-    "main.08873822.js.map": "/static/js/main.08873822.js.map"
+    "main.cc350681.css.map": "/static/css/main.cc350681.css.map",
+    "main.a3bc6311.js.map": "/static/js/main.a3bc6311.js.map"
   },
   "entrypoints": [
-    "static/css/main.13bd70a4.css",
-    "static/js/main.08873822.js"
+    "static/css/main.cc350681.css",
+    "static/js/main.a3bc6311.js"
   ]
 }
