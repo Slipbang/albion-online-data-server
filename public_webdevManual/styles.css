@@ -4,9 +4,8 @@
 }
 
 html {
-    background-color: #333232;
     scroll-behavior: smooth;
-    color: rgb(98, 134, 166);
+    color: #A9B7C6;
     font-family: "JetBrains Mono", serif;
     overflow-x: hidden;
     width: 100%;
@@ -32,6 +31,8 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    background-color: #2B2B2B;
+    /*2B2B2B*/
 }
 
 header {
@@ -228,7 +229,7 @@ li {
 }
 
 code {
-    color: rgb(231,167,77);
+    color: #E8BF6A;
 }
 
 aside::-webkit-scrollbar,
@@ -263,6 +264,7 @@ main h3 {
 
 main h4 {
     font-size: 1.25rem;
+    color: #A5C261;
 }
 
 pre {
@@ -1565,9 +1567,9 @@ hr {
     scale: 1.2;
 }
 
-div p a[target="_blank"] {
-    background-color: #333232;
-}
+/*div p a[target="_blank"] {*/
+/*    background-color: #333232;*/
+/*}*/
 
 .jsTheoryDisplayNone {
     display: none;
@@ -1589,15 +1591,19 @@ div p a[target="_blank"] {
     cursor: crosshair;
     margin: 20px;
 }
-.jsTheoryTable td {
+.jsTheoryTable tbody td, .jsTheoryTable thead th  {
     border: 1px solid #6286A6FF;
     padding: 0.5rem;
 }
 
 .jsTheoryTable thead {
     text-align: center;
+    color: #CC7832;
 }
 
+.jsTheoryTable caption {
+    margin: 10px;
+}
 
 .jsTheoryTable div {
     padding: 2px;
@@ -1661,7 +1667,8 @@ pre:hover {
 }
 
 section a {
-    color: #6286A6FF;
+    color: #287BDE;
+    /*background-color: #2B2B2B;*/
 }
 
 footer {

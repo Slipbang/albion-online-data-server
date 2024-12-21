@@ -8,10 +8,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="@types/jquery-animate-scroll" level="application" />
-    <orderEntry type="library" name="@types/jquery" level="application" />
-    <orderEntry type="library" name="vanilla-lazyload" level="application" />
-    <orderEntry type="library" name="jquery-2.2.4" level="application" />
-    <orderEntry type="library" name="jquery-3.6.0" level="application" />
   </component>
 </module>
