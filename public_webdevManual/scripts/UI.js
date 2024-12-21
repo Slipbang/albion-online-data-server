@@ -71,7 +71,7 @@ const createNav = (section, headers4) => {
     return nav;
 }
 
-const buildNavigation = (section, navMenu, navMenuButtons, headerLinks) => {
+const buildNavigation = (section, navMenu, sideBar, navMenuButtons, headerLinks) => {
     const navigatorButton = document.createElement('button');
     const header1 = section.querySelector('section > h2');
 
@@ -105,12 +105,14 @@ const buildNavigation = (section, navMenu, navMenuButtons, headerLinks) => {
 
             const nav = createNav(subSection, subHeaders4);
 
-            navMenu.appendChild(nav);
+            navMenu.appendChild(nav.cloneNode(true));
+            if (!detectMobile()) sideBar.appendChild(nav.cloneNode(true));
         })
     } else {
         const headers4 = section.querySelectorAll('h4');
         const nav = createNav(section, headers4);
-        navMenu.appendChild(nav);
+        navMenu.appendChild(nav.cloneNode(true));
+        if (!detectMobile()) sideBar.appendChild(nav.cloneNode(true));
     }
 }
 
@@ -118,7 +120,8 @@ const navMenu = document.querySelector('#navMenu');
 const navMenuButtons = document.querySelector('#navMenuButtons');
 const headerLinks = document.querySelector('.headerLinks');
 const sections = document.querySelectorAll('main > div > section');
-sections.forEach(section => buildNavigation(section, navMenu, navMenuButtons, headerLinks));
+const sideBar = document.querySelector('.sideBarContainer');
+sections.forEach(section => buildNavigation(section, navMenu, sideBar, navMenuButtons, headerLinks));
 
 const navs = document.querySelectorAll('.navButtonsStyles nav');
 const clearStylesFunction = () => navs.forEach(item => item.classList.replace('displayFlexClass', 'displayNoneClass'));
@@ -151,19 +154,16 @@ headerElems.forEach(elem => elem.addEventListener('click', () => mainNavigation.
 
 //---------------------------------------------------------------------------------------------------------------------
 
+let prevNav = null;
 let prevClass = null;
-const sideBar = document.querySelector('.sideBarContainer');
 const sideBarBuilder = (selectedClass) => {
-    if (selectedClass !== prevClass) {
-        const navList = document.querySelector(`.${selectedClass}`)?.cloneNode(true);
-        sideBar.innerHTML = '';
-        const aList = navList?.querySelectorAll('a');
-
-        aList?.forEach(el => {
-            sideBar.append(el);
-        })
+    if (prevClass !== selectedClass) {
+        const nav = document.querySelector(`aside > .sideBarContainer > .${selectedClass}`);
+        nav.classList.remove('displayNoneClass');
+        if (prevNav) prevNav.classList.add('displayNoneClass');
+        prevNav = nav;
+        prevClass = selectedClass;
     }
-    prevClass = selectedClass;
 };
 
 const anchorsH4 = document.querySelectorAll('h4');
@@ -183,9 +183,10 @@ const anchorHandler = debounce((anchors, observer) => {
     anchors.forEach(anchor => {
         const id = anchor.target.id;
         if (id && !detectMobile()) {
-            let ancs = document?.querySelector(`a[href*=${id}]`);
+            let anchor = document?.querySelector(`a[href*=${id}]`);
+            const parentClass = anchor?.parentElement?.classList[0] || null;
 
-            if (!!ancs?.parentElement) sideBarBuilder(ancs.parentElement.classList[0]);
+            if (parentClass) sideBarBuilder(parentClass);
         }
     })
 });
@@ -199,60 +200,3 @@ const anchorObserver = new IntersectionObserver(anchorHandler, {
 anchorsH4.forEach(elem => anchorObserver.observe(elem));
 
 //---------------------------------------------------------------------------------------------------------------------
-
-// // бесполезно, хоть элементов и меньше отслеживается, но отслеживание часто не срабатывает на границах двух разных модулей
-// const asideBar = document.querySelector('.asideBar');
-// const sideBarBuilder = (className) => {
-//     const asideNav = asideBar.querySelector('nav');
-//
-//     if (!asideNav || !asideNav.classList.contains(className)) {
-//         const cloneNav = document.querySelector(`.${className}`).cloneNode(true);
-//         cloneNav.classList.remove('displayNoneClass', 'displayFlexClass');
-//         cloneNav.classList.add('sideBarContainer');
-//         if (asideNav) {
-//             asideNav.replaceWith(cloneNav);
-//         } else {
-//             asideBar.appendChild(cloneNav);
-//         }
-//     }
-//
-// };
-//
-// function debounce(func, timeout = 300) {
-//     let timer;
-//     return (...args) => {
-//         clearTimeout(timer);
-//         timer = setTimeout(() => func(...args), timeout);
-//     };
-// }
-//
-// const asideBarHandler = debounce((entries) => {
-//     entries.forEach(entry => {
-//         console.log(entry)
-//         if (entry.isIntersecting) {
-//             const id = entry.target.id;
-//             if (id && !detectMobile()) {
-//                 sideBarBuilder(id);
-//             }
-//         }
-//     });
-// });
-//
-// const asideObserver = new IntersectionObserver(asideBarHandler, {
-//     root: null,
-//     rootMargin: '100px',
-//     threshold: 0,
-// });
-//
-// const mainSections = [...sections].map(elem => {
-//     const subSections = [...elem.querySelectorAll('section > section')].filter(section => section.hasAttribute('id'));
-//     if (subSections.length) {
-//         return subSections;
-//     } else {
-//         return elem;
-//     }
-// }).flat();
-//
-// console.log(mainSections)
-//
-// mainSections.forEach(section => asideObserver.observe(section));
