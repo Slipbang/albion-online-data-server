@@ -182,9 +182,10 @@ function debounce(func, timeout = 300) {
 const anchorHandler = debounce((anchors, observer) => {
     anchors.forEach(anchor => {
         const id = anchor.target.id;
-        if (id && !detectMobile()) {
-            let anchor = document?.querySelector(`a[href*=${id}]`);
-            const parentClass = anchor?.parentElement?.classList[0] || null;
+
+        if (id && !detectMobile() && anchor.isIntersecting) {
+            let a = document?.querySelector(`nav > a[href*=${id}]`);
+            const parentClass = a?.parentElement?.classList[0] || null;
 
             if (parentClass) sideBarBuilder(parentClass);
         }
@@ -193,7 +194,7 @@ const anchorHandler = debounce((anchors, observer) => {
 
 const anchorObserver = new IntersectionObserver(anchorHandler, {
     root: null,
-    rootMargin: '0px 0px -700px 0px',
+    rootMargin: '0px 0px -50% 0px',
     threshold: 0.5,
 });
 
