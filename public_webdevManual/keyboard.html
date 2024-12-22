@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard layout</title>
+    <style>
+        .containerkb11 {
+            display: flex;
+            text-align: center;
+        }
+
+        .containerkb11 div {
+            margin: 2px;
+            min-width: 15px;
+            height: 15px;
+            border: 2px solid black;
+        }
+        .active {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+<div class="containerkb11">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>0</div>
+    <div>ShiftLeft</div>
+    <div>ControlLeft</div>
+</div>
+<div class="containerkb11">
+    <div>q</div>
+    <div>w</div>
+    <div>e</div>
+    <div>r</div>
+    <div>t</div>
+    <div>y</div>
+    <div>u</div>
+    <div>i</div>
+    <div>o</div>
+    <div>p</div>
+    <div>AltLeft</div>
+    <div>Space</div>
+    <div>Enter</div>
+</div>
+<input aria-label="inputkb11" type="text" class="inputkb11">
+<div class="outkb11"></div>
+
+<script>
+    //T11
+    //1. Выполните в html верстку клавиш клавиатуры. Сверстайте – блок цифровых клавиш от 1 до 0. И ряд клавиш q – p. Добавьте
+    //клавишу левый shift, левый alt, левый ctrl, пробел, enter.
+    //
+    //2. Добавьте на input .inputkb11 событие onkeypress или onkeyup или onkeydown ( по вашему выбору). Когда событие происходит (
+    //ввод символа в input) необходимо подсветить ( добавить класс active) клавише с таким символом. Со всех остальных клавиш
+    //– удалить класс active.
+    //
+    //3. Если вводится следующий символ – повторить удаление active и подсветить клавишу с введенным символом.
+    //
+    //4. Ограничения проекта – тестируются только указанные клавиши в латинской раскладке. Комбинации клавиш не тестируются.
+    //Т.е. нажиматься shift+A, ctrl+shift – не будут. Все символы вводятся в нижнем регистре.
+    document.querySelector('.inputkb11').onkeydown = function funckb11(eventkb11) {
+        let keys11 = document.querySelectorAll('.containerkb11 div');
+        for (let i = 0; i < keys11.length; i++) if (keys11[i].textContent == eventkb11.key || keys11[i].textContent == eventkb11.code) {
+            keys11[i].classList.add('active');
+
+        } else {
+            keys11[i].classList.remove('active');
+        }
+        return false;
+    }
+</script>
+</body>
+</html>
