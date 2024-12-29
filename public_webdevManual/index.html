@@ -29234,6 +29234,379 @@ git push -u origin main
                     </div>
                 </section>
             </section>
+
+            <section id="dockerNav">
+                <h3 id="dockerHeaderLink">Docker</h3>
+
+                <section>
+                    <h4 id="dockerBasics">Основы Docker</h4>
+
+                    <div>
+
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="dockerInstall">Установка Docker в Linux и Windows</h4>
+
+                    <div>
+                        <p>Все дистрибутивы и дефолт мануал можно найти на <a href="https://docs.docker.com">docs.docker.com</a></p>
+                        <p>Ру мануал по установке для <a href="https://youtu.be/O8N1lvkIjig?si=2phWaEFHQaCBp3eG&t=1170" target="_blank">Linux (Ubuntu) / Windows</a></p>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="mainDockerCommands">Основные команды</h4>
+
+                    <div>
+                        <table class="jsTheoryTable">
+                            <thead>
+                            <tr>
+                                <th>Linux command</th>
+                                <th>PowerShall command</th>
+                                <th>description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><code>service docker status</code></td>
+                                <td><code>Get-Service -Name "com.docker.service"</code></td>
+                                <td>Проверка состояния службы Docker</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker ps -a</code></td>
+                                <td>Получить список контейнеров</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker inspect &lt;containerId&gt;</code></td>
+                                <td>Получение всей информации по контейнеру</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker logs &lt;containerId&gt;</code></td>
+                                <td>Получение логов контейнера</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker run &lt;imageName&gt;</code></td>
+                                <td>Создание контейнера</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker start &lt;containerId&gt;</code></td>
+                                <td>Запуск уже созданного контейнера</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker pause/unpause &lt;containerId&gt;</code></td>
+                                <td>Пауза/снятие с паузы созданного контейнера</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker stop &lt;containerId&gt;</code></td>
+                                <td>Остановка контейнера</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker kill &lt;containerId&gt;</code></td>
+                                <td>Быстрая остановка контейнера</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker rm &lt;containerId&gt;</code></td>
+                                <td>Удаление контейнера</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker images</code></td>
+                                <td>Просмотр images</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker rmi &lt;imageName&gt;</code></td>
+                                <td>Удаление image</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker pull &lt;imageName&gt;</code></td>
+                                <td>Скачивание требуемого image</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker exec -it &lt;containerId&gt; /bin/bash</code></td>
+                                <td>Подключение к консоли контейнера</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker system prune -a --volumes</code></td>
+                                <td>Полная очистка Docker</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker volume ls</code></td>
+                                <td>Просмотр всех volume</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker volume create &lt;volumeName&gt;</code></td>
+                                <td>Создание volume</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker volume rm &lt;volumeName/id&gt;</code></td>
+                                <td>Удаление volume по имени/id</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker network create --driver &lt;networkType&gt; &lt;networkName&gt;</code></td>
+                                <td>Создание сети</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker network inspect &lt;networkName/Id&gt;</code></td>
+                                <td>Получение параметров сети</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker network rm &lt;networkName/Id&gt;</code></td>
+                                <td>Удаление сети</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>docker network connect &lt;networkName&gt; &lt;containerName/id&gt;</code></td>
+                                <td>Присоединение к сети</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><code>network disconnect &lt;networkId&gt; &lt;containerName/id&gt;</code></td>
+                                <td>Отсоединение контейнера от сети</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="portMapping">Управление портами: Port Mapping</h4>
+
+                    <div>
+                        <p>Для того чтобы открыть внешний порт контейнера, нужно использовать команду со следующей конфигурацией:</p>
+                        <pre>docker run <code>-p 8080:80</code> nginx</pre>
+                        <p>Где 8080 это внешний порт, а 80 - порт контейнера.</p>
+                        <div class="smallScreenContainer">
+                            <img src="./images/dockerOpenPort.png" alt="dockerOpenPort">
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="environmentVariables">Переменные в Docker: Environment Variables</h4>
+
+                    <div>
+                        <p>Пример задания переменной при старте контейнера:</p>
+                        <pre>docker run --name DB-mysql <code>-e MYSQL_ROOT_PASSWORD=pw123456qwerty</code> -d mysql</pre>
+                        <p>Как правило в документации(блок Environment Variables) контейнера указаны все переменные которые могут использоваться в нем.</p>
+                        <p>Чтобы задать переменную можно использовать следующий синтаксис:</p>
+                        <pre>export VARIABLE_NAME=variableValue</pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="dockerVolumes">Постоянные данные: Docker Volumes</h4>
+
+                    <div>
+                        <p>При запуске приложения, данные сохраняются в определенной директории, и в случае если контейнер останавливается или уничтожается - данные теряются.</p>
+                        <p>В случае если нужно оставить данные при остановке или уничтожении контейнера - данные нужно сохранять на самом сервере или на хосте.
+                            Такие данные называются сохраняющимися данными (<code>Persisting data</code>)</p>
+
+                        <div class="smallScreenContainer">
+                            <img src="./images/persistingData.png" alt="persistingData">
+                        </div>
+
+                        <p>Существует три способа монтировки данных на физический сервер:</p>
+                        <p><code>Host Volumes:</code></p>
+
+                        <div class="smallScreenContainer">
+                            <img src="./images/hostVolumes.png" alt="hostVolumes">
+                        </div>
+
+                        <p><code>Anonymous Volumes:</code></p>
+                        
+                        <div class="smallScreenContainer">
+                            <img src="./images/anonymousVolumes.png" alt="anonymousVolumes">
+                        </div>
+
+                        <p><code>Named Volumes:</code></p>
+                        
+                        <div class="smallScreenContainer">
+                            <img src="./images/namedVolumes.png" alt="">
+                        </div>
+
+                        <p>Действия с volume:</p>
+
+                        <ul>
+                            <li>Просмотр всех volume: <code>docker volume ls</code></li>
+                            <li>Создание volume: <code>docker volume create &lt;volumeName&gt;</code></li>
+                            <li>Удаление volume по имени/id: <code>docker volume rm &lt;volumeName/id&gt;</code></li>
+                        </ul>
+
+                        <p>Для сохранения данных обязательно нужно использовать или Host volumes или Named volumes!!!</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="dockerNetwork">Сети в Docker. Network</h4>
+
+                    <div>
+                        <p>При запуске Docker мы получаем несколько типов сетей по умолчанию:</p>
+
+                        <ul>
+                            <li><code>bridge:</code> docker0: 172.17.0.0/16</li>
+                            <li><code>host:</code> ServerIP(10.15.11.12)</li>
+                            <li><code>none</code></li>
+                            <li><code>macvlan</code></li>
+                            <li><code>ipvlan</code></li>
+                            <li><code>overlay</code> (Docker Swarm Cluster)</li>
+                        </ul>
+
+                        <p><code>bridge</code> создается когда мы запускаем команду <code>docker run &lt;imageName&gt;</code></p>
+                        <p><code>host</code> создается когда мы запускаем команду <code>docker run &lt;imageName&gt; --network=host</code></p>
+                        <p><code>none</code> создается когда мы запускаем команду <code>docker run &lt;imageName&gt; --network=none</code></p>
+
+                        <p>Для создания именования сети типа <code>bridge</code> нам требуется ввести следующие команды:</p>
+                        <pre>
+docker network create --driver bridge NAME
+docker run --net myNAME nginx
+                        </pre>
+
+                        <p>Для сети типа <code>Host</code> подход тот же:</p>
+                        <pre>
+docker network create --driver host NAME
+docker run --net myNAME nginx
+                        </pre>
+
+                        <p>Для <code>None</code> подход тот же:</p>
+                        <pre>
+docker network create --driver none NAME
+docker run --net myNAME nginx
+                        </pre>
+
+                        <p>И Host и None могут быть созданы только один раз.</p>
+
+                        <div class="smallScreenContainer">
+                            <img src="./images/networkSettings.png" alt="networkSettings">
+                        </div>
+                        
+                        <p>Устройство macvlan | ipvlan</p>
+                        
+                        <div class="smallScreenContainer">
+                            <img src="./images/lanNetworkSettings.png" alt="lanNetworkSettings">
+                        </div>
+
+                        <p>network команды:</p>
+
+                        <ul>
+                            <li>Создание сети: <code>docker network create --driver &lt;networkType&gt; &lt;networkName&gt;</code></li>
+                            <li>Получение параметров сети: <code>docker network inspect &lt;networkName/Id&gt;</code></li>
+                            <li>Удаление сети: <code>docker network rm &lt;networkName/Id&gt;</code></li>
+                            <li>Присоединение контейнера к сети: <code>docker network connect &lt;networkName&gt; &lt;containerName/id&gt;</code></li>
+                            <li>Отсоединение контейнера от сети: <code>network disconnect &lt;networkId&gt; &lt;containerName/id&gt;</code></li>
+                        </ul>
+
+                        <p>Пример создание собственной сети, со своими параметрами:</p>
+                        <pre><code>docker network create -d bridge --subnet 192.168.10.0/24 --gateway 192.168.10.1 myNet192</code></pre>
+
+                        <p>Пример запуска macvlan с диапазоном ip адресов:</p>
+                        <pre><code>docker network create -d macvlan --subnet 192.168.100.0/24 --gateway 192.168.100.1 --ip-range 192.168.100.99/32 -o parent=eth0 myMACvlan</code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="dockerfile">Создание своих контейнеров. Dockerfile</h4>
+
+                    <div>
+                        <p>В Dockerfile входит (+ примеры):</p>
+                        <ul>
+                            <li>Базовый образ (image): <code>FROM ubuntu:22.04</code></li>
+                            <li>Описание образа: <code>LABEL author=Slipbang</code></li>
+                            <li>Команды: <code>RUN apt-get upgrade / RUN apt-get install nginx -y</code></li>
+                            <li>Рабочие директории: <code>WORKDIR /var/www/html</code></li>
+                            <li>Файлы: <code>COPY files2/script.sh /opt/script.sh</code></li>
+                            <li>Работа с файлами: <code>RUN chmod +x /opt/script.sh</code></li>
+                            <li>Указание переменных: <code>ENV OWNER="Slipbang" / ENV TYPE=demo</code></li>
+                            <li>Порты: <code>EXPOSE 80</code></li>
+                            <li>Описание команд при запуске контейнера: <code>ENTRYPOINT ["echo"] / CMD ["Hello my first Docker"]</code></li>
+                        </ul>
+                        <p>Для построения образа из текущей директории с докерфайлом:</p>
+                        <pre>docker build -t &lt;imageName&gt; .</pre>
+
+                        <p>ENTRYPOINT - фиксированная команда! Команда CMD может быть перезаписана.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="dockerCompose">Docker Compose. Применение</h4>
+
+                    <div>
+                        <p>Docker compose:</p>
+                        <ul>
+                            <li>Используется для управления одним или несколькими контейнерами</li>
+                            <li>Содержит инструкции по запуску контейнера(ов)</li>
+                            <li>Упрощает автоматизацию запуска контейнеров</li>
+                            <li>Описывается в YAML файле: docker-compose.yml</li>
+                        </ul>
+
+                        <p>Пример формирования docker-compose.yml:</p>
+                        <div class="smallScreenContainer">
+                            <img src="./images/dockerCompose.png" alt="dockerCompose">
+                        </div>
+
+                        <p>Пример docker-compose.yml для фулстэк приложения:</p>
+
+                        <div class="smallScreenContainer">
+                            <img src="./images/dockerComposeMultiservices.png" alt="dockerComposeMultiservices">
+                        </div>
+                        <p>Запуск docker compose(текущая директория): <code>docker compose up -d</code></p>
+                        <p>остановка docker compose: <code>docker compose down/stop</code></p>
+                    </div>
+                </section>
+
+                <section>
+                    <h4 id="portainer">Portainer - Web UI для управления Docker</h4>
+
+                    <div>
+                        <p>Видео гайд по <a href="https://youtu.be/O8N1lvkIjig?si=sgo3DolAHL52oVUv&t=16349">portainer</a></p>
+                        <p>Установка <a href="https://docs.portainer.io/start/install/server">portainer.io</a></p>
+                        <p>Для быстрого запуска portainer.io можно так же сделать docker compose:</p>
+                        <pre>
+#docker run -d
+#  -p 8000:8000
+#  -p 9443:9443
+#  --name portainer
+#  --restart=always
+#  -v /var/run/docker.sock:/var/run/docker.sock
+#  -v portainer_data:/data
+#  portainer/portainer-ee:2.21.5
+
+services:
+  portainer:
+    image: portainer/portainer-ee:2.21.5
+    container_name: portainer
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer_data:/data
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    restart: always
+                        </pre>
+                    </div>
+                </section>
+            </section>
         </section>
     </div>
 </main>

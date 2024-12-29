@@ -197,7 +197,8 @@ aside {
 }
 
 .smallScreenContainer img,
-.smallScreenContainer video {
+.smallScreenContainer video,
+.smallScreenContainer figure {
     max-width: 600px;
 }
 
