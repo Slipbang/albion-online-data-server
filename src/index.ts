@@ -7,8 +7,7 @@ if (existsSync('.env')) {
     config();
 }
 
-const port = process.env.PORT || 4000;
-const aaa = ''
+const port = process.env.PORT || 10000;
 
 const appController = new AppController();
 const app = express();
