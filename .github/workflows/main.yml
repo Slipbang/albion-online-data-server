@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Trigger Render Deploy Hook
         run: |
-          curl -X POST https://api.render.com/deploy/srv-cscbgcggph6c73bq29o0?key=AH0ZtR1nafo
+          curl -X POST https://api.render.com/deploy/srv-ctpagfjqf0us73ea0b6g?key=2iyt1OnIB0Y
