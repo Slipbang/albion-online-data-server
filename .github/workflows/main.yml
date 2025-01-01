@@ -1,58 +1,18 @@
-#name: Deploy to Render
-#
-#on:
-#  push:
-#    branches:
-#      - main
-#
-#jobs:
-#  deploy:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Trigger Render Deploy Hook
-#        run: |
-#          curl -X POST ${{ secrets.RENDER_API_KEY }}
-
 name: Deploy to Render
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Возможность ручного запуска
+  workflow_dispatch:
   repository_dispatch:
-    types: [frontend-changes]  # Добавляем сюда свой триггер для другого репозитория
+    types: [frontend-changes]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout основного репозитория
-      - name: Checkout main repository
-        uses: actions/checkout@v3
-
-      # 2.1 Checkout фронтенд репозитория
-      - name: Checkout frontend repository
-        uses: actions/checkout@v3
-        with:
-          repository: Slipbang/albion-calculator-app-v1
-          token: ${{ secrets.MY_PERSONAL_TOKEN }}
-
-      # 2.2 Checkout фронтенд репозитория
-      - name: Checkout frontend repository
-        uses: actions/checkout@v3
-        with:
-          repository: Slipbang/webdev-basics
-          token: ${{ secrets.MY_PERSONAL_TOKEN }}
-
-      # 3. Выполнить действия для проверки изменений в другом репозитории
-      - name: Check for changes in frontend repository
-        run: |
-          git diff --exit-code
-
-      # 4. Если изменения есть, выполнить деплой
       - name: Trigger Render Deploy Hook
         run: |
           curl -X POST ${{ secrets.RENDER_API_KEY }}
