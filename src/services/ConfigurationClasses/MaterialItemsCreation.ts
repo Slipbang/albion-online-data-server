@@ -11,7 +11,7 @@ export class MaterialItemsCreation {
         return materialObject;
     }
 
-    private static _MATERIAL_CATEGORIES = ['metalbar', 'leather', 'cloth', 'planks', 'stoneblock', 'ore', 'wood', 'hide', 'fiber', 'rock'];
+    private static _MATERIAL_CATEGORIES = ['refinedresources',];
 
     static createMaterialItems(data: IaodItems['simpleitem']): TMaterial[] {
         const materials: TMaterial[] = [];

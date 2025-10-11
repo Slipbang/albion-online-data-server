@@ -30,12 +30,12 @@ export class ConsumableItemsCreation {
         return consumableObject;
     }
 
-    private static _CONSUMABLE_CATEGORIES = ['potion', 'cooked'];
+    private static _CONSUMABLE_CATEGORIES = ['potions', 'food'];
 
     static createConsumableItems (data: IaodItems['consumableitem']) {
         const consumableCraftItems: TConsumableCraftItems = {
-            potion: [],
-            cooked: [],
+            potions: [],
+            food: [],
         };
         for (let item of data) {
             if ('enchantments' in item) {

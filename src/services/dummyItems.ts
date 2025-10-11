@@ -28,7 +28,7 @@ export type TCraftItems = {
     [key in TCraftItemsTypes]: TCraftItem[];
 }
 
-export type TConsumableTypes = 'potion' | 'cooked';
+export type TConsumableTypes = 'potions' | 'food';
 
 export type TConsumableCraftItem = {
     "itemId": string;
