@@ -11,7 +11,7 @@ export class MaterialItemsCreation {
         return materialObject;
     }
 
-    private static _MATERIAL_CATEGORIES = ['refinedresources',];
+    private static _MATERIAL_CATEGORIES = ['refinedresources', 'resources'];
 
     static createMaterialItems(data: IaodItems['simpleitem']): TMaterial[] {
         const materials: TMaterial[] = [];
